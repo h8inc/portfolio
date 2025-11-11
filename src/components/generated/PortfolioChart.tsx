@@ -358,7 +358,7 @@ export const PortfolioChart = ({
     const hoverDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     hoverDot.setAttribute('r', '0');
     hoverDot.setAttribute('fill', '#8b5cf6');
-    hoverDot.setAttribute('stroke', '#1f2937');
+    hoverDot.setAttribute('stroke', 'rgb(247, 244, 244)');
     hoverDot.setAttribute('stroke-width', isMobile ? '2' : '3');
     hoverDot.setAttribute('opacity', '0');
     dotsGroup.appendChild(hoverDot);
@@ -369,7 +369,7 @@ export const PortfolioChart = ({
     const maxLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     maxLabel.setAttribute('x', (containerWidth - margin.right + labelXOffset).toString());
     maxLabel.setAttribute('y', (margin.top + 5).toString());
-    maxLabel.setAttribute('fill', '#9ca3af');
+    maxLabel.setAttribute('fill', '#6b7280');
     maxLabel.setAttribute('font-size', labelFontSize);
     maxLabel.setAttribute('font-weight', '500');
     maxLabel.setAttribute('text-anchor', 'start');
@@ -378,7 +378,7 @@ export const PortfolioChart = ({
     const minLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     minLabel.setAttribute('x', (containerWidth - margin.right + labelXOffset).toString());
     minLabel.setAttribute('y', (containerHeight - margin.bottom + 5).toString());
-    minLabel.setAttribute('fill', '#9ca3af');
+    minLabel.setAttribute('fill', '#6b7280');
     minLabel.setAttribute('font-size', labelFontSize);
     minLabel.setAttribute('font-weight', '500');
     minLabel.setAttribute('text-anchor', 'start');
@@ -513,10 +513,10 @@ export const PortfolioChart = ({
     }
   };
   if (isMobile) {
-    return <div className={`w-full h-full bg-[#0f1419] flex flex-col overflow-hidden ${className || ''}`}>
+    return <div className={`w-full h-full bg-[rgb(247,244,244)] flex flex-col overflow-hidden ${className || ''}`}>
           {/* Chart Section - Fills available space */}
           <div className="w-full flex-1 min-h-0 relative overflow-hidden">
-            <div ref={containerRef} className="absolute inset-x-0 top-0 bottom-0 bg-[#0f1419] overflow-hidden" style={{ bottom: '24px' }}>
+            <div ref={containerRef} className="absolute inset-x-0 top-0 bottom-0 bg-[rgb(247,244,244)] overflow-hidden" style={{ bottom: '24px' }}>
               <svg ref={svgRef} className="w-full h-full block"></svg>
               {hoveredIndex !== null && tooltipPos && data[hoveredIndex] && <div ref={tooltipRef} className="absolute bg-white text-[#111827] px-2 py-1 rounded-full text-[10px] font-semibold leading-none pointer-events-none z-[1000] shadow-lg whitespace-nowrap" style={{
               left: `${tooltipPos.x}px`,
@@ -534,7 +534,7 @@ export const PortfolioChart = ({
         }}>
             {periods.map(period => <button key={period} onClick={() => handlePeriodClick(period)} className={`
                   px-4 py-0.5 rounded-full text-sm font-medium tracking-wide transition-all duration-200
-                  ${selectedPeriod === period ? 'bg-[#1f2937] text-[#e5e7eb] shadow-lg' : 'bg-transparent text-[#6b7280] hover:text-[#9ca3af]'}
+                  ${selectedPeriod === period ? 'bg-[#130F25] text-white shadow-lg' : 'bg-transparent text-[#6b7280] hover:text-[#130F25]'}
                 `}>
                 <span>{period}</span>
               </button>)}
