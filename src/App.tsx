@@ -29,19 +29,9 @@ function App() {
           {/* Main Profile Section */}
           <ProfileWidget />
           
-          {/* Interactive Showcases Section - NOW BEFORE LOGOS */}
-          <div className="w-full  py-12 sm:py-16 px-4">
+          {/* Cards Section */}
+          <div className="w-full py-12 sm:py-16 px-4">
             <div className="max-w-7xl mx-auto">
-              {/* Section Header */}
-              <div className="text-center mb-8 sm:mb-12">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3" style={{ fontFamily: 'Aeonik Extended' }}>
-                  Interactive Components Showcase
-                </h2>
-                <p className="text-base sm:text-lg lg:text-xl text-white/80" style={{ fontFamily: 'Aeonik' }}>
-                  Explore my interaction design skills through these examples
-                </p>
-              </div>
-
               {/* Both Components Side by Side */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
                 {/* Apps Analytics Card Section */}
