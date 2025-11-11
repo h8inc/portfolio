@@ -45,27 +45,13 @@ function App() {
               {/* Both Components Side by Side */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
                 {/* Apps Analytics Card Section */}
-                <div className="flex flex-col items-center">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 text-center" style={{ fontFamily: 'Aeonik Extended' }}>
-                    Data Visualization
-                  </h3>
-                  <div className="w-full max-w-md flex justify-center">
-                    <div className="w-full">
-                      <AppsAnalyticsCard />
-                    </div>
-                  </div>
+                <div className="flex justify-center">
+                  <AppsAnalyticsCard />
                 </div>
 
                 {/* Portfolio Analytics Section */}
-                <div className="flex flex-col items-center">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 text-center" style={{ fontFamily: 'Aeonik Extended' }}>
-                    Financial Portfolio Dashboard
-                  </h3>
-                  <div className="w-full max-w-md flex justify-center">
-                    <div className="w-full">
-                      <KrakenProPortfolio />
-                    </div>
-                  </div>
+                <div className="flex justify-center">
+                  <KrakenProPortfolio />
                 </div>
               </div>
             </div>
