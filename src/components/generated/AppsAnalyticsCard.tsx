@@ -85,7 +85,7 @@ export const AppsAnalyticsCard = ({
   const displayValue = hoveredIndex !== null ? chartYToValue(data[hoveredIndex]) : value;
 
   // @return
-  return <div ref={containerRef} className={`relative flex flex-col w-full max-w-md rounded-[30px] p-[30px] overflow-hidden cursor-pointer shadow-2xl ${className}`} style={{
+  return <div ref={containerRef} className={`relative flex flex-col w-full max-w-md rounded-[30px] p-[30px] overflow-hidden cursor-pointer shadow-2xl border-[3px] sm:border-[4px] border-black ${className}`} style={{
     backgroundColor,
     aspectRatio: '285/431'
   }}>
