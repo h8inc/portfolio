@@ -109,8 +109,18 @@ export const PortfolioChart = ({
   const isMobile = variant === 'mobile';
   useEffect(() => {
     if (!svgRef.current || !containerRef.current || data.length === 0) return;
-    const containerWidth = containerRef.current.clientWidth;
-    const containerHeight = containerRef.current.clientHeight;
+    
+    // Use requestAnimationFrame to ensure layout has settled before reading dimensions
+    requestAnimationFrame(() => {
+      if (!svgRef.current || !containerRef.current) return;
+      
+      const containerWidth = containerRef.current.clientWidth;
+      const containerHeight = containerRef.current.clientHeight;
+      
+      // Validate dimensions are ready - if not, skip render
+      if (containerWidth === 0 || containerHeight === 0) {
+        return;
+      }
 
     // Responsive margins - add right margin for value labels
     const margin = isMobile ? {
@@ -493,6 +503,7 @@ export const PortfolioChart = ({
     });
     overlay.addEventListener('touchend', handleInteractionEnd);
     svg.appendChild(overlay);
+    }); // Close requestAnimationFrame
   }, [data, isMobile, variant, onHoverValue]);
   const handlePeriodClick = (period: Period) => {
     if (onPeriodChange) {
