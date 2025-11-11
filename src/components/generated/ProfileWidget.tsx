@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Mail, Linkedin, Github, Leaf } from "lucide-react";
 import BitcoinPill from "./BitcoinPill";
+import Marquee from "react-fast-marquee";
 export interface ProfileWidgetProps {
   name?: string;
   title?: string;
@@ -37,23 +38,18 @@ export default function ProfileWidget({
 
           {/* Top Marquee Section */}
           <div className="bg-white py-3 sm:py-4 overflow-hidden relative z-10 rounded-t-[2.5rem] sm:rounded-t-[3rem]">
-            <div className="animate-marquee whitespace-nowrap inline-flex">
-              {/* Render content twice with no gap between groups */}
-              {[0, 1].map((groupIndex) => (
-                <div key={groupIndex} className="flex items-center shrink-0" aria-hidden={groupIndex === 1}>
-                  {[...Array(20)].map((_, i) => (
-                    <React.Fragment key={`${groupIndex}-${i}`}>
-                      <span className="mx-2 sm:mx-3 text-xs sm:text-sm md:text-base font-bold tracking-wider text-gray-400" style={{ fontFamily: 'Aeonik Extended' }}>HELLO, I'M NASKO</span>
-                      <span className="mx-2 sm:mx-3"><BitcoinPill /></span>
-                      <span className="mx-2 sm:mx-3 text-xs sm:text-sm md:text-base font-bold tracking-wider" style={{ fontFamily: 'Aeonik Extended' }}>
-                        NASKO TERZIEV JR
-                      </span>
-                      <span className="mx-2 sm:mx-3"><BitcoinPill /></span>
-                    </React.Fragment>
-                  ))}
-                </div>
+            <Marquee speed={50} gradient={false}>
+              {[...Array(8)].map((_, i) => (
+                <React.Fragment key={i}>
+                  <span className="mx-3 sm:mx-4 text-xs sm:text-sm md:text-base font-bold tracking-wider text-gray-400" style={{ fontFamily: 'Aeonik Extended' }}>HELLO, I'M NASKO</span>
+                  <span className="mx-3 sm:mx-4"><BitcoinPill /></span>
+                  <span className="mx-3 sm:mx-4 text-xs sm:text-sm md:text-base font-bold tracking-wider" style={{ fontFamily: 'Aeonik Extended' }}>
+                    NASKO TERZIEV JR
+                  </span>
+                  <span className="mx-3 sm:mx-4"><BitcoinPill /></span>
+                </React.Fragment>
               ))}
-            </div>
+            </Marquee>
           </div>
 
           {/* Profile Section */}
