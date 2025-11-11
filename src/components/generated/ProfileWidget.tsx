@@ -41,7 +41,7 @@ export default function ProfileWidget({
               {/* Render content twice with no gap between groups */}
               {[0, 1].map((groupIndex) => (
                 <div key={groupIndex} className="flex items-center shrink-0" aria-hidden={groupIndex === 1}>
-                  {[...Array(10)].map((_, i) => (
+                  {[...Array(20)].map((_, i) => (
                     <React.Fragment key={`${groupIndex}-${i}`}>
                       <span className="mx-2 sm:mx-3 text-xs sm:text-sm md:text-base font-bold tracking-wider text-gray-400" style={{ fontFamily: 'Aeonik Extended' }}>HELLO, I'M NASKO</span>
                       <span className="mx-2 sm:mx-3"><BitcoinPill /></span>
