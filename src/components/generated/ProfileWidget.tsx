@@ -38,8 +38,20 @@ export default function ProfileWidget({
           {/* Top Marquee Section */}
           <div className="bg-white py-3 sm:py-4 overflow-hidden relative z-10 rounded-t-[2.5rem] sm:rounded-t-[3rem]">
             <div className="flex animate-marquee whitespace-nowrap">
+              {/* First copy */}
               <div className="flex items-center gap-4 sm:gap-6 px-4 sm:px-6">
-                {[...Array(8)].map((_, i) => <React.Fragment key={i}>
+                {[...Array(4)].map((_, i) => <React.Fragment key={i}>
+                    <span className="text-xs sm:text-sm md:text-base font-bold tracking-wider text-gray-400" style={{ fontFamily: 'Aeonik Extended' }}>HELLO, I'M NASKO</span>
+                    <BitcoinPill />
+                    <span className="text-xs sm:text-sm md:text-base font-bold tracking-wider" style={{ fontFamily: 'Aeonik Extended' }}>
+                      NASKO TERZIEV JR
+                    </span>
+                    <BitcoinPill />
+                  </React.Fragment>)}
+              </div>
+              {/* Exact duplicate for seamless loop */}
+              <div className="flex items-center gap-4 sm:gap-6 px-4 sm:px-6" aria-hidden="true">
+                {[...Array(4)].map((_, i) => <React.Fragment key={`dup-${i}`}>
                     <span className="text-xs sm:text-sm md:text-base font-bold tracking-wider text-gray-400" style={{ fontFamily: 'Aeonik Extended' }}>HELLO, I'M NASKO</span>
                     <BitcoinPill />
                     <span className="text-xs sm:text-sm md:text-base font-bold tracking-wider" style={{ fontFamily: 'Aeonik Extended' }}>
