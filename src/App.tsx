@@ -4,7 +4,7 @@ import { GradientBackground } from './components/generated/GradientBackground';
 import ProfileWidget from './components/generated/ProfileWidget';
 import { AppsAnalyticsCard } from './components/generated/AppsAnalyticsCard';
 import { KrakenProPortfolio } from './components/generated/KrakenProPortfolio';
-import { Leaf } from 'lucide-react';
+import { Leaf, ChevronDown } from 'lucide-react';
 
 let theme: Theme = 'light';
 // only use 'centered' container for standalone components, never for full page apps or websites.
@@ -22,6 +22,16 @@ function App() {
   setTheme(theme);
 
   const generatedComponent = useMemo(() => {
+    const handleScrollToCharts = () => {
+      const chartsSection = document.getElementById('charts');
+      if (chartsSection) {
+        chartsSection.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }
+    };
+
     // THIS IS WHERE THE TOP LEVEL GENRATED COMPONENT WILL BE RETURNED!
     return (
       <GradientBackground>
@@ -29,19 +39,38 @@ function App() {
           {/* Main Profile Section */}
           <ProfileWidget />
           
+          {/* Headline Section */}
+          <div className="w-full px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12">
+            <div className="max-w-7xl mx-auto text-center">
+              <button 
+                onClick={handleScrollToCharts}
+                className="group cursor-pointer bg-transparent border-none outline-none transition-all hover:opacity-80 inline-flex flex-col items-center gap-2"
+              >
+                <span className="text-sm sm:text-base lg:text-lg font-bold text-white" style={{ fontFamily: 'Aeonik Extended', textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)' }}>
+                  Interaction explorations
+                </span>
+                <ChevronDown 
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-white animate-bounce" 
+                  strokeWidth={2.5}
+                  style={{ filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5))' }}
+                />
+              </button>
+            </div>
+          </div>
+
           {/* Cards Section */}
-          <div className="w-full py-12 sm:py-16 px-4">
+          <div id="charts" className="w-full py-0 sm:py-4 px-4">
             <div className="max-w-7xl mx-auto">
               {/* Both Components Side by Side */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
-                {/* Apps Analytics Card Section */}
-                <div className="flex justify-center">
-                  <AppsAnalyticsCard />
-                </div>
-
                 {/* Portfolio Analytics Section */}
                 <div className="flex justify-center">
                   <KrakenProPortfolio />
+                </div>
+
+                {/* Apps Analytics Card Section */}
+                <div className="flex justify-center">
+                  <AppsAnalyticsCard />
                 </div>
               </div>
             </div>

@@ -57,7 +57,7 @@ export default function ProfileWidget({
           {/* Profile Section */}
           <div className="relative px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-6 sm:pb-8">
             {/* Title Text */}
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center mb-6 sm:mb-8 lg:mb-10 leading-tight px-2 sm:px-4 font-medium" style={{ fontFamily: 'Aeonik' }}>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center mb-6 sm:mb-8 lg:mb-10 leading-tight px-2 sm:px-4 font-medium" style={{ fontFamily: 'Aeonik Extended' }}>
             Designing 0→1 products at <a href="https://www.tide.co/" target="_blank" rel="noopener noreferrer" className="underline decoration-1 decoration-gray-400 underline-offset-8 hover:decoration-gray-600 transition-all">Tide</a> - used by over a million businesses. 
             </h1>
 
