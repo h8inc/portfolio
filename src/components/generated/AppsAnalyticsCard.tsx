@@ -87,7 +87,6 @@ export const AppsAnalyticsCard = ({
   // @return
   return <div ref={containerRef} className={`relative flex flex-col w-full max-w-md rounded-[30px] p-[30px] overflow-hidden cursor-pointer shadow-2xl ${className}`} style={{
     backgroundColor,
-    boxShadow: 'rgba(255, 255, 255, 0.18) 0px 0px 30px 0px inset',
     aspectRatio: '285/431'
   }}>
       <div className="relative w-full h-full flex flex-col">

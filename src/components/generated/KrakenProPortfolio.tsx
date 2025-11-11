@@ -260,7 +260,7 @@ export const KrakenProPortfolio = () => {
   const displayChangePercentage = hoveredValue !== null ? (hoveredValue - latestValue) / latestValue * 100 : changePercentage;
 
   // @return
-  return <div className="w-full max-w-md bg-[#0f1419] text-white flex flex-col rounded-[30px] overflow-hidden border border-white/10 shadow-2xl relative" style={{
+  return <div className="w-full max-w-md bg-[#0f1419] text-white flex flex-col rounded-[30px] overflow-visible border border-white/10 shadow-2xl relative" style={{
     aspectRatio: '285/431',
     isolation: 'isolate',
     contain: 'layout style paint',

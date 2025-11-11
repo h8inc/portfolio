@@ -502,11 +502,10 @@ export const PortfolioChart = ({
     }
   };
   if (isMobile) {
-    return <div className={`w-full h-full bg-[#0f1419] flex flex-col overflow-hidden ${className || ''}`}>
-        <div className="flex flex-col h-full overflow-hidden">
-          {/* Chart Section - Responsive aspect ratio */}
-          <div className="w-full flex-1 relative overflow-hidden">
-            <div ref={containerRef} className="absolute inset-0 bg-[#0f1419] overflow-hidden">
+    return <div className={`w-full h-full bg-[#0f1419] flex flex-col overflow-hidden shadow-2xl ${className || ''}`}>
+          {/* Chart Section - Fills available space */}
+          <div className="w-full flex-1 min-h-0 relative overflow-hidden">
+            <div ref={containerRef} className="absolute inset-x-0 top-0 bottom-0 bg-[#0f1419] overflow-hidden" style={{ bottom: '24px' }}>
               <svg ref={svgRef} className="w-full h-full block"></svg>
               {hoveredIndex !== null && tooltipPos && data[hoveredIndex] && <div ref={tooltipRef} className="absolute bg-white text-[#111827] px-2 py-1 rounded-full text-[10px] font-semibold leading-none pointer-events-none z-[1000] shadow-lg whitespace-nowrap" style={{
               left: `${tooltipPos.x}px`,
@@ -529,12 +528,11 @@ export const PortfolioChart = ({
                 <span>{period}</span>
               </button>)}
           </div>
-        </div>
       </div>;
   }
 
   // Web variant
-  return <div className={`w-full h-full bg-[#0f1419] flex flex-col overflow-hidden isolate ${className || ''}`} style={{
+  return <div className={`w-full h-full bg-[#0f1419] flex flex-col overflow-hidden isolate shadow-2xl ${className || ''}`} style={{
     contain: 'layout paint style',
     clipPath: 'inset(0)',
     isolation: 'isolate'
@@ -544,15 +542,16 @@ export const PortfolioChart = ({
       clipPath: 'inset(0)'
     }}>
         {/* Chart Section */}
-        <div className="w-full flex-1 min-h-0 overflow-hidden isolate" style={{
+        <div className="w-full flex-1 min-h-0 relative overflow-hidden isolate" style={{
         contain: 'layout paint style',
         clipPath: 'inset(0)',
         isolation: 'isolate'
       }}>
-          <div ref={containerRef} className="relative w-full h-full bg-[#0f1419] overflow-hidden isolate" style={{
+          <div ref={containerRef} className="absolute inset-x-0 top-0 w-full bg-[#0f1419] overflow-hidden isolate" style={{
           contain: 'layout paint style',
           clipPath: 'inset(0)',
-          isolation: 'isolate'
+          isolation: 'isolate',
+          bottom: '32px'
         }}>
             <svg ref={svgRef} className="w-full h-full block overflow-hidden" style={{
             contain: 'layout paint style',
