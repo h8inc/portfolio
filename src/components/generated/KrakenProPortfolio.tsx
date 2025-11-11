@@ -260,12 +260,9 @@ export const KrakenProPortfolio = () => {
   const displayChangePercentage = hoveredValue !== null ? (hoveredValue - latestValue) / latestValue * 100 : changePercentage;
 
   // @return
-  return <div className="w-full max-w-md bg-[#0f1419] text-white flex flex-col rounded-[30px] overflow-visible border border-white/10 shadow-2xl relative" style={{
+  return <div className="w-full max-w-md bg-[#0f1419] text-white flex flex-col rounded-[30px] overflow-visible border border-white/10 relative" style={{
     aspectRatio: '285/431',
-    isolation: 'isolate',
-    contain: 'layout style paint',
-    transform: 'translateZ(0)',
-    willChange: 'transform'
+    boxShadow: '0 25px 50px -12px rgba(139, 92, 246, 0.4), 0 10px 20px -5px rgba(0, 0, 0, 0.5)'
   }}>
       <PortfolioHeader value={displayValue} currency="EUR" change={displayChange} changePercentage={displayChangePercentage} period={periodDisplayMap[selectedPeriod]} />
 

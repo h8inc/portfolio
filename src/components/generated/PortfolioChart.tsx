@@ -513,7 +513,7 @@ export const PortfolioChart = ({
     }
   };
   if (isMobile) {
-    return <div className={`w-full h-full bg-[#0f1419] flex flex-col overflow-hidden shadow-2xl ${className || ''}`}>
+    return <div className={`w-full h-full bg-[#0f1419] flex flex-col overflow-hidden ${className || ''}`}>
           {/* Chart Section - Fills available space */}
           <div className="w-full flex-1 min-h-0 relative overflow-hidden">
             <div ref={containerRef} className="absolute inset-x-0 top-0 bottom-0 bg-[#0f1419] overflow-hidden" style={{ bottom: '24px' }}>
@@ -543,8 +543,7 @@ export const PortfolioChart = ({
   }
 
   // Web variant
-  return <div className={`w-full h-full bg-[#0f1419] flex flex-col overflow-hidden isolate shadow-2xl ${className || ''}`} style={{
-    contain: 'layout paint style',
+  return <div className={`w-full h-full bg-[#0f1419] flex flex-col overflow-hidden isolate ${className || ''}`} style={{
     clipPath: 'inset(0)',
     isolation: 'isolate'
   }}>
