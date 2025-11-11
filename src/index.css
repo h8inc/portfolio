@@ -238,16 +238,17 @@ img.broken-image-fallback {
   }
 }
 
-/* Marquee Animation */
+/* Marquee Animation - seamless infinite scroll */
 @keyframes marquee {
-  0% {
+  from {
     transform: translateX(0);
   }
-  100% {
+  to {
     transform: translateX(-50%);
   }
 }
 
 .animate-marquee {
-  animation: marquee 6s linear infinite;
+  animation: marquee 20s linear infinite;
+  display: flex;
 }
