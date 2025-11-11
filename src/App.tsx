@@ -61,8 +61,8 @@ function App() {
                   <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 text-center" style={{ fontFamily: 'Aeonik Extended' }}>
                     Financial Portfolio Dashboard
                   </h3>
-                  <div className="w-full max-w-md flex justify-center overflow-hidden" style={{ isolation: 'isolate' }}>
-                    <div className="w-full overflow-hidden rounded-[30px]" style={{ isolation: 'isolate' }}>
+                  <div className="w-full max-w-md flex justify-center">
+                    <div className="w-full">
                       <KrakenProPortfolio />
                     </div>
                   </div>
