@@ -1,6 +1,6 @@
 import React from 'react';
 import { Info } from 'lucide-react';
-import * as Tooltip from '@radix-ui/react-tooltip';
+import { InfoHint } from '../../components/InfoHint';
 type PortfolioHeaderProps = {
   value?: number;
   currency?: string;
@@ -69,22 +69,22 @@ export const PortfolioHeader = ({
             </span>
           </div>
         </div>
-        <Tooltip.Provider delayDuration={150} skipDelayDuration={300}>
-          <Tooltip.Root>
-            <Tooltip.Trigger asChild>
-              <button className="bg-black/5 hover:bg-black/10 transition-all duration-200 rounded-xl p-2.5 shrink-0 mt-1" aria-label="About this chart">
-                <Info className="w-4 h-4 text-slate-500" />
-              </button>
-            </Tooltip.Trigger>
-            <Tooltip.Portal>
-              <Tooltip.Content side="bottom" align="end" sideOffset={8} className="z-[1000] rounded-md bg-black/90 text-white px-4 py-3 text-xs shadow-lg max-w-[280px] leading-relaxed text-left">
+        <InfoHint
+          trigger={
+            <button className="bg-black/5 hover:bg-black/10 transition-all duration-200 rounded-xl p-2.5 shrink-0 mt-1" aria-label="About this chart">
+              <Info className="w-4 h-4 text-slate-500" />
+            </button>
+          }
+          content={
+            <>
               ✨ A production-ready component built in D3.js and Vite.js, inspired by Kraken's portfolio tracker.
               Shows total holdings and performance over time — a smooth, responsive interaction that made this style iconic across the industry.
-                <Tooltip.Arrow className="fill-black/90" />
-              </Tooltip.Content>
-            </Tooltip.Portal>
-          </Tooltip.Root>
-        </Tooltip.Provider>
+            </>
+          }
+          side="bottom"
+          align="end"
+          sideOffset={8}
+        />
       </div>
     </header>;
 };

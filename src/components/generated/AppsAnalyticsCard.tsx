@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Info } from 'lucide-react';
-import * as Tooltip from '@radix-ui/react-tooltip';
+import { InfoHint } from '../../components/InfoHint';
 type AppsAnalyticsCardProps = {
   value?: number;
   label?: string;
@@ -143,23 +143,24 @@ export const AppsAnalyticsCard = ({
       </div>
 
       <div className="absolute top-5 right-5 z-10">
-        <Tooltip.Provider delayDuration={150} skipDelayDuration={300}>
-          <Tooltip.Root>
-            <Tooltip.Trigger asChild>
-              <button className="bg-black/5 hover:bg-black/10 transition-all duration-200 rounded-xl p-2" aria-label="About this chart">
-                <Info className="w-[18px] h-[18px] text-[#130F25]" strokeWidth={1.5} />
-              </button>
-            </Tooltip.Trigger>
-            <Tooltip.Portal>
-              <Tooltip.Content side="bottom" align="end" sideOffset={8} className="z-[1000] rounded-md bg-black/90 text-white px-4 py-3 text-xs shadow-lg max-w-[280px] leading-relaxed text-left">
+        <InfoHint
+          trigger={
+            <button className="bg-black/5 hover:bg-black/10 transition-all duration-200 rounded-xl p-2" aria-label="About this chart">
+              <Info className="w-[18px] h-[18px] text-[#130F25]" strokeWidth={1.5} />
+            </button>
+          }
+          content={
+            <>
               Bar chart: compares discrete totals across time or categories. Fixed zero baseline for honest visual comparison.
-
-Prioritize legibility — short labels, even spacing, consistent scale. Use color to convey state, not decoration. The tooltip reveals precise values on hover for clarity without clutter.
-                <Tooltip.Arrow className="fill-black/90" />
-              </Tooltip.Content>
-            </Tooltip.Portal>
-          </Tooltip.Root>
-        </Tooltip.Provider>
+              <br />
+              <br />
+              Prioritize legibility — short labels, even spacing, consistent scale. Use color to convey state, not decoration. The tooltip reveals precise values on hover for clarity without clutter.
+            </>
+          }
+          side="bottom"
+          align="end"
+          sideOffset={8}
+        />
       </div>
 
       <div className="absolute bottom-[-30px] right-[-50px] w-[266px] h-[124px] z-10 opacity-60 pointer-events-none">
