@@ -512,7 +512,7 @@ export const PortfolioChart = ({
         }}>
             {periods.map(period => <button key={period} onClick={() => handlePeriodClick(period)} className={`
                   px-4 py-0.5 rounded-full text-sm font-medium tracking-wide transition-all duration-200
-                  ${selectedPeriod === period ? 'bg-[#130F25] text-white shadow-lg' : 'bg-transparent text-[#6b7280] hover:text-[#130F25]'}
+                  ${selectedPeriod === period ? 'bg-[#374151] text-white shadow-md' : 'bg-transparent text-[#6b7280] hover:text-[#374151]'}
                 `}>
                 <span>{period}</span>
               </button>)}
@@ -560,7 +560,7 @@ export const PortfolioChart = ({
         <div className="flex items-center justify-center gap-1 py-4 flex-shrink-0">
           {periods.map(period => <button key={period} onClick={() => handlePeriodClick(period)} className={`
                 px-4 py-0.5 rounded-full text-sm font-medium tracking-wide transition-all duration-200
-                ${selectedPeriod === period ? 'bg-[#1f2937] text-[#e5e7eb] shadow-lg' : 'bg-transparent text-[#6b7280] hover:text-[#9ca3af]'}
+                ${selectedPeriod === period ? 'bg-[#374151] text-[#e5e7eb] shadow-md' : 'bg-transparent text-[#6b7280] hover:text-[#9ca3af]'}
               `}>
               <span>{period}</span>
             </button>)}
