@@ -151,8 +151,10 @@ export const AppsAnalyticsCard = ({
               </button>
             </Tooltip.Trigger>
             <Tooltip.Portal>
-              <Tooltip.Content side="bottom" align="end" sideOffset={8} className="z-[1000] rounded-md bg-black/90 text-white px-3 py-2 text-xs shadow-lg max-w-[260px] leading-relaxed text-center">
-                Growth visualization of apps built using design system components.
+              <Tooltip.Content side="bottom" align="end" sideOffset={8} className="z-[1000] rounded-md bg-black/90 text-white px-4 py-3 text-xs shadow-lg max-w-[280px] leading-relaxed text-left">
+              Bar chart: compares discrete totals across time or categories. Fixed zero baseline for honest visual comparison.
+
+Prioritize legibility — short labels, even spacing, consistent scale. Use color to convey state, not decoration. The tooltip reveals precise values on hover for clarity without clutter.
                 <Tooltip.Arrow className="fill-black/90" />
               </Tooltip.Content>
             </Tooltip.Portal>

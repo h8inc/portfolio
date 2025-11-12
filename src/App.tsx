@@ -59,8 +59,8 @@ function App() {
                         </button>
                       </Tooltip.Trigger>
                       <Tooltip.Portal>
-                        <Tooltip.Content side="bottom" align="center" sideOffset={8} className="z-[1000] rounded-md bg-black/90 text-white px-3 py-2 text-xs shadow-lg max-w-[260px] leading-relaxed text-center">
-                          Interactive design experiments showcasing data visualization and prototyping
+                        <Tooltip.Content side="bottom" align="center" sideOffset={8} className="z-[1000] rounded-md bg-black/90 text-white px-4 py-3 text-xs shadow-lg max-w-[280px] leading-relaxed text-left">
+                        ✨ Design experiments, it's a showcase of interactions I like to build in code.
                           <Tooltip.Arrow className="fill-black/90" />
                         </Tooltip.Content>
                       </Tooltip.Portal>

@@ -77,8 +77,9 @@ export const PortfolioHeader = ({
               </button>
             </Tooltip.Trigger>
             <Tooltip.Portal>
-              <Tooltip.Content side="bottom" align="end" sideOffset={8} className="z-[1000] rounded-md bg-black/90 text-white px-3 py-2 text-xs shadow-lg max-w-[260px] leading-relaxed text-center">
-                ✨ A production ready component in code; inspired by Kraken Pro's portfolio tracker showing crypto holdings and performance. This interaction took the industry by storm and 
+              <Tooltip.Content side="bottom" align="end" sideOffset={8} className="z-[1000] rounded-md bg-black/90 text-white px-4 py-3 text-xs shadow-lg max-w-[280px] leading-relaxed text-left">
+              ✨ A production-ready component built in D3.js and Vite.js, inspired by Kraken's portfolio tracker.
+              Shows total holdings and performance over time — a smooth, responsive interaction that made this style iconic across the industry.
                 <Tooltip.Arrow className="fill-black/90" />
               </Tooltip.Content>
             </Tooltip.Portal>
