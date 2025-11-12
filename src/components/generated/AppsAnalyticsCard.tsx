@@ -76,7 +76,7 @@ export const AppsAnalyticsCard = ({
     handleInteraction(e.clientX);
   };
   const handleTouchMove = (e: React.TouchEvent<SVGSVGElement>) => {
-    e.preventDefault();
+    // Don't prevent default - allow vertical scrolling
     if (e.touches.length > 0) {
       handleInteraction(e.touches[0].clientX);
     }
@@ -108,7 +108,7 @@ export const AppsAnalyticsCard = ({
         </div>
 
         <svg ref={svgRef} width="100%" height="auto" viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="mt-0 flex-1" preserveAspectRatio="xMidYMid meet" onMouseMove={handleMouseMove} onMouseLeave={handleInteractionEnd} onTouchMove={handleTouchMove} onTouchEnd={handleInteractionEnd} style={{
-        touchAction: 'none'
+        touchAction: 'pan-y'
       }}>
           {data.map((dataPoint, index) => {
           const x = index * barWidth;

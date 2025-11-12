@@ -473,9 +473,8 @@ export const PortfolioChart = ({
     });
     overlay.addEventListener('mouseout', handleInteractionEnd);
 
-    // Touch events for mobile
+    // Touch events for mobile - don't prevent default to allow vertical scrolling
     overlay.addEventListener('touchmove', event => {
-      event.preventDefault();
       const touch = event.touches[0];
       handleInteraction(touch.clientX, touch.clientY);
     });
