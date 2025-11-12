@@ -47,22 +47,20 @@ function App() {
                 onClick={handleScrollToCharts}
                 className="group cursor-pointer bg-transparent border-none outline-none transition-all hover:opacity-80 inline-flex flex-col items-center gap-2"
               >
-                <div className="inline-flex items-center gap-2">
-                  <span className="text-sm sm:text-base lg:text-lg font-bold text-white" style={{ fontFamily: 'Aeonik Extended', textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)' }}>
-                    Design playground
-                  </span>
-                  <InfoHint
-                    trigger={
-                      <button aria-label="About this section" className="bg-white/30 backdrop-blur hover:bg-white/40 transition-colors rounded-xl p-1.5">
-                        <Info className="w-4 h-4 text-white" />
-                      </button>
-                    }
-                    content={<>✨ Design experiments, it's a showcase of interactions I like to build in code.</>}
-                    side="bottom"
-                    align="center"
-                    sideOffset={8}
-                  />
-                </div>
+                <span className="text-sm sm:text-base lg:text-lg font-bold text-white" style={{ fontFamily: 'Aeonik Extended', textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)' }}>
+                  Check out my design playground ✨
+                </span>
+                {/* <InfoHint
+                  trigger={
+                    <button aria-label="About this section" className="bg-white/30 backdrop-blur hover:bg-white/40 transition-colors rounded-xl p-1.5">
+                      <Info className="w-4 h-4 text-white" />
+                    </button>
+                  }
+                  content={<>✨ Design experiments, it's a showcase of interactions I like to build in code.</>}
+                  side="bottom"
+                  align="center"
+                  sideOffset={8}
+                /> */}
                 <ChevronDown 
                   className="w-4 h-4 sm:w-5 sm:h-5 text-white animate-bounce" 
                   strokeWidth={2.5}
