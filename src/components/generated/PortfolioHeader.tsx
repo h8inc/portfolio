@@ -1,5 +1,6 @@
 import React from 'react';
-import { RotateCcw } from 'lucide-react';
+import { Info } from 'lucide-react';
+import * as Tooltip from '@radix-ui/react-tooltip';
 type PortfolioHeaderProps = {
   value?: number;
   currency?: string;
@@ -68,9 +69,21 @@ export const PortfolioHeader = ({
             </span>
           </div>
         </div>
-        <button className="bg-black/5 hover:bg-black/10 transition-all duration-200 rounded-xl p-2.5 shrink-0 group mt-1" aria-label="Refresh portfolio">
-          <RotateCcw className="w-4 h-4 text-slate-500 group-hover:text-slate-700 transition-colors group-active:rotate-180 transition-transform duration-500" />
-        </button>
+        <Tooltip.Provider delayDuration={150} skipDelayDuration={300}>
+          <Tooltip.Root>
+            <Tooltip.Trigger asChild>
+              <button className="bg-black/5 hover:bg-black/10 transition-all duration-200 rounded-xl p-2.5 shrink-0 mt-1" aria-label="About this chart">
+                <Info className="w-4 h-4 text-slate-500" />
+              </button>
+            </Tooltip.Trigger>
+            <Tooltip.Portal>
+              <Tooltip.Content side="bottom" align="end" sideOffset={8} className="z-[1000] rounded-md bg-black/90 text-white px-3 py-2 text-xs shadow-lg max-w-[260px] leading-relaxed text-center">
+                ✨ A production ready component in code; inspired by Kraken Pro's portfolio tracker showing crypto holdings and performance. This interaction took the industry by storm and 
+                <Tooltip.Arrow className="fill-black/90" />
+              </Tooltip.Content>
+            </Tooltip.Portal>
+          </Tooltip.Root>
+        </Tooltip.Provider>
       </div>
     </header>;
 };

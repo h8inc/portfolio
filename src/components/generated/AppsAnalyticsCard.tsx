@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { Info } from 'lucide-react';
+import * as Tooltip from '@radix-ui/react-tooltip';
 type AppsAnalyticsCardProps = {
   value?: number;
   label?: string;
@@ -141,11 +142,23 @@ export const AppsAnalyticsCard = ({
         </div>
       </div>
 
-      <ArrowUpRight className="absolute top-5 right-5 w-[30px] h-[30px] z-10" strokeWidth={1.5} color="#130F25" />
-
-      <ArrowUpRight className="absolute top-[11px] right-[11px] w-12 h-12 z-10 opacity-40" strokeWidth={1.5} color="#130F25" style={{
-      filter: 'blur(11px)'
-    }} />
+      <div className="absolute top-5 right-5 z-10">
+        <Tooltip.Provider delayDuration={150} skipDelayDuration={300}>
+          <Tooltip.Root>
+            <Tooltip.Trigger asChild>
+              <button className="bg-black/5 hover:bg-black/10 transition-all duration-200 rounded-xl p-2" aria-label="About this chart">
+                <Info className="w-[18px] h-[18px] text-[#130F25]" strokeWidth={1.5} />
+              </button>
+            </Tooltip.Trigger>
+            <Tooltip.Portal>
+              <Tooltip.Content side="bottom" align="end" sideOffset={8} className="z-[1000] rounded-md bg-black/90 text-white px-3 py-2 text-xs shadow-lg max-w-[260px] leading-relaxed text-center">
+                Growth visualization of apps built using design system components.
+                <Tooltip.Arrow className="fill-black/90" />
+              </Tooltip.Content>
+            </Tooltip.Portal>
+          </Tooltip.Root>
+        </Tooltip.Provider>
+      </div>
 
       <div className="absolute bottom-[-30px] right-[-50px] w-[266px] h-[124px] z-10 opacity-60 pointer-events-none">
         <div className="relative w-full h-full overflow-visible">

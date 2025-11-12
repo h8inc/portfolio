@@ -4,7 +4,8 @@ import { GradientBackground } from './components/generated/GradientBackground';
 import ProfileWidget from './components/generated/ProfileWidget';
 import { AppsAnalyticsCard } from './components/generated/AppsAnalyticsCard';
 import { KrakenProPortfolio } from './components/generated/KrakenProPortfolio';
-import { Leaf, ChevronDown } from 'lucide-react';
+import { Leaf, ChevronDown, Info } from 'lucide-react';
+import * as Tooltip from '@radix-ui/react-tooltip';
 
 let theme: Theme = 'light';
 // only use 'centered' container for standalone components, never for full page apps or websites.
@@ -46,9 +47,26 @@ function App() {
                 onClick={handleScrollToCharts}
                 className="group cursor-pointer bg-transparent border-none outline-none transition-all hover:opacity-80 inline-flex flex-col items-center gap-2"
               >
-                <span className="text-sm sm:text-base lg:text-lg font-bold text-white" style={{ fontFamily: 'Aeonik Extended', textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)' }}>
-                  Design engineering
-                </span>
+                <div className="inline-flex items-center gap-2">
+                  <span className="text-sm sm:text-base lg:text-lg font-bold text-white" style={{ fontFamily: 'Aeonik Extended', textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)' }}>
+                    Design engineering
+                  </span>
+                  <Tooltip.Provider delayDuration={150} skipDelayDuration={300}>
+                    <Tooltip.Root>
+                      <Tooltip.Trigger asChild>
+                        <button aria-label="About this section" className="bg-white/30 backdrop-blur hover:bg-white/40 transition-colors rounded-xl p-1.5">
+                          <Info className="w-4 h-4 text-white" />
+                        </button>
+                      </Tooltip.Trigger>
+                      <Tooltip.Portal>
+                        <Tooltip.Content side="bottom" align="center" sideOffset={8} className="z-[1000] rounded-md bg-black/90 text-white px-3 py-2 text-xs shadow-lg max-w-[260px] leading-relaxed text-center">
+                          Interactive design experiments showcasing data visualization and prototyping
+                          <Tooltip.Arrow className="fill-black/90" />
+                        </Tooltip.Content>
+                      </Tooltip.Portal>
+                    </Tooltip.Root>
+                  </Tooltip.Provider>
+                </div>
                 <ChevronDown 
                   className="w-4 h-4 sm:w-5 sm:h-5 text-white animate-bounce" 
                   strokeWidth={2.5}
