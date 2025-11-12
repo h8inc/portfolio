@@ -47,7 +47,7 @@ function App() {
                 className="group cursor-pointer bg-transparent border-none outline-none transition-all hover:opacity-80 inline-flex flex-col items-center gap-2"
               >
                 <span className="text-sm sm:text-base lg:text-lg font-bold text-white" style={{ fontFamily: 'Aeonik Extended', textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)' }}>
-                  Interaction explorations
+                  Design engineering
                 </span>
                 <ChevronDown 
                   className="w-4 h-4 sm:w-5 sm:h-5 text-white animate-bounce" 
