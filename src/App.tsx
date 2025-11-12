@@ -49,7 +49,7 @@ function App() {
               >
                 <div className="inline-flex items-center gap-2">
                   <span className="text-sm sm:text-base lg:text-lg font-bold text-white" style={{ fontFamily: 'Aeonik Extended', textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)' }}>
-                    Design engineering
+                    Design playground
                   </span>
                   <InfoHint
                     trigger={
