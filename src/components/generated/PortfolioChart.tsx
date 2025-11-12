@@ -122,15 +122,15 @@ export const PortfolioChart = ({
         return;
       }
 
-    // Responsive margins - add right margin for value labels
+    // Responsive margins - no right margin for full width chart
     const margin = isMobile ? {
       top: 40,
-      right: 80,
+      right: 0,
       bottom: 12,
       left: 0
     } : {
       top: 50,
-      right: 90,
+      right: 0,
       bottom: 12,
       left: 0
     };
@@ -143,8 +143,8 @@ export const PortfolioChart = ({
     const minValue = Math.min(...data.map(d => d.value));
     const padding = (maxValue - minValue) * 0.1;
     const xScale = (index: number) => {
-      // Scale from edge to edge within the container
-      return index / (data.length - 1) * (containerWidth - margin.right);
+      // Scale from edge to edge within the container - full width
+      return margin.left + index / (data.length - 1) * width;
     };
     const yScale = (value: number) => {
       return margin.top + height - (value - (minValue - padding)) / (maxValue + padding - (minValue - padding)) * height;
@@ -181,11 +181,11 @@ export const PortfolioChart = ({
     gradient.setAttribute('y2', '100%');
     const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
     stop1.setAttribute('offset', '0%');
-    stop1.setAttribute('stop-color', '#8b5cf6');
+    stop1.setAttribute('stop-color', '#f97316');
     stop1.setAttribute('stop-opacity', '0.3');
     const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
     stop2.setAttribute('offset', '100%');
-    stop2.setAttribute('stop-color', '#8b5cf6');
+    stop2.setAttribute('stop-color', '#f97316');
     stop2.setAttribute('stop-opacity', '0');
     gradient.appendChild(stop1);
     gradient.appendChild(stop2);
@@ -260,11 +260,11 @@ export const PortfolioChart = ({
     revealedAreaRef.current = revealedArea;
     svg.appendChild(revealedArea);
 
-    // Create REVEALED line (purple, clipped to left of pointer)
+    // Create REVEALED line (orange, clipped to left of pointer)
     const revealedLine = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     revealedLine.setAttribute('d', linePathData);
     revealedLine.setAttribute('fill', 'none');
-    revealedLine.setAttribute('stroke', '#8b5cf6');
+    revealedLine.setAttribute('stroke', '#f97316');
     revealedLine.setAttribute('stroke-width', isMobile ? '2' : '2.5');
     revealedLine.setAttribute('stroke-linecap', 'round');
     revealedLine.setAttribute('stroke-linejoin', 'round');
@@ -293,7 +293,7 @@ export const PortfolioChart = ({
     endDot.setAttribute('cx', lastPoint.x.toString());
     endDot.setAttribute('cy', lastPoint.y.toString());
     endDot.setAttribute('r', isMobile ? '3' : '3.5');
-    endDot.setAttribute('fill', '#8b5cf6');
+    endDot.setAttribute('fill', '#f97316');
     endDot.setAttribute('class', 'pulse-dot');
     endDot.setAttribute('opacity', '1');
     endDotRef.current = endDot;
@@ -343,7 +343,7 @@ export const PortfolioChart = ({
 
     // Add vertical indicator line (initially hidden)
     const verticalLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    verticalLine.setAttribute('stroke', 'rgba(139, 92, 246, 0.4)');
+    verticalLine.setAttribute('stroke', 'rgba(249, 115, 22, 0.4)');
     verticalLine.setAttribute('stroke-width', '1');
     verticalLine.setAttribute('stroke-dasharray', '4 4');
     verticalLine.setAttribute('opacity', '0');
@@ -357,39 +357,17 @@ export const PortfolioChart = ({
     // Add a single dot for hover
     const hoverDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     hoverDot.setAttribute('r', '0');
-    hoverDot.setAttribute('fill', '#8b5cf6');
+    hoverDot.setAttribute('fill', '#f97316');
     hoverDot.setAttribute('stroke', 'rgb(247, 244, 244)');
     hoverDot.setAttribute('stroke-width', isMobile ? '2' : '3');
     hoverDot.setAttribute('opacity', '0');
     dotsGroup.appendChild(hoverDot);
 
-    // Add value labels AFTER grid lines so they layer on top
-    const labelFontSize = isMobile ? '10' : '11';
-    const labelXOffset = isMobile ? 8 : 10;
-    const maxLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    maxLabel.setAttribute('x', (containerWidth - margin.right + labelXOffset).toString());
-    maxLabel.setAttribute('y', (margin.top + 5).toString());
-    maxLabel.setAttribute('fill', '#6b7280');
-    maxLabel.setAttribute('font-size', labelFontSize);
-    maxLabel.setAttribute('font-weight', '500');
-    maxLabel.setAttribute('text-anchor', 'start');
-    maxLabel.textContent = formatValue(maxValue);
-    svg.appendChild(maxLabel);
-    const minLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    minLabel.setAttribute('x', (containerWidth - margin.right + labelXOffset).toString());
-    minLabel.setAttribute('y', (containerHeight - margin.bottom + 5).toString());
-    minLabel.setAttribute('fill', '#6b7280');
-    minLabel.setAttribute('font-size', labelFontSize);
-    minLabel.setAttribute('font-weight', '500');
-    minLabel.setAttribute('text-anchor', 'start');
-    minLabel.textContent = formatValue(minValue);
-    svg.appendChild(minLabel);
-
-    // Add invisible overlay for hover detection with daily granularity
+    // Add invisible overlay for hover detection with daily granularity - covers full width
     const overlay = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    overlay.setAttribute('x', margin.left.toString());
+    overlay.setAttribute('x', '0');
     overlay.setAttribute('y', margin.top.toString());
-    overlay.setAttribute('width', width.toString());
+    overlay.setAttribute('width', containerWidth.toString());
     overlay.setAttribute('height', height.toString());
     overlay.setAttribute('fill', 'transparent');
     overlay.setAttribute('pointer-events', 'all');
@@ -402,9 +380,9 @@ export const PortfolioChart = ({
         endDotRef.current.style.opacity = '0';
       }
 
-      // Map mouse X to data index - full width mapping
-      const relativeX = mouseX - margin.left;
-      const normalizedX = Math.max(0, Math.min(1, relativeX / width));
+      // Map mouse X to data index - full width mapping across entire container
+      const relativeX = mouseX;
+      const normalizedX = Math.max(0, Math.min(1, relativeX / containerWidth));
 
       // Map the entire width proportionally to all data points
       const exactIndex = normalizedX * (data.length - 1);

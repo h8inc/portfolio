@@ -21,7 +21,7 @@ export const AppsAnalyticsCard = ({
   data = defaultData,
   months = defaultMonths,
   years = ['2023', '2025'],
-  accentColor = 'rgb(34, 201, 140)',
+  accentColor = 'rgb(249, 115, 22)',
   backgroundColor = 'rgb(247, 244, 244)',
   className = ''
 }: AppsAnalyticsCardProps) => {
@@ -58,10 +58,14 @@ export const AppsAnalyticsCard = ({
   const handleInteraction = (clientX: number) => {
     if (!svgRef.current) return;
     const rect = svgRef.current.getBoundingClientRect();
-    const x = clientX - rect.left;
+    const screenX = clientX - rect.left;
+    
+    // Convert screen coordinates to SVG coordinates (accounting for scaling)
+    const scaleX = chartWidth / rect.width;
+    const svgX = screenX * scaleX;
 
     // Find the closest bar
-    const index = Math.floor(x / barWidth);
+    const index = Math.floor(svgX / barWidth);
     if (index >= 0 && index < data.length) {
       setHoveredIndex(index);
       setHoverX(index * barWidth + barWidth / 2);
@@ -150,7 +154,7 @@ export const AppsAnalyticsCard = ({
           filter: 'blur(81px)'
         }} />
           <div className="absolute top-0 bottom-0 left-0 w-[124px] aspect-square rounded-full opacity-36" style={{
-          backgroundColor: 'rgb(139, 92, 246)',
+          backgroundColor: 'rgb(249, 115, 22)',
           filter: 'blur(81px)'
         }} />
         </div>
