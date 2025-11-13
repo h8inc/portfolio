@@ -4,6 +4,7 @@ import * as React from "react";
 import { Mail, Linkedin, Github, Leaf } from "lucide-react";
 import BitcoinPill from "./BitcoinPill";
 import Marquee from "react-fast-marquee";
+import { trackOutboundLink } from "../../lib/analytics";
 export interface ProfileWidgetProps {
   name?: string;
   title?: string;
@@ -58,22 +59,47 @@ export default function ProfileWidget({
           <div className="relative px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-6 sm:pb-8">
             {/* Title Text */}
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center mb-6 sm:mb-8 lg:mb-10 leading-tight px-2 sm:px-4 font-medium" style={{ fontFamily: 'Aeonik Extended' }}>
-            Designing financial products from the ground up at <a href="https://www.tide.co/" target="_blank" rel="noopener noreferrer" className="underline decoration-1 decoration-gray-400 underline-offset-8 hover:decoration-gray-600 transition-all">Tide</a>
+            Designing financial products from the ground up at <a href="https://www.tide.co/" target="_blank" rel="noopener noreferrer" onClick={() => trackOutboundLink('https://www.tide.co/', 'Tide Company')} className="underline decoration-1 decoration-gray-400 underline-offset-8 hover:decoration-gray-600 transition-all">Tide</a>
             </h1>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
-              <a href="https://www.figma.com/deck/JrHLya85t4BuUzpQzRCko6/Nasko-Terziev-Portfolio-showcase?node-id=1-42&viewport=-3719%2C-9%2C0.56&t=bzI9ahnv8lNVKVu0-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" target="_blank" rel="noopener noreferrer" className="bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 lg:px-7 py-2 sm:py-3 rounded-full border-[2px] sm:border-[3px] border-black font-bold text-xs sm:text-sm lg:text-base shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform hover:translate-x-[1px] hover:translate-y-[1px] transition-all" style={{ fontFamily: 'Aeonik Extended' }}>
+              <a 
+                href="https://www.figma.com/deck/JrHLya85t4BuUzpQzRCko6/Nasko-Terziev-Portfolio-showcase?node-id=1-42&viewport=-3719%2C-9%2C0.56&t=bzI9ahnv8lNVKVu0-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                onClick={() => trackOutboundLink('https://www.figma.com/deck/JrHLya85t4BuUzpQzRCko6/Nasko-Terziev-Portfolio-showcase?node-id=1-42&viewport=-3719%2C-9%2C0.56&t=bzI9ahnv8lNVKVu0-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1', 'Work Samples')}
+                className="bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 lg:px-7 py-2 sm:py-3 rounded-full border-[2px] sm:border-[3px] border-black font-bold text-xs sm:text-sm lg:text-base shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform hover:translate-x-[1px] hover:translate-y-[1px] transition-all" 
+                style={{ fontFamily: 'Aeonik Extended' }}
+              >
                 Work Samples
               </a>
               <span className="text-xl sm:text-2xl font-bold">:</span>
-              <a href={emailUrl} className="bg-orange-500 hover:bg-orange-600 text-white p-2 sm:p-3 rounded-full border-[2px] sm:border-[3px] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform hover:translate-x-[1px] hover:translate-y-[1px] transition-all" target="_blank" rel="noopener noreferrer">
+              <a 
+                href={emailUrl} 
+                onClick={() => trackOutboundLink(emailUrl, 'Email')}
+                className="bg-orange-500 hover:bg-orange-600 text-white p-2 sm:p-3 rounded-full border-[2px] sm:border-[3px] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform hover:translate-x-[1px] hover:translate-y-[1px] transition-all" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
-              <a href={linkedinUrl} className="bg-orange-500 hover:bg-orange-600 text-white p-2 sm:p-3 rounded-full border-[2px] sm:border-[3px] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform hover:translate-x-[1px] hover:translate-y-[1px] transition-all" target="_blank" rel="noopener noreferrer">
+              <a 
+                href={linkedinUrl} 
+                onClick={() => trackOutboundLink(linkedinUrl, 'LinkedIn')}
+                className="bg-orange-500 hover:bg-orange-600 text-white p-2 sm:p-3 rounded-full border-[2px] sm:border-[3px] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform hover:translate-x-[1px] hover:translate-y-[1px] transition-all" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
                 <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
-              <a href={githubUrl} className="bg-orange-500 hover:bg-orange-600 text-white p-2 sm:p-3 rounded-full border-[2px] sm:border-[3px] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform hover:translate-x-[1px] hover:translate-y-[1px] transition-all" target="_blank" rel="noopener noreferrer">
+              <a 
+                href={githubUrl} 
+                onClick={() => trackOutboundLink(githubUrl, 'GitHub')}
+                className="bg-orange-500 hover:bg-orange-600 text-white p-2 sm:p-3 rounded-full border-[2px] sm:border-[3px] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform hover:translate-x-[1px] hover:translate-y-[1px] transition-all" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
                 <Github className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
             </div>

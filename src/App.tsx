@@ -6,6 +6,7 @@ import { AppsAnalyticsCard } from './components/generated/AppsAnalyticsCard';
 import { KrakenProPortfolio } from './components/generated/KrakenProPortfolio';
 import { Leaf, ChevronDown, Info } from 'lucide-react';
 import { InfoHint } from './components/InfoHint';
+import { trackEvent } from './lib/analytics';
 
 let theme: Theme = 'light';
 // only use 'centered' container for standalone components, never for full page apps or websites.
@@ -24,6 +25,12 @@ function App() {
 
   const generatedComponent = useMemo(() => {
     const handleScrollToCharts = () => {
+      // Track the scroll interaction
+      trackEvent('scroll_to_section', {
+        section: 'design_playground',
+        method: 'button_click'
+      });
+      
       const chartsSection = document.getElementById('charts');
       if (chartsSection) {
         chartsSection.scrollIntoView({ 
