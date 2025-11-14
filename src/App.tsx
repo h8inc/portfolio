@@ -7,6 +7,7 @@ import { KrakenProPortfolio } from './components/generated/KrakenProPortfolio';
 import { Leaf, ChevronDown, Info } from 'lucide-react';
 import { InfoHint } from './components/InfoHint';
 import { trackEvent } from './lib/analytics';
+import { ExplainerCard } from './components/ExplainerCard';
 
 let theme: Theme = 'light';
 // only use 'centered' container for standalone components, never for full page apps or websites.
@@ -83,13 +84,25 @@ function App() {
               {/* Both Components Side by Side */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
                 {/* Portfolio Analytics Section */}
-                <div className="flex justify-center">
-                  <KrakenProPortfolio />
+                <div className="flex flex-col gap-4">
+                  <ExplainerCard 
+                    title="Crypto Portfolio Tracker"
+                    description="A fully interactive portfolio dashboard I built with dynamic charts, real-time balance updates, and smooth animations. Hover over the chart to see detailed data points. Try switching between time periods to see the transitions!"
+                  />
+                  <div className="flex justify-center">
+                    <KrakenProPortfolio />
+                  </div>
                 </div>
 
                 {/* Apps Analytics Card Section */}
-                <div className="flex justify-center">
-                  <AppsAnalyticsCard />
+                <div className="flex flex-col gap-4">
+                  <ExplainerCard 
+                    title="Apps Analytics Visualization"
+                    description="A clean, minimalist chart showing app usage trends over time. Hover over any bar to see the exact values and watch the interactive tooltip follow your cursor. This demonstrates my approach to making data both beautiful and functional."
+                  />
+                  <div className="flex justify-center">
+                    <AppsAnalyticsCard />
+                  </div>
                 </div>
               </div>
             </div>
