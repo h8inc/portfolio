@@ -87,8 +87,8 @@ function App() {
                 <div className="flex flex-col gap-4">
                   <div className="flex justify-center">
                     <ExplainerCard 
-                      title="Crypto Portfolio Tracker"
-                      description="Interactive dashboard with dynamic charts and smooth animations. Hover to see data points and switch time periods."
+                      title="Track value over time"
+                      description="Interactive chart designed to help users track value over time - in this case portfolio value."
                     />
                   </div>
                   <div className="flex justify-center">
@@ -100,8 +100,8 @@ function App() {
                 <div className="flex flex-col gap-4">
                   <div className="flex justify-center">
                     <ExplainerCard 
-                      title="Apps Analytics Visualization"
-                      description="Clean chart showing app usage trends. Hover over bars to see exact values with an interactive tooltip."
+                      title="Track growth over time"
+                      description="Interactive chart designed to help users track growth over time - in this case app usage."
                     />
                   </div>
                   <div className="flex justify-center">
