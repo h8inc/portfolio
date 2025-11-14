@@ -88,7 +88,7 @@ function App() {
                   <div className="flex justify-center">
                     <ExplainerCard 
                       title="Crypto Portfolio Tracker"
-                      description="A fully interactive portfolio dashboard I built with dynamic charts, real-time balance updates, and smooth animations. Hover over the chart to see detailed data points. Try switching between time periods to see the transitions!"
+                      description="Interactive dashboard with dynamic charts and smooth animations. Hover to see data points and switch time periods."
                     />
                   </div>
                   <div className="flex justify-center">
@@ -101,7 +101,7 @@ function App() {
                   <div className="flex justify-center">
                     <ExplainerCard 
                       title="Apps Analytics Visualization"
-                      description="A clean, minimalist chart showing app usage trends over time. Hover over any bar to see the exact values and watch the interactive tooltip follow your cursor. This demonstrates my approach to making data both beautiful and functional."
+                      description="Clean chart showing app usage trends. Hover over bars to see exact values with an interactive tooltip."
                     />
                   </div>
                   <div className="flex justify-center">
