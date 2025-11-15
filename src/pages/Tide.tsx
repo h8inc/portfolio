@@ -4,39 +4,52 @@ import { InteractiveTimeline } from '../components/generated/InteractiveTimeline
 function Tide() {
   return (
     <GradientBackground>
-      <div className="w-full min-h-screen flex flex-col justify-center pt-[8vh] pb-[10vh]">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            {/* Page Heading – matches main page typography & glow */}
-            <div className="text-center mb-10 sm:mb-12">
-              <h1
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4"
-                style={{
-                  fontFamily: 'Aeonik Extended',
-                  textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)'
-                }}
-              >
-                Tide
-              </h1>
-              <p
-                className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto"
-                style={{
-                  fontFamily: 'Aeonik',
-                  textShadow: '0 2px 4px rgba(0, 0, 0, 0.45)'
-                }}
-              >
-                A timeline view of my journey, designed to feel playful and tactile
-                while staying consistent with the main portfolio aesthetic.
-              </p>
-            </div>
-
-            {/* Timeline block – keep component behavior, adapt how it sits on the page */}
-            <div className="rounded-[32px] sm:rounded-[40px] overflow-hidden bg-[#FAF7F0] backdrop-blur-xl content-card-shell">
-              <InteractiveTimeline fullScreen={false} />
+      {/* HERO SECTION ON GRADIENT BACKGROUND */}
+      <section className="w-full min-h-[140vh] pb-8">
+        <div className="w-full h-full px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto h-full">
+            {/* Parallax / sticky hero widget */}
+            <div className="relative h-[calc(140vh-32px)] flex items-start">
+              <div className="w-full sticky top-[20px]">
+                <div className="w-full flex justify-center">
+                  <div className="w-full max-w-3xl bg-[#FAF7F0] rounded-[2.5rem] sm:rounded-[3rem] px-6 sm:px-10 py-8 sm:py-10 md:py-12 content-card-shell">
+                    <div className="text-center">
+                      <h1
+                        className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#130F25] mb-4"
+                        style={{
+                          fontFamily: 'Aeonik Extended'
+                        }}
+                      >
+                        Building and scaling accounting at Tide
+                      </h1>
+                      <p
+                        className="text-base sm:text-lg lg:text-xl text-[#3F3A2F] max-w-2xl mx-auto"
+                        style={{
+                          fontFamily: 'Aeonik'
+                        }}
+                      >
+                        From a small bookkeeping add‑on with fewer than 1,000 users to a multi‑million
+                        ARR SaaS product touching Tide&apos;s 1M+ member base — this is the arc of the work.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* TIMELINE SECTION ON NEUTRAL BACKGROUND */}
+      <section className="w-full bg-[#FAF7F0] py-16 sm:py-24">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+           
+              <InteractiveTimeline fullScreen={false} />
+          
+          </div>
+        </div>
+      </section>
     </GradientBackground>
   );
 }

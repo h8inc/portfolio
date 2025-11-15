@@ -20,42 +20,81 @@ type InteractiveTimelineProps = {
   fullScreen?: boolean;
 };
 
-const defaultEvents: TimelineEvent[] = [{
-  id: '1',
-  year: '2012',
-  title: 'Began in visual design',
-  description: ['Started in garage, built offices in CA & India', 'Produced $1.5M in sales first year'],
-  logos: ['Williams Sonoma', 'Google'],
-  position: 'bottom'
-}, {
-  id: '2',
-  year: '2014',
-  title: 'Built design agency',
-  description: ['Started in garage, built offices in CA & India', 'Produced $1.5M in sales first year'],
-  logos: ['Honda', 'Genentech', 'Sutter Health', 'Stanford'],
-  position: 'top'
-}, {
-  id: '3',
-  year: '2017',
-  title: 'Co-founded startup',
-  description: ['Raised $500K Seed + $5M Series A', 'Launched 2 pilot programs', 'Started as side project at agency'],
-  logos: ['Sureify'],
-  position: 'bottom'
-}, {
-  id: '4',
-  year: '2019',
-  title: 'AI/ML tools before the hype',
-  description: ['Led major redesign, increased MAUs', 'Discovered I like to lead & mentor', 'Acquired by Instacart'],
-  logos: ['Eversight by Instacart', 'Sutter Hill Ventures'],
-  position: 'top'
-}, {
-  id: '5',
-  year: 'NOW',
-  title: 'Founded & leading design',
-  description: ['Helped raise $350M+', 'Led major redesign, +200% YoY ARR', 'Design & research for AI', 'Leading 4-person design team'],
-  logos: ['Observe'],
-  position: 'bottom'
-}];
+const defaultEvents: TimelineEvent[] = [
+  {
+    id: '1',
+    year: '2023',
+    title: 'Joined Tide',
+    description: [
+      'Joined Tide when the accounting product was little more than a bookkeeping tool with fewer than 1,000 users.',
+      'Started shaping the accounting product inside a 1.5M‑user small‑business banking platform.'
+    ],
+    logos: ['Tide'],
+    position: 'bottom'
+  },
+  {
+    id: '2',
+    year: 'Mid 2023 → Early 2024',
+    title: 'Built accounting product from scratch',
+    description: [
+      'Joined as senior IC across 4 teams, collaborating with 20+ engineers and 3 product managers.',
+      'Turned a basic bookkeeping feature (<300 users) into a real accounting product under heavy constraints.',
+      'Delivered 9 features from initial concept to live product using iterative discovery and delivery.'
+    ],
+    logos: ['Tide'],
+    position: 'top'
+  },
+  {
+    id: '3',
+    year: 'Early 2024 → Mid 2024',
+    title: 'Made freemium a strategic growth bet',
+    description: [
+      'Influenced the roadmap to add support for accounting users independent of Sage.',
+      'Persuaded the VP and Head of Engineering to adopt a freemium approach as a growth lever.',
+      'Shifted from “here’s an ad for our product, sign up” to “here’s a job we quietly do for you in the background”.',
+      'Freemium activation rate grew from 0.95% → 1.6% on the first release after 4 months.'
+    ],
+    logos: ['Tide'],
+    position: 'bottom'
+  },
+  {
+    id: '4',
+    year: 'Mid 2024 → Late 2024',
+    title: 'Scaled freemium and decoupling',
+    description: [
+      'Used data to show how financial insights improve retention and how tax estimates capture top‑of‑funnel demand via SEO.',
+      'Persuaded the new Director of Product and co‑led, as a Growth PM, the in‑house backend contracts and freemium experience for insights and tax estimates.',
+      'Freemium sign‑up rate grew from 1.6% → 3.8% through 3 iterations of freemium and 2 major iterations of decoupling.',
+      'ARR grew from £900K → £2M as Tide rethought its strategy to focus on SaaS products.'
+    ],
+    logos: ['Tide'],
+    position: 'top'
+  },
+  {
+    id: '5',
+    year: 'Early 2025 → Mid 2025',
+    title: 'Redesigned core Tide surfaces',
+    description: [
+      'Redesigned one and influenced the design of a second of Tide’s 5 main tabs (1M+ users).',
+      'Streamlined workflows to boost engagement, retention and revenue for accounting.',
+      'Sign‑ups to the accounting product grew from 3.8% → 21.2%, with 4× more new members signing up.',
+      'ARR grew from £2M → £4M as 10% of freemium sign‑ups converted to paying customers.'
+    ],
+    logos: ['Tide'],
+    position: 'bottom'
+  },
+  {
+    id: '6',
+    year: 'Mid 2025 → Now',
+    title: 'Building what’s next',
+    description: [
+      'Building two new products at Tide, applying the same discovery, experimentation and growth playbook.',
+      'Balancing product strategy, UX and experimentation to unlock the next wave of SaaS growth.'
+    ],
+    logos: ['Tide'],
+    position: 'top'
+  }
+];
 
 // @component: InteractiveTimeline
 export const InteractiveTimeline = ({
@@ -76,7 +115,7 @@ export const InteractiveTimeline = ({
    // - In embedded mode we remove the min-h-screen and turn it into a card-like section
    const rootClasses = fullScreen
      ? 'w-full min-h-screen bg-[#F5F2ED]'
-     : 'w-full bg-[#F5F2ED] rounded-[32px] sm:rounded-[40px]';
+     : 'w-full bg-[#FAF7F0] rounded-[32px] sm:rounded-[40px]';
 
   // @return
   return <div className={rootClasses}>
@@ -117,19 +156,36 @@ export const InteractiveTimeline = ({
                     ease: [0.22, 1, 0.36, 1]
                   }} className={`absolute ${isTop ? 'bottom-full mb-8' : 'top-full mt-8'} left-1/2 -translate-x-1/2 w-80`}>
                           <div className="bg-white rounded-lg p-6 shadow-xl border border-gray-200">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                            <h3
+                              className="text-xl font-semibold text-gray-900 mb-4"
+                              style={{ fontFamily: 'Aeonik Extended' }}
+                            >
                               {event.title}
                             </h3>
                             <ul className="space-y-2 mb-4">
-                              {event.description.map((item, i) => <li key={i} className="text-sm text-gray-600 leading-relaxed">
+                              {event.description.map((item, i) => (
+                                <li
+                                  key={i}
+                                  className="text-sm text-gray-600 leading-relaxed"
+                                  style={{ fontFamily: 'Aeonik' }}
+                                >
                                   • {item}
-                                </li>)}
+                                </li>
+                              ))}
                             </ul>
-                            {event.logos && event.logos.length > 0 && <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200">
-                                {event.logos.map((logo, i) => <span key={i} className="text-xs text-gray-500 font-medium">
+                            {event.logos && event.logos.length > 0 && (
+                              <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200">
+                                {event.logos.map((logo, i) => (
+                                  <span
+                                    key={i}
+                                    className="text-xs text-gray-500 font-medium"
+                                    style={{ fontFamily: 'Aeonik' }}
+                                  >
                                     {logo}
-                                  </span>)}
-                              </div>}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
                           </div>
                         </motion.div>}
                     </AnimatePresence>
@@ -153,29 +209,45 @@ export const InteractiveTimeline = ({
                   scale: expanded ? 1.1 : 1,
                   fontWeight: expanded ? 600 : 400
                 }}>
-                      <span className="text-lg text-[#FF6B35] font-medium whitespace-nowrap">
+                      <span
+                        className="text-lg text-[#FF6B35] font-medium whitespace-nowrap"
+                        style={{ fontFamily: 'Aeonik Extended' }}
+                      >
                         {event.year}
                       </span>
                     </motion.div>
 
                     {/* Compact Title Preview (shown when not expanded) */}
                     <AnimatePresence>
-                      {!expanded && <motion.div initial={{
+                      {!expanded && (
+                        <motion.div initial={{
                     opacity: 0
                   }} animate={{
                     opacity: 1
                   }} exit={{
                     opacity: 0
                   }} className={`absolute ${isTop ? 'bottom-full mb-12' : 'top-full mt-12'} text-center max-w-[160px] pointer-events-none`}>
-                          <p className="text-sm text-gray-700 font-medium leading-tight">
+                          <p
+                            className="text-sm text-gray-700 font-medium leading-tight"
+                            style={{ fontFamily: 'Aeonik Extended' }}
+                          >
                             {event.title}
                           </p>
-                          {event.logos && event.logos.length > 0 && <div className="mt-2 space-y-1">
-                              {event.logos.slice(0, 2).map((logo, i) => <p key={i} className="text-xs text-gray-400">
+                          {event.logos && event.logos.length > 0 && (
+                            <div className="mt-2 space-y-1">
+                              {event.logos.slice(0, 2).map((logo, i) => (
+                                <p
+                                  key={i}
+                                  className="text-xs text-gray-400"
+                                  style={{ fontFamily: 'Aeonik' }}
+                                >
                                   {logo}
-                                </p>)}
-                            </div>}
-                        </motion.div>}
+                                </p>
+                              ))}
+                            </div>
+                          )}
+                        </motion.div>
+                      )}
                     </AnimatePresence>
                   </motion.div>;
             })}
@@ -184,7 +256,10 @@ export const InteractiveTimeline = ({
 
           {/* Desktop Instructions */}
           <div className="mt-8 text-center">
-            <p className="text-sm text-gray-500">
+            <p
+              className="text-sm text-gray-500"
+              style={{ fontFamily: 'Aeonik' }}
+            >
               Hover or click on timeline points to view details
             </p>
           </div>
@@ -219,10 +294,16 @@ export const InteractiveTimeline = ({
                     <div className="flex-1 pb-4">
                       {/* Year and Title - Always visible */}
                       <div className="mb-3">
-                        <span className="text-lg font-semibold text-[#FF6B35] block mb-1">
+                        <span
+                          className="text-lg font-semibold text-[#FF6B35] block mb-1"
+                          style={{ fontFamily: 'Aeonik Extended' }}
+                        >
                           {event.year}
                         </span>
-                        <h3 className="text-base font-semibold text-gray-900">
+                        <h3
+                          className="text-base font-semibold text-gray-900"
+                          style={{ fontFamily: 'Aeonik Extended' }}
+                        >
                           {event.title}
                         </h3>
                       </div>
@@ -244,15 +325,29 @@ export const InteractiveTimeline = ({
                     }}>
                             <div className="bg-white rounded-lg p-5 shadow-lg border border-gray-200">
                               <ul className="space-y-2 mb-4">
-                                {event.description.map((item, i) => <li key={i} className="text-sm text-gray-600 leading-relaxed">
+                                {event.description.map((item, i) => (
+                                  <li
+                                    key={i}
+                                    className="text-sm text-gray-600 leading-relaxed"
+                                    style={{ fontFamily: 'Aeonik' }}
+                                  >
                                     • {item}
-                                  </li>)}
+                                  </li>
+                                ))}
                               </ul>
-                              {event.logos && event.logos.length > 0 && <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-200">
-                                  {event.logos.map((logo, i) => <span key={i} className="text-xs text-gray-500 font-medium bg-gray-50 px-2 py-1 rounded">
+                              {event.logos && event.logos.length > 0 && (
+                                <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-200">
+                                  {event.logos.map((logo, i) => (
+                                    <span
+                                      key={i}
+                                      className="text-xs text-gray-500 font-medium bg-gray-50 px-2 py-1 rounded"
+                                      style={{ fontFamily: 'Aeonik' }}
+                                    >
                                       {logo}
-                                    </span>)}
-                                </div>}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
                             </div>
                           </motion.div>}
                       </AnimatePresence>
@@ -262,7 +357,7 @@ export const InteractiveTimeline = ({
                     opacity: 0
                   }} animate={{
                     opacity: 1
-                  }} className="text-xs text-gray-400 mt-2">
+                  }} className="text-xs text-gray-400 mt-2" style={{ fontFamily: 'Aeonik' }}>
                           Tap to view details →
                         </motion.p>}
                     </div>
@@ -273,7 +368,10 @@ export const InteractiveTimeline = ({
 
           {/* Mobile Instructions */}
           <div className="mt-12 text-center">
-            <p className="text-sm text-gray-500">
+            <p
+              className="text-sm text-gray-500"
+              style={{ fontFamily: 'Aeonik' }}
+            >
               Tap on timeline points to expand details
             </p>
           </div>
