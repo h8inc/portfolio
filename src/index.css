@@ -255,3 +255,8 @@ img.broken-image-fallback {
   animation: marquee 8s linear infinite;
   display: flex;
 }
+
+/* Shared chrome for content cards (Profile, Analytics, Timeline, etc.) */
+.content-card-shell {
+  @apply border-[3px] sm:border-[4px] border-black shadow-2xl;
+}

@@ -30,7 +30,7 @@ export default function ProfileWidget({
   return <div className="w-full flex items-start justify-center p-4 sm:p-6 lg:p-8">
       <div className="w-full max-w-2xl lg:max-w-3xl">
         {/* Main Card with relative positioning for avatar */}
-        <div className="relative bg-[#FAF7F0] rounded-[2.5rem] sm:rounded-[3rem] border-[3px] sm:border-[4px] border-black shadow-2xl overflow-visible">
+        <div className="relative bg-[#FAF7F0] rounded-[2.5rem] sm:rounded-[3rem] overflow-visible content-card-shell">
           
           {/* Profile Image - Positioned at top center, overlapping the card */}
           <div className="absolute -top-24 sm:-top-32 lg:-top-36 left-1/2 -translate-x-1/2 z-20">
