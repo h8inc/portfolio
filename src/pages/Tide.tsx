@@ -1,21 +1,21 @@
 import { GradientBackground } from '../components/generated/GradientBackground';
 import { InteractiveTimeline } from '../components/generated/InteractiveTimeline';
-import { PrimitiveLineChart } from '../components/PrimitiveLineChart';
+import { TidePerformanceChart } from '../components/tide/TidePerformanceChart';
 import React, { useMemo } from 'react';
 import { typography } from '../design/typography';
 import { MarqueeBanner } from '../components/MarqueeBanner';
 
 function Tide() {
-  // Example data for the primitive chart – replace with real product data later.
-  const chartData = useMemo(
-    () =>
-      Array.from({ length: 60 }).map((_, index) => {
-        const base = 100;
-        const noise = Math.sin(index / 6) * 8 + (Math.random() - 0.5) * 4;
-        return { index, value: base + index * 1.2 + noise };
-      }),
-    []
-  );
+  // Tide-shaped date/value data – replace with real Tide metrics later.
+  const tideData = useMemo(() => {
+    const today = new Date();
+    return Array.from({ length: 60 }).map((_, i) => {
+      const date = new Date(today.getTime() - (59 - i) * 24 * 60 * 60 * 1000);
+      const base = 100;
+      const noise = Math.sin(i / 6) * 8 + (Math.random() - 0.5) * 4;
+      return { date, value: base + i * 1.2 + noise };
+    });
+  }, []);
 
   return (
     <GradientBackground>
@@ -67,16 +67,7 @@ function Tide() {
                     {/* Edge-to-edge chart (offset horizontal padding) */}
                     <div className="mt-6 -mx-6 sm:-mx-10">
                       <div className="w-full h-64 rounded-b-[2.5rem] sm:rounded-b-[3rem] overflow-hidden">
-                        <PrimitiveLineChart
-                          data={chartData}
-                          xAccessor={(d) => d.index}
-                          yAccessor={(d) => d.value}
-                          strokeColor="#f97316"
-                          unrevealedStrokeColor="#4b5563"
-                          areaGradientFrom="rgba(249, 115, 22, 0.3)"
-                          areaGradientTo="rgba(249, 115, 22, 0)"
-                          tooltipLabelFormatter={(d) => `${d.value.toFixed(1)} units`}
-                        />
+                        <TidePerformanceChart data={tideData} />
                       </div>
                     </div>
                   </div>

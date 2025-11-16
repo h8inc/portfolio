@@ -188,15 +188,19 @@ export function PrimitiveLineChart<T>({
     });
 
     const point = points[closestIndex];
-    const chartTop = rect.top;
 
     setHoverIndex(closestIndex);
 
-    // Tooltip just above the chart top
+    // Tooltip positioning with edge clamping so it never gets clipped by parent overflow
     const tooltipY = 24; // px from top inside container
+    const tooltipPadding = 70; // keep tooltip within chart bounds
+    const tooltipX = Math.min(
+      Math.max(point.x, tooltipPadding),
+      dimensions.width - tooltipPadding
+    );
 
     setTooltipPos({
-      x: point.x,
+      x: tooltipX,
       y: tooltipY
     });
 
@@ -207,8 +211,8 @@ export function PrimitiveLineChart<T>({
     if (verticalLineRef.current) {
       verticalLineRef.current.setAttribute('x1', String(point.x));
       verticalLineRef.current.setAttribute('x2', String(point.x));
-      verticalLineRef.current.setAttribute('y1', String(chartTop));
-      verticalLineRef.current.setAttribute('y2', String(rect.height));
+      verticalLineRef.current.setAttribute('y1', '0');
+      verticalLineRef.current.setAttribute('y2', String(dimensions.height));
     }
   };
 
@@ -234,7 +238,7 @@ export function PrimitiveLineChart<T>({
   return (
     <div
       ref={containerRef}
-      className={`w-full h-full rounded-[2.5rem] sm:rounded-[3rem] overflow-hidden ${className ?? ''}`}
+      className={`w-full h-full overflow-hidden ${className ?? ''}`}
       style={{ backgroundColor, position: 'relative' }}
     >
       {dimensions && (
