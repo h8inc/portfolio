@@ -54,14 +54,14 @@ function Tide() {
                         className={`${typography.h1.className} mb-4`}
                         style={typography.h1.style}
                       >
-                        Building and scaling a portfolio of subscription products at Tide
+                        Designing a portfolio of subscription products
                       </h1>
                       <p
                         className={`${typography.subheader.className} max-w-2xl mx-auto`}
                         style={typography.subheader.style}
                       >
-                        From a small bookkeeping add‑on with fewer than 1,000 users to a multi‑million
-                        ARR SaaS product touching Tide&apos;s 1M+ member base — this is the arc of the work.
+                        From a small bookkeeping add‑on to multi‑million
+          SaaS product portfolio touching Tide&apos;s 1M+ member base
                       </p>
                     </div>
                     {/* Edge-to-edge chart (offset horizontal padding) */}
