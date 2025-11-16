@@ -103,7 +103,7 @@ export function TidePerformanceChart({
 
   return (
     <div className={`w-full h-full relative ${className ?? ''}`}>
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex flex-col gap-3 items-center sm:flex-row sm:gap-4 pointer-events-none">
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex flex-row flex-nowrap justify-center gap-3 pointer-events-none px-2 w-full">
         <LegendStatCard
           value={shortValue}
           subtitle={`ARR • ${activeDateLabel || '—'}`}
@@ -117,23 +117,25 @@ export function TidePerformanceChart({
           />
         )}
       </div>
-      <PrimitiveLineChart<TidePoint>
-        data={sorted}
-        xAccessor={(d) => d.date.getTime()}
-        yAccessor={(d) => d.value}
-        strokeColor="#f97316"
-        unrevealedStrokeColor="#4b5563"
-        areaGradientFrom="rgba(249, 115, 22, 0.3)"
-        areaGradientTo="rgba(249, 115, 22, 0)"
-        onHoverDatum={setHoverPoint}
-        tooltipLabelFormatter={(d) =>
-          `${currencyFormatter.format(d.value)} • ${d.date.toLocaleDateString('en-GB', {
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric'
-          })}`
-        }
-      />
+      <div className="pt-28 sm:pt-20 h-full">
+        <PrimitiveLineChart<TidePoint>
+          data={sorted}
+          xAccessor={(d) => d.date.getTime()}
+          yAccessor={(d) => d.value}
+          strokeColor="#f97316"
+          unrevealedStrokeColor="#4b5563"
+          areaGradientFrom="rgba(249, 115, 22, 0.3)"
+          areaGradientTo="rgba(249, 115, 22, 0)"
+          onHoverDatum={setHoverPoint}
+          tooltipLabelFormatter={(d) =>
+            `${currencyFormatter.format(d.value)} • ${d.date.toLocaleDateString('en-GB', {
+              day: 'numeric',
+              month: 'short',
+              year: 'numeric'
+            })}`
+          }
+        />
+      </div>
     </div>
   );
 }

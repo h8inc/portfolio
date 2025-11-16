@@ -45,21 +45,28 @@ export const LegendStatCard = ({
   return (
     <div
       className={clsx(
-        'rounded-2xl px-5 py-3 shadow-sm min-w-[160px] text-center pointer-events-none',
+        'rounded-2xl px-4 py-3 shadow-sm text-center pointer-events-none w-[140px] sm:w-[170px]',
         styles.background,
         className
       )}
     >
       <div
         className={clsx(
-          'text-xl font-semibold tracking-tight leading-tight',
+          'text-xl font-semibold tracking-tight leading-tight whitespace-nowrap',
           styles.valueColor
         )}
       >
         {value}
       </div>
       {subtitle && (
-        <div className={clsx('text-xs mt-1', styles.subtitleColor)}>{subtitle}</div>
+        <div
+          className={clsx(
+            'text-xs mt-1 leading-tight whitespace-nowrap',
+            styles.subtitleColor
+          )}
+        >
+          {subtitle}
+        </div>
       )}
     </div>
   );

@@ -190,8 +190,8 @@ export function PrimitiveLineChart<T>({
 
     setHoverIndex(closestIndex);
 
-    // Tooltip positioning with edge clamping so it never gets clipped by parent overflow
-    const tooltipY = Math.max(point.y - 36, 8); // position above point but keep inside
+    // Tooltip positioning – keep vertical position consistent so it doesn't bounce with the line
+    const tooltipY = 20; // fixed band near the top of the chart
     const tooltipHalfWidth = 75; // approximate half width of tooltip pill
     const chartPadding = 12; // small gutter inside the chart
     const minX = tooltipHalfWidth + chartPadding;
