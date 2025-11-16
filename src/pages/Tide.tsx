@@ -6,15 +6,57 @@ import { typography } from '../design/typography';
 import { MarqueeBanner } from '../components/MarqueeBanner';
 
 function Tide() {
-  // Tide-shaped date/value data – replace with real Tide metrics later.
-  const tideData = useMemo(() => {
+  // Tide ARR trajectory (mid-2023 through today)
+  const { tideData, activationMilestones } = useMemo(() => {
     const today = new Date();
-    return Array.from({ length: 60 }).map((_, i) => {
-      const date = new Date(today.getTime() - (59 - i) * 24 * 60 * 60 * 1000);
-      const base = 100;
-      const noise = Math.sin(i / 6) * 8 + (Math.random() - 0.5) * 4;
-      return { date, value: base + i * 1.2 + noise };
-    });
+    today.setHours(0, 0, 0, 0);
+
+    const arrMilestones = [
+      { date: new Date('2023-06-01'), value: 0 }, // joining point
+      { date: new Date('2023-12-01'), value: 500_000 },
+      { date: new Date('2024-06-01'), value: 900_000 },
+      { date: new Date('2024-11-01'), value: 2_000_000 },
+      { date: new Date('2025-04-01'), value: 4_000_000 },
+      { date: today, value: 7_600_000 }
+    ];
+
+    const activationMilestones = [
+      { date: new Date('2023-06-01'), value: 0.95 },
+      { date: new Date('2024-02-01'), value: 1.6 },
+      { date: new Date('2024-09-01'), value: 3.8 },
+      { date: today, value: 21.2 }
+    ];
+
+    const approxWeekMs = 7 * 24 * 60 * 60 * 1000;
+    const points: Array<{ date: Date; value: number }> = [];
+
+    for (let i = 0; i < arrMilestones.length - 1; i++) {
+      const start = arrMilestones[i];
+      const end = arrMilestones[i + 1];
+      const duration = end.date.getTime() - start.date.getTime();
+      const steps = Math.max(2, Math.round(duration / approxWeekMs));
+
+      for (let step = 0; step < steps; step++) {
+        if (i > 0 && step === 0) continue; // avoid duplicate points at segment seams
+        const t = step / (steps - 1);
+        const date = new Date(start.date.getTime() + duration * t);
+        const value = start.value + (end.value - start.value) * t;
+        points.push({ date, value });
+      }
+    }
+
+    const lastMilestone = arrMilestones[arrMilestones.length - 1];
+    if (
+      !points.length ||
+      points[points.length - 1].date.getTime() !== lastMilestone.date.getTime()
+    ) {
+      points.push(lastMilestone);
+    }
+
+    return {
+      tideData: points,
+      activationMilestones
+    };
   }, []);
 
   return (
@@ -67,7 +109,10 @@ function Tide() {
                     {/* Edge-to-edge chart (offset horizontal padding) */}
                     <div className="mt-6 -mx-6 sm:-mx-10">
                       <div className="w-full h-64 rounded-b-[2.5rem] sm:rounded-b-[3rem] overflow-hidden">
-                        <TidePerformanceChart data={tideData} />
+                        <TidePerformanceChart
+                          data={tideData}
+                          activationMilestones={activationMilestones}
+                        />
                       </div>
                     </div>
                   </div>

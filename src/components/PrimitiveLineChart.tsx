@@ -76,7 +76,6 @@ export function PrimitiveLineChart<T>({
   const [dimensions, setDimensions] = useState<{ width: number; height: number } | null>(null);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number } | null>(null);
-  const verticalLineRef = useRef<SVGLineElement | null>(null);
 
   // Unique id to avoid gradient/clipPath collisions
   const [uniqueId] = useState(() => `primitive-chart-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`);
@@ -192,12 +191,12 @@ export function PrimitiveLineChart<T>({
     setHoverIndex(closestIndex);
 
     // Tooltip positioning with edge clamping so it never gets clipped by parent overflow
-    const tooltipY = 24; // px from top inside container
-    const tooltipPadding = 70; // keep tooltip within chart bounds
-    const tooltipX = Math.min(
-      Math.max(point.x, tooltipPadding),
-      dimensions.width - tooltipPadding
-    );
+    const tooltipY = Math.max(point.y - 36, 8); // position above point but keep inside
+    const tooltipHalfWidth = 75; // approximate half width of tooltip pill
+    const chartPadding = 12; // small gutter inside the chart
+    const minX = tooltipHalfWidth + chartPadding;
+    const maxX = dimensions.width - tooltipHalfWidth - chartPadding;
+    const tooltipX = Math.min(Math.max(point.x, minX), maxX);
 
     setTooltipPos({
       x: tooltipX,
@@ -208,12 +207,6 @@ export function PrimitiveLineChart<T>({
       onHoverDatum(data[point.originalIndex], point.originalIndex);
     }
 
-    if (verticalLineRef.current) {
-      verticalLineRef.current.setAttribute('x1', String(point.x));
-      verticalLineRef.current.setAttribute('x2', String(point.x));
-      verticalLineRef.current.setAttribute('y1', '0');
-      verticalLineRef.current.setAttribute('y2', String(dimensions.height));
-    }
   };
 
   const handleInteractionEnd = () => {
@@ -341,18 +334,19 @@ export function PrimitiveLineChart<T>({
             />
           )}
 
-          {/* Vertical line – optionally controlled via ref if needed */}
-          <line
-            ref={verticalLineRef}
-            stroke="rgba(249, 115, 22, 0.4)"
-            strokeWidth={1}
-            strokeDasharray="4 4"
-            opacity={hoverIndex !== null ? 1 : 0}
-            x1={hoverIndex !== null && points[hoverIndex] ? points[hoverIndex].x : 0}
-            x2={hoverIndex !== null && points[hoverIndex] ? points[hoverIndex].x : 0}
-            y1={0}
-            y2={dimensions.height}
-          />
+          {/* Vertical line from hovered point up into the tooltip */}
+          {hoverIndex !== null && points[hoverIndex] && tooltipPos && (
+            <line
+              stroke="rgba(249, 115, 22, 0.4)"
+              strokeWidth={1}
+              strokeDasharray="4 4"
+              opacity={1}
+              x1={points[hoverIndex].x}
+              x2={points[hoverIndex].x}
+              y1={points[hoverIndex].y}
+              y2={tooltipPos.y + 16}
+            />
+          )}
 
           {/* Transparent overlay for pointer events */}
           <rect
