@@ -5,6 +5,7 @@ import { Mail, Linkedin, Github, Leaf } from "lucide-react";
 import BitcoinPill from "./BitcoinPill";
 import Marquee from "react-fast-marquee";
 import { trackOutboundLink, trackEvent } from "../../lib/analytics";
+import { typography } from "../../design/typography";
 export interface ProfileWidgetProps {
   name?: string;
   title?: string;
@@ -58,7 +59,7 @@ export default function ProfileWidget({
           {/* Profile Section */}
           <div className="relative px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-6 sm:pb-8">
             {/* Title Text */}
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center mb-6 sm:mb-8 lg:mb-10 leading-tight px-2 sm:px-4 font-medium" style={{ fontFamily: 'Aeonik Extended' }}>
+            <h1 className={`${typography.h1.className} text-center mb-6 sm:mb-8 lg:mb-10 leading-tight px-2 sm:px-4`} style={typography.h1.style}>
             Designing financial products from the ground up at <a href="https://www.tide.co/" target="_blank" rel="noopener noreferrer" onClick={() => trackOutboundLink('https://www.tide.co/', 'Tide Company')} className="underline decoration-1 decoration-gray-400 underline-offset-8 hover:decoration-gray-600 transition-all">Tide</a>
             </h1>
 
