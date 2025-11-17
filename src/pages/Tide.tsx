@@ -1,11 +1,9 @@
 import { GradientBackground } from '../components/generated/GradientBackground';
 import { InteractiveTimeline } from '../components/generated/InteractiveTimeline';
 import { TidePerformanceChart } from '../components/tide/TidePerformanceChart';
-import React, { useMemo, useMemo as _useMemo, useRef } from 'react';
+import React, { useMemo } from 'react';
 import { typography } from '../design/typography';
 import { MarqueeBanner } from '../components/MarqueeBanner';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useIsMobile } from '../hooks/use-mobile';
 
 function Tide() {
   // Tide ARR trajectory (mid-2023 through today)
@@ -61,105 +59,15 @@ function Tide() {
     };
   }, []);
 
-  // Scroll-coupled tanks setup
-  const heroRef = useRef<HTMLElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start end', 'end start']
-  });
-  const isMobile = useIsMobile();
-  const dropBase = isMobile ? 220 : 420;
-  const driftBase = isMobile ? 12 : 28;
-  const maxMockWidth = isMobile ? 200 : 240;
-  const maxMockHeight = isMobile ? 420 : 520;
-  const columnOffset = isMobile ? '-3rem' : '-6rem';
-
-  // Left and right mock configurations (checkerboard layout)
-  const leftItems = [
-    { id: 'L1', gridColumn: '1 / span 1', gridRow: '1', dropFactor: 0.9, rotateRange: -6, driftX: -driftBase },
-    { id: 'L2', gridColumn: '2 / span 1', gridRow: '1', dropFactor: 1.05, rotateRange: 6, driftX: driftBase * 0.6 },
-    { id: 'L3', gridColumn: '1 / span 1', gridRow: '2', dropFactor: 1.2, rotateRange: -4, driftX: -driftBase * 0.4 }
-  ] as const;
-
-  const rightItems = [
-    { id: 'R1', gridColumn: '2 / span 1', gridRow: '1', dropFactor: 0.9, rotateRange: 6, driftX: driftBase },
-    { id: 'R2', gridColumn: '1 / span 1', gridRow: '1', dropFactor: 1.05, rotateRange: -6, driftX: -driftBase * 0.6 },
-    { id: 'R3', gridColumn: '2 / span 1', gridRow: '2', dropFactor: 1.2, rotateRange: 4, driftX: driftBase * 0.4 }
-  ] as const;
-
-  const visibleLeft = isMobile ? leftItems.slice(0, 2) : leftItems;
-  const visibleRight = isMobile ? rightItems.slice(0, 2) : rightItems;
-
-  // Available mock images (cycle if fewer than items)
-  const leftMockNames = [
-    'Cash flow - current month.png',
-    'Future-Insights-after-slice-5.png',
-    'Registered Business - VAT registered - Connected (subscribed).png'
-  ];
-  const rightMockNames = [
-    '✅ Admin - no tasks comeplete.png',
-    'Bookkeeping - Slice 4.png',
-    'Tax Account timeline.png'
-  ];
-  const leftMockImages = leftMockNames.map((name) => encodeURI(`/assets/${name}`));
-  const rightMockImages = rightMockNames.map((name) => encodeURI(`/assets/${name}`));
-
-  // Helpers to build transforms per item: downward drift + slight horizontal / rotation
-  const buildTransforms = (dropFactor: number, driftX: number, rotateRange: number) => {
-    const x = useTransform(scrollYProgress, [0, 1], [0, driftX], { clamp: false });
-    const y = useTransform(scrollYProgress, [0, 1], [0, dropFactor * dropBase], { clamp: false });
-    const rotate = useTransform(scrollYProgress, [0, 1], [0, rotateRange], { clamp: false });
-    return { x, y, rotate };
-  };
-
   return (
     <GradientBackground>
       {/* HERO SECTION ON GRADIENT BACKGROUND */}
-      <section ref={heroRef} className="relative z-10 w-full min-h-[140vh] pb-8">
+      <section className="w-full min-h-[140vh] pb-8">
         <div className="w-full h-full px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto h-full">
             {/* Parallax / sticky hero widget */}
-            <div className="relative h-[calc(140vh-32px)] flex items-start justify-center gap-3 sm:gap-6">
-              {/* Left column */}
-              <div
-                aria-hidden
-                className="hidden sm:grid pointer-events-none flex-shrink-0 grid-cols-2 gap-4"
-                style={{ width: 'clamp(160px, 18vw, 300px)' }}
-              >
-                {visibleLeft.map((item, idx) => {
-                  const { x, y, rotate } = buildTransforms(
-                    item.dropFactor,
-                    item.driftX,
-                    item.rotateRange
-                  );
-                  const src = leftMockImages[idx % leftMockImages.length];
-                  return (
-                    <motion.img
-                      key={item.id}
-                      className="rounded-[1rem] object-contain"
-                      style={{
-                        gridColumn: item.gridColumn,
-                        gridRow: item.gridRow,
-                        width: 'auto',
-                        height: 'auto',
-                        maxWidth: `${maxMockWidth}px`,
-                        maxHeight: `${maxMockHeight}px`,
-                        justifySelf: 'center',
-                        alignSelf: 'center',
-                        marginTop: columnOffset,
-                        x,
-                        y,
-                        rotate
-                      }}
-                      src={src}
-                      alt="Tide mockup"
-                      draggable={false}
-                    />
-                  );
-                })}
-              </div>
-
-              <div className="w-full sticky top-[20px] relative z-10">
+            <div className="relative h-[calc(140vh-32px)] flex items-start">
+              <div className="w-full sticky top-[20px]">
                 <div className="w-full flex justify-center">
                   <div className="w-full max-w-3xl bg-[#FAF7F0] rounded-[2.5rem] sm:rounded-[3rem] px-6 sm:px-10 py-8 sm:py-10 md:py-12 content-card-shell">
                     {/* Optional top marquee stripe */}
@@ -210,52 +118,13 @@ function Tide() {
                   </div>
                 </div>
               </div>
-
-              {/* Right column */}
-              <div
-                aria-hidden
-                className="hidden sm:grid pointer-events-none flex-shrink-0 grid-cols-2 gap-4"
-                style={{ width: 'clamp(160px, 18vw, 300px)' }}
-              >
-                {visibleRight.map((item, idx) => {
-                  const { x, y, rotate } = buildTransforms(
-                    item.dropFactor,
-                    item.driftX,
-                    item.rotateRange
-                  );
-                  const src = rightMockImages[idx % rightMockImages.length];
-                  return (
-                    <motion.img
-                      key={item.id}
-                      className="rounded-[1rem] object-contain"
-                      style={{
-                        gridColumn: item.gridColumn,
-                        gridRow: item.gridRow,
-                        width: 'auto',
-                        height: 'auto',
-                        maxWidth: `${maxMockWidth}px`,
-                        maxHeight: `${maxMockHeight}px`,
-                        justifySelf: 'center',
-                        alignSelf: 'center',
-                        marginTop: columnOffset,
-                        x,
-                        y,
-                        rotate
-                      }}
-                      src={src}
-                      alt="Tide mockup"
-                      draggable={false}
-                    />
-                  );
-                })}
-              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* TIMELINE SECTION ON NEUTRAL BACKGROUND */}
-      <section className="relative z-20 w-full bg-[#FAF7F0] py-16 sm:py-24">
+      <section className="w-full bg-[#FAF7F0] py-16 sm:py-24">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
            
