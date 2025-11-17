@@ -22,77 +22,66 @@ type InteractiveTimelineProps = {
 
 const defaultEvents: TimelineEvent[] = [
   {
-    id: '1',
-    year: '2023',
-    title: 'Joined Tide',
-    description: [
-      'Joined Tide when the accounting product was little more than a bookkeeping tool with fewer than 1,000 users.',
-      'Started shaping the accounting product inside a 1.5M‑user small‑business banking platform.'
-    ],
-    logos: ['Tide'],
-    position: 'bottom'
-  },
-  {
     id: '2',
-    year: 'Mid 2023 → Early 2024',
-    title: 'Built accounting product from scratch',
+    year: 'Q3 ’23 → Q1 ’24',
+    title: 'Built accounting product',
     description: [
       'Joined as senior IC across 4 teams, collaborating with 20+ engineers and 3 product managers.',
       'Turned a basic bookkeeping feature (<300 users) into a real accounting product under heavy constraints.',
       'Delivered 9 features from initial concept to live product using iterative discovery and delivery.'
     ],
-    logos: ['Tide'],
-    position: 'top'
+    logos: [''],
+    position: 'bottom'
   },
   {
     id: '3',
-    year: 'Early 2024 → Mid 2024',
-    title: 'Made freemium a strategic growth bet',
+    year: 'Q1 ’24 → Q2 ’24',
+    title: 'Introduced freemium at Tide',
     description: [
-      'Influenced the roadmap to add support for accounting users independent of Sage.',
+      'Influenced the roadmap to add support builds inhouse, independent of third party software.',
       'Persuaded the VP and Head of Engineering to adopt a freemium approach as a growth lever.',
       'Shifted from “here’s an ad for our product, sign up” to “here’s a job we quietly do for you in the background”.',
       'Freemium activation rate grew from 0.95% → 1.6% on the first release after 4 months.'
     ],
-    logos: ['Tide'],
+    logos: [''],
     position: 'bottom'
   },
   {
     id: '4',
-    year: 'Mid 2024 → Late 2024',
-    title: 'Scaled freemium and decoupling',
+    year: 'Q2 ’24 → Q4 ’24',
+    title: 'Scaled freemium across accounting',
     description: [
       'Used data to show how financial insights improve retention and how tax estimates capture top‑of‑funnel demand via SEO.',
       'Persuaded the new Director of Product and co‑led, as a Growth PM, the in‑house backend contracts and freemium experience for insights and tax estimates.',
       'Freemium sign‑up rate grew from 1.6% → 3.8% through 3 iterations of freemium and 2 major iterations of decoupling.',
       'ARR grew from £900K → £2M as Tide rethought its strategy to focus on SaaS products.'
     ],
-    logos: ['Tide'],
-    position: 'top'
+    logos: [''],
+    position: 'bottom'
   },
   {
     id: '5',
-    year: 'Early 2025 → Mid 2025',
-    title: 'Redesigned core Tide surfaces',
+    year: 'Q4 ’24 → Q2 ’25',
+    title: 'Redesigned Tide’s core surfaces',
     description: [
       'Redesigned one and influenced the design of a second of Tide’s 5 main tabs (1M+ users).',
       'Streamlined workflows to boost engagement, retention and revenue for accounting.',
       'Sign‑ups to the accounting product grew from 3.8% → 21.2%, with 4× more new members signing up.',
       'ARR grew from £2M → £4M as 10% of freemium sign‑ups converted to paying customers.'
     ],
-    logos: ['Tide'],
+    logos: [''],
     position: 'bottom'
   },
   {
     id: '6',
-    year: 'Mid 2025 → Now',
-    title: 'Building what’s next',
+    year: 'Q2 ’25 → Today',
+    title: 'Building 2 new products',
     description: [
       'Building two new products at Tide, applying the same discovery, experimentation and growth playbook.',
       'Balancing product strategy, UX and experimentation to unlock the next wave of SaaS growth.'
     ],
-    logos: ['Tide'],
-    position: 'top'
+    logos: [''],
+    position: 'bottom'
   }
 ];
 
@@ -106,6 +95,27 @@ export const InteractiveTimeline = ({
 
   const handleEventClick = (id: string) => {
     setSelectedId(selectedId === id ? null : id);
+  };
+
+  const handleKeyToggle = (
+    event: React.KeyboardEvent<HTMLElement>,
+    id: string
+  ) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleEventClick(id);
+    }
+  };
+
+  const handleMouseLeave = (
+    event: React.MouseEvent<HTMLElement>,
+    id: string
+  ) => {
+    const nextTarget = event.relatedTarget as HTMLElement | null;
+    if (nextTarget && nextTarget.closest(`[data-timeline-id="${id}"]`)) {
+      return;
+    }
+    setHoveredId((current) => (current === id ? null : current));
   };
 
   const isExpanded = (id: string) => hoveredId === id || selectedId === id;
@@ -131,12 +141,13 @@ export const InteractiveTimeline = ({
 
             {/* Timeline Events */}
             <div className="relative flex justify-between items-center">
-              {events.map((event, index) => {
+              {events.map((event) => {
               const expanded = isExpanded(event.id);
               const isTop = event.position === 'top';
-              return <motion.div key={event.id} className="relative flex-1 flex flex-col items-center" style={{
+              const detailsId = `timeline-details-desktop-${event.id}`;
+              return <motion.div key={event.id} data-timeline-id={event.id} className="relative flex-1 flex flex-col items-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B35]/40 rounded-xl" style={{
                 zIndex: expanded ? 20 : 10
-              }}>
+              }} role="button" tabIndex={0} aria-pressed={selectedId === event.id} aria-expanded={expanded} aria-controls={detailsId} onMouseEnter={() => setHoveredId(event.id)} onMouseLeave={(mouseEvent) => handleMouseLeave(mouseEvent, event.id)} onClick={() => handleEventClick(event.id)} onKeyDown={(keyboardEvent) => handleKeyToggle(keyboardEvent, event.id)}>
                     {/* Content Card */}
                     <AnimatePresence>
                       {expanded && <motion.div initial={{
@@ -154,11 +165,11 @@ export const InteractiveTimeline = ({
                   }} transition={{
                     duration: 0.3,
                     ease: [0.22, 1, 0.36, 1]
-                  }} className={`absolute ${isTop ? 'bottom-full mb-8' : 'top-full mt-8'} left-1/2 -translate-x-1/2 w-80`}>
+                  }} id={detailsId} className={`absolute ${isTop ? 'bottom-full mb-8' : 'top-full mt-8'} left-1/2 -translate-x-1/2 w-80`}>
                           <div className="bg-white rounded-lg p-6 shadow-xl border border-gray-200">
                             <h3
-                              className="text-xl font-semibold text-gray-900 mb-4"
-                              style={{ fontFamily: 'Aeonik Extended' }}
+                              className="text-3xl font-semibold text-gray-900 mb-4"
+                              style={{ fontFamily: 'Aeonik' }}
                             >
                               {event.title}
                             </h3>
@@ -191,27 +202,27 @@ export const InteractiveTimeline = ({
                     </AnimatePresence>
 
                     {/* Timeline Node */}
-                    <motion.button className="relative z-10 cursor-pointer touch-manipulation" onMouseEnter={() => setHoveredId(event.id)} onMouseLeave={() => setHoveredId(null)} onClick={() => handleEventClick(event.id)} whileHover={{
+                    <motion.div className="relative z-10 touch-manipulation" whileHover={{
                   scale: 1.2
                 }} whileTap={{
                   scale: 0.95
-                }} aria-label={`View details for ${event.year}: ${event.title}`}>
+                }} aria-hidden="true">
                       <motion.div className="w-5 h-5 rounded-full bg-[#FF6B35] border-4 border-[#F5F2ED]" animate={{
                     scale: expanded ? 1.5 : 1,
                     backgroundColor: expanded ? '#FF6B35' : '#FF6B35'
                   }} transition={{
                     duration: 0.3
                   }} />
-                    </motion.button>
+                    </motion.div>
 
                     {/* Year Label */}
-                    <motion.div className={`absolute ${isTop ? 'top-full mt-4' : 'bottom-full mb-4'} text-center select-none pointer-events-none`} animate={{
+                    <motion.div className={`absolute ${isTop ? 'top-full mt-4' : 'bottom-full mb-4'} text-center select-none`} animate={{
                   scale: expanded ? 1.1 : 1,
                   fontWeight: expanded ? 600 : 400
-                }}>
+                }} onMouseEnter={() => setHoveredId(event.id)} onMouseLeave={(mouseEvent) => handleMouseLeave(mouseEvent, event.id)}>
                       <span
-                        className="text-lg text-[#FF6B35] font-medium whitespace-nowrap"
-                        style={{ fontFamily: 'Aeonik Extended' }}
+                        className="text-2xl text-[#FF6B35] font-medium whitespace-nowrap"
+                        style={{ fontFamily: 'Aeonik' }}
                       >
                         {event.year}
                       </span>
@@ -226,10 +237,10 @@ export const InteractiveTimeline = ({
                     opacity: 1
                   }} exit={{
                     opacity: 0
-                  }} className={`absolute ${isTop ? 'bottom-full mb-12' : 'top-full mt-12'} text-center max-w-[160px] pointer-events-none`}>
+                  }} className={`absolute ${isTop ? 'bottom-full mb-8' : 'top-full mt-8'} text-center max-w-[160px]`} onMouseEnter={() => setHoveredId(event.id)} onMouseLeave={(mouseEvent) => handleMouseLeave(mouseEvent, event.id)}>
                           <p
-                            className="text-sm text-gray-700 font-medium leading-tight"
-                            style={{ fontFamily: 'Aeonik Extended' }}
+                            className="text-lg text-gray-700 font-medium leading-tight"
+                            style={{ fontFamily: 'Aeonik' }}
                           >
                             {event.title}
                           </p>
@@ -260,7 +271,7 @@ export const InteractiveTimeline = ({
               className="text-sm text-gray-500"
               style={{ fontFamily: 'Aeonik' }}
             >
-              Hover or click on timeline points to view details
+              Hover or click each milestone to view details
             </p>
           </div>
         </div>
@@ -276,33 +287,36 @@ export const InteractiveTimeline = ({
 
             {/* Timeline Events */}
             <div className="space-y-12">
-              {events.map((event, index) => {
+              {events.map((event) => {
               const expanded = isExpanded(event.id);
-              return <motion.div key={event.id} className="relative flex items-start gap-6" initial={false}>
+              const detailsId = `timeline-details-mobile-${event.id}`;
+              return <motion.div key={event.id} className="relative flex items-start gap-6 cursor-pointer rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B35]/40" initial={false} role="button" tabIndex={0} aria-expanded={expanded} aria-controls={detailsId} onClick={() => handleEventClick(event.id)} onKeyDown={(keyboardEvent) => handleKeyToggle(keyboardEvent, event.id)} whileTap={{
+                scale: 0.97
+              }}>
                     {/* Timeline Node */}
-                    <motion.button className="relative z-10 cursor-pointer touch-manipulation shrink-0" onClick={() => handleEventClick(event.id)} whileTap={{
+                    <motion.div className="relative z-10 touch-manipulation shrink-0" whileTap={{
                   scale: 0.9
-                }} aria-label={`View details for ${event.year}: ${event.title}`}>
+                }} aria-hidden="true">
                       <motion.div className="w-6 h-6 rounded-full bg-[#FF6B35] border-4 border-[#F5F2ED] shadow-lg" animate={{
                     scale: expanded ? 1.2 : 1
                   }} transition={{
                     duration: 0.3
                   }} />
-                    </motion.button>
+                    </motion.div>
 
                     {/* Content Area */}
                     <div className="flex-1 pb-4">
                       {/* Year and Title - Always visible */}
                       <div className="mb-3">
                         <span
-                          className="text-lg font-semibold text-[#FF6B35] block mb-1"
-                          style={{ fontFamily: 'Aeonik Extended' }}
+                          className="text-2xl font-semibold text-[#FF6B35] block mb-1"
+                          style={{ fontFamily: 'Aeonik' }}
                         >
                           {event.year}
                         </span>
                         <h3
-                          className="text-base font-semibold text-gray-900"
-                          style={{ fontFamily: 'Aeonik Extended' }}
+                          className="text-xl font-semibold text-gray-900"
+                          style={{ fontFamily: 'Aeonik' }}
                         >
                           {event.title}
                         </h3>
@@ -310,7 +324,7 @@ export const InteractiveTimeline = ({
 
                       {/* Expandable Details */}
                       <AnimatePresence>
-                        {expanded && <motion.div initial={{
+                        {expanded && <motion.div id={detailsId} initial={{
                       opacity: 0,
                       height: 0
                     }} animate={{
