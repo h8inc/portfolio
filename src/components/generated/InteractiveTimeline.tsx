@@ -26,9 +26,9 @@ const defaultEvents: TimelineEvent[] = [
     year: 'Q3 ’23 → Q1 ’24',
     title: 'Built accounting product',
     description: [
-      'Joined as senior IC across 4 teams, collaborating with 20+ engineers and 3 product managers.',
-      'Turned a basic bookkeeping feature (<300 users) into a real accounting product under heavy constraints.',
-      'Delivered 9 features from initial concept to live product using iterative discovery and delivery.'
+      'Joined as IC, working with 5 team, and 3 product managers.',
+      'Turned a basic bookkeeping feature (<300 users) into a robut accounting product',
+      'Build tax and financial insights modules from 0 to live products through iterative delivery.'
     ],
     logos: [''],
     position: 'bottom'
@@ -38,10 +38,10 @@ const defaultEvents: TimelineEvent[] = [
     year: 'Q1 ’24 → Q2 ’24',
     title: 'Introduced freemium at Tide',
     description: [
-      'Influenced the roadmap to add support builds inhouse, independent of third party software.',
-      'Persuaded the VP and Head of Engineering to adopt a freemium approach as a growth lever.',
-      'Shifted from “here’s an ad for our product, sign up” to “here’s a job we quietly do for you in the background”.',
-      'Freemium activation rate grew from 0.95% → 1.6% on the first release after 4 months.'
+      'Influenced the roadmap to decouple from third party software.',
+      'Persuaded the VP and Engineering to adopt a freemium approach.',
+      'Shifted from marketing-led to product-led in the app.',
+      'Drove sign up rate 0.95% → 1.65%.'
     ],
     logos: [''],
     position: 'bottom'
@@ -51,10 +51,11 @@ const defaultEvents: TimelineEvent[] = [
     year: 'Q2 ’24 → Q4 ’24',
     title: 'Scaled freemium across accounting',
     description: [
-      'Used data to show how financial insights improve retention and how tax estimates capture top‑of‑funnel demand via SEO.',
-      'Persuaded the new Director of Product and co‑led, as a Growth PM, the in‑house backend contracts and freemium experience for insights and tax estimates.',
-      'Freemium sign‑up rate grew from 1.6% → 3.8% through 3 iterations of freemium and 2 major iterations of decoupling.',
-      'ARR grew from £900K → £2M as Tide rethought its strategy to focus on SaaS products.'
+      'Presented financial insights = retention = revenue.',
+      'Presented that tax estimates capture top‑of‑funnel demand.',
+      'Influenced the design of backend to support freemium on insights and tax estimates.',
+      'Sign‑up rate grew from 1.6% → 3.8% through.',
+      'ARR grew from £900K → £2M.'
     ],
     logos: [''],
     position: 'bottom'
@@ -140,12 +141,12 @@ export const InteractiveTimeline = ({
             <div className="absolute left-0 right-0 top-1/2 h-[2px] bg-[#D4D1CB] -translate-y-1/2" />
 
             {/* Timeline Events */}
-            <div className="relative flex justify-between items-center">
+            <div className="relative flex justify-between items-center overflow-visible">
               {events.map((event) => {
               const expanded = isExpanded(event.id);
               const isTop = event.position === 'top';
               const detailsId = `timeline-details-desktop-${event.id}`;
-              return <motion.div key={event.id} data-timeline-id={event.id} className="relative flex-1 flex flex-col items-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B35]/40 rounded-xl" style={{
+              return <motion.div key={event.id} data-timeline-id={event.id} className="relative flex-1 flex flex-col items-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B35]/40 rounded-xl overflow-visible" style={{
                 zIndex: expanded ? 20 : 10
               }} role="button" tabIndex={0} aria-pressed={selectedId === event.id} aria-expanded={expanded} aria-controls={detailsId} onMouseEnter={() => setHoveredId(event.id)} onMouseLeave={(mouseEvent) => handleMouseLeave(mouseEvent, event.id)} onClick={() => handleEventClick(event.id)} onKeyDown={(keyboardEvent) => handleKeyToggle(keyboardEvent, event.id)}>
                     {/* Content Card */}
@@ -165,7 +166,7 @@ export const InteractiveTimeline = ({
                   }} transition={{
                     duration: 0.3,
                     ease: [0.22, 1, 0.36, 1]
-                  }} id={detailsId} className={`absolute ${isTop ? 'bottom-full mb-8' : 'top-full mt-8'} left-1/2 -translate-x-1/2 w-80`}>
+                  }} id={detailsId} className={`absolute ${isTop ? 'bottom-full mb-8' : 'top-full mt-8'} left-1/2 -translate-x-1/2 w-[600px] max-w-[90vw]`}>
                           <div className="bg-white rounded-lg p-6 shadow-xl border border-gray-200">
                             <h3
                               className="text-3xl font-semibold text-gray-900 mb-4"
