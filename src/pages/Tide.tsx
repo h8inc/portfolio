@@ -4,6 +4,7 @@ import { TidePerformanceChart } from '../components/tide/TidePerformanceChart';
 import React, { useMemo } from 'react';
 import { typography } from '../design/typography';
 import { MarqueeBanner } from '../components/MarqueeBanner';
+import { ScreenGallery } from '../components/primitives/ScreenGallery';
 
 function Tide() {
   // Tide ARR trajectory (mid-2023 through today)
@@ -58,6 +59,36 @@ function Tide() {
       activationMilestones
     };
   }, []);
+
+  const signatureScreens = useMemo(
+    () => [
+      {
+        id: 'accounting-os',
+        eyebrow: 'Accounting OS',
+        title: 'Everything reconciled in one workspace',
+        description: 'Ledger, journals and bank feeds stitched together so the finance team can close in hours, not weeks.',
+        imageSrc: encodeURI('/assets/✅ Admin - no tasks comeplete.png'),
+        imageAlt: 'Admin services home with task checklist'
+      },
+      {
+        id: 'tax',
+        eyebrow: 'Tax autopilot',
+        title: 'Predict and plan ahead',
+        description: 'Smart estimates and proactive nudges so members stay compliant and avoid costly surprises.',
+        imageSrc: encodeURI('/assets/Tax Account timeline.png'),
+        imageAlt: 'Tax account timeline and actions'
+      },
+      {
+        id: 'activation',
+        eyebrow: 'Activation flows',
+        title: 'Onboard and convert with context',
+        description: 'Freemium paywalls and progress indicators that coach members until they experience the core value.',
+        imageSrc: encodeURI('/assets/Registered Business - VAT registered - Connected (subscribed).png'),
+        imageAlt: 'Registered business VAT estimates view'
+      }
+    ],
+    []
+  );
 
   return (
     <GradientBackground>
@@ -124,12 +155,39 @@ function Tide() {
       </section>
 
       {/* TIMELINE SECTION ON NEUTRAL BACKGROUND */}
-      <section className="w-full bg-[#FAF7F0] py-16 sm:py-24">
+      <section className="w-full bg-[#FAF7F0] py-16 sm:py-12">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-           
-              <InteractiveTimeline fullScreen={false} />
-          
+            <InteractiveTimeline fullScreen={false} title="Journey & milestones" />
+          </div>
+        </div>
+      </section>
+
+      {/* SIGNATURE SCREENS GALLERY */}
+      <section className="w-full bg-[#FAF7F0] py-20 sm:py-24">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12 sm:mb-16">
+              <p
+                className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4"
+                style={{ fontFamily: 'Aeonik Extended' }}
+              >
+                Product surfaces
+              </p>
+              <h2
+                className={`${typography.h2.className} mb-4`}
+                style={typography.h2.style}
+              >
+                Signature screens
+              </h2>
+              <p
+                className={`${typography.subheader.className} max-w-3xl mx-auto`}
+                style={typography.subheader.style}
+              >
+                Modular gallery we can reuse for every project. Swap screenshots freely while keeping a short title and two-line explainer for each moment in the flow.
+              </p>
+            </div>
+            <ScreenGallery items={signatureScreens} />
           </div>
         </div>
       </section>

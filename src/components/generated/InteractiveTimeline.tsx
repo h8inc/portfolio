@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { typography } from '../../design/typography';
 
 type TimelineEvent = {
   id: string;
@@ -18,6 +19,10 @@ type InteractiveTimelineProps = {
    * (for example on the Tide page inside the gradient background).
    */
   fullScreen?: boolean;
+  /**
+   * Optional section headline rendered above the timeline contents.
+   */
+  title?: string;
 };
 
 const defaultEvents: TimelineEvent[] = [
@@ -89,7 +94,8 @@ const defaultEvents: TimelineEvent[] = [
 // @component: InteractiveTimeline
 export const InteractiveTimeline = ({
   events = defaultEvents,
-  fullScreen = true
+  fullScreen = true,
+  title
 }: InteractiveTimelineProps) => {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -128,45 +134,64 @@ export const InteractiveTimeline = ({
      ? 'w-full min-h-screen bg-[#F5F2ED]'
      : 'w-full bg-[#FAF7F0] rounded-[32px] sm:rounded-[40px]';
 
+  const desktopPadding = fullScreen
+    ? { top: 200, bottom: 200 }
+    : { top: 80, bottom: 200 };
+
   // @return
   return <div className={rootClasses}>
+      {title && (
+        <div className="w-full px-6 sm:px-8 lg:px-12 pt-10">
+          <div className="max-w-7xl mx-auto text-center">
+            <h2
+              className={`${typography.h2.className} mb-6`}
+              style={typography.h2.style}
+            >
+              {title}
+            </h2>
+          </div>
+        </div>
+      )}
       {/* Desktop View */}
-      <div className="hidden md:block px-8 lg:px-12 py-32">
+      <div className="hidden md:block px-8 lg:px-12 py-0">
         <div className="max-w-7xl mx-auto">
-          <div className="relative" style={{
-          paddingTop: '200px',
-          paddingBottom: '200px'
-        }}>
-            {/* Timeline Line */}
-            <div className="absolute left-0 right-0 top-1/2 h-[2px] bg-[#D4D1CB] -translate-y-1/2" />
+          <div
+            style={{
+              paddingTop: desktopPadding.top,
+              paddingBottom: desktopPadding.bottom
+            }}
+          >
+            <div className="relative">
+              {/* Timeline Line */}
+              <div className="absolute left-0 right-0 top-1/2 h-[2px] bg-[#D4D1CB] -translate-y-1/2" />
 
-            {/* Timeline Events */}
-            <div className="relative flex justify-between items-center overflow-visible">
-              {events.map((event) => {
-              const expanded = isExpanded(event.id);
-              const isTop = event.position === 'top';
-              const detailsId = `timeline-details-desktop-${event.id}`;
-              return <motion.div key={event.id} data-timeline-id={event.id} className="relative flex-1 flex flex-col items-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B35]/40 rounded-xl overflow-visible" style={{
-                zIndex: expanded ? 20 : 10
-              }} role="button" tabIndex={0} aria-pressed={selectedId === event.id} aria-expanded={expanded} aria-controls={detailsId} onMouseEnter={() => setHoveredId(event.id)} onMouseLeave={(mouseEvent) => handleMouseLeave(mouseEvent, event.id)} onClick={() => handleEventClick(event.id)} onKeyDown={(keyboardEvent) => handleKeyToggle(keyboardEvent, event.id)}>
-                    {/* Content Card */}
-                    <AnimatePresence>
-                      {expanded && <motion.div initial={{
-                    opacity: 0,
-                    y: isTop ? 20 : -20,
-                    scale: 0.9
-                  }} animate={{
-                    opacity: 1,
-                    y: 0,
-                    scale: 1
-                  }} exit={{
-                    opacity: 0,
-                    y: isTop ? 20 : -20,
-                    scale: 0.9
-                  }} transition={{
-                    duration: 0.3,
-                    ease: [0.22, 1, 0.36, 1]
-                  }} id={detailsId} className={`absolute ${isTop ? 'bottom-full mb-8' : 'top-full mt-8'} left-1/2 -translate-x-1/2 w-[600px] max-w-[90vw]`}>
+              {/* Timeline Events */}
+              <div className="relative flex justify-between items-center overflow-visible">
+                {events.map((event) => {
+                const expanded = isExpanded(event.id);
+                const isTop = event.position === 'top';
+                const detailsId = `timeline-details-desktop-${event.id}`;
+                return <motion.div key={event.id} data-timeline-id={event.id} className="relative flex-1 flex flex-col items-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B35]/40 rounded-xl overflow-visible" style={{
+                  zIndex: expanded ? 20 : 10
+                }} role="button" tabIndex={0} aria-pressed={selectedId === event.id} aria-expanded={expanded} aria-controls={detailsId} onMouseEnter={() => setHoveredId(event.id)} onMouseLeave={(mouseEvent) => handleMouseLeave(mouseEvent, event.id)} onClick={() => handleEventClick(event.id)} onKeyDown={(keyboardEvent) => handleKeyToggle(keyboardEvent, event.id)}>
+                      {/* Content Card */}
+                      <AnimatePresence>
+                        {expanded && <motion.div initial={{
+                      opacity: 0,
+                      y: isTop ? 20 : -20,
+                      scale: 0.9
+                    }} animate={{
+                      opacity: 1,
+                      y: 0,
+                      scale: 1
+                    }} exit={{
+                      opacity: 0,
+                      y: isTop ? 20 : -20,
+                      scale: 0.9
+                    }} transition={{
+                      duration: 0.3,
+                      ease: [0.22, 1, 0.36, 1]
+                    }} id={detailsId} className={`absolute ${isTop ? 'bottom-full mb-8' : 'top-full mt-8'} left-1/2 -translate-x-1/2 w-[600px] max-w-[90vw]`}>
                           <div className="bg-white rounded-lg p-6 shadow-xl border border-gray-200">
                             <h3
                               className="text-3xl font-semibold text-gray-900 mb-4"
@@ -200,81 +225,73 @@ export const InteractiveTimeline = ({
                             )}
                           </div>
                         </motion.div>}
-                    </AnimatePresence>
+                      </AnimatePresence>
 
-                    {/* Timeline Node */}
-                    <motion.div className="relative z-10 touch-manipulation" whileHover={{
-                  scale: 1.2
-                }} whileTap={{
-                  scale: 0.95
-                }} aria-hidden="true">
-                      <motion.div className="w-5 h-5 rounded-full bg-[#FF6B35] border-4 border-[#F5F2ED]" animate={{
-                    scale: expanded ? 1.5 : 1,
-                    backgroundColor: expanded ? '#FF6B35' : '#FF6B35'
-                  }} transition={{
-                    duration: 0.3
-                  }} />
-                    </motion.div>
+                      {/* Timeline Node */}
+                      <motion.div className="relative z-10 touch-manipulation" whileHover={{
+                    scale: 1.2
+                  }} whileTap={{
+                    scale: 0.95
+                  }} aria-hidden="true">
+                        <motion.div className="w-5 h-5 rounded-full bg-[#FF6B35] border-4 border-[#F5F2ED]" animate={{
+                      scale: expanded ? 1.5 : 1,
+                      backgroundColor: expanded ? '#FF6B35' : '#FF6B35'
+                    }} transition={{
+                      duration: 0.3
+                    }} />
+                      </motion.div>
 
-                    {/* Year Label */}
-                    <motion.div className={`absolute ${isTop ? 'top-full mt-4' : 'bottom-full mb-4'} text-center select-none`} animate={{
-                  scale: expanded ? 1.1 : 1,
-                  fontWeight: expanded ? 600 : 400
-                }} onMouseEnter={() => setHoveredId(event.id)} onMouseLeave={(mouseEvent) => handleMouseLeave(mouseEvent, event.id)}>
-                      <span
-                        className="text-2xl text-[#FF6B35] font-medium whitespace-nowrap"
-                        style={{ fontFamily: 'Aeonik' }}
-                      >
-                        {event.year}
-                      </span>
-                    </motion.div>
+                      {/* Year Label */}
+                      <motion.div className={`absolute ${isTop ? 'top-full mt-4' : 'bottom-full mb-4'} text-center select-none`} animate={{
+                    scale: expanded ? 1.1 : 1,
+                    fontWeight: expanded ? 600 : 400
+                  }} onMouseEnter={() => setHoveredId(event.id)} onMouseLeave={(mouseEvent) => handleMouseLeave(mouseEvent, event.id)}>
+                        <span
+                          className="text-2xl text-[#FF6B35] font-medium whitespace-nowrap"
+                          style={{ fontFamily: 'Aeonik' }}
+                        >
+                          {event.year}
+                        </span>
+                      </motion.div>
 
-                    {/* Compact Title Preview (shown when not expanded) */}
-                    <AnimatePresence>
-                      {!expanded && (
-                        <motion.div initial={{
-                    opacity: 0
-                  }} animate={{
-                    opacity: 1
-                  }} exit={{
-                    opacity: 0
-                  }} className={`absolute ${isTop ? 'bottom-full mb-8' : 'top-full mt-8'} text-center max-w-[160px]`} onMouseEnter={() => setHoveredId(event.id)} onMouseLeave={(mouseEvent) => handleMouseLeave(mouseEvent, event.id)}>
-                          <p
-                            className="text-lg text-gray-700 font-medium leading-tight"
-                            style={{ fontFamily: 'Aeonik' }}
-                          >
-                            {event.title}
-                          </p>
-                          {event.logos && event.logos.length > 0 && (
-                            <div className="mt-2 space-y-1">
-                              {event.logos.slice(0, 2).map((logo, i) => (
-                                <p
-                                  key={i}
-                                  className="text-xs text-gray-400"
-                                  style={{ fontFamily: 'Aeonik' }}
-                                >
-                                  {logo}
-                                </p>
-                              ))}
-                            </div>
-                          )}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>;
-            })}
+                      {/* Compact Title Preview (shown when not expanded) */}
+                      <AnimatePresence>
+                        {!expanded && (
+                          <motion.div initial={{
+                      opacity: 0
+                    }} animate={{
+                      opacity: 1
+                    }} exit={{
+                      opacity: 0
+                    }} className={`absolute ${isTop ? 'bottom-full mb-8' : 'top-full mt-8'} text-center max-w-[160px]`} onMouseEnter={() => setHoveredId(event.id)} onMouseLeave={(mouseEvent) => handleMouseLeave(mouseEvent, event.id)}>
+                            <p
+                              className="text-lg text-gray-700 font-medium leading-tight"
+                              style={{ fontFamily: 'Aeonik' }}
+                            >
+                              {event.title}
+                            </p>
+                            {event.logos && event.logos.length > 0 && (
+                              <div className="mt-2 space-y-1">
+                                {event.logos.slice(0, 2).map((logo, i) => (
+                                  <p
+                                    key={i}
+                                    className="text-xs text-gray-400"
+                                    style={{ fontFamily: 'Aeonik' }}
+                                  >
+                                    {logo}
+                                  </p>
+                                ))}
+                              </div>
+                            )}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>;
+              })}
+              </div>
             </div>
           </div>
-
-          {/* Desktop Instructions */}
-          <div className="mt-8 text-center">
-            <p
-              className="text-sm text-gray-500"
-              style={{ fontFamily: 'Aeonik' }}
-            >
-              Hover or click each milestone to view details
-            </p>
-          </div>
+         
         </div>
       </div>
 
@@ -381,15 +398,7 @@ export const InteractiveTimeline = ({
             </div>
           </div>
 
-          {/* Mobile Instructions */}
-          <div className="mt-12 text-center">
-            <p
-              className="text-sm text-gray-500"
-              style={{ fontFamily: 'Aeonik' }}
-            >
-              Tap on timeline points to expand details
-            </p>
-          </div>
+          
         </div>
       </div>
     </div>;
