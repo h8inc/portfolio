@@ -90,6 +90,36 @@ function Tide() {
     []
   );
 
+  const additionalScreens = useMemo(
+    () => [
+      {
+        id: 'cashflow',
+        eyebrow: 'Cash flow',
+        title: 'Track and forecast with confidence',
+        description: 'Visual timeline showing money in, money out, and projected balances so members can plan ahead and avoid surprises.',
+        imageSrc: encodeURI('/assets/Cash flow - current month.png'),
+        imageAlt: 'Cash flow tracker with projected balances'
+      },
+      {
+        id: 'insights',
+        eyebrow: 'Financial insights',
+        title: 'Understand spending patterns',
+        description: 'Smart analysis and categorization that surfaces trends and helps members make better financial decisions.',
+        imageSrc: encodeURI('/assets/Future-Insights-after-slice-5.png'),
+        imageAlt: 'Financial insights and spending analysis'
+      },
+      {
+        id: 'bookkeeping',
+        eyebrow: 'Bookkeeping score',
+        title: 'Keep records clean and compliant',
+        description: 'Automated categorization and health scoring that guides members toward tax-ready books without manual effort.',
+        imageSrc: encodeURI('/assets/Bookkeeping - Slice 4.png'),
+        imageAlt: 'Bookkeeping score and smart categorization'
+      }
+    ],
+    []
+  );
+
   return (
     <GradientBackground>
       {/* HERO SECTION ON GRADIENT BACKGROUND */}
@@ -172,13 +202,13 @@ function Tide() {
                 className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4"
                 style={{ fontFamily: 'Aeonik Extended' }}
               >
-                Product surfaces
+                Tide Admin
               </p>
               <h2
                 className={`${typography.h2.className} mb-4`}
                 style={typography.h2.style}
               >
-                Signature screens
+                Tax Management
               </h2>
               <p
                 className={`${typography.subheader.className} max-w-3xl mx-auto`}
@@ -188,6 +218,35 @@ function Tide() {
               </p>
             </div>
             <ScreenGallery items={signatureScreens} />
+          </div>
+        </div>
+      </section>
+
+      {/* ADDITIONAL SCREENS GALLERY */}
+      <section className="w-full bg-white py-20 sm:py-24">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12 sm:mb-16">
+              <p
+                className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4"
+                style={{ fontFamily: 'Aeonik Extended' }}
+              >
+                More examples
+              </p>
+              <h2
+                className={`${typography.h2.className} mb-4`}
+                style={typography.h2.style}
+              >
+                Additional screens
+              </h2>
+              <p
+                className={`${typography.subheader.className} max-w-3xl mx-auto`}
+                style={typography.subheader.style}
+              >
+                Another set of product screens showcasing different features and flows.
+              </p>
+            </div>
+            <ScreenGallery items={additionalScreens} />
           </div>
         </div>
       </section>
