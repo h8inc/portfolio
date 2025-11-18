@@ -64,7 +64,7 @@ function Tide() {
     () => [
       {
         id: 'accounting-os',
-        eyebrow: 'Accounting OS',
+        eyebrow: 'Admin OS',
         title: 'All admin in one place',
         description: 'A system of products designed to help small businesses owners navigate their administrative tasks with ease.',
         imageSrc: encodeURI('/assets/✅ Admin - no tasks comeplete.png'),
