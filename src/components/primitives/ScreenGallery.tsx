@@ -227,11 +227,11 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
         </div>
 
         {/* Right column: Gallery that extends to viewport edge (absolutely positioned) */}
-        <div className="absolute top-0 bottom-0 overflow-x-auto" style={{
+        <div className="absolute top-0 overflow-x-auto" style={{
           left: 'max(calc(50% - 640px + 40% + 3rem), calc(40% + 4rem))',
           right: 0
         }}>
-          <div className="flex space-x-6 pb-8 snap-x snap-mandatory h-full pr-4 sm:pr-6 lg:pr-8">
+          <div className="flex space-x-6 pb-8 snap-x snap-mandatory pr-4 sm:pr-6 lg:pr-8">
             {items.map((item, index) => (
               <article
                 key={item.id}
