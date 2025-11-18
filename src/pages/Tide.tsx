@@ -194,7 +194,7 @@ function Tide() {
       </section>
 
       {/* SIGNATURE SCREENS GALLERY */}
-      <section className="w-full bg-white py-20 sm:py-24">
+      <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
         <ScreenGallery 
           items={signatureScreens}
           sectionEyebrow="Tide Admin"
@@ -209,7 +209,7 @@ function Tide() {
       </section>
 
       {/* ADDITIONAL SCREENS GALLERY */}
-      <section className="w-full bg-[#FAF7F0] py-20 sm:py-24">
+      <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
         <ScreenGallery 
           items={additionalScreens}
           sectionEyebrow="Financial Tools"
