@@ -195,7 +195,7 @@ function Tide() {
 
       {/* SIGNATURE SCREENS GALLERY */}
       <section className="w-full bg-white py-20 sm:py-24">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="w-full pl-4 sm:pl-6 lg:pl-8">
           <div className="max-w-7xl mx-auto">
             <ScreenGallery 
               items={signatureScreens}
@@ -214,7 +214,7 @@ function Tide() {
 
       {/* ADDITIONAL SCREENS GALLERY */}
       <section className="w-full bg-[#FAF7F0] py-20 sm:py-24">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="w-full pl-4 sm:pl-6 lg:pl-8">
           <div className="max-w-7xl mx-auto">
             <ScreenGallery 
               items={additionalScreens}
