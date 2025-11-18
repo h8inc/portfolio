@@ -183,8 +183,8 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
       </div>
 
       {/* Desktop – side-by-side with edge-to-edge scrollable gallery */}
-      <div className="hidden md:block px-4 sm:px-6 lg:px-8 overflow-visible">
-        <div className="max-w-7xl mx-auto flex gap-12 lg:gap-16 items-start overflow-visible">
+      <div className="hidden md:block px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex gap-12 lg:gap-16 items-start">
           {/* Left column: Section metadata (40% of container) */}
           <div className="w-[40%] flex-shrink-0 max-w-lg">
             {sectionEyebrow && (
@@ -224,8 +224,8 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
           </div>
 
           {/* Right column: Gallery that extends to viewport edge */}
-          <div className="flex-1 overflow-visible">
-            <div className="flex overflow-x-auto space-x-6 pb-8 snap-x snap-mandatory" style={{
+          <div className="flex-1 overflow-x-auto">
+            <div className="flex space-x-6 pb-8 snap-x snap-mandatory" style={{
               marginRight: 'calc(-50vw + 50% + 1rem)',
               paddingRight: 'max(2rem, calc(50vw - 50%))'
             }}>
