@@ -65,26 +65,26 @@ function Tide() {
       {
         id: 'accounting-os',
         eyebrow: 'Accounting OS',
-        title: 'Everything reconciled in one workspace',
-        description: 'Ledger, journals and bank feeds stitched together so the finance team can close in hours, not weeks.',
+        title: 'All admin in one place',
+        description: 'A system of products designed to help small businesses owners navigate their administrative tasks with ease.',
         imageSrc: encodeURI('/assets/✅ Admin - no tasks comeplete.png'),
         imageAlt: 'Admin services home with task checklist'
       },
       {
-        id: 'tax',
-        eyebrow: 'Tax autopilot',
-        title: 'Predict and plan ahead',
-        description: 'Smart estimates and proactive nudges so members stay compliant and avoid costly surprises.',
-        imageSrc: encodeURI('/assets/Tax Account timeline.png'),
-        imageAlt: 'Tax account timeline and actions'
-      },
-      {
         id: 'activation',
-        eyebrow: 'Activation flows',
-        title: 'Onboard and convert with context',
-        description: 'Freemium paywalls and progress indicators that coach members until they experience the core value.',
+        eyebrow: 'Tax Product',
+        title: 'Tax deadlines and estimates',
+        description: 'Automated estimates and VAT management helps businesses prepare for tax obligations.',
         imageSrc: encodeURI('/assets/Registered Business - VAT registered - Connected (subscribed).png'),
         imageAlt: 'Registered business VAT estimates view'
+      },
+      {
+        id: 'tax',
+        eyebrow: 'Tax savings on autopilot',
+        title: 'Predict and plan ahead',
+        description: 'Tax savings account that saves on behalf of businesses and bears interest on the balance.',
+        imageSrc: encodeURI('/assets/Tax Account timeline.png'),
+        imageAlt: 'Tax account timeline and actions'
       }
     ],
     []
@@ -194,7 +194,7 @@ function Tide() {
       </section>
 
       {/* SIGNATURE SCREENS GALLERY */}
-      <section className="w-full bg-[#FAF7F0] py-20 sm:py-24">
+      <section className="w-full bg-white py-20 sm:py-24">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12 sm:mb-16">
@@ -214,7 +214,7 @@ function Tide() {
                 className={`${typography.subheader.className} max-w-3xl mx-auto`}
                 style={typography.subheader.style}
               >
-                Modular gallery we can reuse for every project. Swap screenshots freely while keeping a short title and two-line explainer for each moment in the flow.
+                The product anticipates needs and proactively surfaces tasks like upcoming tax deadlines before they became urgent. 
               </p>
             </div>
             <ScreenGallery items={signatureScreens} />
@@ -223,7 +223,7 @@ function Tide() {
       </section>
 
       {/* ADDITIONAL SCREENS GALLERY */}
-      <section className="w-full bg-white py-20 sm:py-24">
+      <section className="w-full bg-[#FAF7F0] py-20 sm:py-24">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12 sm:mb-16">
