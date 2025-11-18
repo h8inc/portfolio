@@ -43,7 +43,7 @@ const ScreenMock: React.FC<{
       <img
         src={imageSrc}
         alt={imageAlt || 'Product screen'}
-        className="max-h-full max-w-full object-contain rounded-[34px] shadow-[0_24px_70px_rgba(10,8,23,0.2)]"
+        className="max-h-full max-w-full object-contain rounded-[34px] shadow-[0_24px_70px_rgba(10,8,23,0.2)] border-[3px] border-[#130F25]"
       />
     );
   }
