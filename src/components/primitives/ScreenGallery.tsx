@@ -223,8 +223,11 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
         </div>
 
         {/* Right column: Edge-to-edge horizontal scroll gallery */}
-        <div className="flex-1 -mr-4 sm:-mr-6 lg:-mr-8 overflow-hidden">
-          <div className="flex overflow-x-auto space-x-6 pb-8 snap-x snap-mandatory pr-4 sm:pr-6 lg:pr-8">
+        <div className="flex-1 overflow-hidden">
+          <div className="flex overflow-x-auto space-x-6 pb-8 snap-x snap-mandatory" style={{ 
+            marginRight: 'calc(-50vw + 50%)',
+            paddingRight: 'calc(50vw - 50%)'
+          }}>
             {items.map((item, index) => (
               <article
                 key={item.id}
