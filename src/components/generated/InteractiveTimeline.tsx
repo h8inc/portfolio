@@ -26,9 +26,9 @@ const defaultEvents: TimelineEvent[] = [
     year: 'Q3 ’23 → Q1 ’24',
     title: 'Built accounting product',
     description: [
-      'Joined as IC, working with 5 team, and 3 product managers.',
-      'Turned a basic bookkeeping feature (<300 users) into a robut accounting product',
-      'Build tax and financial insights modules from 0 to live products through iterative delivery.'
+      'Joined as IC, working with 5 engineering teams, and 3 product managers.',
+      'Turned a bookkeeping feature into a robust accounting product',
+      'Build tax and financial management products through iterative delivery.'
     ],
     logos: [''],
     position: 'bottom'
@@ -36,9 +36,9 @@ const defaultEvents: TimelineEvent[] = [
   {
     id: '3',
     year: 'Q1 ’24 → Q2 ’24',
-    title: 'Introduced freemium at Tide',
+    title: 'Freemium Activation',
     description: [
-      'Influenced the roadmap to decouple from third party software.',
+      'Influenced the roadmap to stop relying on third party software.',
       'Persuaded the VP and Engineering to adopt a freemium approach.',
       'Shifted from marketing-led to product-led in the app.',
       'Drove sign up rate 0.95% → 1.65%.'
@@ -49,7 +49,7 @@ const defaultEvents: TimelineEvent[] = [
   {
     id: '4',
     year: 'Q2 ’24 → Q4 ’24',
-    title: 'Scaled freemium across accounting',
+    title: 'Scaled Freemium Activation',
     description: [
       'Presented financial insights = retention = revenue.',
       'Presented that tax estimates capture top‑of‑funnel demand.',
@@ -63,10 +63,10 @@ const defaultEvents: TimelineEvent[] = [
   {
     id: '5',
     year: 'Q4 ’24 → Q2 ’25',
-    title: 'Redesigned Tide’s core surfaces',
+    title: 'Redesigned the Tide App',
     description: [
       'Redesigned one and influenced the design of a second of Tide’s 5 main tabs (1M+ users).',
-      'Streamlined workflows to boost engagement, retention and revenue for accounting.',
+      'Streamlined the app to boost engagement, retention and revenue for multiple products.',
       'Sign‑ups to the accounting product grew from 3.8% → 21.2%, with 4× more new members signing up.',
       'ARR grew from £2M → £4M as 10% of freemium sign‑ups converted to paying customers.'
     ],
@@ -75,11 +75,11 @@ const defaultEvents: TimelineEvent[] = [
   },
   {
     id: '6',
-    year: 'Q2 ’25 → Today',
-    title: 'Building 2 new products',
+    year: 'Today',
+    title: 'Building 2 New Products',
     description: [
-      'Building two new products at Tide, applying the same discovery, experimentation and growth playbook.',
-      'Balancing product strategy, UX and experimentation to unlock the next wave of SaaS growth.'
+      'Building two new products in compliance.',
+      
     ],
     logos: [''],
     position: 'bottom'
