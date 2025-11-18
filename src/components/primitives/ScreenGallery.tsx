@@ -182,9 +182,9 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
         </div>
       </div>
 
-      {/* Desktop – side-by-side layout */}
+      {/* Desktop – side-by-side with edge-to-edge scrollable gallery */}
       <div className="hidden md:flex gap-12 lg:gap-16 items-start">
-        {/* Left column: Section metadata (30-40%) */}
+        {/* Left column: Section metadata (40%) */}
         <div className="w-2/5 flex-shrink-0">
           {sectionEyebrow && (
             <p
@@ -222,44 +222,46 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
           )}
         </div>
 
-        {/* Right column: Gallery grid (60-70%) */}
-        <div className="flex-1 grid grid-cols-3 gap-8">
-          {items.map((item, index) => (
-            <article
-              key={item.id}
-              className="flex flex-col items-center"
-              aria-label={item.title}
-              style={DESKTOP_CARD_STYLE}
-            >
-              {/* Mock container with fixed height */}
-              <div 
-                className="w-full flex items-center justify-center mb-6" 
-                style={{ height: SCREEN_MAX_HEIGHT }}
+        {/* Right column: Edge-to-edge horizontal scroll gallery */}
+        <div className="flex-1 -mr-4 sm:-mr-6 lg:-mr-8 overflow-hidden">
+          <div className="flex overflow-x-auto space-x-6 pb-8 snap-x snap-mandatory pr-4 sm:pr-6 lg:pr-8">
+            {items.map((item, index) => (
+              <article
+                key={item.id}
+                className="snap-start flex-shrink-0"
+                aria-label={item.title}
+                style={{ width: 420 }}
               >
-                <ScreenMock
-                  imageSrc={item.imageSrc}
-                  imageAlt={item.imageAlt}
-                  gradientIndex={index}
-                />
-              </div>
-              
-              {/* Text content - flows naturally below */}
-              <div className="space-y-1 text-center w-full">
-                <p
-                  className="text-xs uppercase tracking-[0.3em] text-[#7A7464]"
-                  style={{ fontFamily: 'Aeonik Extended' }}
+                {/* Mock container with fixed height */}
+                <div 
+                  className="w-full flex items-center justify-center mb-6" 
+                  style={{ height: SCREEN_MAX_HEIGHT }}
                 >
-                  {item.eyebrow}
-                </p>
-                <h3 className="text-xl font-semibold text-[#130F25]" style={{ fontFamily: 'Aeonik' }}>
-                  {item.title}
-                </h3>
-                <p className="text-sm text-[#3F3A2F] leading-relaxed" style={{ fontFamily: 'Aeonik' }}>
-                  {item.description}
-                </p>
-              </div>
-            </article>
-          ))}
+                  <ScreenMock
+                    imageSrc={item.imageSrc}
+                    imageAlt={item.imageAlt}
+                    gradientIndex={index}
+                  />
+                </div>
+                
+                {/* Text content - flows naturally below */}
+                <div className="space-y-1 text-center w-full">
+                  <p
+                    className="text-xs uppercase tracking-[0.3em] text-[#7A7464]"
+                    style={{ fontFamily: 'Aeonik Extended' }}
+                  >
+                    {item.eyebrow}
+                  </p>
+                  <h3 className="text-xl font-semibold text-[#130F25]" style={{ fontFamily: 'Aeonik' }}>
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-[#3F3A2F] leading-relaxed" style={{ fontFamily: 'Aeonik' }}>
+                    {item.description}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </div>
