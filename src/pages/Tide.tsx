@@ -195,36 +195,32 @@ function Tide() {
 
       {/* SIGNATURE SCREENS GALLERY */}
       <section className="w-full bg-white py-20 sm:py-24 overflow-hidden">
-        <div className="w-full pl-4 sm:pl-6 lg:pl-8">
-          <ScreenGallery 
-            items={signatureScreens}
-            sectionEyebrow="Tide Admin"
-            sectionTitle="Tax Management"
-            sectionDescription="The product anticipates needs and proactively surfaces tasks like upcoming tax deadlines before they became urgent."
-            sectionCTA={{
-              label: "View case study",
-              href: "#",
-              show: false
-            }}
-          />
-        </div>
+        <ScreenGallery 
+          items={signatureScreens}
+          sectionEyebrow="Tide Admin"
+          sectionTitle="Tax Management"
+          sectionDescription="The product anticipates needs and proactively surfaces tasks like upcoming tax deadlines before they became urgent."
+          sectionCTA={{
+            label: "View case study",
+            href: "#",
+            show: false
+          }}
+        />
       </section>
 
       {/* ADDITIONAL SCREENS GALLERY */}
       <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-hidden">
-        <div className="w-full pl-4 sm:pl-6 lg:pl-8">
-          <ScreenGallery 
-            items={additionalScreens}
-            sectionEyebrow="Financial Tools"
-            sectionTitle="Smart insights & bookkeeping"
-            sectionDescription="Automated tools that help businesses understand spending patterns, forecast cash flow, and maintain tax-ready books with minimal manual effort."
-            sectionCTA={{
-              label: "Explore features",
-              href: "#",
-              show: false
-            }}
-          />
-        </div>
+        <ScreenGallery 
+          items={additionalScreens}
+          sectionEyebrow="Financial Tools"
+          sectionTitle="Smart insights & bookkeeping"
+          sectionDescription="Automated tools that help businesses understand spending patterns, forecast cash flow, and maintain tax-ready books with minimal manual effort."
+          sectionCTA={{
+            label: "Explore features",
+            href: "#",
+            show: false
+          }}
+        />
       </section>
     </GradientBackground>
   );
