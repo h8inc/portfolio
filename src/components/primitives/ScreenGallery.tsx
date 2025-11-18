@@ -183,49 +183,58 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
       </div>
 
       {/* Desktop – side-by-side with edge-to-edge scrollable gallery */}
-      <div className="hidden md:block pl-4 sm:pl-6 lg:pl-8">
-        <div className="max-w-7xl mx-auto flex gap-12 lg:gap-16 items-start">
-          {/* Left column: Section metadata (40% of container) */}
-          <div className="w-[40%] flex-shrink-0 max-w-lg">
-            {sectionEyebrow && (
-              <p
-                className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4"
-                style={{ fontFamily: 'Aeonik Extended' }}
-              >
-                {sectionEyebrow}
-              </p>
-            )}
-            {sectionTitle && (
-              <h2
-                className={`${typography.h2.className} mb-4`}
-                style={typography.h2.style}
-              >
-                {sectionTitle}
-              </h2>
-            )}
-            {sectionDescription && (
-              <p
-                className={`${typography.subheader.className}`}
-                style={typography.subheader.style}
-              >
-                {sectionDescription}
-              </p>
-            )}
-            {sectionCTA && sectionCTA.show && (
-              <a
-                href={sectionCTA.href}
-                className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-[#130F25] text-white rounded-full font-medium hover:bg-[#130F25]/90 transition-colors"
-                style={{ fontFamily: 'Aeonik' }}
-              >
-                {sectionCTA.label}
-                <span>→</span>
-              </a>
-            )}
+      <div className="hidden md:block relative">
+        {/* Left column: Section metadata (positioned within max-w constraint) */}
+        <div className="pl-4 sm:pl-6 lg:pl-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="w-[40%] max-w-lg">
+              {sectionEyebrow && (
+                <p
+                  className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4"
+                  style={{ fontFamily: 'Aeonik Extended' }}
+                >
+                  {sectionEyebrow}
+                </p>
+              )}
+              {sectionTitle && (
+                <h2
+                  className={`${typography.h2.className} mb-4`}
+                  style={typography.h2.style}
+                >
+                  {sectionTitle}
+                </h2>
+              )}
+              {sectionDescription && (
+                <p
+                  className={`${typography.subheader.className}`}
+                  style={typography.subheader.style}
+                >
+                  {sectionDescription}
+                </p>
+              )}
+              {sectionCTA && sectionCTA.show && (
+                <a
+                  href={sectionCTA.href}
+                  className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-[#130F25] text-white rounded-full font-medium hover:bg-[#130F25]/90 transition-colors"
+                  style={{ fontFamily: 'Aeonik' }}
+                >
+                  {sectionCTA.label}
+                  <span>→</span>
+                </a>
+              )}
+            </div>
           </div>
+        </div>
 
-          {/* Right column: Gallery that extends to viewport edge */}
-          <div className="flex-1 overflow-x-auto">
-            <div className="flex space-x-6 pb-8 snap-x snap-mandatory pr-4 sm:pr-6 lg:pr-8">
+        {/* Right column: Gallery that extends to viewport edge */}
+        <div className="pl-4 sm:pl-6 lg:pl-8">
+          <div className="max-w-7xl mx-auto flex items-start">
+            {/* Spacer matching left column width + gap */}
+            <div className="w-[40%] max-w-lg flex-shrink-0 mr-12 lg:mr-16" />
+            
+            {/* Gallery extends from here to viewport edge */}
+            <div className="flex-1 overflow-x-auto -mr-4 sm:-mr-6 lg:-mr-8">
+              <div className="flex space-x-6 pb-8 snap-x snap-mandatory pr-4 sm:pr-6 lg:pr-8">
             {items.map((item, index) => (
               <article
                 key={item.id}
@@ -262,9 +271,10 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
                 </div>
               </article>
             ))}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
   );
