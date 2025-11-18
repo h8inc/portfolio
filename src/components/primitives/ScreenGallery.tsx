@@ -1,5 +1,6 @@
 import React from 'react';
 import { typography } from '../../design/typography';
+import { motion } from 'framer-motion';
 
 type ScreenGalleryItem = {
   id: string;
@@ -97,6 +98,23 @@ const DESKTOP_CARD_STYLE: React.CSSProperties = {
 
 const SCREEN_MAX_HEIGHT = 600;
 
+// Custom scrollbar styles
+const scrollbarStyles: React.CSSProperties = {
+  scrollbarWidth: 'thin' as const,
+  scrollbarColor: '#FF6B35 #F5F2ED',
+  scrollBehavior: 'smooth' as const,
+};
+
+const customScrollbarClass = `
+  [&::-webkit-scrollbar]:h-2
+  [&::-webkit-scrollbar]:bg-[#F5F2ED]
+  [&::-webkit-scrollbar]:rounded-full
+  [&::-webkit-scrollbar-thumb]:bg-[#FF6B35]
+  [&::-webkit-scrollbar-thumb]:rounded-full
+  [&::-webkit-scrollbar-thumb]:transition-colors
+  hover:[&::-webkit-scrollbar-thumb]:bg-[#FF6B35]/80
+`;
+
 export const ScreenGallery: React.FC<ScreenGalleryProps> = ({ 
   items, 
   className,
@@ -141,13 +159,20 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
         
         {/* Mobile gallery */}
         <div className="-mx-4 px-4">
-        <div className="flex overflow-x-auto space-x-4 pb-8 snap-x snap-mandatory">
+        <div 
+          className={`flex overflow-x-auto space-x-4 pb-8 snap-x snap-mandatory ${customScrollbarClass}`}
+          style={scrollbarStyles}
+        >
           {items.map((item, index) => (
-            <article
+            <motion.article
               key={item.id}
               className="snap-center flex-shrink-0"
               aria-label={item.title}
               style={MOBILE_CARD_STYLE}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               {/* Mock container with fixed height */}
               <div 
@@ -176,7 +201,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
                   {item.description}
                 </p>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
         </div>
@@ -227,14 +252,21 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
           <div className="w-12 lg:w-16 flex-shrink-0" />
           
           {/* Gallery extends to viewport edge */}
-          <div className="flex-1 overflow-x-auto -mr-4 sm:-mr-6 lg:-mr-8">
+          <div 
+            className={`flex-1 overflow-x-auto -mr-4 sm:-mr-6 lg:-mr-8 ${customScrollbarClass}`}
+            style={scrollbarStyles}
+          >
             <div className="flex space-x-6 pb-8 snap-x snap-mandatory pr-4 sm:pr-6 lg:pr-8">
             {items.map((item, index) => (
-              <article
+              <motion.article
                 key={item.id}
                 className="snap-start flex-shrink-0"
                 aria-label={item.title}
                 style={{ width: 420 }}
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
               >
                 {/* Mock container with fixed height */}
                 <div 
@@ -263,7 +295,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
                     {item.description}
                   </p>
                 </div>
-              </article>
+              </motion.article>
             ))}
             </div>
           </div>
