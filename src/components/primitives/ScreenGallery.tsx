@@ -183,11 +183,11 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
       </div>
 
       {/* Desktop – side-by-side with edge-to-edge scrollable gallery */}
-      <div className="hidden md:block relative">
-        {/* Left column: Section metadata (centered in container) */}
-        <div className="px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="w-[40%] flex-shrink-0 max-w-lg">
+      <div className="hidden md:block">
+        <div className="flex items-start">
+          {/* Left column: Section metadata (in padded container) */}
+          <div className="px-4 sm:px-6 lg:px-8" style={{ width: 'calc(50% + 640px / 2)' }}>
+            <div className="ml-auto" style={{ maxWidth: 'min(512px, 40%)' }}>
               {sectionEyebrow && (
                 <p
                   className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4"
@@ -224,14 +224,10 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
               )}
             </div>
           </div>
-        </div>
 
-        {/* Right column: Gallery that extends to viewport edge (absolutely positioned) */}
-        <div className="absolute top-0 overflow-x-auto" style={{
-          left: 'max(calc(50% - 640px + 40% + 3rem), calc(40% + 4rem))',
-          right: 0
-        }}>
-          <div className="flex space-x-6 pb-8 snap-x snap-mandatory pr-4 sm:pr-6 lg:pr-8">
+          {/* Right column: Gallery that extends to viewport edge */}
+          <div className="flex-1 overflow-x-auto pl-12 lg:pl-16 -mr-[100vw] pr-[100vw]">
+            <div className="flex space-x-6 pb-8 snap-x snap-mandatory">
             {items.map((item, index) => (
               <article
                 key={item.id}
@@ -269,6 +265,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
               </article>
             ))}
           </div>
+        </div>
         </div>
       </div>
     </div>
