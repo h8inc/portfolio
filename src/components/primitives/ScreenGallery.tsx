@@ -183,9 +183,9 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
       </div>
 
       {/* Desktop – side-by-side with edge-to-edge scrollable gallery */}
-      <div className="hidden md:flex gap-12 lg:gap-16 items-start">
-        {/* Left column: Section metadata (40%) */}
-        <div className="w-2/5 flex-shrink-0">
+      <div className="hidden md:grid grid-cols-[minmax(0,512px)_1fr] gap-12 lg:gap-16 items-start max-w-7xl">
+        {/* Left column: Section metadata (stays in container) */}
+        <div>
           {sectionEyebrow && (
             <p
               className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4"
@@ -223,11 +223,8 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
         </div>
 
         {/* Right column: Edge-to-edge horizontal scroll gallery */}
-        <div className="flex-1 overflow-hidden">
-          <div className="flex overflow-x-auto space-x-6 pb-8 snap-x snap-mandatory" style={{ 
-            marginRight: 'calc(-50vw + 50%)',
-            paddingRight: 'calc(50vw - 50%)'
-          }}>
+        <div className="overflow-hidden -mr-[100vw] pr-[100vw]">
+          <div className="flex overflow-x-auto space-x-6 pb-8 snap-x snap-mandatory">
             {items.map((item, index) => (
               <article
                 key={item.id}
