@@ -1,4 +1,5 @@
 import React from 'react';
+import { typography } from '../../design/typography';
 
 type ScreenGalleryItem = {
   id: string;
@@ -25,6 +26,20 @@ type ScreenGalleryItem = {
 type ScreenGalleryProps = {
   items: ScreenGalleryItem[];
   className?: string;
+  /**
+   * Section metadata displayed on desktop (left column)
+   */
+  sectionEyebrow?: string;
+  sectionTitle?: string;
+  sectionDescription?: string;
+  /**
+   * Optional CTA config (hidden by default)
+   */
+  sectionCTA?: {
+    label: string;
+    href: string;
+    show?: boolean;
+  };
 };
 
 const placeholderGradients = [
@@ -82,11 +97,50 @@ const DESKTOP_CARD_STYLE: React.CSSProperties = {
 
 const SCREEN_MAX_HEIGHT = 600;
 
-export const ScreenGallery: React.FC<ScreenGalleryProps> = ({ items, className }) => {
+export const ScreenGallery: React.FC<ScreenGalleryProps> = ({ 
+  items, 
+  className,
+  sectionEyebrow,
+  sectionTitle,
+  sectionDescription,
+  sectionCTA
+}) => {
   return (
     <div className={className}>
-      {/* Mobile – horizontal scroll */}
-      <div className="-mx-4 px-4 md:hidden">
+      {/* Mobile – Section header + horizontal scroll */}
+      <div className="md:hidden">
+        {/* Section metadata for mobile (centered above gallery) */}
+        {(sectionEyebrow || sectionTitle || sectionDescription) && (
+          <div className="text-center mb-12 px-4">
+            {sectionEyebrow && (
+              <p
+                className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4"
+                style={{ fontFamily: 'Aeonik Extended' }}
+              >
+                {sectionEyebrow}
+              </p>
+            )}
+            {sectionTitle && (
+              <h2
+                className={`${typography.h2.className} mb-4`}
+                style={typography.h2.style}
+              >
+                {sectionTitle}
+              </h2>
+            )}
+            {sectionDescription && (
+              <p
+                className={`${typography.subheader.className} max-w-3xl mx-auto`}
+                style={typography.subheader.style}
+              >
+                {sectionDescription}
+              </p>
+            )}
+          </div>
+        )}
+        
+        {/* Mobile gallery */}
+        <div className="-mx-4 px-4">
         <div className="flex overflow-x-auto space-x-4 pb-8 snap-x snap-mandatory">
           {items.map((item, index) => (
             <article
@@ -125,46 +179,88 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({ items, className }
             </article>
           ))}
         </div>
+        </div>
       </div>
 
-      {/* Desktop – grid */}
-      <div className="hidden md:grid grid-cols-3 gap-8">
-        {items.map((item, index) => (
-          <article
-            key={item.id}
-            className="flex flex-col items-center"
-            aria-label={item.title}
-            style={DESKTOP_CARD_STYLE}
-          >
-            {/* Mock container with fixed height */}
-            <div 
-              className="w-full flex items-center justify-center mb-6" 
-              style={{ height: SCREEN_MAX_HEIGHT }}
+      {/* Desktop – side-by-side layout */}
+      <div className="hidden md:flex gap-12 lg:gap-16 items-start">
+        {/* Left column: Section metadata (30-40%) */}
+        <div className="w-2/5 flex-shrink-0">
+          {sectionEyebrow && (
+            <p
+              className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4"
+              style={{ fontFamily: 'Aeonik Extended' }}
             >
-              <ScreenMock
-                imageSrc={item.imageSrc}
-                imageAlt={item.imageAlt}
-                gradientIndex={index}
-              />
-            </div>
-            
-            {/* Text content - flows naturally below */}
-            <div className="space-y-1 text-center w-full">
-              <p
-                className="text-xs uppercase tracking-[0.3em] text-[#7A7464]"
-                style={{ fontFamily: 'Aeonik Extended' }}
+              {sectionEyebrow}
+            </p>
+          )}
+          {sectionTitle && (
+            <h2
+              className={`${typography.h2.className} mb-4`}
+              style={typography.h2.style}
+            >
+              {sectionTitle}
+            </h2>
+          )}
+          {sectionDescription && (
+            <p
+              className={`${typography.subheader.className}`}
+              style={typography.subheader.style}
+            >
+              {sectionDescription}
+            </p>
+          )}
+          {sectionCTA && sectionCTA.show && (
+            <a
+              href={sectionCTA.href}
+              className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-[#130F25] text-white rounded-full font-medium hover:bg-[#130F25]/90 transition-colors"
+              style={{ fontFamily: 'Aeonik' }}
+            >
+              {sectionCTA.label}
+              <span>→</span>
+            </a>
+          )}
+        </div>
+
+        {/* Right column: Gallery grid (60-70%) */}
+        <div className="flex-1 grid grid-cols-3 gap-8">
+          {items.map((item, index) => (
+            <article
+              key={item.id}
+              className="flex flex-col items-center"
+              aria-label={item.title}
+              style={DESKTOP_CARD_STYLE}
+            >
+              {/* Mock container with fixed height */}
+              <div 
+                className="w-full flex items-center justify-center mb-6" 
+                style={{ height: SCREEN_MAX_HEIGHT }}
               >
-                {item.eyebrow}
-              </p>
-              <h3 className="text-xl font-semibold text-[#130F25]" style={{ fontFamily: 'Aeonik' }}>
-                {item.title}
-              </h3>
-              <p className="text-sm text-[#3F3A2F] leading-relaxed" style={{ fontFamily: 'Aeonik' }}>
-                {item.description}
-              </p>
-            </div>
-          </article>
-        ))}
+                <ScreenMock
+                  imageSrc={item.imageSrc}
+                  imageAlt={item.imageAlt}
+                  gradientIndex={index}
+                />
+              </div>
+              
+              {/* Text content - flows naturally below */}
+              <div className="space-y-1 text-center w-full">
+                <p
+                  className="text-xs uppercase tracking-[0.3em] text-[#7A7464]"
+                  style={{ fontFamily: 'Aeonik Extended' }}
+                >
+                  {item.eyebrow}
+                </p>
+                <h3 className="text-xl font-semibold text-[#130F25]" style={{ fontFamily: 'Aeonik' }}>
+                  {item.title}
+                </h3>
+                <p className="text-sm text-[#3F3A2F] leading-relaxed" style={{ fontFamily: 'Aeonik' }}>
+                  {item.description}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   );

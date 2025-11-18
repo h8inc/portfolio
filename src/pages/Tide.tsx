@@ -197,27 +197,17 @@ function Tide() {
       <section className="w-full bg-white py-20 sm:py-24">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12 sm:mb-16">
-              <p
-                className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4"
-                style={{ fontFamily: 'Aeonik Extended' }}
-              >
-                Tide Admin
-              </p>
-              <h2
-                className={`${typography.h2.className} mb-4`}
-                style={typography.h2.style}
-              >
-                Tax Management
-              </h2>
-              <p
-                className={`${typography.subheader.className} max-w-3xl mx-auto`}
-                style={typography.subheader.style}
-              >
-                The product anticipates needs and proactively surfaces tasks like upcoming tax deadlines before they became urgent. 
-              </p>
-            </div>
-            <ScreenGallery items={signatureScreens} />
+            <ScreenGallery 
+              items={signatureScreens}
+              sectionEyebrow="Tide Admin"
+              sectionTitle="Tax Management"
+              sectionDescription="The product anticipates needs and proactively surfaces tasks like upcoming tax deadlines before they became urgent."
+              sectionCTA={{
+                label: "View case study",
+                href: "#",
+                show: false
+              }}
+            />
           </div>
         </div>
       </section>
@@ -226,27 +216,17 @@ function Tide() {
       <section className="w-full bg-[#FAF7F0] py-20 sm:py-24">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12 sm:mb-16">
-              <p
-                className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4"
-                style={{ fontFamily: 'Aeonik Extended' }}
-              >
-                More examples
-              </p>
-              <h2
-                className={`${typography.h2.className} mb-4`}
-                style={typography.h2.style}
-              >
-                Additional screens
-              </h2>
-              <p
-                className={`${typography.subheader.className} max-w-3xl mx-auto`}
-                style={typography.subheader.style}
-              >
-                Another set of product screens showcasing different features and flows.
-              </p>
-            </div>
-            <ScreenGallery items={additionalScreens} />
+            <ScreenGallery 
+              items={additionalScreens}
+              sectionEyebrow="Financial Tools"
+              sectionTitle="Smart insights & bookkeeping"
+              sectionDescription="Automated tools that help businesses understand spending patterns, forecast cash flow, and maintain tax-ready books with minimal manual effort."
+              sectionCTA={{
+                label: "Explore features",
+                href: "#",
+                show: false
+              }}
+            />
           </div>
         </div>
       </section>
