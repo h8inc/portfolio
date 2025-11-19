@@ -1,6 +1,5 @@
 import React from 'react';
 import { typography } from '../../design/typography';
-import { motion } from 'framer-motion';
 
 type ScreenGalleryItem = {
   id: string;
@@ -85,9 +84,9 @@ const ScreenMock: React.FC<{
 };
 
 const MOBILE_CARD_STYLE: React.CSSProperties = {
-  width: '92vw',
+  width: '85vw',
   minWidth: 260,
-  maxWidth: 360,
+  maxWidth: 340,
   paddingBottom: 24
 };
 
@@ -160,19 +159,15 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
         {/* Mobile gallery */}
         <div className="-mx-4 px-4">
         <div 
-          className={`flex overflow-x-auto space-x-4 pb-8 snap-x snap-mandatory ${customScrollbarClass}`}
+          className={`flex overflow-x-auto space-x-3 pb-8 snap-x snap-mandatory ${customScrollbarClass}`}
           style={scrollbarStyles}
         >
           {items.map((item, index) => (
-            <motion.article
+            <article
               key={item.id}
               className="snap-center flex-shrink-0"
               aria-label={item.title}
               style={MOBILE_CARD_STYLE}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               {/* Mock container with fixed height */}
               <div 
@@ -201,7 +196,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
                   {item.description}
                 </p>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
         </div>
@@ -258,15 +253,11 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
           >
             <div className="flex space-x-6 pb-8 snap-x snap-mandatory pr-4 sm:pr-6 lg:pr-8">
             {items.map((item, index) => (
-              <motion.article
+              <article
                 key={item.id}
                 className="snap-start flex-shrink-0"
                 aria-label={item.title}
-                style={{ width: 420 }}
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+                style={{ width: 390 }}
               >
                 {/* Mock container with fixed height */}
                 <div 
@@ -295,7 +286,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
                     {item.description}
                   </p>
                 </div>
-              </motion.article>
+              </article>
             ))}
             </div>
           </div>
