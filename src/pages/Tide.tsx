@@ -5,6 +5,7 @@ import React, { useMemo } from 'react';
 import { typography } from '../design/typography';
 import { MarqueeBanner } from '../components/MarqueeBanner';
 import { ScreenGallery } from '../components/primitives/ScreenGallery';
+import { ProjectGallery } from '../components/primitives/ProjectGallery';
 
 function Tide() {
   // Tide ARR trajectory (mid-2023 through today)
@@ -120,6 +121,41 @@ function Tide() {
     []
   );
 
+  // Sample project for ProjectGallery testing
+  const sampleProject = useMemo(
+    () => ({
+      metadata: {
+        year: '2023',
+        company: 'Nansen',
+        role: 'Head of Product Design'
+      },
+      title: 'Nansen 2',
+      description: 'For 18 months, I lead Nansen\'s design team, as well as the redesign of their powerful onchain analytics platform. We rebuilt the product from the ground up to make it 10x faster and launched the first beta of Nansen 2 in six months. Along the way, we radically simplified the app navigation, introduced a new Command Center that lets you find anything onchain in lightning speed, and shipped AI-powered features like Signals and Smart Segments to help onchain investors in their research.',
+      cta: {
+        label: 'Find Out More',
+        href: '#'
+      },
+      mocks: [
+        {
+          id: 'mock-1',
+          imageSrc: encodeURI('/assets/✅ Admin - no tasks comeplete.png'),
+          imageAlt: 'Nansen 2 dashboard screenshot'
+        },
+        {
+          id: 'mock-2',
+          imageSrc: encodeURI('/assets/Cash flow - current month.png'),
+          imageAlt: 'Nansen 2 analytics screenshot'
+        },
+        {
+          id: 'mock-3',
+          imageSrc: encodeURI('/assets/Future-Insights-after-slice-5.png'),
+          imageAlt: 'Nansen 2 insights screenshot'
+        }
+      ]
+    }),
+    []
+  );
+
   return (
     <GradientBackground>
       {/* HERO SECTION ON GRADIENT BACKGROUND */}
@@ -220,6 +256,17 @@ function Tide() {
             href: "#",
             show: false
           }}
+        />
+      </section>
+
+      {/* PROJECT GALLERY TEST SECTION */}
+      <section className="w-full bg-white py-20 sm:py-24">
+        <ProjectGallery 
+          metadata={sampleProject.metadata}
+          title={sampleProject.title}
+          description={sampleProject.description}
+          cta={sampleProject.cta}
+          mocks={sampleProject.mocks}
         />
       </section>
     </GradientBackground>
