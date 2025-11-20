@@ -104,18 +104,9 @@ function Home() {
               <div className="max-w-7xl mx-auto h-full">
                 <div className="relative h-[calc(140vh-48px)] flex items-start">
                   <div className="w-full sticky top-[24px] flex flex-col items-center gap-6">
-                    <motion.div
-                      className="w-full"
-                      animate={{ y: [-16, 10, -16] }}
-                      transition={{
-                        duration: 10,
-                        repeat: Infinity,
-                        repeatType: 'mirror',
-                        ease: 'easeInOut'
-                      }}
-                    >
+                  <div className="w-full">
                       <ProfileWidget />
-                    </motion.div>
+                    </div>
 
                     <button
                       onClick={handleScrollToCharts}
@@ -173,42 +164,14 @@ function Home() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
                   <div className="flex flex-col gap-5">
-                    <div className="text-center">
-                      <p
-                        className="text-xs sm:text-sm tracking-[0.3em] uppercase text-[#FF6B35] mb-2"
-                        style={{ fontFamily: 'Aeonik Extended' }}
-                      >
-                        Track value over time
-                      </p>
-                      <p
-                        className="text-sm sm:text-base text-gray-600 max-w-md mx-auto"
-                        style={{ fontFamily: 'Aeonik' }}
-                      >
-                        Interactive portfolio dashboard that demonstrates dynamic asset
-                        allocation, performance, and core crypto account actions.
-                      </p>
-                    </div>
+                    
                     <div className="flex justify-center">
                       <KrakenProPortfolio />
                     </div>
                   </div>
 
                   <div className="flex flex-col gap-5">
-                    <div className="text-center">
-                      <p
-                        className="text-xs sm:text-sm tracking-[0.3em] uppercase text-[#FF6B35] mb-2"
-                        style={{ fontFamily: 'Aeonik Extended' }}
-                      >
-                        Track growth over time
-                      </p>
-                      <p
-                        className="text-sm sm:text-base text-gray-600 max-w-md mx-auto"
-                        style={{ fontFamily: 'Aeonik' }}
-                      >
-                        Apps usage analytics that connects growth, retention, and activation
-                        signals inside one adaptive card.
-                      </p>
-                    </div>
+                    
                     <div className="flex justify-center">
                       <AppsAnalyticsCard />
                     </div>

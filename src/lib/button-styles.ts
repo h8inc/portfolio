@@ -11,7 +11,7 @@ export const buttonStyles = {
     'bg-orange-500',
     'hover:bg-orange-600',
     'text-white',
-    'px-4 sm:px-6 lg:px-7',
+    'px-2 sm:px-3 lg:px-4',
     'py-2 sm:py-3',
     'rounded-full',
     'border-[2px] sm:border-[3px]',
