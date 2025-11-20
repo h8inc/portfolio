@@ -149,9 +149,9 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
                 >
                   {item.eyebrow}
                 </p>
-                <h3 className="text-lg font-semibold text-[#130F25]" style={{ fontFamily: 'Aeonik' }}>
+                {/* <h3 className="text-lg font-semibold text-[#130F25]" style={{ fontFamily: 'Aeonik' }}>
                   {item.title}
-                </h3>
+                </h3> */}
                 <p className="text-sm text-[#3F3A2F] leading-relaxed" style={{ fontFamily: 'Aeonik' }}>
                   {item.description}
                 </p>
@@ -239,9 +239,9 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
                   >
                     {item.eyebrow}
                   </p>
-                  <h3 className="text-xl font-semibold text-[#130F25]" style={{ fontFamily: 'Aeonik' }}>
+                  {/* <h3 className="text-xl font-semibold text-[#130F25]" style={{ fontFamily: 'Aeonik' }}>
                     {item.title}
-                  </h3>
+                  </h3> */}
                   <p className="text-sm text-[#3F3A2F] leading-relaxed" style={{ fontFamily: 'Aeonik' }}>
                     {item.description}
                   </p>

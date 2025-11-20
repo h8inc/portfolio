@@ -1,66 +1,12 @@
 import { GradientBackground } from '../components/generated/GradientBackground';
-import { InteractiveTimeline } from '../components/generated/InteractiveTimeline';
-import { TidePerformanceChart } from '../components/tide/TidePerformanceChart';
 import React, { useMemo } from 'react';
 import { typography } from '../design/typography';
 import { MarqueeBanner } from '../components/MarqueeBanner';
 import { ScreenGallery } from '../components/primitives/ScreenGallery';
 
-function Tide() {
-  // Tide ARR trajectory (mid-2023 through today)
-  const { tideData, activationMilestones } = useMemo(() => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const arrMilestones = [
-      { date: new Date('2023-06-01'), value: 0 }, // joining point
-      { date: new Date('2023-12-01'), value: 500_000 },
-      { date: new Date('2024-06-01'), value: 900_000 },
-      { date: new Date('2024-11-01'), value: 2_000_000 },
-      { date: new Date('2025-04-01'), value: 4_000_000 },
-      { date: today, value: 7_600_000 }
-    ];
-
-    const activationMilestones = [
-      { date: new Date('2023-06-01'), value: 0.95 },
-      { date: new Date('2024-02-01'), value: 1.6 },
-      { date: new Date('2024-09-01'), value: 3.8 },
-      { date: today, value: 21.2 }
-    ];
-
-    const approxWeekMs = 7 * 24 * 60 * 60 * 1000;
-    const points: Array<{ date: Date; value: number }> = [];
-
-    for (let i = 0; i < arrMilestones.length - 1; i++) {
-      const start = arrMilestones[i];
-      const end = arrMilestones[i + 1];
-      const duration = end.date.getTime() - start.date.getTime();
-      const steps = Math.max(2, Math.round(duration / approxWeekMs));
-
-      for (let step = 0; step < steps; step++) {
-        if (i > 0 && step === 0) continue; // avoid duplicate points at segment seams
-        const t = step / (steps - 1);
-        const date = new Date(start.date.getTime() + duration * t);
-        const value = start.value + (end.value - start.value) * t;
-        points.push({ date, value });
-      }
-    }
-
-    const lastMilestone = arrMilestones[arrMilestones.length - 1];
-    if (
-      !points.length ||
-      points[points.length - 1].date.getTime() !== lastMilestone.date.getTime()
-    ) {
-      points.push(lastMilestone);
-    }
-
-    return {
-      tideData: points,
-      activationMilestones
-    };
-  }, []);
-
-  const signatureScreens = useMemo(
+function TideGallery() {
+  // Combine all 6 screens from both galleries
+  const allScreens = useMemo(
     () => [
       {
         id: 'accounting-os',
@@ -85,13 +31,7 @@ function Tide() {
         description: 'Tax savings account that saves on behalf of businesses and bears interest on the balance.',
         imageSrc: encodeURI('/assets/Tax Account timeline.png'),
         imageAlt: 'Tax account timeline and actions'
-      }
-    ],
-    []
-  );
-
-  const additionalScreens = useMemo(
-    () => [
+      },
       {
         id: 'cashflow',
         eyebrow: 'Cash flow',
@@ -119,7 +59,6 @@ function Tide() {
     ],
     []
   );
-
 
   return (
     <GradientBackground>
@@ -158,24 +97,14 @@ function Tide() {
                         className={`${typography.h1.className} mb-4`}
                         style={typography.h1.style}
                       >
-                        Building from 0 to hero
+                        Tide Product Gallery
                       </h1>
                       <p
                         className={`${typography.subheader.className} max-w-2xl mx-auto`}
                         style={typography.subheader.style}
                       >
-                        From nothing to multi‑million
-          subscription service helping 1M+ micro-businesses manage their finances and amdin.
+                        A comprehensive view of all Tide features and screens
                       </p>
-                    </div>
-                    {/* Edge-to-edge chart (offset horizontal padding) */}
-                    <div className="mt-6 -mx-6 sm:-mx-10">
-                      <div className="w-full h-64 rounded-b-[2.5rem] sm:rounded-b-[3rem] overflow-hidden">
-                        <TidePerformanceChart
-                          data={tideData}
-                          activationMilestones={activationMilestones}
-                        />
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -185,41 +114,17 @@ function Tide() {
         </div>
       </section>
 
-      {/* TIMELINE SECTION ON NEUTRAL BACKGROUND */}
-      <section className="w-full bg-[#FAF7F0] py-16 sm:py-12">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <InteractiveTimeline fullScreen={false} title="Journey & milestones" />
-          </div>
-        </div>
-      </section>
-
-      {/* SIGNATURE SCREENS GALLERY */}
+      {/* COMBINED SCREENS GALLERY */}
       <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
         <ScreenGallery 
-          items={signatureScreens}
-          sectionEyebrow="Tide Admin"
-          sectionTitle="Tax Management"
-          sectionDescription="The product anticipates needs and proactively surfaces tasks like upcoming tax deadlines before they became urgent."
+          items={allScreens}
+          sectionEyebrow="Tide Product Suite"
+          sectionTitle="Complete feature overview"
+          sectionDescription="All the tools and features that help small businesses manage their finances, taxes, and administrative tasks with ease."
           sectionCTA={{
             label: "View case study",
-            href: "#",
-            show: false
-          }}
-        />
-      </section>
-
-      {/* ADDITIONAL SCREENS GALLERY */}
-      <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
-        <ScreenGallery 
-          items={additionalScreens}
-          sectionEyebrow="Financial Tools"
-          sectionTitle="Smart insights & bookkeeping"
-          sectionDescription="Automated tools that help businesses understand spending patterns, forecast cash flow, and maintain tax-ready books with minimal manual effort."
-          sectionCTA={{
-            label: "Explore features",
-            href: "#",
-            show: false
+            href: "/tide",
+            show: true
           }}
         />
       </section>
@@ -227,5 +132,5 @@ function Tide() {
   );
 }
 
-export default Tide;
+export default TideGallery;
 
