@@ -29,7 +29,7 @@ export default function ProfileWidget({
   linkedinUrl = "https://www.linkedin.com/in/atanas-terziev-jr/",
   githubUrl = "https://github.com/h8inc"
 }: ProfileWidgetProps) {
-  return <div className="w-full flex items-start justify-center p-4 sm:p-6 lg:p-8">
+  return <div className="w-full flex items-start justify-center p-4 sm:p-6 lg:p-8 mt-12 sm:mt-16 lg:mt-20">
       <div className="w-full max-w-2xl lg:max-w-3xl">
         {/* Main Card with relative positioning for avatar */}
         <div className="relative bg-[#FAF7F0] rounded-[2.5rem] sm:rounded-[3rem] overflow-visible content-card-shell">

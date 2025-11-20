@@ -6,8 +6,9 @@ import { AppsAnalyticsCard } from '../components/generated/AppsAnalyticsCard';
 import { KrakenProPortfolio } from '../components/generated/KrakenProPortfolio';
 import { ChevronDown } from 'lucide-react';
 import { trackEvent } from '../lib/analytics';
-import { ExplainerCard } from '../components/ExplainerCard';
 import { ScreenGallery } from '../components/primitives/ScreenGallery';
+import { motion } from 'framer-motion';
+import { typography } from '../design/typography';
 
 let theme: Theme = 'light';
 // only use 'centered' container for standalone components, never for full page apps or websites.
@@ -80,95 +81,157 @@ function Home() {
 
   const generatedComponent = useMemo(() => {
     const handleScrollToCharts = () => {
-      // Track the scroll interaction
       trackEvent('scroll_to_section', {
         section: 'design_playground',
         method: 'button_click'
       });
-      
+
       const chartsSection = document.getElementById('charts');
       if (chartsSection) {
-        chartsSection.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'start' 
+        chartsSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
         });
       }
     };
 
-    // THIS IS WHERE THE TOP LEVEL GENRATED COMPONENT WILL BE RETURNED!
     return (
       <GradientBackground>
-        <div className="w-full min-h-screen flex flex-col justify-center pt-[8vh] pb-[10vh]">
-          {/* Main Profile Section */}
-          <ProfileWidget />
-          
-          {/* Headline Section */}
-          <div className="w-full px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12">
-            <div className="max-w-7xl mx-auto text-center">
-              <button 
-                onClick={handleScrollToCharts}
-                className="group cursor-pointer bg-transparent border-none outline-none transition-all hover:opacity-80 inline-flex flex-col items-center gap-2"
-              >
-                <span className="text-sm sm:text-base lg:text-lg font-bold text-white" style={{ fontFamily: 'Aeonik Extended', textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)' }}>
-                  Check out my design playground ✨
-                </span>
-                <ChevronDown 
-                  className="w-4 h-4 sm:w-5 sm:h-5 text-white animate-bounce" 
-                  strokeWidth={2.5}
-                  style={{ filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5))' }}
-                />
-              </button>
-            </div>
-          </div>
+        <div className="w-full">
+          {/* HERO SECTION WITH FLOATING PROFILE WIDGET */}
+          <section className="w-full min-h-[140vh] pb-12">
+            <div className="w-full h-full px-4 sm:px-6 lg:px-8">
+              <div className="max-w-7xl mx-auto h-full">
+                <div className="relative h-[calc(140vh-48px)] flex items-start">
+                  <div className="w-full sticky top-[24px] flex flex-col items-center gap-6">
+                    <motion.div
+                      className="w-full"
+                      animate={{ y: [-16, 10, -16] }}
+                      transition={{
+                        duration: 10,
+                        repeat: Infinity,
+                        repeatType: 'mirror',
+                        ease: 'easeInOut'
+                      }}
+                    >
+                      <ProfileWidget />
+                    </motion.div>
 
-          {/* Cards Section */}
-          <div id="charts" className="w-full py-0 sm:py-4 px-4">
-            <div className="max-w-7xl mx-auto">
-              {/* Both Components Side by Side */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
-                {/* Portfolio Analytics Section */}
-                <div className="flex flex-col gap-4">
-                  <div className="flex justify-center">
-                    <ExplainerCard 
-                      title="Track value over time"
-                      description="Interactive chart designed to help users track value over time - in this case portfolio value."
-                    />
-                  </div>
-                  <div className="flex justify-center">
-                    <KrakenProPortfolio />
-                  </div>
-                </div>
-
-                {/* Apps Analytics Card Section */}
-                <div className="flex flex-col gap-4">
-                  <div className="flex justify-center">
-                    <ExplainerCard 
-                      title="Track growth over time"
-                      description="Interactive chart designed to help users track growth over time - in this case app usage."
-                    />
-                  </div>
-                  <div className="flex justify-center">
-                    <AppsAnalyticsCard />
+                    <button
+                      onClick={handleScrollToCharts}
+                      className="group cursor-pointer bg-transparent border-none outline-none transition-all hover:opacity-90 inline-flex flex-col items-center gap-2"
+                    >
+                      <span
+                        className="text-sm sm:text-base lg:text-lg font-bold text-white"
+                        style={{
+                          fontFamily: 'Aeonik Extended',
+                          textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)'
+                        }}
+                      >
+                        Explore the design playground ✨
+                      </span>
+                      <ChevronDown
+                        className="w-4 h-4 sm:w-5 sm:h-5 text-white animate-bounce"
+                        strokeWidth={2.5}
+                        style={{
+                          filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5))'
+                        }}
+                      />
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
 
-          {/* Tide Gallery Section */}
-          <div className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
-            <ScreenGallery 
+          {/* CHARTS / PLAYGROUND SECTION */}
+          <section id="charts" className="w-full bg-[#FAF7F0] py-20 sm:py-24">
+            <div className="w-full px-4 sm:px-6 lg:px-8">
+              <div className="max-w-7xl mx-auto">
+                <div className="text-center max-w-3xl mx-auto mb-12">
+                  <p
+                    className="text-xs sm:text-sm tracking-[0.35em] uppercase text-[#FF6B35] mb-4"
+                    style={{ fontFamily: 'Aeonik Extended' }}
+                  >
+                    Design playground
+                  </p>
+                  <h2
+                    className={`${typography.h2.className} mb-4`}
+                    style={typography.h2.style}
+                  >
+                    Interactive systems in motion
+                  </h2>
+                  <p
+                    className="text-base sm:text-lg text-gray-600"
+                    style={{ fontFamily: 'Aeonik' }}
+                  >
+                    A pair of live prototypes that show how I translate
+                    financial narratives into tactile data visualisations and
+                    quantified stories.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+                  <div className="flex flex-col gap-5">
+                    <div className="text-center">
+                      <p
+                        className="text-xs sm:text-sm tracking-[0.3em] uppercase text-[#FF6B35] mb-2"
+                        style={{ fontFamily: 'Aeonik Extended' }}
+                      >
+                        Track value over time
+                      </p>
+                      <p
+                        className="text-sm sm:text-base text-gray-600 max-w-md mx-auto"
+                        style={{ fontFamily: 'Aeonik' }}
+                      >
+                        Interactive portfolio dashboard that demonstrates dynamic asset
+                        allocation, performance, and core crypto account actions.
+                      </p>
+                    </div>
+                    <div className="flex justify-center">
+                      <KrakenProPortfolio />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-5">
+                    <div className="text-center">
+                      <p
+                        className="text-xs sm:text-sm tracking-[0.3em] uppercase text-[#FF6B35] mb-2"
+                        style={{ fontFamily: 'Aeonik Extended' }}
+                      >
+                        Track growth over time
+                      </p>
+                      <p
+                        className="text-sm sm:text-base text-gray-600 max-w-md mx-auto"
+                        style={{ fontFamily: 'Aeonik' }}
+                      >
+                        Apps usage analytics that connects growth, retention, and activation
+                        signals inside one adaptive card.
+                      </p>
+                    </div>
+                    <div className="flex justify-center">
+                      <AppsAnalyticsCard />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* TIDE FEATURE GALLERY */}
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+            <ScreenGallery
               items={allScreens}
               sectionEyebrow="Tide Product Suite"
               sectionTitle="Complete feature overview"
               sectionDescription="All the tools and features that help small businesses manage their finances, taxes, and administrative tasks with ease."
               sectionCTA={{
-                label: "View case study",
-                href: "/tide",
+                label: 'View case study',
+                href: '/tide',
                 show: true
               }}
             />
-          </div>
+          </section>
         </div>
       </GradientBackground>
     );
