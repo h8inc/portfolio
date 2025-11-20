@@ -1,6 +1,7 @@
 import React from 'react';
 import { typography } from '../../design/typography';
 import { ScreenMock } from './ScreenMock';
+import { buttonStyles, buttonFontFamily } from '../../lib/button-styles';
 
 type ScreenGalleryItem = {
   id: string;
@@ -194,8 +195,8 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
             {sectionCTA && sectionCTA.show && (
               <a
                 href={sectionCTA.href}
-                className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-[#130F25] text-white rounded-full font-medium hover:bg-[#130F25]/90 transition-colors"
-                style={{ fontFamily: 'Aeonik' }}
+                className={`${buttonStyles.primary} mt-6`}
+                style={buttonFontFamily.primary}
               >
                 {sectionCTA.label}
                 <span>→</span>

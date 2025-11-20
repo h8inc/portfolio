@@ -6,6 +6,7 @@ import BitcoinPill from "./BitcoinPill";
 import Marquee from "react-fast-marquee";
 import { trackOutboundLink, trackEvent } from "../../lib/analytics";
 import { typography } from "../../design/typography";
+import { buttonStyles, buttonFontFamily } from "../../lib/button-styles";
 export interface ProfileWidgetProps {
   name?: string;
   title?: string;
@@ -76,8 +77,8 @@ export default function ProfileWidget({
                   });
                   trackOutboundLink('https://www.figma.com/deck/JrHLya85t4BuUzpQzRCko6/Nasko-Terziev-Portfolio-showcase?node-id=1-42&viewport=-3719%2C-9%2C0.56&t=bzI9ahnv8lNVKVu0-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1', 'Work Samples');
                 }}
-                className="bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 lg:px-7 py-2 sm:py-3 rounded-full border-[2px] sm:border-[3px] border-black font-bold text-xs sm:text-sm lg:text-base shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform hover:translate-x-[1px] hover:translate-y-[1px] transition-all" 
-                style={{ fontFamily: 'Aeonik Extended' }}
+                className={buttonStyles.primary}
+                style={buttonFontFamily.primary}
               >
                 Work Samples
               </a>
@@ -85,7 +86,7 @@ export default function ProfileWidget({
               <a 
                 href={emailUrl} 
                 onClick={() => trackOutboundLink(emailUrl, 'Email')}
-                className="bg-orange-500 hover:bg-orange-600 text-white p-2 sm:p-3 rounded-full border-[2px] sm:border-[3px] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform hover:translate-x-[1px] hover:translate-y-[1px] transition-all" 
+                className={`${buttonStyles.primary} p-2 sm:p-3`} 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -94,7 +95,7 @@ export default function ProfileWidget({
               <a 
                 href={linkedinUrl} 
                 onClick={() => trackOutboundLink(linkedinUrl, 'LinkedIn')}
-                className="bg-orange-500 hover:bg-orange-600 text-white p-2 sm:p-3 rounded-full border-[2px] sm:border-[3px] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform hover:translate-x-[1px] hover:translate-y-[1px] transition-all" 
+                className={`${buttonStyles.primary} p-2 sm:p-3`} 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -103,7 +104,7 @@ export default function ProfileWidget({
               <a 
                 href={githubUrl} 
                 onClick={() => trackOutboundLink(githubUrl, 'GitHub')}
-                className="bg-orange-500 hover:bg-orange-600 text-white p-2 sm:p-3 rounded-full border-[2px] sm:border-[3px] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform hover:translate-x-[1px] hover:translate-y-[1px] transition-all" 
+                className={`${buttonStyles.primary} p-2 sm:p-3`} 
                 target="_blank" 
                 rel="noopener noreferrer"
               >

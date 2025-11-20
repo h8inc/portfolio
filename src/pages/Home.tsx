@@ -7,6 +7,7 @@ import { KrakenProPortfolio } from '../components/generated/KrakenProPortfolio';
 import { ChevronDown } from 'lucide-react';
 import { trackEvent } from '../lib/analytics';
 import { ExplainerCard } from '../components/ExplainerCard';
+import { ScreenGallery } from '../components/primitives/ScreenGallery';
 
 let theme: Theme = 'light';
 // only use 'centered' container for standalone components, never for full page apps or websites.
@@ -22,6 +23,60 @@ function Home() {
   }
 
   setTheme(theme);
+
+  const allScreens = useMemo(
+    () => [
+      {
+        id: 'accounting-os',
+        eyebrow: 'Admin OS',
+        title: 'All admin in one place',
+        description: 'A system of products designed to help small businesses owners navigate their administrative tasks with ease.',
+        imageSrc: encodeURI('/assets/✅ Admin - no tasks comeplete.png'),
+        imageAlt: 'Admin services home with task checklist'
+      },
+      {
+        id: 'activation',
+        eyebrow: 'Tax Product',
+        title: 'Tax deadlines and estimates',
+        description: 'Automated estimates and VAT management helps businesses prepare for tax obligations.',
+        imageSrc: encodeURI('/assets/Registered Business - VAT registered - Connected (subscribed).png'),
+        imageAlt: 'Registered business VAT estimates view'
+      },
+      {
+        id: 'tax',
+        eyebrow: 'Tax savings on autopilot',
+        title: 'Predict and plan ahead',
+        description: 'Tax savings account that saves on behalf of businesses and bears interest on the balance.',
+        imageSrc: encodeURI('/assets/Tax Account timeline.png'),
+        imageAlt: 'Tax account timeline and actions'
+      },
+      {
+        id: 'cashflow',
+        eyebrow: 'Cash flow',
+        title: 'Track and forecast with confidence',
+        description: 'Visual timeline showing money in, money out, and projected balances so members can plan ahead and avoid surprises.',
+        imageSrc: encodeURI('/assets/Cash flow - current month.png'),
+        imageAlt: 'Cash flow tracker with projected balances'
+      },
+      {
+        id: 'insights',
+        eyebrow: 'Financial insights',
+        title: 'Understand spending patterns',
+        description: 'Smart analysis and categorization that surfaces trends and helps members make better financial decisions.',
+        imageSrc: encodeURI('/assets/Future-Insights-after-slice-5.png'),
+        imageAlt: 'Financial insights and spending analysis'
+      },
+      {
+        id: 'bookkeeping',
+        eyebrow: 'Bookkeeping score',
+        title: 'Keep records clean and compliant',
+        description: 'Automated categorization and health scoring that guides members toward tax-ready books without manual effort.',
+        imageSrc: encodeURI('/assets/Bookkeeping - Slice 4.png'),
+        imageAlt: 'Bookkeeping score and smart categorization'
+      }
+    ],
+    []
+  );
 
   const generatedComponent = useMemo(() => {
     const handleScrollToCharts = () => {
@@ -99,10 +154,25 @@ function Home() {
               </div>
             </div>
           </div>
+
+          {/* Tide Gallery Section */}
+          <div className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+            <ScreenGallery 
+              items={allScreens}
+              sectionEyebrow="Tide Product Suite"
+              sectionTitle="Complete feature overview"
+              sectionDescription="All the tools and features that help small businesses manage their finances, taxes, and administrative tasks with ease."
+              sectionCTA={{
+                label: "View case study",
+                href: "/tide",
+                show: true
+              }}
+            />
+          </div>
         </div>
       </GradientBackground>
     );
-  }, []);
+  }, [allScreens]);
 
   if (container === 'centered') {
     return (
