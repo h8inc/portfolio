@@ -35,6 +35,10 @@ type ScreenGalleryProps = {
   sectionTitle?: string;
   sectionDescription?: string;
   /**
+   * Optional stats/metrics to display below the description
+   */
+  sectionStats?: React.ReactNode;
+  /**
    * Optional CTA config (hidden by default)
    */
   sectionCTA?: {
@@ -81,6 +85,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
   sectionEyebrow,
   sectionTitle,
   sectionDescription,
+  sectionStats,
   sectionCTA
 }) => {
   return (
@@ -113,6 +118,11 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
               >
                 {sectionDescription}
               </p>
+            )}
+            {sectionStats && (
+              <div className="mt-6 max-w-3xl mx-auto">
+                {sectionStats}
+              </div>
             )}
           </div>
         )}
@@ -191,6 +201,11 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
               >
                 {sectionDescription}
               </p>
+            )}
+            {sectionStats && (
+              <div className="mt-6">
+                {sectionStats}
+              </div>
             )}
             {sectionCTA && sectionCTA.show && (
               <a
