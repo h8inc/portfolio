@@ -7,7 +7,6 @@ import { KrakenProPortfolio } from '../components/generated/KrakenProPortfolio';
 import { ChevronDown } from 'lucide-react';
 import { trackEvent } from '../lib/analytics';
 import { ScreenGallery } from '../components/primitives/ScreenGallery';
-import { motion } from 'framer-motion';
 import { typography } from '../design/typography';
 
 let theme: Theme = 'light';
@@ -136,7 +135,7 @@ function Home() {
           </section>
 
           {/* CHARTS / PLAYGROUND SECTION */}
-          <section id="charts" className="w-full bg-[#FAF7F0] py-20 sm:py-24">
+          <section id="charts" className="w-full bg-[#FAF7F0] py-16 sm:py-20">
             <div className="w-full px-4 sm:px-6 lg:px-8">
               <div className="max-w-7xl mx-auto">
                 <div className="text-center max-w-3xl mx-auto mb-12">
@@ -146,19 +145,14 @@ function Home() {
                   >
                     Design playground
                   </p>
-                  <h2
-                    className={`${typography.h2.className} mb-4`}
-                    style={typography.h2.style}
-                  >
-                    Interactive systems in motion
-                  </h2>
+                 
                   <p
                     className="text-base sm:text-lg text-gray-600"
                     style={{ fontFamily: 'Aeonik' }}
                   >
-                    A pair of live prototypes that show how I translate
-                    financial narratives into tactile data visualisations and
-                    quantified stories.
+                    I like to translate
+              information into data visualisations with interactions. Just play with them 😉
+          
                   </p>
                 </div>
 

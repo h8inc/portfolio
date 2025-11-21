@@ -493,7 +493,7 @@ export const PortfolioChart = ({
     return <div className={`w-full h-full bg-[rgb(247,244,244)] flex flex-col overflow-hidden ${className || ''}`}>
           {/* Chart Section - Fills available space */}
           <div className="w-full flex-1 min-h-0 relative overflow-hidden">
-            <div ref={containerRef} className="absolute inset-x-0 top-0 bottom-0 bg-[rgb(247,244,244)] overflow-hidden" style={{ bottom: '24px' }}>
+            <div ref={containerRef} className="absolute inset-x-0 top-0 bottom-0 bg-[rgb(247,244,244)] overflow-hidden" style={{ bottom: '12px' }}>
               <svg ref={svgRef} className="w-full h-full block"></svg>
               {hoveredIndex !== null && tooltipPos && data[hoveredIndex] && <div ref={tooltipRef} className="absolute bg-white text-[#111827] px-2 py-1 rounded-full text-[10px] font-semibold leading-none pointer-events-none z-[1000] shadow-lg whitespace-nowrap" style={{
               left: `${tooltipPos.x}px`,

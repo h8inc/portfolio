@@ -261,12 +261,11 @@ export const KrakenProPortfolio = () => {
 
   // @return
   return <div className="w-full max-w-md bg-[rgb(247,244,244)] text-[#130F25] flex flex-col rounded-[30px] overflow-hidden border-[3px] sm:border-[4px] border-black relative" style={{
-    aspectRatio: '285/431',
     boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
   }}>
       <PortfolioHeader value={displayValue} currency="EUR" change={displayChange} changePercentage={displayChangePercentage} period={periodDisplayMap[selectedPeriod]} />
 
-      <div className="w-full relative flex-1 min-h-0">
+      <div className="w-full relative min-h-0" style={{ height: 200 }}>
         <PortfolioChart variant="mobile" selectedPeriod={selectedPeriod} onPeriodChange={setSelectedPeriod} onHoverValue={setHoveredValue} />
       </div>
 
