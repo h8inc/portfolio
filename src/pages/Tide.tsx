@@ -5,6 +5,8 @@ import React, { useMemo } from 'react';
 import { typography } from '../design/typography';
 import { MarqueeBanner } from '../components/MarqueeBanner';
 import { ScreenGallery } from '../components/primitives/ScreenGallery';
+import { Link } from 'react-router-dom';
+import { X } from 'lucide-react';
 
 function Tide() {
   // Tide ARR trajectory (mid-2023 through today)
@@ -123,6 +125,15 @@ function Tide() {
 
   return (
     <GradientBackground>
+      {/* Close button - top right */}
+      <Link
+        to="/"
+        className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
+        aria-label="Close and return to home"
+      >
+        <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-800" strokeWidth={2.5} />
+      </Link>
+      
       {/* HERO SECTION ON GRADIENT BACKGROUND */}
       <section className="w-full min-h-[140vh] pb-8">
         <div className="w-full h-full px-4 sm:px-6 lg:px-8">
