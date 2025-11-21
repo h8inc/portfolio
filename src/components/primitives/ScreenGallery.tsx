@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { typography } from '../../design/typography';
 import { ScreenMock } from './ScreenMock';
 import { buttonStyles, buttonFontFamily } from '../../lib/button-styles';
@@ -94,10 +95,10 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
       <div className="md:hidden">
         {/* Section metadata for mobile (centered above gallery) */}
         {(sectionEyebrow || sectionTitle || sectionDescription) && (
-          <div className="text-center mb-12 px-4">
+          <div className="mb-12 px-4">
             {sectionEyebrow && (
               <p
-                className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4"
+                className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4 text-left"
                 style={{ fontFamily: 'Aeonik Extended' }}
               >
                 {sectionEyebrow}
@@ -105,7 +106,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
             )}
             {sectionTitle && (
               <h2
-                className={`${typography.h2.className} mb-4`}
+                className={`${typography.h2.className} mb-4 text-left`}
                 style={typography.h2.style}
               >
                 {sectionTitle}
@@ -113,14 +114,23 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
             )}
             {sectionDescription && (
               <p
-                className={`${typography.subheader.className} max-w-3xl mx-auto`}
+                className={`${typography.subheader.className} max-w-3xl text-left`}
                 style={typography.subheader.style}
               >
                 {sectionDescription}
               </p>
             )}
+            {sectionCTA && sectionCTA.show && (
+              <Link
+                to={sectionCTA.href}
+                className={`${buttonStyles.primary} mt-6 inline-block`}
+                style={buttonFontFamily.primary}
+              >
+                {sectionCTA.label}
+              </Link>
+            )}
             {sectionStats && (
-              <div className="mt-6 max-w-3xl mx-auto">
+              <div className="mt-6 max-w-3xl mx-auto hidden">
                 {sectionStats}
               </div>
             )}
@@ -208,14 +218,13 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
               </div>
             )}
             {sectionCTA && sectionCTA.show && (
-              <a
-                href={sectionCTA.href}
+              <Link
+                to={sectionCTA.href}
                 className={`${buttonStyles.primary} mt-6`}
                 style={buttonFontFamily.primary}
               >
                 {sectionCTA.label}
-                <span>→</span>
-              </a>
+              </Link>
             )}
           </div>
 
