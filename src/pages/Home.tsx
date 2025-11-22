@@ -172,8 +172,8 @@ function Home() {
             <ScreenGallery
               items={allScreens}
               sectionEyebrow="Tide"
-              sectionTitle="Financial subscriptions from 0 to 8 million in revneue"
-              sectionDescription="Conceived and designed Tide's tax management hub and financial insights from the ground up, guiding strategic decisions throughout the entire process. The system anticipates needs, doesn't wait for asks. It proactively surfaces tasks like upcoming tax deadlines before they became urgent. Introduced a completely new activation strategy for Tide's subscription products — freemium experiences that deliver value upfront."
+              sectionTitle="Financial subscriptions from 0 to £8 million in revneue"
+              sectionDescription="Tide is a banking app with more than 1M users, where I built first-of-its-kind financial and tax forecasting tools that reimagine how businesses plan and operate. The system anticipates needs, doesn't wait for asks. It proactively surfaces tasks like upcoming tax deadlines before they became urgent. Introduced a completely new activation strategy for Tide's subscription products — freemium experiences that deliver value upfront."
               sectionStats={
                 <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4" style={{ fontFamily: 'Aeonik' }}>
                   <li>0→<strong className="font-semibold">12,000+</strong> subscribers, 0→<strong className="font-semibold">£8M+</strong> annual recurring revenue</li>

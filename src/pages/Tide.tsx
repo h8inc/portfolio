@@ -103,6 +103,14 @@ function Tide() {
         imageAlt: 'Cash flow tracker with projected balances'
       },
       {
+        id: 'transactions',
+        eyebrow: 'Transactions',
+        title: 'Projected transactions view',
+        description: 'Comprehensive view of projected transactions and financial activity.',
+        imageSrc: encodeURI('/assets/Transactions/Populated/projected.png'),
+        imageAlt: 'Projected transactions view'
+      },
+      {
         id: 'insights',
         eyebrow: 'Financial insights',
         title: 'Understand spending patterns',
