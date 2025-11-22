@@ -27,28 +27,20 @@ function Home() {
   const allScreens = useMemo(
     () => [
       {
-        id: 'accounting-os',
-        eyebrow: 'Admin OS',
-        title: 'All admin in one place',
-        description: 'A system of products designed to help small businesses owners navigate their administrative tasks with ease.',
-        imageSrc: encodeURI('/assets/✅ Admin - no tasks comeplete.png'),
-        imageAlt: 'Admin services home with task checklist'
-      },
-      {
-        id: 'activation',
-        eyebrow: 'Tax Product',
-        title: 'Tax deadlines and estimates',
-        description: 'Automated estimates and VAT management helps businesses prepare for tax obligations.',
-        imageSrc: encodeURI('/assets/Registered Business - VAT registered - Connected (subscribed).png'),
-        imageAlt: 'Registered business VAT estimates view'
-      },
-      {
         id: 'tax',
         eyebrow: 'Tax savings on autopilot',
         title: 'Predict and plan ahead',
         description: 'Tax savings account that saves on behalf of businesses and bears interest on the balance.',
         imageSrc: encodeURI('/assets/Tax Account timeline.png'),
         imageAlt: 'Tax account timeline and actions'
+      },
+      {
+        id: 'transactions',
+        eyebrow: 'Transactions',
+        title: 'Projected transactions view',
+        description: 'Comprehensive view of projected transactions and financial activity.',
+        imageSrc: encodeURI('/assets/Transactions/Populated/projected.png'),
+        imageAlt: 'Projected transactions view'
       },
       {
         id: 'cashflow',
@@ -67,12 +59,12 @@ function Home() {
         imageAlt: 'Financial insights and spending analysis'
       },
       {
-        id: 'bookkeeping',
-        eyebrow: 'Bookkeeping score',
-        title: 'Keep records clean and compliant',
-        description: 'Automated categorization and health scoring that guides members toward tax-ready books without manual effort.',
-        imageSrc: encodeURI('/assets/Bookkeeping - Slice 4.png'),
-        imageAlt: 'Bookkeeping score and smart categorization'
+        id: 'accounting-os',
+        eyebrow: 'Admin OS',
+        title: 'All admin in one place',
+        description: 'A system of products designed to help small businesses owners navigate their administrative tasks with ease.',
+        imageSrc: encodeURI('/assets/✅ Admin - no tasks comeplete.png'),
+        imageAlt: 'Admin services home with task checklist'
       }
     ],
     []
