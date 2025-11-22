@@ -159,6 +159,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
                   imageSrc={item.imageSrc}
                   imageAlt={item.imageAlt}
                   gradientIndex={index}
+                  eager={index < 3}
                 />
               </div>
               
@@ -253,6 +254,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
                     imageSrc={item.imageSrc}
                     imageAlt={item.imageAlt}
                     gradientIndex={index}
+                    eager={index < 3}
                   />
                 </div>
                 

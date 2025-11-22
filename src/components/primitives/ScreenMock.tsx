@@ -6,19 +6,27 @@ const placeholderGradients = [
   'linear-gradient(135deg,#E3F2FD 0%,#B9D7EA 100%)'
 ];
 
-export const ScreenMock: React.FC<{
+type ScreenMockProps = {
   imageSrc?: string;
   imageAlt?: string;
   gradientIndex: number;
-}> = ({ imageSrc, imageAlt, gradientIndex }) => {
+  eager?: boolean;
+};
+
+export const ScreenMock: React.FC<ScreenMockProps> = ({
+  imageSrc,
+  imageAlt,
+  gradientIndex,
+  eager = false
+}) => {
   if (imageSrc) {
     return (
       <img
         src={imageSrc}
         alt={imageAlt || 'Product screen'}
-        loading="lazy"
-        decoding="async"
-        fetchPriority="low"
+        loading={eager ? undefined : 'lazy'}
+        decoding={eager ? 'auto' : 'async'}
+        fetchPriority={eager ? 'high' : 'low'}
         className="max-h-full max-w-full object-contain rounded-[34px] shadow-[0_24px_70px_rgba(10,8,23,0.2)] border-[3px] border-[#130F25]"
       />
     );
