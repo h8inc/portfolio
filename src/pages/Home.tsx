@@ -27,20 +27,20 @@ function Home() {
   const allScreens = useMemo(
     () => [
       {
-        id: 'tax',
-        eyebrow: 'Tax savings on autopilot',
-        title: 'Predict and plan ahead',
-        description: 'Tax savings account that saves on behalf of businesses and bears interest on the balance.',
-        imageSrc: encodeURI('/assets/Tax Account timeline.png'),
-        imageAlt: 'Tax account timeline and actions'
+        id: 'accounting-os',
+        eyebrow: 'Admin OS',
+        title: 'All admin in one place',
+        description: 'A system of products designed to help small businesses owners navigate their administrative tasks with ease.',
+        imageSrc: encodeURI('/assets/✅ Admin - no tasks comeplete.png'),
+        imageAlt: 'Admin services home with task checklist'
       },
       {
-        id: 'transactions',
-        eyebrow: 'Transactions',
-        title: 'Projected transactions view',
-        description: 'Comprehensive view of projected transactions and financial activity.',
-        imageSrc: encodeURI('/assets/Transactions/Populated/projected.png'),
-        imageAlt: 'Projected transactions view'
+        id: 'insights-free',
+        eyebrow: 'Financial insights',
+        title: 'Free state experience',
+        description: 'Onboarding experience for the insights feature, designed to showcase value before requiring subscription.',
+        imageSrc: encodeURI('/assets/Insights-free state.png'),
+        imageAlt: 'Financial insights free state'
       },
       {
         id: 'cashflow',
@@ -59,12 +59,28 @@ function Home() {
         imageAlt: 'Financial insights and spending analysis'
       },
       {
-        id: 'accounting-os',
-        eyebrow: 'Admin OS',
-        title: 'All admin in one place',
-        description: 'A system of products designed to help small businesses owners navigate their administrative tasks with ease.',
-        imageSrc: encodeURI('/assets/✅ Admin - no tasks comeplete.png'),
-        imageAlt: 'Admin services home with task checklist'
+        id: 'tax',
+        eyebrow: 'Tax savings on autopilot',
+        title: 'Predict and plan ahead',
+        description: 'Tax savings account that saves on behalf of businesses and bears interest on the balance.',
+        imageSrc: encodeURI('/assets/Tax Account timeline.png'),
+        imageAlt: 'Tax account timeline and actions'
+      },
+      {
+        id: 'transactions',
+        eyebrow: 'Transactions',
+        title: 'Projected transactions view',
+        description: 'Comprehensive view of projected transactions and financial activity.',
+        imageSrc: encodeURI('/assets/Transactions/Populated/projected.png'),
+        imageAlt: 'Projected transactions view'
+      },
+      {
+        id: 'registered-business',
+        eyebrow: 'Business registration',
+        title: 'VAT registered and connected',
+        description: 'Registered business with VAT registration status and connected subscription services.',
+        imageSrc: encodeURI('/assets/Registered Business - VAT registered - Connected (subscribed).png'),
+        imageAlt: 'Registered Business VAT registered connected subscribed'
       }
     ],
     []
