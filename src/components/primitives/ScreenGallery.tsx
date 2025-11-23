@@ -68,6 +68,8 @@ const scrollbarStyles: React.CSSProperties = {
   scrollbarWidth: 'thin' as const,
   scrollbarColor: '#FF6B35 #F5F2ED',
   scrollBehavior: 'smooth' as const,
+  scrollPaddingRight: '2rem',
+  paddingRight: '2rem'
 };
 
 const customScrollbarClass = `
@@ -234,10 +236,10 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
           
           {/* Gallery extends to viewport edge */}
           <div 
-            className={`flex-1 overflow-x-auto -mr-4 sm:-mr-6 lg:-mr-8 ${customScrollbarClass}`}
+            className={`flex-1 overflow-x-auto -mr-2 sm:-mr-4  ${customScrollbarClass}`}
             style={scrollbarStyles}
           >
-            <div className="flex space-x-6 pb-8 snap-x snap-mandatory pr-4 sm:pr-6 lg:pr-8">
+          <div className="flex space-x-6 pb-8 snap-x snap-mandatory pr-4 sm:pr-6 lg:pr-8">
             {items.map((item, index) => (
               <article
                 key={item.id}
@@ -275,6 +277,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
                 </div>
               </article>
             ))}
+            <div className="w-4 md:w-6 flex-shrink-0" aria-hidden="true" />
             </div>
           </div>
         </div>
