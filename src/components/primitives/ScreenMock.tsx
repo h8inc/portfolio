@@ -11,15 +11,24 @@ type ScreenMockProps = {
   imageAlt?: string;
   gradientIndex: number;
   eager?: boolean;
+  noBorder?: boolean;
 };
 
 export const ScreenMock: React.FC<ScreenMockProps> = ({
   imageSrc,
   imageAlt,
   gradientIndex,
-  eager = false
+  eager = false,
+  noBorder = false
 }) => {
   if (imageSrc) {
+    const borderClasses = noBorder 
+      ? '' 
+      : 'border-[3px] border-[#130F25]';
+    const roundedClasses = noBorder 
+      ? 'rounded-[4px] md:rounded-[12px]' 
+      : 'rounded-[34px]';
+    
     return (
       <img
         src={imageSrc}
@@ -27,7 +36,7 @@ export const ScreenMock: React.FC<ScreenMockProps> = ({
         loading={eager ? undefined : 'lazy'}
         decoding={eager ? 'auto' : 'async'}
         fetchPriority={eager ? 'high' : 'low'}
-        className="max-h-full max-w-full object-contain rounded-[34px] shadow-[0_24px_70px_rgba(10,8,23,0.2)] border-[3px] border-[#130F25]"
+        className={`max-h-full max-w-full object-contain ${roundedClasses} shadow-[0_12px_32px_rgba(10,8,23,0.12)] ${borderClasses}`}
       />
     );
   }

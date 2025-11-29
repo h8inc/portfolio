@@ -9,21 +9,25 @@ type ScreenGalleryItem = {
   /**
    * Small label displayed above the title (e.g. feature name)
    */
-  eyebrow: string;
+  eyebrow?: string;
   /**
    * Short title/heading shown under each mock
    */
-  title: string;
+  title?: string;
   /**
    * Two-line description shown under the title
    */
-  description: string;
+  description?: string;
   /**
    * Optional image source for the screen mock.
    * When omitted, a placeholder gradient is rendered instead.
    */
   imageSrc?: string;
   imageAlt?: string;
+  /**
+   * When true, removes the border from the mock (useful for images that already have borders)
+   */
+  noBorder?: boolean;
 };
 
 type ScreenGalleryProps = {
@@ -46,7 +50,17 @@ type ScreenGalleryProps = {
     label: string;
     href: string;
     show?: boolean;
+    disabled?: boolean;
   };
+  /**
+   * When true and there's only 1 item, makes the mock wider on desktop (800px instead of 390px)
+   * Useful for desktop screenshots that need more horizontal space
+   */
+  singleItemWider?: boolean;
+  /**
+   * When true, hides the text content (eyebrow and description) below each mock
+   */
+  hideItemText?: boolean;
 };
 
 const MOBILE_CARD_STYLE: React.CSSProperties = {
@@ -56,12 +70,31 @@ const MOBILE_CARD_STYLE: React.CSSProperties = {
   paddingBottom: 24
 };
 
+const SINGLE_ITEM_MOBILE_CARD_STYLE: React.CSSProperties = {
+  width: '100%',
+  minWidth: 'auto',
+  maxWidth: '100%',
+  paddingBottom: 12
+};
+
 const DESKTOP_CARD_STYLE: React.CSSProperties = {
   maxWidth: 360,
   width: '100%'
 };
 
 const SCREEN_MAX_HEIGHT = 600;
+const MOCK_CONTAINER_STYLE: React.CSSProperties = {
+  height: SCREEN_MAX_HEIGHT,
+  paddingLeft: 24,
+  paddingRight: 24,
+  paddingBottom: 12
+};
+
+const SINGLE_ITEM_MOBILE_CONTAINER_STYLE: React.CSSProperties = {
+  paddingLeft: 16,
+  paddingRight: 16,
+  paddingBottom: 8
+};
 
 // Custom scrollbar styles
 const scrollbarStyles: React.CSSProperties = {
@@ -89,8 +122,64 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
   sectionTitle,
   sectionDescription,
   sectionStats,
-  sectionCTA
+  sectionCTA,
+  singleItemWider = false,
+  hideItemText = false
 }) => {
+  // Calculate desktop article width: wider if singleItemWider is true and there's only 1 item
+  const isSingleWideItem = singleItemWider && items.length === 1;
+  const desktopArticleWidth = isSingleWideItem ? 960 : 390;
+  const desktopArticleMarginRight = isSingleWideItem ? -64 : 0;
+  const gapWidthClass = isSingleWideItem ? 'w-0 lg:w-0' : 'w-12 lg:w-16';
+  const gallerySpacingClass = isSingleWideItem ? 'space-x-0' : 'space-x-6';
+  const mobileMockContainerStyle = isSingleWideItem ? SINGLE_ITEM_MOBILE_CONTAINER_STYLE : MOCK_CONTAINER_STYLE;
+  const mobileCardStyle = isSingleWideItem ? SINGLE_ITEM_MOBILE_CARD_STYLE : MOBILE_CARD_STYLE;
+  const mobileGallerySpacingClass = isSingleWideItem ? 'space-x-0' : 'space-x-3';
+  const galleryScrollbarStyle = isSingleWideItem
+    ? { ...scrollbarStyles, paddingRight: '1rem', scrollPaddingRight: '1rem' }
+    : scrollbarStyles;
+  const renderMobileArticle = (item: ScreenGalleryItem, index: number) => (
+    <article
+      key={item.id}
+      className="snap-center flex-shrink-0"
+      aria-label={item.title}
+      style={mobileCardStyle}
+    >
+      {/* Mock container with adaptive height */}
+      <div 
+        className="w-full flex items-center justify-center mb-6" 
+        style={mobileMockContainerStyle}
+      >
+        <ScreenMock
+          imageSrc={item.imageSrc}
+          imageAlt={item.imageAlt}
+          gradientIndex={index}
+          eager={index < 3}
+          noBorder={item.noBorder}
+        />
+      </div>
+      
+      {/* Text content */}
+      {!hideItemText && (item.eyebrow || item.description) && (
+        <div className="space-y-1 text-center w-full">
+          {item.eyebrow && (
+            <p
+              className="text-xs uppercase tracking-[0.3em] text-[#7A7464]"
+              style={{ fontFamily: 'Aeonik Extended' }}
+            >
+              {item.eyebrow}
+            </p>
+          )}
+          {item.description && (
+            <p className="text-sm text-[#3F3A2F] leading-relaxed" style={{ fontFamily: 'Aeonik' }}>
+              {item.description}
+            </p>
+          )}
+        </div>
+      )}
+    </article>
+  );
+
   return (
     <div className={className}>
       {/* Mobile – Section header + horizontal scroll */}
@@ -123,13 +212,22 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
               </p>
             )}
             {sectionCTA && sectionCTA.show && (
-              <Link
-                to={sectionCTA.href}
-                className={`${buttonStyles.primary} mt-6 inline-block`}
-                style={buttonFontFamily.primary}
-              >
-                {sectionCTA.label}
-              </Link>
+              sectionCTA.disabled ? (
+                <span
+                  className={`${buttonStyles.primary} mt-6 inline-block opacity-50 cursor-not-allowed`}
+                  style={buttonFontFamily.primary}
+                >
+                  {sectionCTA.label}
+                </span>
+              ) : (
+                <Link
+                  to={sectionCTA.href}
+                  className={`${buttonStyles.primary} mt-6 inline-block`}
+                  style={buttonFontFamily.primary}
+                >
+                  {sectionCTA.label}
+                </Link>
+              )
             )}
             {sectionStats && (
               <div className="mt-6 max-w-3xl mx-auto hidden">
@@ -140,50 +238,20 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
         )}
         
         {/* Mobile gallery */}
-        <div className="-mx-4 px-4">
-        <div 
-          className={`flex overflow-x-auto space-x-3 pb-8 snap-x snap-mandatory ${customScrollbarClass}`}
-          style={scrollbarStyles}
-        >
-          {items.map((item, index) => (
-            <article
-              key={item.id}
-              className="snap-center flex-shrink-0"
-              aria-label={item.title}
-              style={MOBILE_CARD_STYLE}
+        {isSingleWideItem ? (
+          <div className="">
+            {items.map((item, index) => renderMobileArticle(item, index))}
+          </div>
+        ) : (
+          <div className="-mx-4 px-4">
+            <div 
+              className={`flex overflow-x-auto ${mobileGallerySpacingClass} pb-8 snap-x snap-mandatory ${customScrollbarClass}`}
+              style={galleryScrollbarStyle}
             >
-              {/* Mock container with fixed height */}
-              <div 
-                className="w-full flex items-center justify-center mb-6" 
-                style={{ height: SCREEN_MAX_HEIGHT }}
-              >
-                <ScreenMock
-                  imageSrc={item.imageSrc}
-                  imageAlt={item.imageAlt}
-                  gradientIndex={index}
-                  eager={index < 3}
-                />
-              </div>
-              
-              {/* Text content - flows naturally below */}
-              <div className="space-y-1 text-center w-full">
-                <p
-                  className="text-xs uppercase tracking-[0.3em] text-[#7A7464]"
-                  style={{ fontFamily: 'Aeonik Extended' }}
-                >
-                  {item.eyebrow}
-                </p>
-                {/* <h3 className="text-lg font-semibold text-[#130F25]" style={{ fontFamily: 'Aeonik' }}>
-                  {item.title}
-                </h3> */}
-                <p className="text-sm text-[#3F3A2F] leading-relaxed" style={{ fontFamily: 'Aeonik' }}>
-                  {item.description}
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
-        </div>
+              {items.map((item, index) => renderMobileArticle(item, index))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Desktop – side-by-side with edge-to-edge scrollable gallery */}
@@ -221,60 +289,76 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
               </div>
             )}
             {sectionCTA && sectionCTA.show && (
-              <Link
-                to={sectionCTA.href}
-                className={`${buttonStyles.primary} mt-6`}
-                style={buttonFontFamily.primary}
-              >
-                {sectionCTA.label}
-              </Link>
+              sectionCTA.disabled ? (
+                <span
+                  className={`${buttonStyles.primary} mt-6 opacity-50 cursor-not-allowed`}
+                  style={buttonFontFamily.primary}
+                >
+                  {sectionCTA.label}
+                </span>
+              ) : (
+                <Link
+                  to={sectionCTA.href}
+                  className={`${buttonStyles.primary} mt-6`}
+                  style={buttonFontFamily.primary}
+                >
+                  {sectionCTA.label}
+                </Link>
+              )
             )}
           </div>
 
           {/* Gap */}
-          <div className="w-12 lg:w-16 flex-shrink-0" />
+          <div className={`${gapWidthClass} flex-shrink-0`} />
           
           {/* Gallery extends to viewport edge */}
           <div 
             className={`flex-1 overflow-x-auto -mr-2 sm:-mr-4  ${customScrollbarClass}`}
             style={scrollbarStyles}
           >
-          <div className="flex space-x-6 pb-8 snap-x snap-mandatory pr-4 sm:pr-6 lg:pr-8">
+          <div className={`flex ${gallerySpacingClass} pb-8 snap-x snap-mandatory pr-4 sm:pr-6 lg:pr-8`}>
             {items.map((item, index) => (
               <article
                 key={item.id}
                 className="snap-start flex-shrink-0"
                 aria-label={item.title}
-                style={{ width: 390 }}
+                style={{ width: desktopArticleWidth, marginRight: desktopArticleMarginRight }}
               >
                 {/* Mock container with fixed height */}
                 <div 
                   className="w-full flex items-center justify-center mb-6" 
-                  style={{ height: SCREEN_MAX_HEIGHT }}
+                  style={MOCK_CONTAINER_STYLE}
                 >
                   <ScreenMock
                     imageSrc={item.imageSrc}
                     imageAlt={item.imageAlt}
                     gradientIndex={index}
                     eager={index < 3}
+                    noBorder={item.noBorder}
                   />
                 </div>
                 
                 {/* Text content - flows naturally below */}
-                <div className="space-y-1 text-center w-full">
-                  <p
-                    className="text-xs uppercase tracking-[0.3em] text-[#7A7464]"
-                    style={{ fontFamily: 'Aeonik Extended' }}
-                  >
-                    {item.eyebrow}
-                  </p>
-                  {/* <h3 className="text-xl font-semibold text-[#130F25]" style={{ fontFamily: 'Aeonik' }}>
-                    {item.title}
-                  </h3> */}
-                  <p className="text-sm text-[#3F3A2F] leading-relaxed" style={{ fontFamily: 'Aeonik' }}>
-                    {item.description}
-                  </p>
-                </div>
+                {!hideItemText && (item.eyebrow || item.description) && (
+                  <div className="space-y-1 text-center w-full">
+                    {item.eyebrow && (
+                      <p
+                        className="text-xs uppercase tracking-[0.3em] text-[#7A7464]"
+                        style={{ fontFamily: 'Aeonik Extended' }}
+                      >
+                        {item.eyebrow}
+                      </p>
+                    )}
+                    {/* <h3 className="text-xl font-semibold text-[#130F25]" style={{ fontFamily: 'Aeonik' }}>
+                      {item.title}
+                    </h3> */}
+                    {item.description && (
+                      <p className="text-sm text-[#3F3A2F] leading-relaxed" style={{ fontFamily: 'Aeonik' }}>
+                        {item.description}
+                      </p>
+                    )}
+                  </div>
+                )}
               </article>
             ))}
             <div className="w-4 md:w-6 flex-shrink-0" aria-hidden="true" />

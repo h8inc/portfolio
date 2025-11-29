@@ -204,6 +204,38 @@ function Home() {
               }}
             />
           </section>
+
+          {/* HOTJAR CASE STUDY */}
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+            <ScreenGallery
+              items={[
+                {
+                  id: 'hotjar',
+                  imageSrc: encodeURI('/assets/hotjar-cover.gif'),
+                  imageAlt: 'Hotjar pricing page redesign',
+                  noBorder: true
+                }
+              ]}
+              sectionEyebrow="Hotjar"
+              sectionTitle="Freelance Growth Designer, 2022"
+              sectionDescription="Ran experiments with the pricing page (which accounted for 20% of signups). Separately, tested and removed friction points in the sign-up and onboarding process that weren't relevant to all user personas, then designed a personalized onboarding flow for our target customers—product teams in small and medium tech companies."
+              sectionStats={
+                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4" style={{ fontFamily: 'Aeonik' }}>
+                  <li><strong className="font-semibold">10%</strong> overall improvement in activation across all segments</li>
+                  <li><strong className="font-semibold">30x</strong> improvement in sales pipeline (0.5% to 15% demos booked)</li>
+                  <li>Redesigned onboarding for <strong className="font-semibold">15k</strong> monthly signups</li>
+                </ul>
+              }
+              sectionCTA={{
+                label: 'Case study coming soon',
+                href: '#',
+                show: true,
+                disabled: true
+              }}
+              singleItemWider={true}
+              hideItemText={true}
+            />
+          </section>
         </div>
       </GradientBackground>
     );
