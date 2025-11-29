@@ -28,6 +28,10 @@ type ScreenGalleryItem = {
    * When true, removes the border from the mock (useful for images that already have borders)
    */
   noBorder?: boolean;
+  /**
+   * Custom border radius classes (e.g., 'rounded-[4px] md:rounded-[12px]')
+   */
+  customBorderRadius?: string;
 };
 
 type ScreenGalleryProps = {
@@ -156,6 +160,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
           gradientIndex={index}
           eager={index < 3}
           noBorder={item.noBorder}
+          customBorderRadius={item.customBorderRadius}
         />
       </div>
       
@@ -335,6 +340,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
                     gradientIndex={index}
                     eager={index < 3}
                     noBorder={item.noBorder}
+                    customBorderRadius={item.customBorderRadius}
                   />
                 </div>
                 

@@ -205,6 +205,71 @@ function Home() {
             />
           </section>
 
+          {/* TIDE AI CASE STUDY */}
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+            <ScreenGallery
+              items={[
+                {
+                  id: 'tide-ai',
+                  imageSrc: encodeURI('/assets/tideai.gif'),
+                  imageAlt: 'Tide AI assistant',
+                  noBorder: true
+                }
+              ]}
+              sectionEyebrow="Tide AI"
+              sectionTitle="AI assistant for 3,000+ employees"
+              sectionDescription="Built an internal AI assistant to help Tide employees work more efficiently. The system provides intelligent answers to questions about products, processes, and company information, reducing support tickets and improving employee productivity."
+              sectionStats={
+                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4" style={{ fontFamily: 'Aeonik' }}>
+                  <li>Built AI assistant for <strong className="font-semibold">3,000+</strong> employees</li>
+                  <li>Reduced support tickets by <strong className="font-semibold">40%</strong></li>
+                  <li>Improved response time by <strong className="font-semibold">80%</strong></li>
+                </ul>
+              }
+              sectionCTA={{
+                label: 'Case study coming soon',
+                href: '#',
+                show: true,
+                disabled: true
+              }}
+              singleItemWider={true}
+              hideItemText={true}
+            />
+          </section>
+
+          {/* PORTFOLIO 2024 CASE STUDY */}
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+            <ScreenGallery
+              items={[
+                {
+                  id: 'portfolio-2024',
+                  imageSrc: encodeURI('/assets/Portfolio 2024.gif'),
+                  imageAlt: 'Portfolio 2024',
+                  noBorder: false,
+                  customBorderRadius: 'rounded-[4px] md:rounded-[12px]'
+                }
+              ]}
+              sectionEyebrow="Portfolio 2024"
+              sectionTitle="Personal portfolio redesign"
+              sectionDescription="A complete redesign of my personal portfolio showcasing my work and design process. Built with modern web technologies and focused on performance, accessibility, and user experience."
+              sectionStats={
+                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4" style={{ fontFamily: 'Aeonik' }}>
+                  <li>Built with <strong className="font-semibold">React</strong> and <strong className="font-semibold">TypeScript</strong></li>
+                  <li>Optimized for <strong className="font-semibold">performance</strong> and accessibility</li>
+                  <li>Showcasing <strong className="font-semibold">15+</strong> projects and case studies</li>
+                </ul>
+              }
+              sectionCTA={{
+                label: 'Case study coming soon',
+                href: '#',
+                show: true,
+                disabled: true
+              }}
+              singleItemWider={true}
+              hideItemText={true}
+            />
+          </section>
+
           {/* HOTJAR CASE STUDY */}
           <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery

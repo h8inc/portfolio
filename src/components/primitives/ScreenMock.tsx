@@ -12,6 +12,7 @@ type ScreenMockProps = {
   gradientIndex: number;
   eager?: boolean;
   noBorder?: boolean;
+  customBorderRadius?: string;
 };
 
 export const ScreenMock: React.FC<ScreenMockProps> = ({
@@ -19,15 +20,18 @@ export const ScreenMock: React.FC<ScreenMockProps> = ({
   imageAlt,
   gradientIndex,
   eager = false,
-  noBorder = false
+  noBorder = false,
+  customBorderRadius
 }) => {
   if (imageSrc) {
     const borderClasses = noBorder 
       ? '' 
       : 'border-[3px] border-[#130F25]';
-    const roundedClasses = noBorder 
-      ? 'rounded-[4px] md:rounded-[12px]' 
-      : 'rounded-[34px]';
+    const roundedClasses = customBorderRadius 
+      ? customBorderRadius
+      : noBorder 
+        ? 'rounded-[4px] md:rounded-[12px]' 
+        : 'rounded-[34px]';
     
     return (
       <img
