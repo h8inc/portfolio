@@ -44,6 +44,14 @@ type ScreenGalleryProps = {
   sectionTitle?: string;
   sectionDescription?: React.ReactNode;
   /**
+   * Optional logo (React component or image path)
+   */
+  sectionLogo?: React.ReactNode | string;
+  /**
+   * Role and year text displayed below logo (e.g., "Staff Designer, 2023-present")
+   */
+  sectionRole?: string;
+  /**
    * Optional stats/metrics to display below the description
    */
   sectionStats?: React.ReactNode;
@@ -127,6 +135,8 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
   sectionDescription,
   sectionStats,
   sectionCTA,
+  sectionLogo,
+  sectionRole,
   singleItemWider = false,
   hideItemText = false
 }) => {
@@ -190,23 +200,51 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
       {/* Mobile – Section header + horizontal scroll */}
       <div className="md:hidden">
         {/* Section metadata for mobile (centered above gallery) */}
-        {(sectionEyebrow || sectionTitle || sectionDescription) && (
+        {(sectionLogo || sectionRole || sectionEyebrow || sectionTitle || sectionDescription) && (
           <div className="mb-12 px-4">
-            {sectionEyebrow && (
-              <p
-                className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4 text-left"
-                style={{ fontFamily: 'Aeonik Extended' }}
-              >
-                {sectionEyebrow}
-              </p>
-            )}
-            {sectionTitle && (
-              <h2
-                className={`${typography.h2.className} mb-4 text-left`}
-                style={typography.h2.style}
-              >
-                {sectionTitle}
-              </h2>
+            {sectionLogo ? (
+              <div className="mb-6">
+                <div className="flex items-center justify-start" style={{ width: '120px', height: '60px', maxWidth: '120px', maxHeight: '60px' }}>
+                  {typeof sectionLogo === 'string' ? (
+                    <img 
+                      src={sectionLogo} 
+                      alt="" 
+                      className="max-h-full max-w-full w-auto h-auto object-contain" 
+                    />
+                  ) : (
+                    <div className="max-h-full max-w-full w-full h-full flex items-center">
+                      {sectionLogo}
+                    </div>
+                  )}
+                </div>
+                {sectionRole && (
+                  <p 
+                    className="text-[#3F3A2F] text-left"
+                    style={{ fontFamily: 'Aeonik Mono', fontSize: '12px', margin: 0, padding: 0 }}
+                  >
+                    {sectionRole}
+                  </p>
+                )}
+              </div>
+            ) : (
+              <>
+                {sectionEyebrow && (
+                  <p
+                    className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4 text-left"
+                    style={{ fontFamily: 'Aeonik Extended' }}
+                  >
+                    {sectionEyebrow}
+                  </p>
+                )}
+                {sectionTitle && (
+                  <h2
+                    className={`${typography.h2.className} mb-4 text-left`}
+                    style={typography.h2.style}
+                  >
+                    {sectionTitle}
+                  </h2>
+                )}
+              </>
             )}
             {sectionDescription && (
               <div
@@ -264,21 +302,49 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
         <div className="flex items-start pl-4 sm:pl-6 lg:pl-8">
           {/* Wrapper for left content with max-w */}
           <div className="flex-shrink-0" style={{ width: 'min(512px, 40vw)', marginLeft: 'max(0px, calc((100vw - 1280px) / 2))' }}>
-            {sectionEyebrow && (
-              <p
-                className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4"
-                style={{ fontFamily: 'Aeonik Extended' }}
-              >
-                {sectionEyebrow}
-              </p>
-            )}
-            {sectionTitle && (
-              <h2
-                className={`${typography.h2.className} mb-4`}
-                style={typography.h2.style}
-              >
-                {sectionTitle}
-              </h2>
+            {sectionLogo ? (
+              <div className="mb-6">
+                <div className="flex items-center" style={{ width: '120px', height: '60px', maxWidth: '120px', maxHeight: '60px' }}>
+                  {typeof sectionLogo === 'string' ? (
+                    <img 
+                      src={sectionLogo} 
+                      alt="" 
+                      className="max-h-full max-w-full w-auto h-auto object-contain" 
+                    />
+                  ) : (
+                    <div className="max-h-full max-w-full w-full h-full flex items-center">
+                      {sectionLogo}
+                    </div>
+                  )}
+                </div>
+                {sectionRole && (
+                  <p 
+                    className="text-[#3F3A2F]"
+                    style={{ fontFamily: 'Aeonik Mono', fontSize: '12px', margin: 0, padding: 0 }}
+                  >
+                    {sectionRole}
+                  </p>
+                )}
+              </div>
+            ) : (
+              <>
+                {sectionEyebrow && (
+                  <p
+                    className="text-xs uppercase tracking-[0.35em] text-[#7A7464] mb-4"
+                    style={{ fontFamily: 'Aeonik Extended' }}
+                  >
+                    {sectionEyebrow}
+                  </p>
+                )}
+                {sectionTitle && (
+                  <h2
+                    className={`${typography.h2.className} mb-4`}
+                    style={typography.h2.style}
+                  >
+                    {sectionTitle}
+                  </h2>
+                )}
+              </>
             )}
             {sectionDescription && (
               <div

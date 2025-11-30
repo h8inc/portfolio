@@ -8,6 +8,7 @@ import { ChevronDown } from 'lucide-react';
 import { trackEvent } from '../lib/analytics';
 import { ScreenGallery } from '../components/primitives/ScreenGallery';
 import { typography } from '../design/typography';
+import { TideLogo } from '../components/icons/TideLogo';
 
 let theme: Theme = 'light';
 // only use 'centered' container for standalone components, never for full page apps or websites.
@@ -187,8 +188,8 @@ function Home() {
           <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={allScreens}
-              sectionEyebrow="Tide"
-              sectionTitle="Financial subscriptions from 0 to £8 million in revneue"
+              sectionLogo={<div style={{ transform: 'scale(0.6)', transformOrigin: 'left center' }}><TideLogo className="max-w-full max-h-full w-full h-full" /></div>}
+              sectionRole="Staff Designer, 2023-present"
               sectionDescription="Tide is a banking app with more than 1M users, where I built first-of-its-kind financial and tax forecasting tools that reimagine how businesses plan and operate. The system anticipates needs, doesn't wait for asks. It proactively surfaces tasks like upcoming tax deadlines before they became urgent. Introduced a completely new activation strategy for Tide's subscription products — freemium experiences that deliver value upfront."
               sectionStats={
                 <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
@@ -216,8 +217,8 @@ function Home() {
                   noBorder: true
                 }
               ]}
-              sectionEyebrow="Tide AI"
-              sectionTitle="AI assistant for 3,000+ employees"
+              sectionLogo={<div style={{ transform: 'scale(0.6)', transformOrigin: 'left center' }}><TideLogo className="max-w-full max-h-full w-full h-full" /></div>}
+              sectionRole="Staff Designer, 2023-present"
               sectionDescription={
                 <div>
                   <p className="mb-4">
@@ -258,8 +259,8 @@ function Home() {
                   customBorderRadius: 'rounded-[4px] md:rounded-[12px]'
                 }
               ]}
-              sectionEyebrow="Opaa"
-              sectionTitle="QR-code POS system for restaurants"
+              sectionLogo={encodeURI('/assets/opaalogo.png')}
+              sectionRole="Founder & Designer, 2024"
               sectionDescription={
                 <div>
                   <p className="mb-4">
@@ -294,8 +295,8 @@ function Home() {
                   customBorderRadius: 'rounded-[4px] md:rounded-[12px]'
                 }
               ]}
-              sectionEyebrow="Calliper"
-              sectionTitle="Democratising data for startups"
+              sectionLogo={encodeURI('/assets/calliperlogo.png')}
+              sectionRole="Designer, 2022-2023"
               sectionDescription={
                 <div>
                   <p className="mb-4">
@@ -334,8 +335,8 @@ function Home() {
                   noBorder: true
                 }
               ]}
-              sectionEyebrow="Hotjar"
-              sectionTitle="Freelance Growth Designer, 2022"
+              sectionLogo={encodeURI('/assets/ hotjar-logo.png'.trim())}
+              sectionRole="Freelance Growth Designer, 2022"
               sectionDescription="Ran experiments with the pricing page (which accounted for 20% of signups). Separately, tested and removed friction points in the sign-up and onboarding process that weren't relevant to all user personas, then designed a personalized onboarding flow for our target customers—product teams in small and medium tech companies."
               sectionStats={
                 <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
