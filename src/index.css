@@ -123,6 +123,7 @@ body {
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-list-bullet: var(--list-bullet);
 }
 
 :root {
@@ -158,6 +159,7 @@ body {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --list-bullet: #5469FE;
 }
 
 .dark {
@@ -267,4 +269,9 @@ img.broken-image-fallback {
   .content-card-shell {
     border-width: 4px;
   }
+}
+
+/* List bullet color utility */
+.list-bullet-accent li::marker {
+  color: var(--list-bullet);
 }

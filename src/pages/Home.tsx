@@ -191,7 +191,7 @@ function Home() {
               sectionTitle="Financial subscriptions from 0 to £8 million in revneue"
               sectionDescription="Tide is a banking app with more than 1M users, where I built first-of-its-kind financial and tax forecasting tools that reimagine how businesses plan and operate. The system anticipates needs, doesn't wait for asks. It proactively surfaces tasks like upcoming tax deadlines before they became urgent. Introduced a completely new activation strategy for Tide's subscription products — freemium experiences that deliver value upfront."
               sectionStats={
-                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4" style={{ fontFamily: 'Aeonik' }}>
+                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
                   <li>0→<strong className="font-semibold">12,000+</strong> subscribers, 0→<strong className="font-semibold">£8M+</strong> annual recurring revenue</li>
                   <li><strong className="font-semibold">22%</strong> activation rate (vs. 0.9% baseline) - a <strong className="font-semibold">24x</strong> improvement</li>
                   <li>Built AI assistant for <strong className="font-semibold">3K+</strong> employees</li>
@@ -218,26 +218,35 @@ function Home() {
               ]}
               sectionEyebrow="Tide AI"
               sectionTitle="AI assistant for 3,000+ employees"
-              sectionDescription="Built an internal AI assistant to help Tide employees work more efficiently. The system provides intelligent answers to questions about products, processes, and company information, reducing support tickets and improving employee productivity."
+              sectionDescription={
+                <div>
+                  <p className="mb-4">
+                    As Tide scaled (1000 → 3000 employees), the context got fragmented across tools. That creates communication silos that slows decision-making and reduces velocity. Employees waste days hunting for answers.
+                  </p>
+                  <p>
+                  I partnered with an engineer to build an AI-powered internal search tool that surfaces instant, actionable answers from across all company systems. 
+                  </p>
+                </div>
+              }
               sectionStats={
-                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4" style={{ fontFamily: 'Aeonik' }}>
-                  <li>Built AI assistant for <strong className="font-semibold">3,000+</strong> employees</li>
-                  <li>Reduced support tickets by <strong className="font-semibold">40%</strong></li>
-                  <li>Improved response time by <strong className="font-semibold">80%</strong></li>
+                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
+                  <li><strong className="font-semibold">Scope:</strong> 2 person team, won a hackathon</li> 
+                  <li><strong className="font-semibold">Approach:</strong> Building in Cursor & V0, no Figma, MVP in 5 days </li>
+                  <li><strong className="font-semibold">Adoption</strong> Currently used across support & legal (~350 DAUs)</li>
                 </ul>
               }
               sectionCTA={{
-                label: 'Case study coming soon',
-                href: '#',
+                label: 'View prototype',
+                href: 'https://tide-ai-mock.vercel.app/',
                 show: true,
-                disabled: true
+                disabled: false
               }}
               singleItemWider={true}
               hideItemText={true}
             />
           </section>
 
-          {/* PORTFOLIO 2024 CASE STUDY */}
+          {/* CALLIPER CASE STUDY */}
           <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
@@ -249,14 +258,22 @@ function Home() {
                   customBorderRadius: 'rounded-[4px] md:rounded-[12px]'
                 }
               ]}
-              sectionEyebrow="Portfolio 2024"
-              sectionTitle="Personal portfolio redesign"
-              sectionDescription="A complete redesign of my personal portfolio showcasing my work and design process. Built with modern web technologies and focused on performance, accessibility, and user experience."
+              sectionEyebrow="Calliper"
+              sectionTitle="Democratising data for startups"
+              sectionDescription={
+                <div>
+                  <p className="mb-4">
+                    Calliper democratises data. Makes it social. Lets anyone get answers in seconds, not weeks. Connected scattered business data into one feed with plain-English queries.
+                  </p>
+                  <p>
+                    I spoke with few dozens of people working in startups to understand the frequent data questions they have and built the MVP (slack bot) as well as core functionality such as data feed and goal tracking. Backed by Sequoia with $1.2M seed round. Later they got acquired.
+                  </p>
+                </div>
+              }
               sectionStats={
-                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4" style={{ fontFamily: 'Aeonik' }}>
-                  <li>Built with <strong className="font-semibold">React</strong> and <strong className="font-semibold">TypeScript</strong></li>
-                  <li>Optimized for <strong className="font-semibold">performance</strong> and accessibility</li>
-                  <li>Showcasing <strong className="font-semibold">15+</strong> projects and case studies</li>
+                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
+                  <li>Conducted <strong className="font-semibold">25+ interviews</strong> to validate the problems to focus on</li>
+                  <li>Built the <strong className="font-semibold">design system from 0</strong> & shipped MVP in <strong className="font-semibold">3 months</strong></li>
                 </ul>
               }
               sectionCTA={{
@@ -285,7 +302,7 @@ function Home() {
               sectionTitle="Freelance Growth Designer, 2022"
               sectionDescription="Ran experiments with the pricing page (which accounted for 20% of signups). Separately, tested and removed friction points in the sign-up and onboarding process that weren't relevant to all user personas, then designed a personalized onboarding flow for our target customers—product teams in small and medium tech companies."
               sectionStats={
-                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4" style={{ fontFamily: 'Aeonik' }}>
+                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
                   <li><strong className="font-semibold">10%</strong> overall improvement in activation across all segments</li>
                   <li><strong className="font-semibold">30x</strong> improvement in sales pipeline (0.5% to 15% demos booked)</li>
                   <li>Redesigned onboarding for <strong className="font-semibold">15k</strong> monthly signups</li>

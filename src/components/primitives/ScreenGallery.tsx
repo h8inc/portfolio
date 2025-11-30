@@ -42,7 +42,7 @@ type ScreenGalleryProps = {
    */
   sectionEyebrow?: string;
   sectionTitle?: string;
-  sectionDescription?: string;
+  sectionDescription?: React.ReactNode;
   /**
    * Optional stats/metrics to display below the description
    */
@@ -209,12 +209,12 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
               </h2>
             )}
             {sectionDescription && (
-              <p
+              <div
                 className={`${typography.subheader.className} max-w-3xl text-left`}
                 style={typography.subheader.style}
               >
                 {sectionDescription}
-              </p>
+              </div>
             )}
             {sectionCTA && sectionCTA.show && (
               sectionCTA.disabled ? (
@@ -281,12 +281,12 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
               </h2>
             )}
             {sectionDescription && (
-              <p
+              <div
                 className={`${typography.subheader.className}`}
                 style={typography.subheader.style}
               >
                 {sectionDescription}
-              </p>
+              </div>
             )}
             {sectionStats && (
               <div className="mt-6">
