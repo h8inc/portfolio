@@ -362,7 +362,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
             {sectionCTA && sectionCTA.show && (
               sectionCTA.disabled ? (
                 <span
-                  className={`${buttonStyles.primary} mt-6 opacity-50 cursor-not-allowed`}
+                  className={`${buttonStyles.primary} mt-12 opacity-50 cursor-not-allowed`}
                   style={buttonFontFamily.primary}
                 >
                   {sectionCTA.label}
@@ -370,7 +370,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
               ) : (
                 <Link
                   to={sectionCTA.href}
-                  className={`${buttonStyles.primary} mt-6`}
+                  className={`${buttonStyles.primary} mt-12`}
                   style={buttonFontFamily.primary}
                 >
                   {sectionCTA.label}
