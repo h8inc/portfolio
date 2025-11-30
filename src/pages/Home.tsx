@@ -246,6 +246,42 @@ function Home() {
             />
           </section>
 
+          {/* OPAA CASE STUDY */}
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+            <ScreenGallery
+              items={[
+                {
+                  id: 'opaa',
+                  imageSrc: encodeURI('/assets/Opaa.png'),
+                  imageAlt: 'Opaa restaurant POS system',
+                  noBorder: false,
+                  customBorderRadius: 'rounded-[4px] md:rounded-[12px]'
+                }
+              ]}
+              sectionEyebrow="Opaa"
+              sectionTitle="QR-code POS system for restaurants"
+              sectionDescription={
+                <div>
+                  <p className="mb-4">
+                    Restaurant owners lose revenue during peak hours because they can't serve fast enough. Customers grow frustrated waiting to order, having orders forgotten, or spending 20+ minutes trying to pay the bill.
+                  </p>
+                  <p>
+                    I shipped a QR-code-based point-of-sale system in 2 weeks—from concept to working prototype—using AI-assisted development (Claude + v0). The system lets customers order and pay directly from their table, removing service bottlenecks while maintaining the dining experience.
+                  </p>
+                </div>
+              }
+              
+              sectionCTA={{
+                label: 'View project',
+                href: 'https://opaa-website.vercel.app/en',
+                show: true,
+                disabled: false
+              }}
+              singleItemWider={true}
+              hideItemText={true}
+            />
+          </section>
+
           {/* CALLIPER CASE STUDY */}
           <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
