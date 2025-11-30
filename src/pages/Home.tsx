@@ -38,7 +38,7 @@ function Home() {
         id: 'insights-free',
         eyebrow: 'Financial insights',
         title: 'Free state experience',
-        description: 'Onboarding experience for the insights feature, designed to showcase value before requiring subscription.',
+        description: 'Answering frequently asked questions like "Am I profitable?" and "Will I have enough money?"',
         imageSrc: encodeURI('/assets/Insights-free state.png'),
         imageAlt: 'Financial insights free state'
       },
@@ -52,7 +52,7 @@ function Home() {
       },
       {
         id: 'insights',
-        eyebrow: 'Financial insights',
+        eyebrow: 'Understanding patterns',
         title: 'Understand spending patterns',
         description: 'Smart analysis and categorization that surfaces trends and helps members make better financial decisions.',
         imageSrc: encodeURI('/assets/Future-Insights-after-slice-5.png'),
@@ -76,9 +76,9 @@ function Home() {
       },
       {
         id: 'registered-business',
-        eyebrow: 'Business registration',
+        eyebrow: 'Tax management',
         title: 'VAT registered and connected',
-        description: 'Registered business with VAT registration status and connected subscription services.',
+        description: 'Tax estimates and reminders for upcoming tax deadlines that are updated automatically.',
         imageSrc: encodeURI('/assets/Registered Business - VAT registered - Connected (subscribed).png'),
         imageAlt: 'Registered Business VAT registered connected subscribed'
       }
