@@ -206,7 +206,7 @@ function Home() {
           </section>
 
           {/* TIDE AI CASE STUDY */}
-          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -283,7 +283,7 @@ function Home() {
           </section>
 
           {/* CALLIPER CASE STUDY */}
-          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
