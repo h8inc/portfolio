@@ -218,7 +218,7 @@ function Home() {
                 }
               ]}
               sectionLogo={<div style={{ transform: 'scale(0.6)', transformOrigin: 'left center' }}><TideLogo className="max-w-full max-h-full w-full h-full" /></div>}
-              sectionRole="Staff Designer, 2023-present"
+              sectionRole="PM, designer, front-end, 2025"
               sectionDescription={
                 <div>
                   <p className="mb-4">
@@ -260,7 +260,7 @@ function Home() {
                 }
               ]}
               sectionLogo={encodeURI('/assets/opaalogo.png')}
-              sectionRole="Founder & Designer, 2024"
+              sectionRole="I shipped the MVP in code, 2025"
               sectionDescription={
                 <div>
                   <p className="mb-4">
