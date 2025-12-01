@@ -93,6 +93,52 @@ function Tide() {
     []
   );
 
+  const taxScreens = useMemo(
+    () => [
+      {
+        id: 'activation',
+        eyebrow: 'Tax Product',
+        title: 'Tax deadlines and estimates',
+        description: 'Automated estimates and VAT management helps businesses prepare for tax obligations.',
+        imageSrc: encodeURI('/assets/Registered Business - VAT registered - Connected (subscribed).png'),
+        imageAlt: 'Registered business VAT estimates view'
+      },
+      {
+        id: 'tax',
+        eyebrow: 'Tax savings on autopilot',
+        title: 'Predict and plan ahead',
+        description: 'Tax savings account that saves on behalf of businesses and bears interest on the balance.',
+        imageSrc: encodeURI('/assets/Tax Account timeline.png'),
+        imageAlt: 'Tax account timeline and actions'
+      },
+      {
+        id: 'filing-to-hmrc',
+        eyebrow: 'Tax estimate',
+        title: 'Filing to HMRC',
+        description: 'Calculation of tax estimate based on trading activity data. Forecast models into the future based last period.',
+        imageSrc: encodeURI('/assets/Filing to HMRC.png'),
+        imageAlt: 'Filing to HMRC interface'
+      },
+      {
+        id: 'payment-received',
+        eyebrow: 'Saving for tax season',
+        title: 'Payment received',
+        description: 'The tax account enables users to add funds manually or automatically.',
+        imageSrc: encodeURI('/assets/Payment received.png'),
+        imageAlt: 'Payment received confirmation'
+      },
+      {
+        id: 'filing-complete',
+        eyebrow: 'Tax completion',
+        title: 'Filing complete',
+        description: 'Confirmation and receipt of completed tax filings and submissions.',
+        imageSrc: encodeURI('/assets/Filing comeplete.png'),
+        imageAlt: 'Filing complete confirmation'
+      }
+    ],
+    []
+  );
+
   const additionalScreens = useMemo(
     () => [
       {
@@ -311,10 +357,10 @@ function Tide() {
       {/* TAX MANAGEMENT */}
       <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
         <ScreenGallery 
-          items={signatureScreens}
-          sectionEyebrow="Tide Admin"
-          sectionTitle="Tax Management"
-          sectionDescription="The product anticipates needs and proactively surfaces tasks like upcoming tax deadlines before they became urgent."
+          items={taxScreens}
+          sectionEyebrow="Tax forecasting"
+          sectionTitle="Predict and plan ahead"
+          sectionDescription="Helps micro business owners feel confident about taxes by helping them with tax calculations, tax savings and reminders to pay on time. More coming soon..."
           sectionCTA={{
             label: "View case study",
             href: "#",
