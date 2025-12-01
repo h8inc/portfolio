@@ -360,7 +360,19 @@ function Tide() {
           items={taxScreens}
           sectionEyebrow="Tax forecasting"
           sectionTitle="Predict and plan ahead"
-          sectionDescription="Helps micro business owners feel confident about taxes by helping them with tax calculations, tax savings and reminders to pay on time. More coming soon..."
+          sectionDescription={
+            <div>
+              <p className="mb-4">
+                <strong>Problem:</strong> Business owners with low financial literacy had no idea how much tax they owed until HMRC sent the bill - often too late to afford it.
+              </p>
+              <p className="mb-4">
+                <strong>Solution:</strong> Tax savings account with auto-save + tax management module for filing. Organized by jobs-to-be-done, not tax types. Plain-English explanations throughout.
+              </p>
+              <p>
+                <strong>Impact:</strong> 20% of signups, £4M ARR, 92% retention. 87% of users reported feeling more in control of their taxes.
+              </p>
+            </div>
+          }
           sectionCTA={{
             label: "View case study",
             href: "#",
