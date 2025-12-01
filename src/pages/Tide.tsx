@@ -249,28 +249,36 @@ function Tide() {
         <ScreenGallery 
           items={[
             {
-              id: 'admin-os-premium',
+              id: 'admin-os',
               eyebrow: 'Admin OS',
-              title: 'Freemium value experience',
-              description: 'Creating surfaces for users to experience different bits of value across products. For example, admin searches give tax estimates, but users need to subscribe to view the breakdown.',
+              title: 'All admin in one place',
+              description: 'The system streamlines urgent admin tasks and has built in easy discoverability of frequently used features.',
               imageSrc: encodeURI('/assets/✅ Admin - no tasks comeplete.png'),
-              imageAlt: 'Admin OS premium features'
+              imageAlt: 'Admin OS main view'
             },
             {
-              id: 'financial-insights-premium',
+              id: 'insights-free-state',
               eyebrow: 'Financial Insights',
-              title: 'High-level metrics, premium details',
-              description: 'Users can see high-level metrics like profit and loss this month and projected balance in 30 days. To view details and understand the calculations behind those numbers, they need to subscribe.',
-              imageSrc: encodeURI('/assets/Future-Insights-after-slice-5.png'),
-              imageAlt: 'Financial insights premium features'
+              title: 'Free state experience',
+              description: 'Surfaces the insights important to users and giving them a simpler way to spot changes.',
+              imageSrc: encodeURI('/assets/Insights - free state1.png'),
+              imageAlt: 'Financial insights free state'
             },
             {
-              id: 'admin-os-structure',
-              eyebrow: 'Admin OS',
-              title: 'Main tabs structure',
-              description: 'The main tabs in the mobile application feature a horizontal drawer at the top with products to choose from—validated as the best approach for discoverability. Below is the upcoming tasks section that surfaces urgent tasks like tax deadlines, overdue bills, unpaid invoices, payroll, and confirmation statements. Quick actions surface key jobs to be done, tightly correlated with user engagement and retention.',
-              imageSrc: encodeURI('/assets/✅ Admin - no tasks comeplete.png'),
-              imageAlt: 'Admin OS main tabs structure'
+              id: 'tax-free-state',
+              eyebrow: 'Tax forecasting',
+              title: 'Tax estimates and reminders',
+              description: 'Give users confidence about taxes. Helps users calculate, save and pay on time.',
+              imageSrc: encodeURI('/assets/tax-free-state.png'),
+              imageAlt: 'Tax free state'
+            },
+            {
+              id: 'bookkeeping',
+              eyebrow: 'Automatic Bookkeeping',
+              title: 'Keep records clean and compliant',
+              description: 'Automated categorization and health scoring that guides members toward tax-ready books without manual effort.',
+              imageSrc: encodeURI('/assets/Bookkeeping - Slice 4.png'),
+              imageAlt: 'Bookkeeping score and smart categorization'
             }
           ]}
           sectionEyebrow="Admin OS"
