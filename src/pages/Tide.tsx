@@ -274,14 +274,14 @@ function Tide() {
             }
           ]}
           sectionEyebrow="Admin OS"
-          sectionTitle="Freemium value experience & premium features"
+          sectionTitle="Activation up 4× — from 6% to 24%"
           sectionDescription={
             <div>
               <p className="mb-4">
-                Admin OS and premium features create surfaces for users to experience different bits of value across products. For example, admin searches give tax estimates, but users need to subscribe to view the breakdown. Financial insights show high-level metrics like profit and loss this month and projected balance in 30 days, but to dive into details and understand the calculations behind those numbers, they need to subscribe.
+                I led the information architecture redesign of the Admin tab, reshaping it to improve discoverability, support a growing product suite, and drive activation. The work spanned 5–6 engineering teams and established a clearer, more scalable structure for both freemium and premium experiences. Users now access high-value moments earlier—such as tax estimates or cash-flow projections—while deeper insights sit behind subscription, creating a natural path to upgrade.
               </p>
               <p>
-                The main tabs in the mobile application feature a horizontal drawer at the top with products to choose from—validated as the best approach for discoverability. Below is the upcoming tasks section that surfaces urgent tasks like tax deadlines, overdue bills, unpaid invoices, payroll, and confirmation statements. The system directs attention towards what's most urgent, freeing up space for small business owners to run their business. Quick actions surface key jobs to be done such as creating an invoice or creating a bill, tightly correlated with user product engagement and retention.
+                On mobile, the redesigned top-level product drawer improved navigation across products, and the new upcoming-tasks feed surfaced urgent work like tax deadlines, overdue bills, and payroll. Paired with streamlined quick actions (e.g., create invoice, add bill), the system directs attention where it matters, increasing engagement and supporting long-term retention.
               </p>
             </div>
           }
