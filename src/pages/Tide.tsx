@@ -289,7 +289,7 @@ function Tide() {
                 I led the information architecture redesign of the Admin tab, reshaping it to improve discoverability, support a growing product suite, and drive activation. The work spanned 5–6 engineering teams and established a clearer, more scalable structure for both freemium and premium experiences. Users now access high-value moments earlier—such as tax estimates or cash-flow projections—while deeper insights sit behind subscription, creating a natural path to upgrade.
               </p>
               <p>
-                On mobile, the redesigned top-level product drawer improved navigation across products, and the new upcoming-tasks feed surfaced urgent work like tax deadlines, overdue bills, and payroll. Paired with streamlined quick actions (e.g., create invoice, add bill), the system directs attention where it matters, increasing engagement and supporting long-term retention.
+                Introduced a top-level product drawer and "Your tasks" feed that surfaces urgent work like tax deadlines, overdue bills, and payroll. Paired with streamlined quick actions (e.g., create invoice, add bill), the system directs attention where it matters, increasing engagement and supporting long-term retention.
               </p>
             </div>
           }
