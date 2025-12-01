@@ -96,6 +96,22 @@ function Tide() {
   const additionalScreens = useMemo(
     () => [
       {
+        id: 'insights-subscribed',
+        eyebrow: 'Financial insights',
+        title: 'Subscribed state experience',
+        description: 'Full access to detailed insights and analysis for subscribed members.',
+        imageSrc: encodeURI('/assets/Insights-subscribed.png'),
+        imageAlt: 'Financial insights subscribed state'
+      },
+      {
+        id: 'insights',
+        eyebrow: 'Financial insights',
+        title: 'Smart analysis',
+        description: 'Smart analysis and categorization that surfaces trends and helps members make better financial decisions.',
+        imageSrc: encodeURI('/assets/Future-Insights-after-slice-5.png'),
+        imageAlt: 'Financial insights and spending analysis'
+      },
+      {
         id: 'cashflow',
         eyebrow: 'Cash flow',
         title: 'Track and forecast with confidence',
@@ -110,14 +126,6 @@ function Tide() {
         description: 'Comprehensive view of projected transactions and financial activity.',
         imageSrc: encodeURI('/assets/Transactions/Populated/projected.png'),
         imageAlt: 'Projected transactions view'
-      },
-      {
-        id: 'insights',
-        eyebrow: 'Financial insights',
-        title: 'Understand spending patterns',
-        description: 'Smart analysis and categorization that surfaces trends and helps members make better financial decisions.',
-        imageSrc: encodeURI('/assets/Future-Insights-after-slice-5.png'),
-        imageAlt: 'Financial insights and spending analysis'
       },
       {
         id: 'bookkeeping',
@@ -214,38 +222,37 @@ function Tide() {
         </div>
       </section>
 
-      {/* SIGNATURE SCREENS GALLERY */}
+      {/* SMART INSIGHTS */}
       <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
-        <ScreenGallery 
-          items={signatureScreens}
-          sectionEyebrow="Tide Admin"
-          sectionTitle="Tax Management"
-          sectionDescription="The product anticipates needs and proactively surfaces tasks like upcoming tax deadlines before they became urgent."
-          sectionCTA={{
-            label: "View case study",
-            href: "#",
-            show: false
-          }}
-        />
-      </section>
-
-      {/* ADDITIONAL SCREENS GALLERY */}
-      <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
         <ScreenGallery 
           items={additionalScreens}
           sectionEyebrow="Financial Tools"
-          sectionTitle="Smart insights & bookkeeping"
-          sectionDescription="Automated tools that help businesses understand spending patterns, forecast cash flow, and maintain tax-ready books with minimal manual effort."
+          sectionTitle="Smart Insights"
+          sectionDescription={
+            <div>
+              <p className="mb-4">
+                I discovered (40+ interviews, dozens of surveys and usability tests) that small business owners - 42% of whom had limited or no financial literacy before starting - consistently ask a few fundamental questions no other competitor answers fully.
+              </p>
+              <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent mb-4" style={{ fontFamily: 'Aeonik' }}>
+                <li>Am I profitable? Is it trending up or down?</li>
+                <li>How are my expenses trending?</li>
+                <li>Will I have enough money to pay my bills and keep afloat?</li>
+              </ul>
+              <p>
+                I designed products that give clear answers to these painful and frequent questions. These products contributed to decreasing churn from 14% → 8% and hitting our recurring revenue goals.
+              </p>
+            </div>
+          }
           sectionCTA={{
-            label: "Explore features",
-            href: "#",
-            show: false
+            label: "View prototype",
+            href: "https://tide-mocks.netlify.app/cash-flow",
+            show: true
           }}
         />
       </section>
 
       {/* ADMIN OS & PREMIUM FEATURES */}
-      <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+      <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
         <ScreenGallery 
           items={[
             {
@@ -293,6 +300,21 @@ function Tide() {
               </p>
             </div>
           }
+          sectionCTA={{
+            label: "View case study",
+            href: "#",
+            show: false
+          }}
+        />
+      </section>
+
+      {/* TAX MANAGEMENT */}
+      <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+        <ScreenGallery 
+          items={signatureScreens}
+          sectionEyebrow="Tide Admin"
+          sectionTitle="Tax Management"
+          sectionDescription="The product anticipates needs and proactively surfaces tasks like upcoming tax deadlines before they became urgent."
           sectionCTA={{
             label: "View case study",
             href: "#",
