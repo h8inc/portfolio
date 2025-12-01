@@ -253,7 +253,7 @@ function Tide() {
               eyebrow: 'Admin OS',
               title: 'All admin in one place',
               description: 'The system streamlines urgent admin tasks and has built in easy discoverability of frequently used features.',
-              imageSrc: encodeURI('/assets/✅ Admin - no tasks comeplete.png'),
+              imageSrc: encodeURI('/assets/✅ Admin - free.png'),
               imageAlt: 'Admin OS main view'
             },
             {
