@@ -7,6 +7,7 @@ import { MarqueeBanner } from '../components/MarqueeBanner';
 import { ScreenGallery } from '../components/primitives/ScreenGallery';
 import { Link } from 'react-router-dom';
 import { X } from 'lucide-react';
+import { TideLogo } from '../components/icons/TideLogo';
 
 function Tide() {
   // Tide ARR trajectory (mid-2023 through today)
@@ -237,6 +238,55 @@ function Tide() {
           sectionDescription="Automated tools that help businesses understand spending patterns, forecast cash flow, and maintain tax-ready books with minimal manual effort."
           sectionCTA={{
             label: "Explore features",
+            href: "#",
+            show: false
+          }}
+        />
+      </section>
+
+      {/* ADMIN OS & PREMIUM FEATURES */}
+      <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+        <ScreenGallery 
+          items={[
+            {
+              id: 'admin-os-premium',
+              eyebrow: 'Admin OS',
+              title: 'Freemium value experience',
+              description: 'Creating surfaces for users to experience different bits of value across products. For example, admin searches give tax estimates, but users need to subscribe to view the breakdown.',
+              imageSrc: encodeURI('/assets/✅ Admin - no tasks comeplete.png'),
+              imageAlt: 'Admin OS premium features'
+            },
+            {
+              id: 'financial-insights-premium',
+              eyebrow: 'Financial Insights',
+              title: 'High-level metrics, premium details',
+              description: 'Users can see high-level metrics like profit and loss this month and projected balance in 30 days. To view details and understand the calculations behind those numbers, they need to subscribe.',
+              imageSrc: encodeURI('/assets/Future-Insights-after-slice-5.png'),
+              imageAlt: 'Financial insights premium features'
+            },
+            {
+              id: 'admin-os-structure',
+              eyebrow: 'Admin OS',
+              title: 'Main tabs structure',
+              description: 'The main tabs in the mobile application feature a horizontal drawer at the top with products to choose from—validated as the best approach for discoverability. Below is the upcoming tasks section that surfaces urgent tasks like tax deadlines, overdue bills, unpaid invoices, payroll, and confirmation statements. Quick actions surface key jobs to be done, tightly correlated with user engagement and retention.',
+              imageSrc: encodeURI('/assets/✅ Admin - no tasks comeplete.png'),
+              imageAlt: 'Admin OS main tabs structure'
+            }
+          ]}
+          sectionEyebrow="Admin OS"
+          sectionTitle="Freemium value experience & premium features"
+          sectionDescription={
+            <div>
+              <p className="mb-4">
+                Admin OS and premium features create surfaces for users to experience different bits of value across products. For example, admin searches give tax estimates, but users need to subscribe to view the breakdown. Financial insights show high-level metrics like profit and loss this month and projected balance in 30 days, but to dive into details and understand the calculations behind those numbers, they need to subscribe.
+              </p>
+              <p>
+                The main tabs in the mobile application feature a horizontal drawer at the top with products to choose from—validated as the best approach for discoverability. Below is the upcoming tasks section that surfaces urgent tasks like tax deadlines, overdue bills, unpaid invoices, payroll, and confirmation statements. The system directs attention towards what's most urgent, freeing up space for small business owners to run their business. Quick actions surface key jobs to be done such as creating an invoice or creating a bill, tightly correlated with user product engagement and retention.
+              </p>
+            </div>
+          }
+          sectionCTA={{
+            label: "View case study",
             href: "#",
             show: false
           }}
