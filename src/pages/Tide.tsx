@@ -318,7 +318,7 @@ function Tide() {
             </div>
           }
           sectionCTA={{
-            label: "View case study",
+            label: "View work",
             href: "https://www.figma.com/deck/yryrn4jmKZIQ1zRUqXQ8Wm/Tide-IA-case-study?node-id=1-42&viewport=-11997%2C-58%2C0.61&t=fk7cUFea77PAYo3j-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
             show: true
           }}

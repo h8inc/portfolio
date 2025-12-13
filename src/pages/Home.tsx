@@ -199,7 +199,7 @@ function Home() {
                 </ul>
               }
               sectionCTA={{
-                label: 'View case study',
+                label: 'View work',
                 href: '/tide',
                 show: true
               }}
