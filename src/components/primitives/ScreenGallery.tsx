@@ -262,6 +262,16 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
                 >
                   {sectionCTA.label}
                 </span>
+              ) : sectionCTA.href.startsWith('http') ? (
+                <a
+                  href={sectionCTA.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${buttonStyles.primary} mt-6 inline-block`}
+                  style={buttonFontFamily.primary}
+                >
+                  {sectionCTA.label}
+                </a>
               ) : (
                 <Link
                   to={sectionCTA.href}
@@ -367,6 +377,16 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
                 >
                   {sectionCTA.label}
                 </span>
+              ) : sectionCTA.href.startsWith('http') ? (
+                <a
+                  href={sectionCTA.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${buttonStyles.primary} mt-12`}
+                  style={buttonFontFamily.primary}
+                >
+                  {sectionCTA.label}
+                </a>
               ) : (
                 <Link
                   to={sectionCTA.href}

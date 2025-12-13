@@ -268,37 +268,8 @@ function Tide() {
         </div>
       </section>
 
-      {/* SMART INSIGHTS */}
-      <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
-        <ScreenGallery 
-          items={additionalScreens}
-          sectionEyebrow="Financial Tools"
-          sectionTitle="Smart Insights"
-          sectionDescription={
-            <div>
-              <p className="mb-4">
-                I discovered (40+ interviews, dozens of surveys and usability tests) that small business owners - 42% of whom had limited or no financial literacy before starting - consistently ask a few fundamental questions no other competitor answers fully.
-              </p>
-              <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent mb-4" style={{ fontFamily: 'Aeonik' }}>
-                <li>Am I profitable? Is it trending up or down?</li>
-                <li>How are my expenses trending?</li>
-                <li>Will I have enough money to pay my bills and keep afloat?</li>
-              </ul>
-              <p>
-                I designed products that give clear answers to these painful and frequent questions. These products contributed to decreasing churn from 14% → 8% and hitting our recurring revenue goals.
-              </p>
-            </div>
-          }
-          sectionCTA={{
-            label: "View prototype",
-            href: "https://tide-mocks.netlify.app/cash-flow",
-            show: true
-          }}
-        />
-      </section>
-
       {/* ADMIN OS & PREMIUM FEATURES */}
-      <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
+      <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
         <ScreenGallery 
           items={[
             {
@@ -348,8 +319,37 @@ function Tide() {
           }
           sectionCTA={{
             label: "View case study",
-            href: "#",
-            show: false
+            href: "https://www.figma.com/deck/yryrn4jmKZIQ1zRUqXQ8Wm/Tide-IA-case-study?node-id=1-42&viewport=-11997%2C-58%2C0.61&t=fk7cUFea77PAYo3j-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
+            show: true
+          }}
+        />
+      </section>
+
+      {/* SMART INSIGHTS */}
+      <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
+        <ScreenGallery 
+          items={additionalScreens}
+          sectionEyebrow="Financial Tools"
+          sectionTitle="Smart Insights"
+          sectionDescription={
+            <div>
+              <p className="mb-4">
+                I discovered (40+ interviews, dozens of surveys and usability tests) that small business owners - 42% of whom had limited or no financial literacy before starting - consistently ask a few fundamental questions no other competitor answers fully.
+              </p>
+              <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent mb-4" style={{ fontFamily: 'Aeonik' }}>
+                <li>Am I profitable? Is it trending up or down?</li>
+                <li>How are my expenses trending?</li>
+                <li>Will I have enough money to pay my bills and keep afloat?</li>
+              </ul>
+              <p>
+                I designed products that give clear answers to these painful and frequent questions. These products contributed to decreasing churn from 14% → 8% and hitting our recurring revenue goals.
+              </p>
+            </div>
+          }
+          sectionCTA={{
+            label: "View prototype",
+            href: "https://tide-mocks.netlify.app/cash-flow",
+            show: true
           }}
         />
       </section>
