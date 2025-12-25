@@ -24,7 +24,8 @@
     "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@h8inc/perp-ui": ["./src/vendor/perp-ui.ts"]
     }
   },
   "include": ["src"]

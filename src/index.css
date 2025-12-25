@@ -2,6 +2,11 @@
 
 @plugin "tailwindcss-animate";
 
+/* Ensure Tailwind scans classes used inside the perp-ui package (installed via GitHub subpath). */
+@source "../node_modules/component-forge/packages/perp-ui/src/**/*.{js,ts,jsx,tsx}";
+/* LandingPage / BackgroundGlyphs currently live in the installed repo copy under component-forge/src. */
+@source "../node_modules/component-forge/src/**/*.{js,ts,jsx,tsx}";
+
 @custom-variant dark (&:is(.dark *));
 
 /* Aeonik Extended Font Family */
@@ -217,6 +222,29 @@ body {
     padding: 0;
     overscroll-behavior-x: none;
   }
+}
+
+/* Override Inter font with Aeonik - catch any Inter references */
+[class*="font-['Inter']"],
+[class*='font-["Inter"]'],
+[class*="font-['inter']"],
+[class*='font-["inter"]'],
+[style*="font-family: Inter"],
+[style*="font-family: 'Inter'"],
+[style*='font-family: "Inter"'],
+[style*="font-family: inter"],
+[style*="font-family: 'inter'"],
+[style*='font-family: "inter"'] {
+  font-family: 'Aeonik Extended', system-ui, -apple-system, sans-serif !important;
+}
+
+/* Ensure all text elements default to Aeonik */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Aeonik Extended', system-ui, -apple-system, sans-serif;
+}
+
+p, span, div, a, button, input, textarea, select, label, li, td, th {
+  font-family: 'Aeonik', system-ui, -apple-system, sans-serif;
 }
 
 /* Broken Image Fallback Styles */

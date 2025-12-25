@@ -9,6 +9,9 @@ import { trackEvent } from '../lib/analytics';
 import { ScreenGallery } from '../components/primitives/ScreenGallery';
 import { typography } from '../design/typography';
 import { TideLogo } from '../components/icons/TideLogo';
+import { PortfolioSection } from '../components/PortfolioSection';
+import { LandingPage, BackgroundGlyphs, CryptoSwapWidgetPrimitive, TradingBoxPrimitive } from '@h8inc/perp-ui';
+import { ExtendedInteractiveMock } from '../components/ExtendedInteractiveMock';
 
 let theme: Theme = 'light';
 // only use 'centered' container for standalone components, never for full page apps or websites.
@@ -204,6 +207,43 @@ function Home() {
                 show: true
               }}
             />
+          </section>
+
+          {/* PERP UI PRIMITIVES (PACKAGE SHOWCASE) */}
+          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
+            <PortfolioSection
+              logo={encodeURI('/assets/Extended-logo.svg')}
+              role="Design + front-end, 2025"
+              eyebrow="UI primitives"
+              title="Perp / swap widget (from a shared package)"
+              description={
+                <div>
+                  <p className="mb-4">
+                    This section renders a real, interactive component shipped as an npm package (not a screenshot). Tailwind is configured to scan the
+                    package source so styles apply correctly.
+                  </p>
+                  <p>
+                    It’s useful for showcasing production UI patterns—forms, states, and micro-interactions—directly inside the portfolio.
+                  </p>
+                </div>
+              }
+              cta={{
+                label: 'View Case Study',
+                href: '/extended',
+                show: true,
+              }}
+            >
+              <div className="w-full flex justify-center">
+                {/* Interactive ScreenMock-sized embed (same rhythm as the gallery cards) */}
+                <div className="w-[390px] max-w-full">
+                  <div className="rounded-[34px] border-[3px] border-[#130F25] shadow-[0_12px_32px_rgba(10,8,23,0.12)] overflow-hidden">
+                    <div className="w-[390px] h-[600px]">
+                      <ExtendedInteractiveMock />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </PortfolioSection>
           </section>
 
           {/* TIDE AI CASE STUDY */}
