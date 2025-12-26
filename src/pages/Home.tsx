@@ -219,11 +219,13 @@ function Home() {
               description={
                 <div>
                   <p className="mb-4">
-                    This section renders a real, interactive component shipped as an npm package (not a screenshot). Tailwind is configured to scan the
-                    package source so styles apply correctly.
+                    Design strategy and prototyping in code for the core trading experience. I built UI components
+                    that surface value before wallet connection, collapse deposit and swap into a single action, and highlight multi-chain advantages early
+                    in the funnel—materially reducing time-to-first-trade.
                   </p>
-                  <p>
-                    It’s useful for showcasing production UI patterns—forms, states, and micro-interactions—directly inside the portfolio.
+                  <p className="mb-4">
+                    I re-architected trading and portfolio surfaces to support both spot and perps, mobile-first usage, and distinct trading styles, using
+                    progressive disclosure and a clear metric hierarchy.
                   </p>
                 </div>
               }
