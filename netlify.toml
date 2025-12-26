@@ -1,6 +1,9 @@
 [build]
   publish = "dist"
-  command = "npm run build"
+  # Netlify sometimes installs with optional deps omitted; Vite/Rollup/esbuild require
+  # platform-specific optional packages on Linux (e.g. @esbuild/linux-x64).
+  # Force a clean install with optional deps included, then run the build.
+  command = "npm ci --include=optional --no-audit --no-fund && npm run build"
 
 [build.environment]
   NODE_VERSION = "20"
