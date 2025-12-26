@@ -65,11 +65,11 @@ function Extended() {
           sectionDescription={
             <div>
               <p className="mb-4">
-                I collapsed the “deposit first, trade second” into a single move: fund and swap in one cohesive action. Think bridge → swap
+                Fund and swap in one cohesive action. Think bridge → swap
                 without the detours—less friction, fewer drop‑offs, and a faster path to the first real moment of value.
               </p>
               <p className="mb-4">
-                With spot and multi‑asset collateral live, users can deposit USDC and receive ETH (or other assets) in the same step. It pulls volume in
+                With spot and multi‑asset collateral, users can deposit USDC and receive ETH (or other assets) in the same step. It pulls volume in
                 from other chains, lowers the barrier for newer traders, and turns a multi‑step setup into something that feels as effortless as a swap—while
                 still engineered with the right constraints and guardrails.
               </p>
@@ -141,46 +141,6 @@ function Extended() {
               <p className="mb-1">
                 <strong>Shipped:</strong> Metrics are customizable to match individual trading workflows and risk profiles.
               </p>
-            </div>
-          }
-          sectionCTA={{
-            label: 'Open prototype',
-            href: 'https://x10ded.netlify.app/',
-            show: true,
-            disabled: false,
-          }}
-          hideItemText={true}
-          singleItemWider={true}
-        />
-      </section>
-
-      <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
-        <ScreenGallery
-          items={[
-            {
-              id: 'glyph-background',
-              mockContent: (
-                <div className="relative w-full h-full bg-[#1D1D1D]">
-                  <BackgroundGlyphs />
-                  <div className="relative z-10 p-6">
-                    <div className="inline-flex items-center rounded-full bg-black/40 border border-white/10 px-3 py-1 text-xs text-white/80 backdrop-blur">
-                      Live background layer
-                    </div>
-                  </div>
-                </div>
-              ),
-              noBorder: false,
-            },
-          ]}
-          sectionEyebrow="Visual system"
-          sectionTitle="BackgroundGlyphs"
-          sectionDescription={
-            <div>
-              <p className="mb-4">
-                Animated glyph rings + ambient glows. It’s intentionally <span className="font-semibold">pointer-events: none</span> so it never blocks
-                interaction with the UI.
-              </p>
-              <p>You can reuse it as a standalone background layer behind any component or hero.</p>
             </div>
           }
           sectionCTA={{
