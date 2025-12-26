@@ -65,12 +65,13 @@ function Extended() {
           sectionDescription={
             <div>
               <p className="mb-4">
-                Inspired by Uniswap’s clarity, then reshaped for a perp DEX: remove the “setup tax” between intent and execution. Funding becomes part of
-                the trade—one cohesive action, one moment of value.
+                I collapsed the “deposit first, trade second” into a single move: fund and swap in one cohesive action. Think bridge → swap
+                without the detours—less friction, fewer drop‑offs, and a faster path to the first real moment of value.
               </p>
               <p className="mb-4">
-                With spot and multi‑asset collateral live, users can deposit USDC and receive ETH (or other assets) in the same step—shortening
-                time‑to‑first‑trade, reducing drop‑off, and lowering the barrier for newer traders.
+                With spot and multi‑asset collateral live, users can deposit USDC and receive ETH (or other assets) in the same step. It pulls volume in
+                from other chains, lowers the barrier for newer traders, and turns a multi‑step setup into something that feels as effortless as a swap—while
+                still engineered with the right constraints and guardrails.
               </p>
             </div>
           }
