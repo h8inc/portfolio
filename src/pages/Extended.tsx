@@ -60,8 +60,7 @@ function Extended() {
               noBorder: false,
             },
           ]}
-          sectionLogo={encodeURI('/assets/Extended-logo.svg')}
-          sectionRole="Design, product, front-end, 2025"
+          sectionEyebrow="Components"
           sectionTitle="Deposit & Swap"
           sectionDescription={
             <div>
