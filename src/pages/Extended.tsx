@@ -2,38 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { BackgroundGlyphs, CryptoSwapWidgetPrimitive, TradingBoxPrimitive, TradingMetrics } from '@h8inc/perp-ui';
-
-type SectionProps = {
-  id?: string;
-  eyebrow: string;
-  title: string;
-  description: React.ReactNode;
-  children: React.ReactNode;
-};
-
-const Section: React.FC<SectionProps> = ({ id, eyebrow, title, description, children }) => {
-  return (
-    <section id={id} className="w-full py-20 sm:py-24 overflow-x-clip">
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
-          <div>
-            <p className="text-xs uppercase tracking-[0.35em] text-white/60 mb-4" style={{ fontFamily: 'Aeonik Extended' }}>
-              {eyebrow}
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-4" style={{ fontFamily: 'Aeonik Extended' }}>
-              {title}
-            </h2>
-            <div className="text-white/75 text-base leading-relaxed" style={{ fontFamily: 'Aeonik' }}>
-              {description}
-            </div>
-          </div>
-
-          <div className="w-full flex justify-center lg:justify-end">{children}</div>
-        </div>
-      </div>
-    </section>
-  );
-};
+import { ScreenGallery } from '../components/primitives/ScreenGallery';
+import { ExtendedInteractiveMock } from '../components/ExtendedInteractiveMock';
 
 function Extended() {
   const handleGetStarted = () => {
@@ -42,7 +12,7 @@ function Extended() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#0b0e11] text-white">
+    <div className="min-h-screen w-full bg-[#0b0e11]">
       {/* Close button - top right (match Tide case study pattern) */}
       <Link
         to="/"
@@ -80,74 +50,149 @@ function Extended() {
         </div>
       </div>
 
-      {/* COMPONENT SECTIONS */}
-      <div className="w-full bg-[#0b0e11]">
-        <Section
-          id="components"
-          eyebrow="Components"
-          title="Deposit + Swap"
-          description={
+      {/* CASE STUDY SECTIONS (use the same section/mocks system as Home: section wrapper + ScreenGallery/ScreenMock) */}
+      <section id="components" className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
+        <ScreenGallery
+          items={[
+            {
+              id: 'deposit-swap',
+              mockContent: <ExtendedInteractiveMock />,
+              noBorder: false,
+            },
+          ]}
+          sectionLogo={encodeURI('/assets/Extended-logo.svg')}
+          sectionRole="Design, product, front-end, 2025"
+          sectionTitle="Deposit & Swap"
+          sectionDescription={
             <div>
               <p className="mb-4">
-                Inspired by Uniswap’s swap experience—simple, confident, and instantly legible—then repurposed for the realities of a perp DEX.
-                Instead of asking users to “deposit first, trade later”, the interface treats funding as part of the trade.
+                Inspired by Uniswap’s clarity, then reshaped for a perp DEX: remove the “setup tax” between intent and execution. Funding becomes part of
+                the trade—one cohesive action, one moment of value.
               </p>
-              <p>
-                The deposit‑swap flow collapses two steps into one: users can deposit one asset and receive another in a single action. That means a shorter
-                time‑to‑first‑trade, fewer places to hesitate, and less drop‑off before the moment of value.
+              <p className="mb-4">
+                With spot and multi‑asset collateral live, users can deposit USDC and receive ETH (or other assets) in the same step—shortening
+                time‑to‑first‑trade, reducing drop‑off, and lowering the barrier for newer traders.
               </p>
             </div>
           }
-        >
-          <div className="w-full max-w-[520px]">
-            <CryptoSwapWidgetPrimitive />
-          </div>
-        </Section>
+          sectionCTA={{
+            label: 'Open prototype',
+            href: 'https://x10ded.netlify.app/',
+            show: true,
+            disabled: false,
+          }}
+          hideItemText={true}
+          singleItemWider={true}
+        />
+      </section>
 
-        <Section
-          eyebrow="Components"
-          title="Trade"
-          description={
+      <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+        <ScreenGallery
+          items={[
+            {
+              id: 'trade-surface',
+              mockContent: <div className="w-full h-full bg-[#0b0e11]"><TradingBoxPrimitive /></div>,
+              noBorder: false,
+            },
+          ]}
+          sectionEyebrow="Components"
+          sectionTitle="Trade"
+          sectionDescription={
             <div>
               <p className="mb-4">
-                This is the trading surface with tabs, order types, leverage, and token selection—designed as a composable “box” you can drop into a
-                trading page or a bottom sheet.
-              </p>
-              <p>
-                It’s built to scale: start with spot simplicity, then grow into perp complexity without breaking the mental model. The same canvas can
-                accommodate deeper controls—risk, margin, advanced execution—while still feeling fast, focused, and familiar at a glance.
+                I reworked the trading interface to support spot and perpetuals within a single information architecture, without increasing complexity.
+                The UI is mobile-first, uses progressive disclosure to scale from new users to power traders, and was fully coded and shipped by me.
               </p>
             </div>
           }
-        >
-          <div className="w-full max-w-[560px] h-[640px] rounded-[24px] overflow-hidden bg-[#0b0e11] shadow-[0_24px_80px_rgba(0,0,0,0.55)]">
-            <TradingBoxPrimitive />
-          </div>
-        </Section>
+          sectionCTA={{
+            label: 'Open prototype',
+            href: 'https://x10ded.netlify.app/',
+            show: true,
+            disabled: false,
+          }}
+          hideItemText={true}
+          singleItemWider={true}
+        />
+      </section>
 
-        <Section
-          eyebrow="Visual system"
-          title="BackgroundGlyphs"
-          description={
+      <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
+        <ScreenGallery
+          items={[
+            {
+              id: 'portfolio-metrics',
+              imageSrc: encodeURI('/assets/perp-metrics.gif'),
+              imageAlt: 'Portfolio metrics and navigation — customizable metric slots grouped by category',
+              noBorder: false,
+            },
+          ]}
+          sectionEyebrow="Product"
+          sectionTitle="Portfolio & navigation"
+          sectionDescription={
             <div>
               <p className="mb-4">
-                Animated glyph rings + ambient glows. It’s intentionally <span className="text-white/90">pointer-events: none</span> so it never blocks
+                Rebuilt the portfolio and primary navigation to support distinct trading styles and workflows.
+              </p>
+              <p className="mb-4">
+                Defined a fixed set of top‑level metric slots that scale across use cases—scalpers, swing traders, semi‑HFT users, and risk‑ or
+                performance‑driven traders—without fragmenting the interface. Metrics are grouped into clear categories (account health, liquidity,
+                profitability, performance) for fast scanning and decision‑making.
+              </p>
+              <p className="mb-1">
+                <strong>Shipped:</strong> Metrics are customizable to match individual trading workflows and risk profiles.
+              </p>
+            </div>
+          }
+          sectionCTA={{
+            label: 'Open prototype',
+            href: 'https://x10ded.netlify.app/',
+            show: true,
+            disabled: false,
+          }}
+          hideItemText={true}
+          singleItemWider={true}
+        />
+      </section>
+
+      <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+        <ScreenGallery
+          items={[
+            {
+              id: 'glyph-background',
+              mockContent: (
+                <div className="relative w-full h-full bg-[#1D1D1D]">
+                  <BackgroundGlyphs />
+                  <div className="relative z-10 p-6">
+                    <div className="inline-flex items-center rounded-full bg-black/40 border border-white/10 px-3 py-1 text-xs text-white/80 backdrop-blur">
+                      Live background layer
+                    </div>
+                  </div>
+                </div>
+              ),
+              noBorder: false,
+            },
+          ]}
+          sectionEyebrow="Visual system"
+          sectionTitle="BackgroundGlyphs"
+          sectionDescription={
+            <div>
+              <p className="mb-4">
+                Animated glyph rings + ambient glows. It’s intentionally <span className="font-semibold">pointer-events: none</span> so it never blocks
                 interaction with the UI.
               </p>
               <p>You can reuse it as a standalone background layer behind any component or hero.</p>
             </div>
           }
-        >
-          <div className="relative w-full max-w-[560px] h-[420px] rounded-[28px] overflow-hidden border border-white/10 bg-[#1D1D1D]">
-            <BackgroundGlyphs />
-            <div className="relative z-10 p-6">
-              <div className="inline-flex items-center rounded-full bg-black/40 border border-white/10 px-3 py-1 text-xs text-white/80 backdrop-blur">
-                Live background layer
-              </div>
-            </div>
-          </div>
-        </Section>
-      </div>
+          sectionCTA={{
+            label: 'Open prototype',
+            href: 'https://x10ded.netlify.app/',
+            show: true,
+            disabled: false,
+          }}
+          hideItemText={true}
+          singleItemWider={true}
+        />
+      </section>
     </div>
   );
 }

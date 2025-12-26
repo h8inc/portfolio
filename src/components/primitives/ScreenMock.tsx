@@ -13,6 +13,11 @@ type ScreenMockProps = {
   eager?: boolean;
   noBorder?: boolean;
   customBorderRadius?: string;
+  /**
+   * Optional custom content to render inside the mock frame (for interactive embeds).
+   * When provided, it takes precedence over imageSrc.
+   */
+  children?: React.ReactNode;
 };
 
 export const ScreenMock: React.FC<ScreenMockProps> = ({
@@ -21,18 +26,27 @@ export const ScreenMock: React.FC<ScreenMockProps> = ({
   gradientIndex,
   eager = false,
   noBorder = false,
-  customBorderRadius
+  customBorderRadius,
+  children
 }) => {
+  const borderClasses = noBorder 
+    ? '' 
+    : 'border-[3px] border-[#130F25]';
+  const roundedClasses = customBorderRadius 
+    ? customBorderRadius
+    : noBorder 
+      ? 'rounded-[4px] md:rounded-[12px]' 
+      : 'rounded-[34px]';
+
+  if (children) {
+    return (
+      <div className={`w-full h-full overflow-hidden ${roundedClasses} shadow-[0_12px_32px_rgba(10,8,23,0.12)] ${borderClasses}`}>
+        {children}
+      </div>
+    );
+  }
+
   if (imageSrc) {
-    const borderClasses = noBorder 
-      ? '' 
-      : 'border-[3px] border-[#130F25]';
-    const roundedClasses = customBorderRadius 
-      ? customBorderRadius
-      : noBorder 
-        ? 'rounded-[4px] md:rounded-[12px]' 
-        : 'rounded-[34px]';
-    
     return (
       <img
         src={imageSrc}

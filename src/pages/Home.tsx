@@ -9,9 +9,9 @@ import { trackEvent } from '../lib/analytics';
 import { ScreenGallery } from '../components/primitives/ScreenGallery';
 import { typography } from '../design/typography';
 import { TideLogo } from '../components/icons/TideLogo';
-import { PortfolioSection } from '../components/PortfolioSection';
 import { LandingPage, BackgroundGlyphs, CryptoSwapWidgetPrimitive, TradingBoxPrimitive } from '@h8inc/perp-ui';
 import { ExtendedInteractiveMock } from '../components/ExtendedInteractiveMock';
+import { ExtendedLandingMockHome } from '../components/ExtendedLandingMock';
 
 let theme: Theme = 'light';
 // only use 'centered' container for standalone components, never for full page apps or websites.
@@ -211,17 +211,26 @@ function Home() {
 
           {/* PERP UI PRIMITIVES (PACKAGE SHOWCASE) */}
           <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
-            <PortfolioSection
-              logo={encodeURI('/assets/Extended-logo.svg')}
-              role="Design + front-end, 2025"
-              eyebrow="UI primitives"
-              title="Perp / swap widget (from a shared package)"
-              description={
+            <ScreenGallery
+              items={[
+                {
+                  id: 'extended',
+                  mockContent: (
+                    <div className="w-full h-full">
+                      <ExtendedLandingMockHome />
+                    </div>
+                  ),
+                },
+              ]}
+              sectionLogo={encodeURI('/assets/Extended-logo.svg')}
+              sectionRole="Design + front-end, 2025"
+              sectionTitle="Perp / swap widget (from a shared package)"
+              sectionDescription={
                 <div>
                   <p className="mb-4">
-                    Design strategy and prototyping in code for the core trading experience. I built UI components
-                    that surface value before wallet connection, collapse deposit and swap into a single action, and highlight multi-chain advantages early
-                    in the funnel—materially reducing time-to-first-trade.
+                    Design strategy and prototyping in code for the core trading experience. I built UI components that surface value before wallet
+                    connection, collapse deposit and swap into a single action, and highlight multi-chain advantages early in the funnel—materially reducing
+                    time-to-first-trade.
                   </p>
                   <p className="mb-4">
                     I re-architected trading and portfolio surfaces to support both spot and perps, mobile-first usage, and distinct trading styles, using
@@ -229,23 +238,15 @@ function Home() {
                   </p>
                 </div>
               }
-              cta={{
+              sectionCTA={{
                 label: 'View Case Study',
                 href: '/extended',
                 show: true,
+                disabled: false,
               }}
-            >
-              <div className="w-full flex justify-center">
-                {/* Interactive ScreenMock-sized embed (same rhythm as the gallery cards) */}
-                <div className="w-[390px] max-w-full">
-                  <div className="rounded-[34px] border-[3px] border-[#130F25] shadow-[0_12px_32px_rgba(10,8,23,0.12)] overflow-hidden">
-                    <div className="w-[390px] h-[600px]">
-                      <ExtendedInteractiveMock />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </PortfolioSection>
+              hideItemText={true}
+              singleItemWider={true}
+            />
           </section>
 
           {/* TIDE AI CASE STUDY */}

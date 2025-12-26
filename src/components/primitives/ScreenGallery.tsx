@@ -25,6 +25,11 @@ type ScreenGalleryItem = {
   imageSrc?: string;
   imageAlt?: string;
   /**
+   * Optional custom content to render inside the ScreenMock (for interactive embeds).
+   * When provided, it takes precedence over imageSrc.
+   */
+  mockContent?: React.ReactNode;
+  /**
    * When true, removes the border from the mock (useful for images that already have borders)
    */
   noBorder?: boolean;
@@ -171,7 +176,9 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
           eager={index < 3}
           noBorder={item.noBorder}
           customBorderRadius={item.customBorderRadius}
-        />
+        >
+          {item.mockContent}
+        </ScreenMock>
       </div>
       
       {/* Text content */}
@@ -427,7 +434,9 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
                     eager={index < 3}
                     noBorder={item.noBorder}
                     customBorderRadius={item.customBorderRadius}
-                  />
+                  >
+                    {item.mockContent}
+                  </ScreenMock>
                 </div>
                 
                 {/* Text content - flows naturally below */}
