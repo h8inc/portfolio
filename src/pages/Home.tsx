@@ -398,6 +398,58 @@ function Home() {
               hideItemText={true}
             />
           </section>
+
+          {/* INSURITY CASE STUDY */}
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+            <ScreenGallery
+              items={[
+                {
+                  id: 'insurity-year',
+                  eyebrow: 'Coverage',
+                  description: 'Pick year',
+                  imageSrc: encodeURI('/assets/1. year-page-insufiry.png'),
+                  imageAlt: 'INsurity — year selection screen',
+                },
+                {
+                  id: 'insurity-car',
+                  eyebrow: 'Coverage',
+                  description: 'Vehicle details',
+                  imageSrc: encodeURI('/assets/2. car-page-insufiry.png'),
+                  imageAlt: 'INsurity — car details screen',
+                },
+                {
+                  id: 'insurity-driver',
+                  eyebrow: 'Coverage',
+                  description: 'Driver details',
+                  imageSrc: encodeURI('/assets/3. driver-page-insufiry.png'),
+                  imageAlt: 'INsurity — driver details screen',
+                },
+                {
+                  id: 'insurity-quotes',
+                  eyebrow: 'Quote',
+                  description: 'Quotes list',
+                  imageSrc: encodeURI('/assets/4. quotes-page-insufiry.png'),
+                  imageAlt: 'INsurity — quotes screen',
+                },
+              ]}
+              sectionLogo={encodeURI('/assets/insurify_logo_orange 2.svg')}
+              sectionRole="Design Lead, 2021"
+              sectionDescription={
+                <div>
+                  <p className="mb-4">
+                    I led product design for INsurity—driving the end-to-end UX, defining the IA, and aligning stakeholders around a clearer, more scalable
+                    platform.
+                  </p>
+                </div>
+              }
+              sectionCTA={{
+                label: 'Case study coming soon',
+                href: '#',
+                show: true,
+                disabled: true
+              }}
+            />
+          </section>
         </div>
       </GradientBackground>
     );
