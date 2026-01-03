@@ -405,29 +405,29 @@ function Home() {
               items={[
                 {
                   id: 'insurity-year',
-                  eyebrow: 'Coverage',
-                  description: 'Pick year',
+                  eyebrow: 'Quote flow',
+                  description: 'Make the first step feel effortless (and trustworthy).',
                   imageSrc: encodeURI('/assets/1. year-page-insufiry.png'),
                   imageAlt: 'INsurity — year selection screen',
                 },
                 {
                   id: 'insurity-car',
-                  eyebrow: 'Coverage',
-                  description: 'Vehicle details',
+                  eyebrow: 'Smarter defaults',
+                  description: 'Surface popular years + cars first to reduce effort.',
                   imageSrc: encodeURI('/assets/2. car-page-insufiry.png'),
                   imageAlt: 'INsurity — car details screen',
                 },
                 {
                   id: 'insurity-driver',
-                  eyebrow: 'Coverage',
-                  description: 'Driver details',
+                  eyebrow: 'Accessibility',
+                  description: 'Larger touch targets + readable type across the flow.',
                   imageSrc: encodeURI('/assets/3. driver-page-insufiry.png'),
                   imageAlt: 'INsurity — driver details screen',
                 },
                 {
                   id: 'insurity-quotes',
-                  eyebrow: 'Quote',
-                  description: 'Quotes list',
+                  eyebrow: 'Conversion moment',
+                  description: 'Cleaner layout so the best option is easy to spot.',
                   imageSrc: encodeURI('/assets/4. quotes-page-insufiry.png'),
                   imageAlt: 'INsurity — quotes screen',
                 },
@@ -437,10 +437,24 @@ function Home() {
               sectionDescription={
                 <div>
                   <p className="mb-4">
-                    I led product design for INsurity—driving the end-to-end UX, defining the IA, and aligning stakeholders around a clearer, more scalable
-                    platform.
+                    Insurify ($128M funded) is the “Airbnb for insurance” — compare, buy, and manage coverage in minutes. The legacy quote flow looked
+                    dated and noisy, creating distrust at the moment of decision.
+                  </p>
+                  
+                  <p>
+                    I led a trust-focused visual and UX refresh. Initially rolled out to 10% of users as an A/B test, then ramped to 100%.
                   </p>
                 </div>
+              }
+              sectionStats={
+                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
+                  <li>
+                    <strong className="font-semibold">+13%</strong> quote-open rate
+                  </li>
+                  <li>
+                    <strong className="font-semibold">+20%</strong> sales rate (≈ <strong className="font-semibold">$1.5M/mo</strong>)
+                  </li>
+                </ul>
               }
               sectionCTA={{
                 label: 'Case study coming soon',
