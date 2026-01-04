@@ -129,6 +129,7 @@ body {
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --color-list-bullet: var(--list-bullet);
+  --color-section-alt: #FAF7F0;
 }
 
 :root {

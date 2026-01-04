@@ -250,7 +250,7 @@ function Home() {
           </section>
 
           {/* TIDE AI CASE STUDY */}
-          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -291,7 +291,7 @@ function Home() {
           </section>
 
           {/* OPAA CASE STUDY */}
-          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -320,47 +320,6 @@ function Home() {
                 href: 'https://opaa-website.vercel.app/en',
                 show: true,
                 disabled: false
-              }}
-              singleItemWider={true}
-              hideItemText={true}
-            />
-          </section>
-
-          {/* CALLIPER CASE STUDY */}
-          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
-            <ScreenGallery
-              items={[
-                {
-                  id: 'portfolio-2024',
-                  imageSrc: encodeURI('/assets/Portfolio 2024.gif'),
-                  imageAlt: 'Portfolio 2024',
-                  noBorder: false,
-                  customBorderRadius: 'rounded-[4px] md:rounded-[12px]'
-                }
-              ]}
-              sectionLogo={encodeURI('/assets/calliperlogo.png')}
-              sectionRole="Designer, 2022-2023"
-              sectionDescription={
-                <div>
-                  <p className="mb-4">
-                    Calliper democratises data. Makes it social. Lets anyone get answers in seconds, not weeks. Connected scattered business data into one feed with plain-English queries.
-                  </p>
-                  <p>
-                    I spoke with few dozens of people working in startups to understand the frequent data questions they have and built the MVP (slack bot) as well as core functionality such as data feed and goal tracking. Backed by Sequoia with $1.2M seed round. Later they got acquired.
-                  </p>
-                </div>
-              }
-              sectionStats={
-                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
-                  <li>Conducted <strong className="font-semibold">25+ interviews</strong> to validate the problems to focus on</li>
-                  <li>Built the <strong className="font-semibold">design system from 0</strong> & shipped MVP in <strong className="font-semibold">3 months</strong></li>
-                </ul>
-              }
-              sectionCTA={{
-                label: 'Case study coming soon',
-                href: '#',
-                show: true,
-                disabled: true
               }}
               singleItemWider={true}
               hideItemText={true}
@@ -400,7 +359,7 @@ function Home() {
           </section>
 
           {/* INSURITY CASE STUDY */}
-          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -462,6 +421,47 @@ function Home() {
                 show: true,
                 disabled: true
               }}
+            />
+          </section>
+
+          {/* CALLIPER CASE STUDY */}
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+            <ScreenGallery
+              items={[
+                {
+                  id: 'portfolio-2024',
+                  imageSrc: encodeURI('/assets/Portfolio 2024.gif'),
+                  imageAlt: 'Portfolio 2024',
+                  noBorder: false,
+                  customBorderRadius: 'rounded-[4px] md:rounded-[12px]'
+                }
+              ]}
+              sectionLogo={encodeURI('/assets/calliperlogo.png')}
+              sectionRole="Designer, 2022-2023"
+              sectionDescription={
+                <div>
+                  <p className="mb-4">
+                    Calliper democratises data. Makes it social. Lets anyone get answers in seconds, not weeks. Connected scattered business data into one feed with plain-English queries.
+                  </p>
+                  <p>
+                    I spoke with few dozens of people working in startups to understand the frequent data questions they have and built the MVP (slack bot) as well as core functionality such as data feed and goal tracking. Backed by Sequoia with $1.2M seed round. Later they got acquired.
+                  </p>
+                </div>
+              }
+              sectionStats={
+                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
+                  <li>Conducted <strong className="font-semibold">25+ interviews</strong> to validate the problems to focus on</li>
+                  <li>Built the <strong className="font-semibold">design system from 0</strong> & shipped MVP in <strong className="font-semibold">3 months</strong></li>
+                </ul>
+              }
+              sectionCTA={{
+                label: 'Case study coming soon',
+                href: '#',
+                show: true,
+                disabled: true
+              }}
+              singleItemWider={true}
+              hideItemText={true}
             />
           </section>
         </div>
