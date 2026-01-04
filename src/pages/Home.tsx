@@ -389,10 +389,10 @@ function Home() {
                 </ul>
               }
               sectionCTA={{
-                label: 'Case study coming soon',
-                href: '#',
+                label: 'Case Study',
+                href: 'https://pitch.com/v/hotjar-case-study-adw94r/7344ef01-af59-434f-b313-525fdcad13ad',
                 show: true,
-                disabled: true
+                disabled: false
               }}
               singleItemWider={true}
               hideItemText={true}
