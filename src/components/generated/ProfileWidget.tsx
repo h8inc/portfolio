@@ -66,7 +66,7 @@ export default function ProfileWidget({
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
-              <a 
+              {/* <a 
                 href="https://www.figma.com/deck/JrHLya85t4BuUzpQzRCko6/Nasko-Terziev-Portfolio-showcase?node-id=1-42&viewport=-3719%2C-9%2C0.56&t=bzI9ahnv8lNVKVu0-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" 
                 target="_blank" 
                 rel="noopener noreferrer" 
@@ -76,6 +76,26 @@ export default function ProfileWidget({
                     destination: 'figma_portfolio'
                   });
                   trackOutboundLink('https://www.figma.com/deck/JrHLya85t4BuUzpQzRCko6/Nasko-Terziev-Portfolio-showcase?node-id=1-42&viewport=-3719%2C-9%2C0.56&t=bzI9ahnv8lNVKVu0-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1', 'Work Samples');
+                }}
+                className={buttonStyles.primary}
+                style={buttonFontFamily.primary}
+              >
+                Work Samples
+              </a> */}
+              <a 
+                href="#tide-feature-gallery" 
+                onClick={() => {
+                  trackEvent('work_samples_click', {
+                    button_location: 'profile_card',
+                    destination: 'tide_feature_gallery'
+                  });
+                  const tideSection = document.getElementById('tide-feature-gallery');
+                  if (tideSection) {
+                    tideSection.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start'
+                    });
+                  }
                 }}
                 className={buttonStyles.primary}
                 style={buttonFontFamily.primary}

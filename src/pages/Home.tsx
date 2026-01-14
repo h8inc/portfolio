@@ -188,7 +188,7 @@ function Home() {
           </section>
 
           {/* TIDE FEATURE GALLERY */}
-          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+          <section id="tide-feature-gallery" className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={allScreens}
               sectionLogo={<div style={{ transform: 'scale(0.6)', transformOrigin: 'left center' }}><TideLogo className="max-w-full max-h-full w-full h-full" /></div>}
