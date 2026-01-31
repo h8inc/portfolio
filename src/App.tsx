@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import Home from './pages/Home';
 import Tide from './pages/Tide';
 import Extended from './pages/Extended';
@@ -12,6 +12,7 @@ function App() {
   const location = useLocation();
   const isOverlay = OVERLAY_PATHS.includes(location.pathname);
   const scrollPositionRef = useRef(0);
+  const prevPathRef = useRef(location.pathname);
 
   // Disable browser scroll restoration
   useEffect(() => {
@@ -20,22 +21,27 @@ function App() {
     }
   }, []);
 
-  // Preserve scroll position during navigation
+  // Track scroll position while on Home
   useEffect(() => {
-    // Save current position before any route change
-    const currentScroll = window.scrollY;
-    scrollPositionRef.current = currentScroll;
-    
-    // Immediately after React processes the route change, restore position
-    const restoreScroll = () => {
+    if (location.pathname === '/' && !isOverlay) {
+      const handleScroll = () => {
+        scrollPositionRef.current = window.scrollY;
+      };
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [location.pathname, isOverlay]);
+
+  // Restore scroll position BEFORE paint when returning from an overlay
+  useLayoutEffect(() => {
+    const prevPath = prevPathRef.current;
+    const wasOverlay = OVERLAY_PATHS.includes(prevPath);
+
+    if (location.pathname === '/' && wasOverlay) {
       window.scrollTo(0, scrollPositionRef.current);
-    };
-    
-    // Use multiple methods to ensure scroll is preserved
-    restoreScroll(); // Immediate
-    setTimeout(restoreScroll, 0); // Next tick
-    requestAnimationFrame(restoreScroll); // Next frame
-    
+    }
+
+    prevPathRef.current = location.pathname;
   }, [location.pathname]);
 
   // Lock body scroll when overlay is open
@@ -50,12 +56,15 @@ function App() {
   return (
     <>
       
-      {/* Home page - always mounted underneath overlays, or shown on home route */}
-      {(location.pathname === '/' || isOverlay) && (
-        <div style={{ display: isOverlay ? 'none' : 'block' }}>
-          <Home />
-        </div>
-      )}
+      {/* Home page stays mounted to preserve scroll position */}
+      <div
+        style={{
+          visibility: isOverlay ? 'hidden' : 'visible',
+          pointerEvents: isOverlay ? 'none' : 'auto'
+        }}
+      >
+        <Home />
+      </div>
       
       {/* Overlay routes slide in on top */}
       <AnimatePresence>

@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { BackgroundGlyphs, CryptoSwapWidgetPrimitive, TradingBoxPrimitive, TradingMetrics } from '@h8inc/perp-ui';
 import { ScreenGallery } from '../components/primitives/ScreenGallery';
 import { ExtendedInteractiveMock } from '../components/ExtendedInteractiveMock';
 
 function Extended() {
+  const navigate = useNavigate();
+  
   const handleGetStarted = () => {
     const el = document.getElementById('components');
     el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -14,13 +16,13 @@ function Extended() {
   return (
     <div className="min-h-screen w-full bg-[#0b0e11]">
       {/* Close button - top right (match Tide case study pattern) */}
-      <Link
-        to="/"
+      <button
+        onClick={() => navigate('/')}
         className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[100] w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
         aria-label="Close and return to home"
       >
         <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-800" strokeWidth={2.5} />
-      </Link>
+      </button>
 
       {/* HERO: landing composition without the package Header/Nav */}
       <div className="relative min-h-screen w-full flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 pt-24 md:pt-16 gap-6 sm:gap-8 bg-[#1D1D1D] overflow-hidden text-white font-['Inter']">
