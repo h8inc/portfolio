@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { Mail, Linkedin, Github, Leaf } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Mail, Linkedin, Github } from "lucide-react";
 import BitcoinPill from "./BitcoinPill";
 import Marquee from "react-fast-marquee";
 import { trackOutboundLink, trackEvent } from "../../lib/analytics";
@@ -102,6 +103,14 @@ export default function ProfileWidget({
               >
                 Work Samples
               </a>
+              <Link
+                to="/about"
+                onClick={() => trackEvent('about_click', { location: 'profile_card' })}
+                className={buttonStyles.primary}
+                style={buttonFontFamily.primary}
+              >
+                About me
+              </Link>
               <span className="text-xl sm:text-2xl font-bold">:</span>
               <a 
                 href={emailUrl} 

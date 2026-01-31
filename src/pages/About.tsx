@@ -1,0 +1,21 @@
+import { Link } from 'react-router-dom';
+import { X } from 'lucide-react';
+import { GradientBackground } from '../components/generated/GradientBackground';
+import { PortfolioAbout } from '../components/generated/PortfolioAbout';
+
+function About() {
+  return (
+    <GradientBackground>
+      <Link
+        to="/"
+        className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
+        aria-label="Close and return to home"
+      >
+        <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-800" strokeWidth={2.5} />
+      </Link>
+      <PortfolioAbout />
+    </GradientBackground>
+  );
+}
+
+export default About;
