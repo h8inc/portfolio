@@ -1,4 +1,3 @@
-import { GradientBackground } from '../components/generated/GradientBackground';
 import { InteractiveTimeline } from '../components/generated/InteractiveTimeline';
 import { TidePerformanceChart } from '../components/tide/TidePerformanceChart';
 import React, { useMemo } from 'react';
@@ -10,6 +9,7 @@ import { X } from 'lucide-react';
 import { TideLogo } from '../components/icons/TideLogo';
 
 function Tide() {
+  // NOTE: GradientBackground is rendered at App level to avoid transform issues during slide animation
   // Tide ARR trajectory (mid-2023 through today)
   const { tideData, activationMilestones } = useMemo(() => {
     const today = new Date();
@@ -187,7 +187,7 @@ function Tide() {
 
 
   return (
-    <GradientBackground>
+    <>
       {/* Close button - top right */}
       <Link
         to="/"
@@ -380,7 +380,7 @@ function Tide() {
           }}
         />
       </section>
-    </GradientBackground>
+    </>
   );
 }
 
