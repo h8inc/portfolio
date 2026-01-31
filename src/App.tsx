@@ -12,7 +12,6 @@ function App() {
   const location = useLocation();
   const isOverlay = OVERLAY_PATHS.includes(location.pathname);
   const scrollPositionRef = useRef(0);
-  const isNavigatingRef = useRef(false);
 
   // Disable browser scroll restoration
   useEffect(() => {
