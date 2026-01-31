@@ -1,42 +1,55 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Home from './pages/Home';
 import Tide from './pages/Tide';
 import Extended from './pages/Extended';
 import About from './pages/About';
-import { ScrollToTop } from './components/ScrollToTop';
 
 const OVERLAY_PATHS = ['/tide', '/about', '/extended'];
 
 function App() {
   const location = useLocation();
   const isOverlay = OVERLAY_PATHS.includes(location.pathname);
+  const scrollPositionRef = useRef(0);
+  const isNavigatingRef = useRef(false);
+
+  // Disable browser scroll restoration
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  // Preserve scroll position during navigation
+  useEffect(() => {
+    // Save current position before any route change
+    const currentScroll = window.scrollY;
+    scrollPositionRef.current = currentScroll;
+    
+    // Immediately after React processes the route change, restore position
+    const restoreScroll = () => {
+      window.scrollTo(0, scrollPositionRef.current);
+    };
+    
+    // Use multiple methods to ensure scroll is preserved
+    restoreScroll(); // Immediate
+    setTimeout(restoreScroll, 0); // Next tick
+    requestAnimationFrame(restoreScroll); // Next frame
+    
+  }, [location.pathname]);
 
   // Lock body scroll when overlay is open
   useEffect(() => {
     if (isOverlay) {
       document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
-      document.body.style.height = '100%';
     } else {
       document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-      document.body.style.height = '';
     }
-    return () => {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-      document.body.style.height = '';
-    };
   }, [isOverlay]);
 
   return (
     <>
-      <ScrollToTop />
       
       {/* Home page - always mounted underneath overlays, or shown on home route */}
       {(location.pathname === '/' || isOverlay) && (
