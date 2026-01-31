@@ -38,10 +38,12 @@ function App() {
     <>
       <ScrollToTop />
       
-      {/* Home page - always mounted underneath, hidden when overlay open */}
-      <div style={{ display: isOverlay ? 'none' : 'block' }}>
-        <Home />
-      </div>
+      {/* Home page - always mounted underneath overlays, or shown on home route */}
+      {(location.pathname === '/' || isOverlay) && (
+        <div style={{ display: isOverlay ? 'none' : 'block' }}>
+          <Home />
+        </div>
+      )}
       
       {/* Overlay routes slide in on top */}
       <AnimatePresence>

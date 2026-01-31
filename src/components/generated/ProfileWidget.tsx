@@ -103,7 +103,7 @@ export default function ProfileWidget({
                 className={buttonStyles.primary}
                 style={buttonFontFamily.primary}
               >
-                Work Samples
+                Work
               </button>
               <Link
                 to="/about"
@@ -111,7 +111,7 @@ export default function ProfileWidget({
                 className={buttonStyles.primary}
                 style={buttonFontFamily.primary}
               >
-                About me
+                About
               </Link>
               <span className="text-xl sm:text-2xl font-bold">:</span>
               <a 
