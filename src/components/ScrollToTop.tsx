@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const OVERLAY_PATHS = ['/tide', '/about'];
+const OVERLAY_PATHS = ['/tide', '/about', '/extended'];
 
 export function ScrollToTop() {
   const { pathname } = useLocation();
