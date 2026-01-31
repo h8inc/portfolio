@@ -8,6 +8,7 @@ import Marquee from "react-fast-marquee";
 import { trackOutboundLink, trackEvent } from "../../lib/analytics";
 import { typography } from "../../design/typography";
 import { buttonStyles, buttonFontFamily } from "../../lib/button-styles";
+import { animate } from "framer-motion";
 export interface ProfileWidgetProps {
   name?: string;
   title?: string;
@@ -85,18 +86,26 @@ export default function ProfileWidget({
               </a> */}
               <a 
                 href="#tide-feature-gallery" 
-                onClick={() => {
-                  trackEvent('work_samples_click', {
-                    button_location: 'profile_card',
-                    destination: 'tide_feature_gallery'
-                  });
+                onClick={(e) => {
+                  e.preventDefault();
                   const tideSection = document.getElementById('tide-feature-gallery');
                   if (tideSection) {
-                    tideSection.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start'
+                    const targetY = tideSection.getBoundingClientRect().top + window.scrollY;
+                    // Start animation IMMEDIATELY
+                    animate(window.scrollY, targetY, {
+                      duration: 0.8,
+                      ease: [0.08, 0, 0.2, 1], // Snappy start, smooth finish
+                      delay: 0, // NO DELAY - starts instantly
+                      onUpdate: (latest) => window.scrollTo(0, latest)
                     });
                   }
+                  // Track event async - doesn't block animation
+                  setTimeout(() => {
+                    trackEvent('work_samples_click', {
+                      button_location: 'profile_card',
+                      destination: 'tide_feature_gallery'
+                    });
+                  }, 0);
                 }}
                 className={buttonStyles.primary}
                 style={buttonFontFamily.primary}
