@@ -7,7 +7,7 @@ import Extended from './pages/Extended';
 import About from './pages/About';
 import { ScrollToTop } from './components/ScrollToTop';
 
-const OVERLAY_PATHS = ['/tide', '/about'];
+const OVERLAY_PATHS = ['/tide', '/about', '/extended'];
 
 function App() {
   const location = useLocation();
@@ -97,18 +97,12 @@ function App() {
               <Routes location={location}>
                 <Route path="/tide" element={<Tide />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/extended" element={<Extended />} />
               </Routes>
             </motion.div>
           </>
         )}
       </AnimatePresence>
-      
-      {/* Non-overlay routes */}
-      {!isOverlay && location.pathname !== '/' && (
-        <Routes location={location}>
-          <Route path="/extended" element={<Extended />} />
-        </Routes>
-      )}
     </>
   );
 }
