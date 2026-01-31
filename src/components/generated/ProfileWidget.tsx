@@ -84,34 +84,27 @@ export default function ProfileWidget({
               >
                 Work Samples
               </a> */}
-              <a 
-                href="#tide-feature-gallery" 
-                onClick={(e) => {
-                  e.preventDefault();
+              <button 
+                onClick={() => {
                   const tideSection = document.getElementById('tide-feature-gallery');
                   if (tideSection) {
                     const targetY = tideSection.getBoundingClientRect().top + window.scrollY;
-                    // Start animation IMMEDIATELY
                     animate(window.scrollY, targetY, {
                       duration: 0.8,
-                      ease: [0.08, 0, 0.2, 1], // Snappy start, smooth finish
-                      delay: 0, // NO DELAY - starts instantly
+                      ease: [0.08, 0, 0.2, 1],
                       onUpdate: (latest) => window.scrollTo(0, latest)
                     });
-                  }
-                  // Track event async - doesn't block animation
-                  setTimeout(() => {
                     trackEvent('work_samples_click', {
                       button_location: 'profile_card',
                       destination: 'tide_feature_gallery'
                     });
-                  }, 0);
+                  }
                 }}
                 className={buttonStyles.primary}
                 style={buttonFontFamily.primary}
               >
                 Work Samples
-              </a>
+              </button>
               <Link
                 to="/about"
                 onClick={() => trackEvent('about_click', { location: 'profile_card' })}

@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect } from 'react';
 import Home from './pages/Home';
 import Tide from './pages/Tide';
 import Extended from './pages/Extended';
@@ -12,12 +13,35 @@ function App() {
   const location = useLocation();
   const isOverlay = OVERLAY_PATHS.includes(location.pathname);
 
+  // Lock body scroll when overlay is open
+  useEffect(() => {
+    if (isOverlay) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.height = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+    };
+  }, [isOverlay]);
+
   return (
     <>
       <ScrollToTop />
       
-      {/* Home page - always mounted underneath */}
-      <Home />
+      {/* Home page - always mounted underneath, hidden when overlay open */}
+      <div style={{ display: isOverlay ? 'none' : 'block' }}>
+        <Home />
+      </div>
       
       {/* Overlay routes slide in on top */}
       <AnimatePresence>
@@ -64,7 +88,8 @@ function App() {
                 overflowX: 'hidden',
                 width: '100vw',
                 height: '100vh',
-                willChange: 'transform'
+                willChange: 'transform',
+                WebkitOverflowScrolling: 'touch' // Smooth scroll on iOS
               }}
             >
               <Routes location={location}>
