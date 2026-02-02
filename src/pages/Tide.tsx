@@ -308,7 +308,7 @@ function Tide() {
             }
           ]}
           sectionEyebrow="Admin OS"
-          sectionTitle="Activation up 4× — from 6% to 24%"
+          sectionTitle="Activation up 22× — from 0.9% to 22%"
           sectionDescription={
             <div>
               <p className="mb-4">
