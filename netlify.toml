@@ -10,6 +10,12 @@
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
 [[redirects]]
+  from = "/trading212-portfolio-health/*"
+  to = "https://trading212-portfolio-health.netlify.app/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
