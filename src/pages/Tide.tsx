@@ -321,7 +321,7 @@ function Tide() {
           }
           sectionCTA={{
             label: "View work",
-            href: "https://www.figma.com/deck/yryrn4jmKZIQ1zRUqXQ8Wm/Tide-IA-case-study?node-id=1-42&viewport=-11997%2C-58%2C0.61&t=fk7cUFea77PAYo3j-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
+            href: "https://www.figma.com/deck/WHp2vVBQjWi6DVV7nMN3nP/Case-Study-Tide-2026?node-id=1-42&viewport=-131%2C-125%2C0.61&t=fkPOhRt4sryJwaZg-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
             show: true
           }}
         />
