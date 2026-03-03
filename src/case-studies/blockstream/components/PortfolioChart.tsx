@@ -281,7 +281,7 @@ export const PortfolioChart = ({
     const endDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     endDot.setAttribute('cx', lastPoint.x.toString());
     endDot.setAttribute('cy', lastPoint.y.toString());
-    endDot.setAttribute('r', isMobile ? '3' : '3.5');
+    endDot.setAttribute('r', isMobile ? '4' : '4.5');
     endDot.setAttribute('fill', '#00d4ff');
     endDot.setAttribute('class', 'pulse-dot');
     endDot.setAttribute('opacity', '1');
@@ -297,7 +297,7 @@ export const PortfolioChart = ({
           transform: scale(1);
         }
         50% {
-          opacity: 0.6;
+          opacity: 0.72;
           transform: scale(1.2);
         }
       }
@@ -305,6 +305,7 @@ export const PortfolioChart = ({
         animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         transform-origin: center;
         transform-box: fill-box;
+        filter: drop-shadow(0 0 7px rgba(0, 212, 255, 0.9));
       }
     `;
     if (!document.querySelector('#pulse-dot-style')) {
