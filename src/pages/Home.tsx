@@ -280,16 +280,16 @@ function Home() {
               items={[
                 {
                   id: 'blockstream-security',
-                  eyebrow: 'Security gamification',
-                  description: 'Turned an intimidating concept into a progressive checklist that builds confidence.',
+                  eyebrow: 'Home page reframe',
+                  description: 'Core jobs on home (buy, receive, send, sell) plus Security Score and a dismissible Jade upsell.',
                   mockContent: <BlockstreamSecurityDemo />,
                   noBorder: true,
                   noShadow: true
                 },
                 {
                   id: 'blockstream-receive',
-                  eyebrow: 'Receive flow',
-                  description: 'Core job surfaced — no more digging through layers to find it.',
+                  eyebrow: 'Receive simplified',
+                  description: 'Seven rail choices reduced to one default with BIP-21 (BTC, Lightning, Liquid).',
                   mockContent: <BlockstreamReceiveDemo />,
                   noBorder: true,
                   noShadow: true
@@ -316,10 +316,10 @@ function Home() {
               sectionDescription={
                 <div>
                   <p className="mb-4">
-                    The wallet's empty state wasn't helping newcomers — it offered no clear next step, and the core actions (receive / send) were buried layers deep, making them hardly discoverable.
+                    <strong>Problem:</strong> onboarding and feature adoption were weak because core jobs were hard to discover, and security setup felt high-friction.
                   </p>
                   <p>
-                    Security is critical in a Bitcoin wallet but hard for users to grasp, so I gamified the setup — turning an intimidating process into a progressive experience that builds confidence while ensuring proper protection.
+                    <strong>Solutions:</strong> surfaced buy/receive/send/sell on home, added a gamified Security Score, introduced a dismissible Jade upsell, and simplified receive to one BIP-21 QR default (BTC, Lightning, Liquid) with specific asset options below. <strong>Play with the mocks — they are interactive.</strong>
                   </p>
                 </div>
               }
