@@ -82,6 +82,11 @@ type ScreenGalleryProps = {
    * When true, hides the text content (eyebrow and description) below each mock
    */
   hideItemText?: boolean;
+  /**
+   * Background for the mock container (e.g. "bg-[#FAF7F0]" or "bg-white").
+   * Use the same as the section so the area around the mock is not dark.
+   */
+  mockContainerBackground?: string;
 };
 
 const MOBILE_CARD_STYLE: React.CSSProperties = {
@@ -147,7 +152,8 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
   sectionLogo,
   sectionRole,
   singleItemWider = false,
-  hideItemText = false
+  hideItemText = false,
+  mockContainerBackground
 }) => {
   // Calculate desktop article width: wider if singleItemWider is true and there's only 1 item
   const isSingleWideItem = singleItemWider && items.length === 1;
@@ -170,20 +176,24 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
     >
       {/* Mock container with adaptive height */}
       <div 
-        className="w-full flex items-center justify-center mb-6" 
+        className={`w-full flex items-center justify-center mb-6 overflow-visible ${mockContainerBackground ?? ''}`}
         style={mobileMockContainerStyle}
       >
-        <ScreenMock
-          imageSrc={item.imageSrc}
-          imageAlt={item.imageAlt}
-          gradientIndex={index}
-          eager={index < 3}
-          noBorder={item.noBorder}
-          customBorderRadius={item.customBorderRadius}
-          noShadow={item.noShadow}
-        >
-          {item.mockContent}
-        </ScreenMock>
+        {item.mockContent && item.noBorder && item.noShadow ? (
+          item.mockContent
+        ) : (
+          <ScreenMock
+            imageSrc={item.imageSrc}
+            imageAlt={item.imageAlt}
+            gradientIndex={index}
+            eager={index < 3}
+            noBorder={item.noBorder}
+            customBorderRadius={item.customBorderRadius}
+            noShadow={item.noShadow}
+          >
+            {item.mockContent}
+          </ScreenMock>
+        )}
       </div>
       
       {/* Text content */}
@@ -429,20 +439,24 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
               >
                 {/* Mock container with fixed height */}
                 <div 
-                  className="w-full flex items-center justify-center mb-6" 
+                  className={`w-full flex items-center justify-center mb-6 overflow-visible ${mockContainerBackground ?? ''}`}
                   style={MOCK_CONTAINER_STYLE}
                 >
-                  <ScreenMock
-                    imageSrc={item.imageSrc}
-                    imageAlt={item.imageAlt}
-                    gradientIndex={index}
-                    eager={index < 3}
-                    noBorder={item.noBorder}
-                    customBorderRadius={item.customBorderRadius}
-                    noShadow={item.noShadow}
-                  >
-                    {item.mockContent}
-                  </ScreenMock>
+                  {item.mockContent && item.noBorder && item.noShadow ? (
+                    item.mockContent
+                  ) : (
+                    <ScreenMock
+                      imageSrc={item.imageSrc}
+                      imageAlt={item.imageAlt}
+                      gradientIndex={index}
+                      eager={index < 3}
+                      noBorder={item.noBorder}
+                      customBorderRadius={item.customBorderRadius}
+                      noShadow={item.noShadow}
+                    >
+                      {item.mockContent}
+                    </ScreenMock>
+                  )}
                 </div>
                 
                 {/* Text content - flows naturally below */}

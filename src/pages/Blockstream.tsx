@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { ScreenGallery } from '../components/primitives/ScreenGallery';
-import { MobileDeviceFrame } from '../case-studies/blockstream/components/MobileDeviceFrame';
+import { PhoneFrame } from '../case-studies/blockstream/components/PhoneFrame';
 import { JadeWalletSetup } from '../case-studies/blockstream/components/JadeWalletSetup';
 import { JadeUpsellModal } from '../case-studies/blockstream/components/JadeUpsellModal';
 import { TransactionModal } from '../case-studies/blockstream/components/TransactionModal';
@@ -11,48 +11,48 @@ import { ReceiveBitcoinModal } from '../case-studies/blockstream/components/Rece
 function OnboardingUpsellDemo() {
   const [dismissed, setDismissed] = useState(false);
   return (
-    <MobileDeviceFrame inline>
+    <PhoneFrame>
       <div className="relative h-full dark">
         <JadeWalletSetup />
         {!dismissed && (
-          <JadeUpsellModal isOpen={true} onClose={() => setDismissed(true)} />
+          <JadeUpsellModal embedded hideBackdrop isOpen={true} onClose={() => setDismissed(true)} />
         )}
       </div>
-    </MobileDeviceFrame>
+    </PhoneFrame>
   );
 }
 
 function SecurityScoreDemo() {
   return (
-    <MobileDeviceFrame inline>
-      <div className="dark">
+    <PhoneFrame>
+      <div className="dark h-full">
         <JadeWalletSetup />
       </div>
-    </MobileDeviceFrame>
+    </PhoneFrame>
   );
 }
 
 function SellFlowDemo() {
   const [dismissed, setDismissed] = useState(false);
   return (
-    <MobileDeviceFrame inline>
+    <PhoneFrame>
       <div className="relative h-full dark">
         <JadeWalletSetup />
         {!dismissed && (
-          <TransactionModal isOpen={true} onClose={() => setDismissed(true)} type="sell" />
+          <TransactionModal embedded hideBackdrop isOpen={true} onClose={() => setDismissed(true)} type="sell" />
         )}
       </div>
-    </MobileDeviceFrame>
+    </PhoneFrame>
   );
 }
 
 function ReceiveDemo() {
   return (
-    <MobileDeviceFrame inline>
+    <PhoneFrame>
       <div className="h-full bg-[#0f0f0f] dark">
         <ReceiveBitcoinModal />
       </div>
-    </MobileDeviceFrame>
+    </PhoneFrame>
   );
 }
 
@@ -98,7 +98,8 @@ function Blockstream() {
             {
               id: 'onboarding-upsell',
               mockContent: <OnboardingUpsellDemo />,
-              noBorder: false,
+              noBorder: true,
+              noShadow: true,
             },
           ]}
           sectionEyebrow="Onboarding"
@@ -116,7 +117,7 @@ function Blockstream() {
             </div>
           }
           hideItemText={true}
-          singleItemWider={true}
+          mockContainerBackground="bg-[#FAF7F0]"
         />
       </section>
 
@@ -127,7 +128,8 @@ function Blockstream() {
             {
               id: 'security-score',
               mockContent: <SecurityScoreDemo />,
-              noBorder: false,
+              noBorder: true,
+              noShadow: true,
             },
           ]}
           sectionEyebrow="Engagement"
@@ -144,7 +146,7 @@ function Blockstream() {
             </div>
           }
           hideItemText={true}
-          singleItemWider={true}
+          mockContainerBackground="bg-white"
         />
       </section>
 
@@ -155,7 +157,8 @@ function Blockstream() {
             {
               id: 'sell-flow',
               mockContent: <SellFlowDemo />,
-              noBorder: false,
+              noBorder: true,
+              noShadow: true,
             },
           ]}
           sectionEyebrow="Transactions"
@@ -173,7 +176,7 @@ function Blockstream() {
             </div>
           }
           hideItemText={true}
-          singleItemWider={true}
+          mockContainerBackground="bg-[#FAF7F0]"
         />
       </section>
 
@@ -184,7 +187,8 @@ function Blockstream() {
             {
               id: 'receive',
               mockContent: <ReceiveDemo />,
-              noBorder: false,
+              noBorder: true,
+              noShadow: true,
             },
           ]}
           sectionEyebrow="Transactions"
@@ -202,7 +206,7 @@ function Blockstream() {
             </div>
           }
           hideItemText={true}
-          singleItemWider={true}
+          mockContainerBackground="bg-white"
         />
       </section>
     </div>

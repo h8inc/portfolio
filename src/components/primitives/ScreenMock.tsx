@@ -1,4 +1,5 @@
 import React from 'react';
+import { shadows } from '../../design/shadows';
 
 const placeholderGradients = [
   'linear-gradient(135deg,#F5F2ED 0%,#E8E3D9 100%)',
@@ -40,11 +41,14 @@ export const ScreenMock: React.FC<ScreenMockProps> = ({
       ? 'rounded-[4px] md:rounded-[12px]' 
       : 'rounded-[34px]';
 
-  const shadowClass = noShadow ? '' : 'shadow-[0_12px_32px_rgba(10,8,23,0.12)]';
+  const shadowClass = noShadow ? '' : shadows.mock.class;
 
   if (children) {
     return (
-      <div className={`w-full h-full overflow-hidden ${roundedClasses} ${shadowClass} ${borderClasses}`}>
+      <div
+        className={`w-full h-full overflow-hidden ${roundedClasses} ${shadowClass} ${borderClasses}`}
+        style={{ backgroundColor: 'transparent' }}
+      >
         {children}
       </div>
     );

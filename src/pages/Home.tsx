@@ -12,23 +12,11 @@ import { TideLogo } from '../components/icons/TideLogo';
 import { LandingPage, BackgroundGlyphs, CryptoSwapWidgetPrimitive, TradingBoxPrimitive } from '@h8inc/perp-ui';
 import { ExtendedInteractiveMock } from '../components/ExtendedInteractiveMock';
 import { ExtendedLandingMockHome } from '../components/ExtendedLandingMock';
+import { PhoneFrame } from '../case-studies/blockstream/components/PhoneFrame';
 import { JadeWalletSetup } from '../case-studies/blockstream/components/JadeWalletSetup';
 import { JadeUpsellModal } from '../case-studies/blockstream/components/JadeUpsellModal';
 import { TransactionModal } from '../case-studies/blockstream/components/TransactionModal';
 import { ReceiveBitcoinModal } from '../case-studies/blockstream/components/ReceiveBitcoinModal';
-
-function PhoneFrame({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="w-full h-full relative">
-      <div
-        className="phone-screen absolute top-1/2 left-1/2"
-        style={{ width: 430, height: 932, transform: 'translate(-50%, -50%) scale(0.62)' }}
-      >
-        <div className="phone-content">{children}</div>
-      </div>
-    </div>
-  );
-}
 
 function BlockstreamSecurityDemo() {
   return (
@@ -329,6 +317,7 @@ function Home() {
                 show: true,
                 disabled: false
               }}
+              mockContainerBackground="bg-[#FAF7F0]"
             />
           </section>
 
