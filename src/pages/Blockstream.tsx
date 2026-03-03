@@ -5,6 +5,7 @@ import { ScreenGallery } from '../components/primitives/ScreenGallery';
 import { PhoneFrame } from '../case-studies/blockstream/components/PhoneFrame';
 import { JadeWalletSetup } from '../case-studies/blockstream/components/JadeWalletSetup';
 import { JadeUpsellModal } from '../case-studies/blockstream/components/JadeUpsellModal';
+import { OnboardingFlow } from '../case-studies/blockstream/components/OnboardingFlow';
 import { TransactionModal } from '../case-studies/blockstream/components/TransactionModal';
 import { ReceiveBitcoinModal } from '../case-studies/blockstream/components/ReceiveBitcoinModal';
 
@@ -32,6 +33,16 @@ function SecurityScoreDemo() {
   );
 }
 
+function SecurityScoreSheetOpenDemo() {
+  return (
+    <PhoneFrame>
+      <div className="dark h-full">
+        <JadeWalletSetup defaultSecuritySheetOpen />
+      </div>
+    </PhoneFrame>
+  );
+}
+
 function SellFlowDemo() {
   const [dismissed, setDismissed] = useState(false);
   return (
@@ -51,6 +62,16 @@ function ReceiveDemo() {
     <PhoneFrame>
       <div className="h-full bg-[#0f0f0f] dark">
         <ReceiveBitcoinModal />
+      </div>
+    </PhoneFrame>
+  );
+}
+
+function OnboardingFlowDemo() {
+  return (
+    <PhoneFrame>
+      <div className="relative h-full dark bg-[#0f1419]">
+        <OnboardingFlow />
       </div>
     </PhoneFrame>
   );
@@ -91,33 +112,41 @@ function Blockstream() {
         </p>
       </div>
 
-      {/* Section 1: Onboarding Upsell */}
+      {/* Section 1: Choose your setup + hardware upsell (two mocks side by side) */}
       <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
         <ScreenGallery
           items={[
             {
-              id: 'onboarding-upsell',
+              id: 'choose-setup-flow',
+              mockContent: <OnboardingFlowDemo />,
+              noBorder: true,
+              noShadow: true,
+            },
+            {
+              id: 'hardware-upsell-sheet',
               mockContent: <OnboardingUpsellDemo />,
               noBorder: true,
               noShadow: true,
             },
           ]}
           sectionEyebrow="Onboarding"
-          sectionTitle="Hardware Upsell"
+          sectionTitle="Choose your setup"
           sectionDescription={
             <div>
-              <p className="mb-4">
-                During software wallet setup, a contextual upsell introduces the Jade hardware wallet — framing it as the
-                next step in security rather than a hard sell. The modal opens automatically on first visit, with product
-                imagery and a clear value proposition.
+              <p className="mb-4 text-[#333]">
+                Jade’s best selling points were invisible unless you already owned one. The old flow hid air-gapped security and multi-sig behind a store link that made users read through — no product selling, no &quot;why.&quot; First screens were dull and jargon-heavy instead of conversion-focused.
               </p>
-              <p>
-                The goal is to convert high-intent users early, before they settle into a software-only workflow.
+              <p className="mb-4 text-[#333]">
+                The first screen sets the path. We lead with <strong>Choose your setup</strong> and benefit-driven language instead of jargon. Tap &quot;Maximum Security&quot; and you get <strong>three options</strong> — pair your Jade, set up later, or explore and buy — not a pairing-only dead end. The hardware upsell bottom sheet (right) surfaces air-gapped security and multi-sig up front, so the product sells itself before they own it.
+              </p>
+              <p className="text-[#333]">
+                One entry point. Clear choices. Value visible when it matters.
               </p>
             </div>
           }
           hideItemText={true}
           mockContainerBackground="bg-[#FAF7F0]"
+          galleryGapClass="space-x-2"
         />
       </section>
 
@@ -131,57 +160,36 @@ function Blockstream() {
               noBorder: true,
               noShadow: true,
             },
+            {
+              id: 'security-score-sheet',
+              mockContent: <SecurityScoreSheetOpenDemo />,
+              noBorder: true,
+              noShadow: true,
+            },
           ]}
-          sectionEyebrow="Engagement"
-          sectionTitle="Security Score"
+          sectionEyebrow="Adoption"
+          sectionTitle="Improvements to the existing empty state"
           sectionDescription={
             <div>
               <p className="mb-4">
-                A gamified security checklist turns wallet hardening into a progression system. Users see their score at a
-                glance and can tap to expand the full task list — backup seed phrase, set PIN, enable biometrics.
+                <strong>First</strong> — surfaced key jobs to the homepage: buy, receive, send, sell. Same lesson from Tide: quick actions on the surface get exponentially more usage.
+              </p>
+              <p className="mb-4">
+                <strong>Second</strong> — Security Score. Gamified security completion instead of a red dot you ignore. At Tide, gamifying bookkeeping tripled completion. Same psychology.
               </p>
               <p>
-                Each completed task moves the donut chart and reinforces a sense of ownership over their security posture.
+                <strong>Third</strong> — a dismissible Jade upsell banner. Revenue opportunity that doesn&apos;t exist on this surface today.
               </p>
             </div>
           }
           hideItemText={true}
           mockContainerBackground="bg-white"
+          galleryGapClass="space-x-2"
         />
       </section>
 
-      {/* Section 3: Sell Flow */}
+      {/* Section 4: Send & receive — key jobs (combined) */}
       <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
-        <ScreenGallery
-          items={[
-            {
-              id: 'sell-flow',
-              mockContent: <SellFlowDemo />,
-              noBorder: true,
-              noShadow: true,
-            },
-          ]}
-          sectionEyebrow="Transactions"
-          sectionTitle="Sell Flow"
-          sectionDescription={
-            <div>
-              <p className="mb-4">
-                The sell modal surfaces as a bottom sheet over the wallet home, keeping context visible behind the overlay.
-                Amount input, network selection, and fee estimation are composed into a single scrollable flow.
-              </p>
-              <p>
-                Progressive disclosure keeps the initial view focused while advanced options (fee priority, network toggle)
-                are one tap away.
-              </p>
-            </div>
-          }
-          hideItemText={true}
-          mockContainerBackground="bg-[#FAF7F0]"
-        />
-      </section>
-
-      {/* Section 4: Receive */}
-      <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
         <ScreenGallery
           items={[
             {
@@ -190,23 +198,31 @@ function Blockstream() {
               noBorder: true,
               noShadow: true,
             },
+            {
+              id: 'sell-flow',
+              mockContent: <SellFlowDemo />,
+              noBorder: true,
+              noShadow: true,
+            },
           ]}
-          sectionEyebrow="Transactions"
-          sectionTitle="Receive Bitcoin"
+          sectionEyebrow="Improving key user jobs"
+          sectionTitle="Improving adoption & retention"
           sectionDescription={
             <div>
               <p className="mb-4">
-                A unified receive screen supports both on-chain and Lightning addresses through a single QR code. Users can
-                switch to asset-specific addresses for Liquid tokens, or toggle between single-use and reusable addresses.
+                Receive and send are core jobs that drive both adoption and retention. Today users are asked to pick from <strong>seven receiving methods</strong> — a technical decision most aren’t equipped to make. The mental model people have is Revolut: share your details, money arrives. You don’t choose SWIFT vs SEPA.
+              </p>
+              <p className="mb-4">
+                <strong>BIP-21 unified URI</strong> lets one QR code cover Bitcoin and Lightning automatically; the sender’s wallet picks the method. Tether, Liquid CAD, and EUR stay as explicit choices below because those are different <em>currencies</em>, not different rails. Seven options become <strong>one default</strong> plus &quot;receive a specific asset.&quot;
               </p>
               <p>
-                Copy and share actions are prominent, and address truncation keeps the UI clean without hiding critical
-                verification characters.
+                We surface these flows on the home screen and optimised the receive and sell flows so the job is obvious and the technical complexity stays under the hood.
               </p>
             </div>
           }
           hideItemText={true}
-          mockContainerBackground="bg-white"
+          mockContainerBackground="bg-[#FAF7F0]"
+          galleryGapClass="space-x-2"
         />
       </section>
     </div>

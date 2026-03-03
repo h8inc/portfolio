@@ -87,6 +87,11 @@ type ScreenGalleryProps = {
    * Use the same as the section so the area around the mock is not dark.
    */
   mockContainerBackground?: string;
+  /**
+   * Optional Tailwind gap class between gallery items (e.g. "space-x-2").
+   * When set, overrides the default spacing for both mobile and desktop.
+   */
+  galleryGapClass?: string;
 };
 
 const MOBILE_CARD_STYLE: React.CSSProperties = {
@@ -153,17 +158,20 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
   sectionRole,
   singleItemWider = false,
   hideItemText = false,
-  mockContainerBackground
+  mockContainerBackground,
+  galleryGapClass
 }) => {
   // Calculate desktop article width: wider if singleItemWider is true and there's only 1 item
   const isSingleWideItem = singleItemWider && items.length === 1;
   const desktopArticleWidth = isSingleWideItem ? 960 : 390;
   const desktopArticleMarginRight = isSingleWideItem ? -64 : 0;
   const gapWidthClass = isSingleWideItem ? 'w-0 lg:w-0' : 'w-12 lg:w-16';
-  const gallerySpacingClass = isSingleWideItem ? 'space-x-0' : 'space-x-6';
+  const defaultGallerySpacing = isSingleWideItem ? 'space-x-0' : 'space-x-6';
+  const defaultMobileGallerySpacing = isSingleWideItem ? 'space-x-0' : 'space-x-3';
+  const gallerySpacingClass = galleryGapClass ?? defaultGallerySpacing;
+  const mobileGallerySpacingClass = galleryGapClass ?? defaultMobileGallerySpacing;
   const mobileMockContainerStyle = isSingleWideItem ? SINGLE_ITEM_MOBILE_CONTAINER_STYLE : MOCK_CONTAINER_STYLE;
   const mobileCardStyle = isSingleWideItem ? SINGLE_ITEM_MOBILE_CARD_STYLE : MOBILE_CARD_STYLE;
-  const mobileGallerySpacingClass = isSingleWideItem ? 'space-x-0' : 'space-x-3';
   const galleryScrollbarStyle = isSingleWideItem
     ? { ...scrollbarStyles, paddingRight: '1rem', scrollPaddingRight: '1rem' }
     : scrollbarStyles;

@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 export interface JadeUpsellModalProps {
   isOpen: boolean;
   onClose: () => void;
+  /** Called when user taps "Buy Jade Wallet" (e.g. open store, close modal). */
+  onBuy?: () => void;
   /**
    * When true, the modal is rendered inside a constrained container
    * (e.g. inside a phone frame) instead of full viewport.
@@ -19,6 +21,7 @@ export interface JadeUpsellModalProps {
 export const JadeUpsellModal = ({
   isOpen,
   onClose,
+  onBuy,
   embedded = false,
   hideBackdrop = false
 }: JadeUpsellModalProps) => {
@@ -149,9 +152,11 @@ export const JadeUpsellModal = ({
 
               {/* CTA Buttons */}
               <div className="space-y-2 mt-auto">
-                <motion.button whileTap={{
-              scale: 0.98
-            }} className="w-full bg-gradient-to-r from-[#00d4ff] to-[#0099ff] text-[#0d0d0d] font-bold py-4 rounded-lg text-sm hover:from-[#33ddff] hover:to-[#00aaff] transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#00d4ff]/20">
+                <motion.button
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => (onBuy ? onBuy() : onClose())}
+                  className="w-full bg-gradient-to-r from-[#00d4ff] to-[#0099ff] text-[#0d0d0d] font-bold py-4 rounded-lg text-sm hover:from-[#33ddff] hover:to-[#00aaff] transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#00d4ff]/20"
+                >
                   <HardDrive className="w-5 h-5" />
                   Buy Jade Wallet
                   <ArrowRight className="w-5 h-5" />

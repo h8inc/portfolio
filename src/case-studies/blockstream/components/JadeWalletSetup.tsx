@@ -89,11 +89,16 @@ const SecurityScoreDonut = ({
     </div>;
 };
 
+type JadeWalletSetupProps = {
+  /** When true, the Security Score bottom sheet is open on mount (for static mocks). */
+  defaultSecuritySheetOpen?: boolean;
+};
+
 // @component: JadeWalletSetup
-export const JadeWalletSetup = () => {
+export const JadeWalletSetup = ({ defaultSecuritySheetOpen = false }: JadeWalletSetupProps = {}) => {
   const [activeTab, setActiveTab] = useState('home');
   const [showPromoBanner, setShowPromoBanner] = useState(true);
-  const [showSecuritySheet, setShowSecuritySheet] = useState(false);
+  const [showSecuritySheet, setShowSecuritySheet] = useState(defaultSecuritySheetOpen);
   const [showAlternativeSheet, setShowAlternativeSheet] = useState(false);
   const [showJadeUpsellModal, setShowJadeUpsellModal] = useState(false);
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
