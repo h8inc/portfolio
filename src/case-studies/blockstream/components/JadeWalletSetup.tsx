@@ -213,7 +213,7 @@ export const JadeWalletSetup = () => {
           </div>
           
           {/* Interactive Chart - Fixed container with proper height */}
-          <div className="h-40 w-full -mx-4 -mb-4">
+          <div className="h-40 w-[calc(100%+16px)] -ml-4 -mb-4">
             <PortfolioChart variant="mobile" selectedPeriod="1W" onHoverValue={value => setHoveredPrice(value)} />
           </div>
         </div>

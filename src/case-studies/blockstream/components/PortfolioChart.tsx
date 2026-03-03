@@ -112,8 +112,8 @@ export const PortfolioChart = ({
     // Responsive margins - add right margin for value labels
     const margin = isMobile ? {
       top: 16,
-      right: 60,
-      bottom: 8,
+      right: 16,
+      bottom: 24,
       left: 0
     } : {
       top: 50,
@@ -129,10 +129,9 @@ export const PortfolioChart = ({
     const maxValue = Math.max(...data.map(d => d.value));
     const minValue = Math.min(...data.map(d => d.value));
     const padding = (maxValue - minValue) * 0.1;
-    const xScale = (index: number) => {
-      // Scale from edge to edge with extended width (reduce right margin effect)
-      return index / (data.length - 1) * (containerWidth - margin.right + 30);
-    };
+    const xScale = (index: number) =>
+      // Scale across the full inner width between left/right margins
+      margin.left + (index / (data.length - 1)) * width;
     const yScale = (value: number) => {
       return margin.top + height - (value - (minValue - padding)) / (maxValue + padding - (minValue - padding)) * height;
     };
@@ -355,23 +354,24 @@ export const PortfolioChart = ({
 
     // Add value labels AFTER grid lines so they layer on top
     const labelFontSize = isMobile ? '10' : '11';
-    const labelXOffset = isMobile ? 8 : 10;
+    const labelX = containerWidth - (isMobile ? 6 : 8);
+    const maxLabelY = margin.top + (isMobile ? 2 : 5);
     const maxLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    maxLabel.setAttribute('x', (containerWidth - margin.right + labelXOffset).toString());
-    maxLabel.setAttribute('y', (margin.top + 5).toString());
+    maxLabel.setAttribute('x', labelX.toString());
+    maxLabel.setAttribute('y', maxLabelY.toString());
     maxLabel.setAttribute('fill', '#9ca3af');
     maxLabel.setAttribute('font-size', labelFontSize);
     maxLabel.setAttribute('font-weight', '500');
-    maxLabel.setAttribute('text-anchor', 'start');
+    maxLabel.setAttribute('text-anchor', 'end');
     maxLabel.textContent = formatValue(maxValue);
     svg.appendChild(maxLabel);
     const minLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    minLabel.setAttribute('x', (containerWidth - margin.right + labelXOffset).toString());
+    minLabel.setAttribute('x', labelX.toString());
     minLabel.setAttribute('y', (containerHeight - margin.bottom + 5).toString());
     minLabel.setAttribute('fill', '#9ca3af');
     minLabel.setAttribute('font-size', labelFontSize);
     minLabel.setAttribute('font-weight', '500');
-    minLabel.setAttribute('text-anchor', 'start');
+    minLabel.setAttribute('text-anchor', 'end');
     minLabel.textContent = formatValue(minValue);
     svg.appendChild(minLabel);
 
