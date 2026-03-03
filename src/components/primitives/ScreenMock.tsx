@@ -13,6 +13,7 @@ type ScreenMockProps = {
   eager?: boolean;
   noBorder?: boolean;
   customBorderRadius?: string;
+  noShadow?: boolean;
   /**
    * Optional custom content to render inside the mock frame (for interactive embeds).
    * When provided, it takes precedence over imageSrc.
@@ -27,6 +28,7 @@ export const ScreenMock: React.FC<ScreenMockProps> = ({
   eager = false,
   noBorder = false,
   customBorderRadius,
+  noShadow = false,
   children
 }) => {
   const borderClasses = noBorder 
@@ -38,9 +40,11 @@ export const ScreenMock: React.FC<ScreenMockProps> = ({
       ? 'rounded-[4px] md:rounded-[12px]' 
       : 'rounded-[34px]';
 
+  const shadowClass = noShadow ? '' : 'shadow-[0_12px_32px_rgba(10,8,23,0.12)]';
+
   if (children) {
     return (
-      <div className={`w-full h-full overflow-hidden ${roundedClasses} shadow-[0_12px_32px_rgba(10,8,23,0.12)] ${borderClasses}`}>
+      <div className={`w-full h-full overflow-hidden ${roundedClasses} ${shadowClass} ${borderClasses}`}>
         {children}
       </div>
     );
@@ -54,7 +58,7 @@ export const ScreenMock: React.FC<ScreenMockProps> = ({
         loading={eager ? undefined : 'lazy'}
         decoding={eager ? 'auto' : 'async'}
         fetchPriority={eager ? 'high' : 'low'}
-        className={`max-h-full max-w-full object-contain ${roundedClasses} shadow-[0_12px_32px_rgba(10,8,23,0.12)] ${borderClasses}`}
+        className={`max-h-full max-w-full object-contain ${roundedClasses} ${shadowClass} ${borderClasses}`}
       />
     );
   }

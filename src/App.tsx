@@ -1,15 +1,23 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, lazy, Suspense } from 'react';
 import Home from './pages/Home';
 import Tide from './pages/Tide';
 import Extended from './pages/Extended';
 import About from './pages/About';
+import Blockstream from './pages/Blockstream';
 
-const OVERLAY_PATHS = ['/tide', '/about', '/extended'];
+const DemoUpsell = lazy(() => import('./case-studies/blockstream/demos/DemoUpsell'));
+const DemoSecurity = lazy(() => import('./case-studies/blockstream/demos/DemoSecurity'));
+const DemoSell = lazy(() => import('./case-studies/blockstream/demos/DemoSell'));
+const DemoReceive = lazy(() => import('./case-studies/blockstream/demos/DemoReceive'));
+
+const DEMO_PATHS = ['/demo/upsell', '/demo/security', '/demo/sell', '/demo/receive'];
+const OVERLAY_PATHS = ['/tide', '/about', '/extended', '/blockstream'];
 
 function App() {
   const location = useLocation();
+  const isDemo = DEMO_PATHS.includes(location.pathname);
   const isOverlay = OVERLAY_PATHS.includes(location.pathname);
   const scrollPositionRef = useRef(0);
   const prevPathRef = useRef(location.pathname);
@@ -52,6 +60,23 @@ function App() {
       document.body.style.overflow = '';
     }
   }, [isOverlay]);
+
+  if (isDemo) {
+    return (
+      <Suspense fallback={
+        <div className="h-screen w-screen flex items-center justify-center bg-[#0d0d0d]">
+          <div className="w-6 h-6 border-2 border-white/20 border-t-white/80 rounded-full animate-spin" />
+        </div>
+      }>
+        <Routes location={location}>
+          <Route path="/demo/upsell" element={<DemoUpsell />} />
+          <Route path="/demo/security" element={<DemoSecurity />} />
+          <Route path="/demo/sell" element={<DemoSell />} />
+          <Route path="/demo/receive" element={<DemoReceive />} />
+        </Routes>
+      </Suspense>
+    );
+  }
 
   return (
     <>
@@ -119,6 +144,7 @@ function App() {
                 <Route path="/tide" element={<Tide />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/extended" element={<Extended />} />
+                <Route path="/blockstream" element={<Blockstream />} />
               </Routes>
             </motion.div>
           </>

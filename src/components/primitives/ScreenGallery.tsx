@@ -37,6 +37,10 @@ type ScreenGalleryItem = {
    * Custom border radius classes (e.g., 'rounded-[4px] md:rounded-[12px]')
    */
   customBorderRadius?: string;
+  /**
+   * When true, removes the drop shadow from the mock container
+   */
+  noShadow?: boolean;
 };
 
 type ScreenGalleryProps = {
@@ -176,6 +180,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
           eager={index < 3}
           noBorder={item.noBorder}
           customBorderRadius={item.customBorderRadius}
+          noShadow={item.noShadow}
         >
           {item.mockContent}
         </ScreenMock>
@@ -434,6 +439,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
                     eager={index < 3}
                     noBorder={item.noBorder}
                     customBorderRadius={item.customBorderRadius}
+                    noShadow={item.noShadow}
                   >
                     {item.mockContent}
                   </ScreenMock>

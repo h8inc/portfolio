@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { Container, Theme } from '../settings/types';
 import { GradientBackground } from '../components/generated/GradientBackground';
 import ProfileWidget from '../components/generated/ProfileWidget';
@@ -12,6 +12,71 @@ import { TideLogo } from '../components/icons/TideLogo';
 import { LandingPage, BackgroundGlyphs, CryptoSwapWidgetPrimitive, TradingBoxPrimitive } from '@h8inc/perp-ui';
 import { ExtendedInteractiveMock } from '../components/ExtendedInteractiveMock';
 import { ExtendedLandingMockHome } from '../components/ExtendedLandingMock';
+import { JadeWalletSetup } from '../case-studies/blockstream/components/JadeWalletSetup';
+import { JadeUpsellModal } from '../case-studies/blockstream/components/JadeUpsellModal';
+import { TransactionModal } from '../case-studies/blockstream/components/TransactionModal';
+import { ReceiveBitcoinModal } from '../case-studies/blockstream/components/ReceiveBitcoinModal';
+
+function PhoneFrame({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="w-full h-full relative">
+      <div
+        className="phone-screen absolute top-1/2 left-1/2"
+        style={{ width: 430, height: 932, transform: 'translate(-50%, -50%) scale(0.62)' }}
+      >
+        <div className="phone-content">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+function BlockstreamSecurityDemo() {
+  return (
+    <PhoneFrame>
+      <div className="dark h-full">
+        <JadeWalletSetup />
+      </div>
+    </PhoneFrame>
+  );
+}
+
+function BlockstreamUpsellDemo() {
+  const [dismissed, setDismissed] = useState(false);
+  return (
+    <PhoneFrame>
+      <div className="relative h-full dark">
+        <JadeWalletSetup />
+        {!dismissed && (
+          <JadeUpsellModal embedded hideBackdrop isOpen={true} onClose={() => setDismissed(true)} />
+        )}
+      </div>
+    </PhoneFrame>
+  );
+}
+
+function BlockstreamSellDemo() {
+  const [dismissed, setDismissed] = useState(false);
+  return (
+    <PhoneFrame>
+      <div className="relative h-full dark">
+        <JadeWalletSetup />
+        {!dismissed && (
+          <TransactionModal embedded hideBackdrop isOpen={true} onClose={() => setDismissed(true)} type="sell" />
+        )}
+      </div>
+    </PhoneFrame>
+  );
+}
+
+function BlockstreamReceiveDemo() {
+  return (
+    <PhoneFrame>
+      <div className="h-full bg-[#0f0f0f] dark">
+        <ReceiveBitcoinModal />
+      </div>
+    </PhoneFrame>
+  );
+}
 
 let theme: Theme = 'light';
 // only use 'centered' container for standalone components, never for full page apps or websites.
@@ -209,8 +274,66 @@ function Home() {
             />
           </section>
 
-          {/* PERP UI PRIMITIVES (PACKAGE SHOWCASE) */}
+          {/* BLOCKSTREAM CASE STUDY */}
           <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
+            <ScreenGallery
+              items={[
+                {
+                  id: 'blockstream-security',
+                  eyebrow: 'Security gamification',
+                  description: 'Turned an intimidating concept into a progressive checklist that builds confidence.',
+                  mockContent: <BlockstreamSecurityDemo />,
+                  noBorder: true,
+                  noShadow: true
+                },
+                {
+                  id: 'blockstream-receive',
+                  eyebrow: 'Receive flow',
+                  description: 'Core job surfaced — no more digging through layers to find it.',
+                  mockContent: <BlockstreamReceiveDemo />,
+                  noBorder: true,
+                  noShadow: true
+                },
+                {
+                  id: 'blockstream-sell',
+                  eyebrow: 'Sell flow',
+                  description: 'Bottom sheet keeps wallet context visible while transacting.',
+                  mockContent: <BlockstreamSellDemo />,
+                  noBorder: true,
+                  noShadow: true
+                },
+                {
+                  id: 'blockstream-upsell',
+                  eyebrow: 'Onboarding',
+                  description: 'Contextual Jade hardware upsell during wallet setup.',
+                  mockContent: <BlockstreamUpsellDemo />,
+                  noBorder: true,
+                  noShadow: true
+                }
+              ]}
+              sectionLogo={encodeURI('/assets/blockstream-logo.svg')}
+              sectionRole="Design Strategy"
+              sectionDescription={
+                <div>
+                  <p className="mb-4">
+                    The wallet's empty state wasn't helping newcomers — it offered no clear next step, and the core actions (receive / send) were buried layers deep, making them hardly discoverable.
+                  </p>
+                  <p>
+                    Security is critical in a Bitcoin wallet but hard for users to grasp, so I gamified the setup — turning an intimidating process into a progressive experience that builds confidence while ensuring proper protection.
+                  </p>
+                </div>
+              }
+              sectionCTA={{
+                label: 'View case study',
+                href: '/blockstream',
+                show: true,
+                disabled: false
+              }}
+            />
+          </section>
+
+          {/* PERP UI PRIMITIVES (PACKAGE SHOWCASE) */}
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -250,7 +373,7 @@ function Home() {
           </section>
 
           {/* TIDE AI CASE STUDY */}
-          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -291,7 +414,7 @@ function Home() {
           </section>
 
           {/* OPAA CASE STUDY */}
-          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -327,7 +450,7 @@ function Home() {
           </section>
 
           {/* HOTJAR CASE STUDY */}
-          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -359,7 +482,7 @@ function Home() {
           </section>
 
           {/* INSURITY CASE STUDY */}
-          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -425,7 +548,7 @@ function Home() {
           </section>
 
           {/* CALLIPER CASE STUDY */}
-          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
