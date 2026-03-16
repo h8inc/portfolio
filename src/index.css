@@ -2,10 +2,9 @@
 
 @plugin "tailwindcss-animate";
 
-/* Ensure Tailwind scans classes used inside the perp-ui package (installed via GitHub subpath). */
-@source "../node_modules/component-forge/packages/perp-ui/src/**/*.{js,ts,jsx,tsx}";
-/* LandingPage / BackgroundGlyphs currently live in the installed repo copy under component-forge/src. */
-@source "../node_modules/component-forge/src/**/*.{js,ts,jsx,tsx}";
+/* Ensure Tailwind scans classes used inside the perp-ui package (installed via GitHub). */
+@source "../node_modules/@h8inc/perp-ui/packages/perp-ui/src/**/*.{js,ts,jsx,tsx}";
+@source "../node_modules/@h8inc/perp-ui/src/**/*.{js,ts,jsx,tsx}";
 
 @custom-variant dark (&:is(.dark *));
 

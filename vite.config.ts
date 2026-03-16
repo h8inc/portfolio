@@ -10,12 +10,12 @@ export default defineConfig({
     exclude: ['@h8inc/perp-ui'],
   },
   resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@h8inc/perp-ui': path.resolve(
-        __dirname,
-        './src/vendor/perp-ui.ts',
-      ),
-    },
+    alias: [
+      { find: '@', replacement: path.resolve(__dirname, './src') },
+      {
+        find: /^@h8inc\/perp-ui$/,
+        replacement: path.resolve(__dirname, './src/vendor/perp-ui.ts'),
+      },
+    ],
   },
 });

@@ -24,7 +24,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
-    "component-forge": "git+https://github.com/h8inc/perp-dex.git#path:packages/perp-ui",
+    "@h8inc/perp-ui": "git+https://github.com/h8inc/perp-dex.git#main",
     "d3": "^7.9.0",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
