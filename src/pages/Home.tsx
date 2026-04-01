@@ -461,7 +461,7 @@ function Home() {
               }
               sectionCTA={{
                 label: 'Case Study',
-                href: 'https://pitch.com/v/hotjar-case-study-adw94r/7344ef01-af59-434f-b313-525fdcad13ad',
+                href: 'https://www.figma.com/deck/aimHvh0b9PwMqSX9rhJ02U/Hotjar---onboarding-case-study?node-id=1-6122&viewport=-131%2C-117%2C0.61&t=kBoKTW2atWn6vELS-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
                 show: true,
                 disabled: false
               }}
