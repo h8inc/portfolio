@@ -205,7 +205,7 @@ function Tide() {
           <div className="max-w-7xl mx-auto h-full">
             {/* Parallax / sticky hero widget */}
             <div className="relative h-[calc(140vh-32px)] flex items-start">
-              <div className="w-full sticky top-[20px]">
+              <div className="w-full sticky top-14 sm:top-16">
                 <div className="w-full flex justify-center">
                   <div className="w-full max-w-3xl bg-[#FAF7F0] rounded-[2.5rem] sm:rounded-[3rem] px-6 sm:px-10 py-8 sm:py-10 md:py-12 content-card-shell">
                     {/* Optional top marquee stripe */}
