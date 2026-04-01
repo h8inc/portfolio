@@ -240,8 +240,8 @@ function Tide() {
                         className={`${typography.subheader.className} max-w-2xl mx-auto`}
                         style={typography.subheader.style}
                       >
-                        From nothing to multi‑million
-          subscription service helping 1M+ micro-businesses manage their finances and amdin.
+                        From nothing to multiple multi-million subscription services helping
+                        1.5M+ micro-businesses manage their finances and admin.
                       </p>
                     </div>
                     {/* Edge-to-edge chart (offset horizontal padding) */}
