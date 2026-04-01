@@ -77,7 +77,9 @@ export function TidePerformanceChart({
 
   const shortValue = activePoint
     ? activePoint.value >= 1_000_000
-      ? `£${(activePoint.value / 1_000_000).toFixed(1)}M`
+      ? `£${(activePoint.value / 1_000_000)
+          .toFixed(1)
+          .replace(/\.0$/, '')}M`
       : activePoint.value >= 1_000
         ? `£${(activePoint.value / 1_000).toFixed(0)}K`
         : currencyFormatter.format(activePoint.value)
