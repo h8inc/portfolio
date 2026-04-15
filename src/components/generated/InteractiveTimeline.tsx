@@ -80,11 +80,13 @@ const defaultEvents: TimelineEvent[] = [
   },
   {
     id: '6',
-    year: 'Today',
-    title: 'Building 2 New Products',
+    year: 'Q3 ’25 → Q2 ’26',
+    title: 'Owned Tide’s Top Growth Funnel',
     description: [
-      'Building two new products in compliance.',
-      
+      'Took full ownership of Company Formation, Tide’s #1 acquisition channel with 26% UK market share.',
+      'Led a mobile-first redesign, added resume flow, simplified the journey, and introduced resubmission for failed incorporations.',
+      'Launched virtual office address upsell and Company Secretary as new subscription revenue streams.',
+      'Drove 76% growth in monthly incorporations, 20% conversion uplift, and an estimated £14–16M ARR impact.'
     ],
     logos: [''],
     position: 'bottom'
