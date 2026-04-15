@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { scaleLinear } from 'd3-scale';
 import { extent } from 'd3-array';
-import { line, curveCatmullRom } from 'd3-shape';
+import { line, curveBasis } from 'd3-shape';
 
 // Generic point type used internally after accessors are applied
 type InternalPoint = {
@@ -150,7 +150,7 @@ export function PrimitiveLineChart<T>({
     const lineGenerator = line<InternalPoint>()
       .x(p => p.x)
       .y(p => p.y)
-      .curve(curveCatmullRom.alpha(0.25));
+      .curve(curveBasis);
 
     const linePathData = scaledPoints.length ? lineGenerator(scaledPoints) ?? '' : '';
 
