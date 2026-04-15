@@ -246,11 +246,11 @@ function Home() {
               items={allScreens}
               sectionLogo={<div style={{ transform: 'scale(0.6)', transformOrigin: 'left center' }}><TideLogo className="max-w-full max-h-full w-full h-full" /></div>}
               sectionRole="Staff Designer, 2023-present"
-              sectionDescription="Tide is a banking app with more than 1M users, where I built first-of-its-kind financial and tax forecasting tools that reimagine how businesses plan and operate. The system anticipates needs, doesn't wait for asks. It proactively surfaces tasks like upcoming tax deadlines before they became urgent. Introduced a completely new activation strategy for Tide's subscription products — freemium experiences that deliver value upfront."
+              sectionDescription="Tide is a UK challenger bank serving 1.5M+ SMEs, where I owned design across two revenue engines: acquisition and SaaS. I built and scaled 0→1 financial, tax, and forecasting products, redesigned activation across the portfolio, and embedded new subscription offers into one of the company's highest-volume growth funnels. I also co-built an internal AI system that changed how 3,000+ employees work."
               sectionStats={
                 <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
-                  <li>0→<strong className="font-semibold">12,000+</strong> subscribers, 0→<strong className="font-semibold">£8M+</strong> annual recurring revenue</li>
-                  <li><strong className="font-semibold">22%</strong> activation rate (vs. 0.9% baseline) - a <strong className="font-semibold">24x</strong> improvement</li>
+                  <li>Owned surfaces contributing to <strong className="font-semibold">£28–32M ARR</strong> across acquisition and SaaS tools</li>
+                  <li><strong className="font-semibold">22%</strong> activation rate (vs. 0.9% baseline) and <strong className="font-semibold">76%</strong> growth in entrepreneurs starting a business with Tide</li>
                   <li>Built AI assistant for <strong className="font-semibold">3K+</strong> employees</li>
                 </ul>
               }
