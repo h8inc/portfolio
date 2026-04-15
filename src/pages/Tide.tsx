@@ -23,7 +23,7 @@ function Tide() {
       { date: new Date('2024-06-01'), value: 900_000 },
       { date: new Date('2024-11-01'), value: 2_000_000 },
       { date: new Date('2025-04-01'), value: 4_000_000 },
-      { date: today, value: 17_000_000 }
+      { date: today, value: 30_000_000 }
     ];
 
     const activationMilestones = [
