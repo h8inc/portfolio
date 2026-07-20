@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 import { BackgroundGlyphs, CryptoSwapWidgetPrimitive, TradingBoxPrimitive, TradingMetrics } from '@h8inc/perp-ui';
 import { ScreenGallery } from '../components/primitives/ScreenGallery';
 import { ExtendedInteractiveMock } from '../components/ExtendedInteractiveMock';
+import { Footer } from '../components/Footer';
 
 function Extended() {
   const navigate = useNavigate();
@@ -155,6 +156,8 @@ function Extended() {
           singleItemWider={true}
         />
       </section>
+
+      <Footer backgroundClass="bg-white" />
     </div>
   );
 }

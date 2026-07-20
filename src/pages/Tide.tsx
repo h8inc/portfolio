@@ -7,6 +7,7 @@ import { ScreenGallery } from '../components/primitives/ScreenGallery';
 import { useNavigate } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { TideLogo } from '../components/icons/TideLogo';
+import { Footer } from '../components/Footer';
 
 function Tide() {
   // NOTE: GradientBackground is rendered at App level to avoid transform issues during slide animation
@@ -382,6 +383,8 @@ function Tide() {
           }}
         />
       </section>
+
+      <Footer />
     </>
   );
 }

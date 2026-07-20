@@ -13,6 +13,7 @@ import { LandingPage, BackgroundGlyphs, CryptoSwapWidgetPrimitive, TradingBoxPri
 import { ExtendedInteractiveMock } from '../components/ExtendedInteractiveMock';
 import { ExtendedLandingMockHome } from '../components/ExtendedLandingMock';
 import { PhoneFrame } from '../case-studies/blockstream/components/PhoneFrame';
+import { Footer } from '../components/Footer';
 import { JadeWalletSetup } from '../case-studies/blockstream/components/JadeWalletSetup';
 import { JadeUpsellModal } from '../case-studies/blockstream/components/JadeUpsellModal';
 import { TransactionModal } from '../case-studies/blockstream/components/TransactionModal';
@@ -576,6 +577,8 @@ function Home() {
               hideItemText={true}
             />
           </section>
+
+          <Footer backgroundClass="bg-white" />
         </div>
       </GradientBackground>
     );

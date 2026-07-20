@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { PortfolioAbout } from '../components/generated/PortfolioAbout';
+import { Footer } from '../components/Footer';
 
 function About() {
   // NOTE: GradientBackground is rendered at App level to avoid transform issues during slide animation
@@ -16,6 +17,7 @@ function About() {
         <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-800" strokeWidth={2.5} />
       </button>
       <PortfolioAbout />
+      <Footer backgroundClass="bg-white" />
     </>
   );
 }

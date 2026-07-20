@@ -8,6 +8,7 @@ import { JadeUpsellModal } from '../case-studies/blockstream/components/JadeUpse
 import { OnboardingFlow } from '../case-studies/blockstream/components/OnboardingFlow';
 import { TransactionModal } from '../case-studies/blockstream/components/TransactionModal';
 import { ReceiveBitcoinModal } from '../case-studies/blockstream/components/ReceiveBitcoinModal';
+import { Footer } from '../components/Footer';
 
 function OnboardingUpsellDemo() {
   const [dismissed, setDismissed] = useState(false);
@@ -225,6 +226,8 @@ function Blockstream() {
           galleryGapClass="space-x-2"
         />
       </section>
+
+      <Footer backgroundClass="bg-white" />
     </div>
   );
 }
