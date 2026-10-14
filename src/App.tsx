@@ -6,6 +6,7 @@ import Tide from './pages/Tide';
 import Extended from './pages/Extended';
 import About from './pages/About';
 import Blockstream from './pages/Blockstream';
+import Growth from './pages/Growth';
 
 const DemoUpsell = lazy(() => import('./case-studies/blockstream/demos/DemoUpsell'));
 const DemoSecurity = lazy(() => import('./case-studies/blockstream/demos/DemoSecurity'));
@@ -13,7 +14,7 @@ const DemoSell = lazy(() => import('./case-studies/blockstream/demos/DemoSell'))
 const DemoReceive = lazy(() => import('./case-studies/blockstream/demos/DemoReceive'));
 
 const DEMO_PATHS = ['/demo/upsell', '/demo/security', '/demo/sell', '/demo/receive'];
-const OVERLAY_PATHS = ['/tide', '/about', '/extended', '/blockstream'];
+const OVERLAY_PATHS = ['/tide', '/about', '/extended', '/blockstream', '/growth'];
 
 function App() {
   const location = useLocation();
@@ -145,6 +146,7 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/extended" element={<Extended />} />
                 <Route path="/blockstream" element={<Blockstream />} />
+                <Route path="/growth" element={<Growth />} />
               </Routes>
             </motion.div>
           </>
