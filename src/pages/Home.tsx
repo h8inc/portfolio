@@ -456,8 +456,8 @@ function Home() {
               sectionStats={
                 <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
                   <li><strong className="font-semibold">10%</strong> overall improvement in activation across all segments</li>
-                  <li><strong className="font-semibold">30x</strong> improvement in sales pipeline (0.5% to 15% demos booked)</li>
-                  <li>Redesigned onboarding for <strong className="font-semibold">15k</strong> monthly signups</li>
+                  <li><strong className="font-semibold">3x</strong> sales bookings (7.1% → 21% of target customers speaking with sales)</li>
+                  <li>Redesigned onboarding for <strong className="font-semibold">51k</strong> sign-ups</li>
                 </ul>
               }
               sectionCTA={{

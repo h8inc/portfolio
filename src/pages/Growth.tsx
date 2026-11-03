@@ -131,7 +131,7 @@ const CASE_STUDIES: CaseStudy[] = [
     stage: 'Acquisition + Activation',
     team: 'Freelance growth designer, 2022',
     problem:
-      '51K sign-ups/month at 0.97% to paid; the onboarding forced an SDK install before showing value, but the ICP buyer (PM/designer) wasn’t the person who installs it.',
+      '51K sign-ups at 0.97% to paid; the onboarding forced an SDK install before showing value, but the ICP buyer (PM/designer) wasn’t the person who installs it.',
     solution: [
       {
         label: 'Acquisition',
