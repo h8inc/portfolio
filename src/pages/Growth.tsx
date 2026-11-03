@@ -11,7 +11,7 @@ import { ScreenGallery } from '../components/primitives/ScreenGallery';
 
 const PAGE_TITLE = 'Growth design results — Nasko Terziev';
 const PAGE_DESCRIPTION =
-  'Growth and monetisation design results: £0 → £17M ARR from Tide’s Admin products, accounting sign-ups 0.95% → 21.2%, and +76% monthly company incorporations.';
+  'Growth and monetisation design results: £0 → £20M ARR from Tide’s Admin products, accounting sign-ups 0.95% → 22.2%, and +76% monthly company incorporations.';
 
 const EMAIL_URL = 'mailto:hello@atanasterziev.com';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/atanas-terziev-jr/';
@@ -24,8 +24,8 @@ const eyebrowStyle = { fontFamily: 'Aeonik Extended' } as const;
 type Stat = { value: string; label: string };
 
 const HEADLINE_STATS: Stat[] = [
-  { value: '£0 → £17M ARR', label: 'revenue from Tide’s Admin products' },
-  { value: '0.95% → 21.2%', label: 'accounting sign-up rate (≈22x)' },
+  { value: '£0 → £20M ARR', label: 'revenue from Tide’s Admin products' },
+  { value: '0.95% → 22.2%', label: 'accounting sign-up rate (≈23x)' },
   { value: '+76%', label: 'monthly company incorporations, Tide’s #1 acquisition channel' }
 ];
 
@@ -62,15 +62,15 @@ const CASE_STUDIES: CaseStudy[] = [
     company: 'Tide',
     title: 'Freemium + Admin IA',
     stage: 'Monetisation',
-    team: 'Started as the only designer on my team in a 40-designer org; left with a team of 6, working across 6–7 product teams.',
+    team: 'Started as the only designer on my team in a 40-designer org; left with a team of 6, working across 5–6 engineering teams.',
     problem:
       '40K weekly Admin visits, under 1% converted to accounting; 93% of sign-up attempts failed in a 6-step third-party onboarding.',
     solution:
       'I persuaded the VP and Head of Engineering to adopt freemium and co-led decoupling insights and tax estimates from the third-party backend. Then I redesigned the Admin tab IA with free hooks, urgency surfaces and one-tap key jobs. Users now reach high-value moments earlier, such as tax estimates or cash-flow projections, while deeper insights sit behind subscription, creating a natural path to upgrade. Tested with 120 research participants before build; launched to 1.5M users.',
     results: [
-      { value: '0.95% → 21.2%', label: 'sign-ups' },
-      { value: '£400K → £8M', label: 'Accounting ARR' },
-      { value: '£17M ARR', label: 'across Admin products' },
+      { value: '0.95% → 22.2%', label: 'sign-ups' },
+      { value: '£0 → £12M', label: 'Accounting ARR' },
+      { value: '£20M ARR', label: 'across Admin products' },
       { value: '10%', label: 'freemium → paid from the accounting tool' }
     ],
     screens: [
@@ -121,7 +121,7 @@ const CASE_STUDIES: CaseStudy[] = [
     results: [
       { value: '+76%', label: 'monthly incorporations' },
       { value: '+20%', label: 'conversion' },
-      { value: '£14–16M ARR', label: 'estimated impact' }
+      { value: '£16–17M ARR', label: 'estimated impact' }
     ]
   },
   {
@@ -162,20 +162,22 @@ const CASE_STUDIES: CaseStudy[] = [
 type Step = {
   label: string;
   period: string;
-  signUpRate: number;
-  signUpLabel: string;
+  /** Omitted when there's no figure for that step */
+  signUpRate?: number;
+  signUpLabel?: string;
   arr: number;
   arrLabel: string;
 };
 
 const STAIRCASE: Step[] = [
-  { label: 'Baseline: paywalled accounting', period: '2023', signUpRate: 0.95, signUpLabel: '0.95%', arr: 400_000, arrLabel: '£400K' },
-  { label: 'First freemium release', period: 'Q1–Q2 2024', signUpRate: 1.6, signUpLabel: '1.6%', arr: 900_000, arrLabel: '£900K' },
-  { label: 'Decoupled insights + tax for all 1.5M users', period: 'Q2–Q4 2024', signUpRate: 3.8, signUpLabel: '3.8%', arr: 2_000_000, arrLabel: '£2M' },
-  { label: 'Admin IA redesign', period: 'Q2 2025', signUpRate: 21.2, signUpLabel: '21.2%', arr: 8_000_000, arrLabel: '£8M' }
+  { label: 'Baseline: paywalled accounting', period: '2023', signUpRate: 0.95, signUpLabel: '0.95%', arr: 0, arrLabel: '£0' },
+  { label: 'First freemium release', period: 'Q2 2024', signUpRate: 1.6, signUpLabel: '1.6%', arr: 900_000, arrLabel: '£900K' },
+  { label: 'Decoupled insights + tax for all 1.5M users', period: 'Q3 2024', signUpRate: 3.8, signUpLabel: '3.8%', arr: 2_000_000, arrLabel: '£2M' },
+  { label: 'Admin IA redesign', period: 'Q2 2025', signUpRate: 22.2, signUpLabel: '22.2%', arr: 8_000_000, arrLabel: '£8M' },
+  { label: 'Today', period: '2026', arr: 12_000_000, arrLabel: '£12M' }
 ];
 
-const MAX_SIGN_UP = Math.max(...STAIRCASE.map((s) => s.signUpRate));
+const MAX_SIGN_UP = Math.max(...STAIRCASE.map((s) => s.signUpRate ?? 0));
 const MAX_ARR = Math.max(...STAIRCASE.map((s) => s.arr));
 
 const SERIES = [
@@ -183,7 +185,7 @@ const SERIES = [
     key: 'signUp',
     title: 'Sign-up rate',
     barClass: 'bg-orange-600',
-    pct: (s: Step) => (s.signUpRate / MAX_SIGN_UP) * 100,
+    pct: (s: Step) => ((s.signUpRate ?? 0) / MAX_SIGN_UP) * 100,
     text: (s: Step) => s.signUpLabel
   },
   {
@@ -340,24 +342,24 @@ function StaircaseCharts() {
   return (
     <div aria-hidden="true" className="hidden md:block">
       {SERIES.map((series) => (
-        <div key={series.key} className="grid grid-cols-[140px_repeat(4,minmax(0,1fr))] gap-x-4 lg:gap-x-6 mb-8">
+        <div key={series.key} className="grid grid-cols-[140px_repeat(5,minmax(0,1fr))] gap-x-4 lg:gap-x-6 mb-8">
           <p className="self-end pb-1 text-sm font-medium text-[#130F25]" style={eyebrowStyle}>
             {series.title}
           </p>
           {STAIRCASE.map((step) => (
             <div key={step.label} className="h-44 flex flex-col justify-end border-b border-[#3F3A2F]/20">
               <p className="text-lg lg:text-xl font-bold text-[#130F25] mb-1.5" style={{ fontFamily: 'Aeonik Extended' }}>
-                {series.text(step)}
+                {series.text(step) ?? '—'}
               </p>
               <div
                 className={`${series.barClass} w-full rounded-t-md`}
-                style={{ height: `max(3px, ${series.pct(step) * 0.75}%)` }}
+                style={{ height: series.pct(step) > 0 ? `max(3px, ${series.pct(step) * 0.75}%)` : 0 }}
               />
             </div>
           ))}
         </div>
       ))}
-      <div className="grid grid-cols-[140px_repeat(4,minmax(0,1fr))] gap-x-4 lg:gap-x-6">
+      <div className="grid grid-cols-[140px_repeat(5,minmax(0,1fr))] gap-x-4 lg:gap-x-6">
         <div />
         {STAIRCASE.map((step, i) => (
           <div key={step.label}>
@@ -377,7 +379,7 @@ function StaircaseTable() {
   return (
     <table className="w-full text-left border-collapse md:sr-only">
       <caption className="sr-only">
-        Tide accounting sign-up rate and ARR at each of four freemium releases
+        Tide accounting sign-up rate and ARR at each of four freemium releases, plus ARR today
       </caption>
       <thead>
         <tr className="text-xs uppercase tracking-wider text-[#5f5a4f]">
@@ -398,12 +400,17 @@ function StaircaseTable() {
             {SERIES.map((series) => (
               <td key={series.key} className="py-3 pr-3 last:pr-0">
                 <span className="block text-base font-bold text-[#130F25]" style={{ fontFamily: 'Aeonik Extended' }}>
-                  {series.text(step)}
+                  {series.text(step) ?? (
+                    <>
+                      <span aria-hidden="true">—</span>
+                      <span className="sr-only">Not reported</span>
+                    </>
+                  )}
                 </span>
                 <span aria-hidden="true" className="block h-2 mt-1.5 rounded-full bg-[#EDEAE4] overflow-hidden">
                   <span
                     className={`block h-full rounded-full ${series.barClass}`}
-                    style={{ width: `max(4px, ${series.pct(step)}%)` }}
+                    style={{ width: series.pct(step) > 0 ? `max(4px, ${series.pct(step)}%)` : 0 }}
                   />
                 </span>
               </td>

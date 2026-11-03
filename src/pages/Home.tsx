@@ -250,8 +250,8 @@ function Home() {
               sectionDescription="Tide is a UK challenger bank serving 1.5M+ SMEs, where I owned design across two revenue engines: acquisition and SaaS. I built and scaled 0→1 financial, tax, and forecasting products, redesigned activation across the portfolio, and embedded new subscription offers into one of the company's highest-volume growth funnels. I also co-built an internal AI system that changed how 3,000+ employees work."
               sectionStats={
                 <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
-                  <li>Owned surfaces contributing to <strong className="font-semibold">£28–32M ARR</strong> across acquisition and SaaS tools</li>
-                  <li><strong className="font-semibold">22%</strong> activation rate (vs. 0.9% baseline) and <strong className="font-semibold">76%</strong> growth in entrepreneurs starting a business with Tide</li>
+                  <li>Owned surfaces contributing to <strong className="font-semibold">£36–37M ARR</strong> across acquisition and SaaS tools</li>
+                  <li><strong className="font-semibold">22.2%</strong> activation rate (vs. 0.95% baseline) and <strong className="font-semibold">76%</strong> growth in entrepreneurs starting a business with Tide</li>
                   <li>Built AI assistant for <strong className="font-semibold">3K+</strong> employees</li>
                 </ul>
               }

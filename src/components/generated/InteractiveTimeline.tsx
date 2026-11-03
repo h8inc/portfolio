@@ -46,7 +46,7 @@ const defaultEvents: TimelineEvent[] = [
       'Influenced the roadmap to stop relying on third party software.',
       'Persuaded the VP and Engineering to adopt a freemium approach.',
       'Shifted from marketing-led to product-led in the app.',
-      'Drove sign up rate 0.95% → 1.65%.'
+      'Drove sign up rate 0.95% → 1.6% and ARR to £900K.'
     ],
     logos: [''],
     position: 'bottom'
@@ -59,7 +59,7 @@ const defaultEvents: TimelineEvent[] = [
       'Presented financial insights = retention = revenue.',
       'Presented that tax estimates capture top‑of‑funnel demand.',
       'Influenced the design of backend to support freemium on insights and tax estimates.',
-      'Sign‑up rate grew from 1.6% → 3.8% through.',
+      'Sign‑up rate grew from 1.6% → 3.8%.',
       'ARR grew from £900K → £2M.'
     ],
     logos: [''],
@@ -72,8 +72,8 @@ const defaultEvents: TimelineEvent[] = [
     description: [
       'Redesigned one and influenced the design of a second of Tide’s 5 main tabs (1M+ users).',
       'Streamlined the app to boost engagement, retention and revenue for multiple products.',
-      'Sign‑ups to the accounting product grew from 3.8% → 21.2%, with 4× more new members signing up.',
-      'ARR grew from £2M → £4M as 10% of freemium sign‑ups converted to paying customers.'
+      'Sign‑ups to the accounting product grew from 3.8% → 22.2%, with 4× more new members signing up.',
+      'ARR grew from £4M → £8M as 10% of freemium sign‑ups converted to paying customers.'
     ],
     logos: [''],
     position: 'bottom'
@@ -86,7 +86,7 @@ const defaultEvents: TimelineEvent[] = [
       'Took full ownership of Company Formation, Tide’s #1 acquisition channel with 26% UK market share.',
       'Led a mobile-first redesign, added resume flow, simplified the journey, and introduced resubmission for failed incorporations.',
       'Launched virtual office address upsell and Company Secretary as new subscription revenue streams.',
-      'Drove 76% growth in monthly incorporations, 20% conversion uplift, and an estimated £14–16M ARR impact.'
+      'Drove 76% growth in monthly incorporations, 20% conversion uplift, and an estimated £16–17M ARR impact.'
     ],
     logos: [''],
     position: 'bottom'

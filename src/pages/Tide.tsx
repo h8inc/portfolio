@@ -20,18 +20,20 @@ function Tide() {
 
     const arrMilestones = [
       { date: new Date('2023-06-01'), value: 0 }, // joining point
-      { date: new Date('2023-12-01'), value: 500_000 },
-      { date: new Date('2024-06-01'), value: 900_000 },
-      { date: new Date('2024-11-01'), value: 2_000_000 },
+      { date: new Date('2024-06-01'), value: 900_000 }, // Q2 2024: first freemium release
+      { date: new Date('2024-09-01'), value: 2_000_000 }, // Q3 2024: decoupled insights + tax
       { date: new Date('2025-04-01'), value: 4_000_000 },
-      { date: today, value: 30_000_000 }
+      { date: new Date('2025-07-01'), value: 8_000_000 }, // Q2 2025: Admin IA redesign
+      { date: today, value: 12_000_000 }
     ];
 
     const activationMilestones = [
       { date: new Date('2023-06-01'), value: 0.95 },
-      { date: new Date('2024-02-01'), value: 1.6 },
+      { date: new Date('2024-06-01'), value: 1.6 },
       { date: new Date('2024-09-01'), value: 3.8 },
-      { date: today, value: 21.2 }
+      { date: new Date('2025-04-01'), value: 3.8 },
+      { date: new Date('2025-07-01'), value: 22.2 },
+      { date: today, value: 22.2 }
     ];
 
     const approxWeekMs = 7 * 24 * 60 * 60 * 1000;
@@ -309,7 +311,7 @@ function Tide() {
             }
           ]}
           sectionEyebrow="Admin OS"
-          sectionTitle="Activation up 22× — from 0.9% to 22%"
+          sectionTitle="Activation up 23× — from 0.95% to 22.2%"
           sectionDescription={
             <div>
               <p className="mb-4">
