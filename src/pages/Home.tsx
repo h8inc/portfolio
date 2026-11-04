@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Container, Theme } from '../settings/types';
 import { GradientBackground } from '../components/generated/GradientBackground';
 import ProfileWidget from '../components/generated/ProfileWidget';
@@ -81,6 +81,18 @@ function Home() {
   }
 
   setTheme(theme);
+
+  // Deep links like naskoterziev.com/#tide-feature-gallery (used by the Strike deck's "Work" button):
+  // scroll to that section once the page has laid out.
+  useEffect(() => {
+    if (window.location.pathname !== '/') return;
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id) return;
+    const timer = window.setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   const allScreens = useMemo(
     () => [

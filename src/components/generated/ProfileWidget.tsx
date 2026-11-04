@@ -4,6 +4,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { Mail, Linkedin, Github } from "lucide-react";
 import { ProfileCardShell } from "../ProfileCardShell";
+import { CountUp } from "../CountUp";
 import { trackOutboundLink, trackEvent } from "../../lib/analytics";
 import { typography } from "../../design/typography";
 import { buttonStyles, buttonFontFamily } from "../../lib/button-styles";
@@ -119,13 +120,13 @@ export default function ProfileWidget({
             <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 mb-6 sm:mb-8 px-2">
               <div className="bg-[#EDEAE4] rounded-xl sm:rounded-2xl p-3 sm:p-6 lg:p-8 flex flex-col justify-center items-center min-h-[100px] sm:min-h-[120px] lg:min-h-[140px]">
                 <div className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2" style={{ fontFamily: 'Aeonik Extended' }}>
-                  $40M+
+                  <CountUp value="$40M+" />
                 </div>
                 <div className="text-[10px] sm:text-xs md:text-sm lg:text-base text-gray-700 text-center" style={{ fontFamily: 'Aeonik' }}>generated revenue</div>
               </div>
               <div className="bg-[#EDEAE4] rounded-xl sm:rounded-2xl p-3 sm:p-6 lg:p-8 flex flex-col justify-center items-center min-h-[100px] sm:min-h-[120px] lg:min-h-[140px]">
                 <div className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2" style={{ fontFamily: 'Aeonik Extended' }}>
-                  8+
+                  <CountUp value="8+" />
                 </div>
                 <div className="text-[10px] sm:text-xs md:text-sm lg:text-base text-gray-700 text-center" style={{ fontFamily: 'Aeonik' }}>
                   Products shipped
@@ -133,7 +134,7 @@ export default function ProfileWidget({
               </div>
               <div className="bg-[#EDEAE4] rounded-xl sm:rounded-2xl p-3 sm:p-6 lg:p-8 flex flex-col justify-center items-center min-h-[100px] sm:min-h-[120px] lg:min-h-[140px]">
                 <div className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2" style={{ fontFamily: 'Aeonik Extended' }}>
-                  x4
+                  <CountUp value="x4" />
                 </div>
                 <div className="text-[10px] sm:text-xs md:text-sm lg:text-base text-gray-700 text-center" style={{ fontFamily: 'Aeonik' }}>
                   Founding designer
