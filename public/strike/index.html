@@ -734,6 +734,13 @@ th{font-weight:600}
   .pm.pmimg{width:236px; height:511px}
 }
 </style>
+<style>
+/* Desktop (>=900px): on slides 4-5 the Prototype button sits in the empty space beside the headline
+   instead of inside the header, so those headers match the others' height. Mobile is unchanged. */
+@media (min-width:900px){
+  .stage .slide .head .protobtn{position:absolute; right:56px; top:106px; z-index:2}
+}
+</style>
 
 <div class="deck">
 <div class="stage" id="stage">
