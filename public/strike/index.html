@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Progressive onboarding for Strike: let people experience value before KYC. A web A/B test, a working prototype and a funnel model, by Nasko Terziev.">
 <meta property="og:title" content="Strike · progressive onboarding">
-<meta property="og:description" content="Would experiencing value before KYC lift the funding rate? A/B test, prototype and funnel model.">
+<meta property="og:description" content="Strike asks for ID before showing what bitcoin can do. Show the number before asking for the ID: a web A/B test, prototype and funnel model.">
 <meta property="og:image" content="https://naskoterziev.com/assets/og-image.png">
 <title>Strike · progressive onboarding · Nasko Terziev</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
@@ -840,6 +840,10 @@ th{font-weight:600}
 }
 @media (prefers-reduced-motion:reduce){ .hw-track{animation:none} .hw-btn{transition:none} }
 </style>
+<style>
+/* Slide 2: the quantified "why" runs the full width so it stays at two lines */
+@media (min-width:900px){ .slide[data-n="2"] .lead{max-width:none} }
+</style>
 
 <div class="deck">
 <div class="stage" id="stage">
@@ -893,7 +897,7 @@ th{font-weight:600}
 <section class="slide" data-n="2">
   <div class="head"><span class="eyebrow accent">Framework · psych'd (Darius Contractor) · the two tracks as lines</span><span class="eyebrow">02 / 09</span></div>
   <h2 class="a">KYC. Know your customer, <em>or kill your customer?</em></h2>
-  <p class="lead a">Strike asked for my ID, then my money, before it showed me what my bitcoin could do. Every step before the home is funded costs energy. Nothing gives any back.</p>
+  <p class="lead a">Strike says it spends $0 to acquire users, so every “Sign up” that leaves is free demand lost. 6 in 10 Europeans have quit a financial sign-up, most often over the personal-information ask (Signicat, 2026). My estimate for strike.me: only 3 to 9 in 100 people who tap “Sign up” fund within a week.</p>
   <div class="chartwrap a"><svg class="chart d" viewBox="0 0 1000 320" role="img" aria-label="User energy across eight steps: today's path falls through the quit line at KYC; the variant dips at the gate but stays above it and ends higher.">
   <line class="ax" x1="70" y1="16" x2="70" y2="268"/><line class="ax" x1="70" y1="268" x2="950" y2="268"/>
   <text class="tk" transform="translate(26 147) rotate(-90)" text-anchor="middle">user energy</text>
@@ -937,10 +941,10 @@ th{font-weight:600}
   </div>
   <div class="cols rules">
     <div class="a"><b>Hypothesis</b><span class="v">If people see their borrow numbers before any ID ask, more of them fund within 7 days.</span></div>
-    <div class="a"><b>Scope</b><span class="v">Web only, two weeks. The app and KYC don't change. Email is the only ask on the web.</span></div>
-    <div class="a"><b>Read</b><span class="v">Primary: funded within 7 days, per 1,000 “Sign up” clicks. No lift after two weeks, it's off.</span></div>
+    <div class="a"><b>Scope</b><span class="v">Web only. Runs until it can read a 25% lift: about four weeks on my model, longer if the real funnel is leaner. The app and KYC don't change.</span></div>
+    <div class="a"><b>Read</b><span class="v">Primary: funded within 7 days, per 1,000 “Sign up” clicks. No lift by then, it's off.</span></div>
   </div>
-  <div class="funnelrow"><a class="cta funnelbtn" href="https://docs.google.com/spreadsheets/d/1NA8w0Ah6MerQbW1EKL0IzMphMGbg3yd-Jm5v0RcJgvo/edit" target="_blank" rel="noopener">Open the funnel model ↗</a><p class="payoff">The web test is cheap, reversible and web only: a learning vehicle. <b>Its payoff is the investment to make the changes inside the app, where the money is.</b></p></div>
+  <div class="funnelrow"><a class="cta funnelbtn" href="https://docs.google.com/spreadsheets/d/1NA8w0Ah6MerQbW1EKL0IzMphMGbg3yd-Jm5v0RcJgvo/edit" target="_blank" rel="noopener">Open the funnel model ↗</a><p class="payoff">The web test is cheap, reversible and web only: a learning vehicle. <b>Its payoff is the investment to make the changes inside the app, where the money is:</b> $0.6M–$2.2M in first-year revenue in the model, depending on Strike’s real funnel.</p></div>
   <p class="foot">UK visitors get the FCA flow before any credit terms. No personal data on the web.</p>
 </section>
 <!-- 4 -->
