@@ -14,6 +14,7 @@ import { ExtendedInteractiveMock } from '../components/ExtendedInteractiveMock';
 import { ExtendedLandingMockHome } from '../components/ExtendedLandingMock';
 import { PhoneFrame } from '../case-studies/blockstream/components/PhoneFrame';
 import { Footer } from '../components/Footer';
+import { StatTiles } from '../components/StatTiles';
 import { JadeWalletSetup } from '../case-studies/blockstream/components/JadeWalletSetup';
 import { JadeUpsellModal } from '../case-studies/blockstream/components/JadeUpsellModal';
 import { TransactionModal } from '../case-studies/blockstream/components/TransactionModal';
@@ -264,11 +265,14 @@ function Home() {
               sectionRole="Staff Designer, 2023-present"
               sectionDescription="Tide is a UK challenger bank serving 1.5M+ SMEs, where I owned design across two revenue engines: acquisition and SaaS. I built and scaled 0→1 financial, tax, and forecasting products, redesigned activation across the portfolio, and embedded new subscription offers into one of the company's highest-volume growth funnels. I also co-built an internal AI system that changed how 3,000+ employees work."
               sectionStats={
-                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
-                  <li>Owned surfaces contributing to <strong className="font-semibold">£36–37M ARR</strong> across acquisition and SaaS tools</li>
-                  <li><strong className="font-semibold">22.2%</strong> activation rate (vs. 0.95% baseline) and <strong className="font-semibold">76%</strong> growth in entrepreneurs starting a business with Tide</li>
-                  <li>Built AI assistant for <strong className="font-semibold">3K+</strong> employees</li>
-                </ul>
+                <StatTiles
+                  stats={[
+                    { value: '£36–37M ARR', label: 'surfaces I owned, acquisition and SaaS' },
+                    { value: '0.95% → 22.2%', label: 'activation rate' },
+                    { value: '+76%', label: 'entrepreneurs starting a business with Tide' },
+                    { value: '3K+', label: 'employees on the AI assistant I built' }
+                  ]}
+                />
               }
               sectionCTA={{
                 label: 'View work',
@@ -403,7 +407,7 @@ function Home() {
                 </div>
               }
               sectionStats={
-                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
+                <ul className="list-disc list-outside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
                   <li><strong className="font-semibold">Scope:</strong> 2 person team, won a hackathon</li> 
                   <li><strong className="font-semibold">Approach:</strong> Building in Cursor & V0, no Figma, MVP in 5 days </li>
                   <li><strong className="font-semibold">Adoption</strong> Currently used across support & legal (~350 DAUs)</li>
@@ -471,7 +475,7 @@ function Home() {
               sectionRole="Freelance Growth Designer, 2022"
               sectionDescription="Ran experiments with the pricing page (which accounted for 20% of signups). Separately, tested and removed friction points in the sign-up and onboarding process that weren't relevant to all user personas, then designed a personalized onboarding flow for our target customers—product teams in small and medium tech companies."
               sectionStats={
-                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
+                <ul className="list-disc list-outside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
                   <li><strong className="font-semibold">10%</strong> overall improvement in activation across all segments</li>
                   <li><strong className="font-semibold">3x</strong> sales bookings (7.1% → 21% of target customers speaking with sales)</li>
                   <li>Redesigned onboarding for <strong className="font-semibold">51k</strong> sign-ups</li>
@@ -536,7 +540,7 @@ function Home() {
                 </div>
               }
               sectionStats={
-                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
+                <ul className="list-disc list-outside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
                   <li>
                     <strong className="font-semibold">+13%</strong> quote-open rate
                   </li>
@@ -579,7 +583,7 @@ function Home() {
                 </div>
               }
               sectionStats={
-                <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
+                <ul className="list-disc list-outside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
                   <li>Conducted <strong className="font-semibold">25+ interviews</strong> to validate the problems to focus on</li>
                   <li>Built the <strong className="font-semibold">design system from 0</strong> & shipped MVP in <strong className="font-semibold">3 months</strong></li>
                 </ul>

@@ -313,7 +313,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
               )
             )}
             {sectionStats && (
-              <div className="mt-6 max-w-3xl mx-auto hidden">
+              <div className="mt-6 max-w-3xl mx-auto">
                 {sectionStats}
               </div>
             )}

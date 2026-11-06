@@ -341,7 +341,7 @@ function Tide() {
               <p className="mb-4">
                 I discovered (40+ interviews, dozens of surveys and usability tests) that small business owners - 42% of whom had limited or no financial literacy before starting - consistently ask a few fundamental questions no other competitor answers fully.
               </p>
-              <ul className="list-disc list-inside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent mb-4" style={{ fontFamily: 'Aeonik' }}>
+              <ul className="list-disc list-outside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent mb-4" style={{ fontFamily: 'Aeonik' }}>
                 <li>Am I profitable? Is it trending up or down?</li>
                 <li>How are my expenses trending?</li>
                 <li>Will I have enough money to pay my bills and keep afloat?</li>
