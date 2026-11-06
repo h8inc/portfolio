@@ -19,6 +19,9 @@ import { JadeUpsellModal } from '../case-studies/blockstream/components/JadeUpse
 import { TransactionModal } from '../case-studies/blockstream/components/TransactionModal';
 import { ReceiveBitcoinModal } from '../case-studies/blockstream/components/ReceiveBitcoinModal';
 
+/** Blockstream case study on the homepage. Off while the design is reworked; /blockstream still answers by URL. */
+const SHOW_BLOCKSTREAM = false;
+
 function BlockstreamSecurityDemo() {
   return (
     <PhoneFrame>
@@ -276,6 +279,7 @@ function Home() {
           </section>
 
           {/* BLOCKSTREAM CASE STUDY */}
+          {SHOW_BLOCKSTREAM && (
           <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
@@ -333,9 +337,10 @@ function Home() {
               mockContainerBackground="bg-[#FAF7F0]"
             />
           </section>
+          )}
 
           {/* PERP UI PRIMITIVES (PACKAGE SHOWCASE) */}
-          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -375,7 +380,7 @@ function Home() {
           </section>
 
           {/* TIDE AI CASE STUDY */}
-          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -416,7 +421,7 @@ function Home() {
           </section>
 
           {/* OPAA CASE STUDY */}
-          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -452,7 +457,7 @@ function Home() {
           </section>
 
           {/* HOTJAR CASE STUDY */}
-          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -484,7 +489,7 @@ function Home() {
           </section>
 
           {/* INSURITY CASE STUDY */}
-          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -550,7 +555,7 @@ function Home() {
           </section>
 
           {/* CALLIPER CASE STUDY */}
-          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
