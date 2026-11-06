@@ -1,14 +1,30 @@
 export type StatTile = { value: string; label: string };
 
+/** Same thin orange scrollbar the screen-mock galleries use, so stat rows and mock rows read as one system. */
+const scrollbarClass = `
+  [&::-webkit-scrollbar]:h-2
+  [&::-webkit-scrollbar]:bg-[#F5F2ED]
+  [&::-webkit-scrollbar]:rounded-full
+  [&::-webkit-scrollbar-thumb]:bg-[#FF6B35]
+  [&::-webkit-scrollbar-thumb]:rounded-full
+`;
+
 /**
- * Small stat tiles for a case-study section: big number, short label. Same tile as the /growth
- * hero so the site reads as one system. Two columns on every width; four tiles make a 2×2.
+ * Small stat tiles for a case-study section: big number, short label, one horizontal row.
+ * Fixed-width tiles in a snap-scrolling row, like the mock galleries; the scrollbar only
+ * shows when the row overflows. Same tile style as the /growth hero.
  */
 export function StatTiles({ stats }: { stats: StatTile[] }) {
   return (
-    <dl className="grid grid-cols-2 gap-2 sm:gap-3">
+    <dl
+      className={`flex gap-2 sm:gap-3 overflow-x-auto snap-x snap-mandatory pb-3 -mx-4 px-4 md:mx-0 md:px-0 ${scrollbarClass}`}
+      style={{ scrollbarWidth: 'thin', scrollbarColor: '#FF6B35 #F5F2ED' }}
+    >
       {stats.map((s) => (
-        <div key={s.value + s.label} className="bg-[#EDEAE4] rounded-xl sm:rounded-2xl px-4 py-4 sm:px-5 sm:py-5">
+        <div
+          key={s.value + s.label}
+          className="snap-start shrink-0 w-[168px] sm:w-[200px] bg-[#EDEAE4] rounded-xl sm:rounded-2xl px-4 py-4 sm:px-5 sm:py-5"
+        >
           <dt className="sr-only">{s.label}</dt>
           <dd>
             <span
