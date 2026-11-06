@@ -23,17 +23,17 @@ export function StatTiles({ stats }: { stats: StatTile[] }) {
       {stats.map((s) => (
         <div
           key={s.value + s.label}
-          className="snap-start shrink-0 w-[168px] sm:w-[200px] bg-[#EDEAE4] rounded-xl sm:rounded-2xl px-4 py-4 sm:px-5 sm:py-5"
+          className="snap-start shrink-0 min-w-[168px] sm:min-w-[200px] bg-[#EDEAE4] rounded-xl sm:rounded-2xl px-4 py-4 sm:px-5 sm:py-5"
         >
           <dt className="sr-only">{s.label}</dt>
           <dd>
             <span
-              className="block text-lg sm:text-2xl font-bold text-[#130F25] leading-tight [text-wrap:balance]"
+              className="block text-lg sm:text-2xl font-bold text-[#130F25] leading-tight whitespace-nowrap"
               style={{ fontFamily: 'Aeonik Extended' }}
             >
               {s.value}
             </span>
-            <span className="block text-xs sm:text-sm text-[#3F3A2F] mt-1.5 leading-snug" aria-hidden="true">
+            <span className="block max-w-[220px] text-xs sm:text-sm text-[#3F3A2F] mt-1.5 leading-snug" aria-hidden="true">
               {s.label}
             </span>
           </dd>
