@@ -326,7 +326,7 @@ export const ScreenGallery: React.FC<ScreenGalleryProps> = ({
             {items.map((item, index) => renderMobileArticle(item, index))}
           </div>
         ) : (
-          <div className="-mx-4 px-4">
+          <div>
             <div 
               className={`flex overflow-x-auto ${mobileGallerySpacingClass} pb-8 snap-x snap-mandatory ${customScrollbarClass}`}
               style={galleryScrollbarStyle}
