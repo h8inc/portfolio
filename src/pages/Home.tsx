@@ -268,9 +268,7 @@ function Home() {
                 <StatTiles
                   stats={[
                     { value: '£36–37M ARR', label: 'surfaces I owned, acquisition and SaaS' },
-                    { value: '0.95% → 22.2%', label: 'activation rate' },
-                    { value: '+76%', label: 'entrepreneurs starting a business with Tide' },
-                    { value: '3K+', label: 'employees on the AI assistant I built' }
+                    { value: '0.95% → 22.2%', label: 'activation rate' }
                   ]}
                 />
               }
@@ -407,11 +405,12 @@ function Home() {
                 </div>
               }
               sectionStats={
-                <ul className="list-disc list-outside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
-                  <li><strong className="font-semibold">Scope:</strong> 2 person team, won a hackathon</li> 
-                  <li><strong className="font-semibold">Approach:</strong> Building in Cursor & V0, no Figma, MVP in 5 days </li>
-                  <li><strong className="font-semibold">Adoption</strong> Currently used across support & legal (~350 DAUs)</li>
-                </ul>
+                <StatTiles
+                  stats={[
+                    { value: '3K+', label: 'employees with the assistant' },
+                    { value: '~350', label: 'daily users across support and legal' }
+                  ]}
+                />
               }
               sectionCTA={{
                 label: 'View prototype',
@@ -475,11 +474,13 @@ function Home() {
               sectionRole="Freelance Growth Designer, 2022"
               sectionDescription="Ran experiments with the pricing page (which accounted for 20% of signups). Separately, tested and removed friction points in the sign-up and onboarding process that weren't relevant to all user personas, then designed a personalized onboarding flow for our target customers—product teams in small and medium tech companies."
               sectionStats={
-                <ul className="list-disc list-outside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
-                  <li><strong className="font-semibold">10%</strong> overall improvement in activation across all segments</li>
-                  <li><strong className="font-semibold">3x</strong> sales bookings (7.1% → 21% of target customers speaking with sales)</li>
-                  <li>Redesigned onboarding for <strong className="font-semibold">51k</strong> sign-ups</li>
-                </ul>
+                <StatTiles
+                  stats={[
+                    { value: '+10%', label: 'activation across all segments' },
+                    { value: '3x', label: 'sales bookings, 7.1% → 21% of target customers' },
+                    { value: '51k', label: 'sign-ups through the redesigned onboarding' }
+                  ]}
+                />
               }
               sectionCTA={{
                 label: 'Case Study',
@@ -540,14 +541,12 @@ function Home() {
                 </div>
               }
               sectionStats={
-                <ul className="list-disc list-outside space-y-3 text-sm sm:text-base text-[#3F3A2F] pl-4 list-bullet-accent" style={{ fontFamily: 'Aeonik' }}>
-                  <li>
-                    <strong className="font-semibold">+13%</strong> quote-open rate
-                  </li>
-                  <li>
-                    <strong className="font-semibold">+20%</strong> sales rate (≈ <strong className="font-semibold">$1.5M/mo</strong>)
-                  </li>
-                </ul>
+                <StatTiles
+                  stats={[
+                    { value: '+13%', label: 'quote-open rate' },
+                    { value: '+20%', label: 'sales rate, about $1.5M a month' }
+                  ]}
+                />
               }
               sectionCTA={{
                 label: 'Case study coming soon',
