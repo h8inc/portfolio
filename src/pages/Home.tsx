@@ -267,7 +267,7 @@ function Home() {
               sectionStats={
                 <StatTiles
                   stats={[
-                    { value: '£0 → £36–37M ARR', label: 'products I built and scaled' },
+                    { value: '£0 → £36–37M', label: 'ARR from products I built and scaled' },
                     { value: '0.95% → 22.2%', label: 'activation rate' }
                   ]}
                 />
