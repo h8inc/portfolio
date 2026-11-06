@@ -267,7 +267,7 @@ function Home() {
               sectionStats={
                 <StatTiles
                   stats={[
-                    { value: '£36–37M ARR', label: 'surfaces I owned, acquisition and SaaS' },
+                    { value: '£0 → £36–37M ARR', label: 'products I built and scaled' },
                     { value: '0.95% → 22.2%', label: 'activation rate' }
                   ]}
                 />
@@ -277,6 +277,40 @@ function Home() {
                 href: '/tide',
                 show: true
               }}
+            />
+          </section>
+
+          {/* HOTJAR CASE STUDY */}
+          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
+            <ScreenGallery
+              items={[
+                {
+                  id: 'hotjar',
+                  imageSrc: encodeURI('/assets/hotjar-cover.gif'),
+                  imageAlt: 'Hotjar pricing page redesign',
+                  noBorder: true
+                }
+              ]}
+              sectionLogo={encodeURI('/assets/ hotjar-logo.png'.trim())}
+              sectionRole="Freelance Growth Designer, 2022"
+              sectionDescription="Ran experiments with the pricing page (which accounted for 20% of signups). Separately, tested and removed friction points in the sign-up and onboarding process that weren't relevant to all user personas, then designed a personalized onboarding flow for our target customers—product teams in small and medium tech companies."
+              sectionStats={
+                <StatTiles
+                  stats={[
+                    { value: '+10%', label: 'activation across all segments' },
+                    { value: '3x', label: 'sales bookings, 7.1% → 21% of target customers' },
+                    { value: '51k', label: 'sign-ups through the redesigned onboarding' }
+                  ]}
+                />
+              }
+              sectionCTA={{
+                label: 'Case Study',
+                href: 'https://www.figma.com/deck/aimHvh0b9PwMqSX9rhJ02U/Hotjar---onboarding-case-study?node-id=1-6122&viewport=-131%2C-117%2C0.61&t=kBoKTW2atWn6vELS-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
+                show: true,
+                disabled: false
+              }}
+              singleItemWider={true}
+              hideItemText={true}
             />
           </section>
 
@@ -342,7 +376,7 @@ function Home() {
           )}
 
           {/* PERP UI PRIMITIVES (PACKAGE SHOWCASE) */}
-          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -382,7 +416,7 @@ function Home() {
           </section>
 
           {/* TIDE AI CASE STUDY */}
-          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -424,7 +458,7 @@ function Home() {
           </section>
 
           {/* OPAA CASE STUDY */}
-          <section className="w-full bg-[#FAF7F0] py-20 sm:py-24 overflow-x-clip">
+          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
             <ScreenGallery
               items={[
                 {
@@ -451,40 +485,6 @@ function Home() {
               sectionCTA={{
                 label: 'View project',
                 href: 'https://opaa-website.vercel.app/en',
-                show: true,
-                disabled: false
-              }}
-              singleItemWider={true}
-              hideItemText={true}
-            />
-          </section>
-
-          {/* HOTJAR CASE STUDY */}
-          <section className="w-full bg-white py-20 sm:py-24 overflow-x-clip">
-            <ScreenGallery
-              items={[
-                {
-                  id: 'hotjar',
-                  imageSrc: encodeURI('/assets/hotjar-cover.gif'),
-                  imageAlt: 'Hotjar pricing page redesign',
-                  noBorder: true
-                }
-              ]}
-              sectionLogo={encodeURI('/assets/ hotjar-logo.png'.trim())}
-              sectionRole="Freelance Growth Designer, 2022"
-              sectionDescription="Ran experiments with the pricing page (which accounted for 20% of signups). Separately, tested and removed friction points in the sign-up and onboarding process that weren't relevant to all user personas, then designed a personalized onboarding flow for our target customers—product teams in small and medium tech companies."
-              sectionStats={
-                <StatTiles
-                  stats={[
-                    { value: '+10%', label: 'activation across all segments' },
-                    { value: '3x', label: 'sales bookings, 7.1% → 21% of target customers' },
-                    { value: '51k', label: 'sign-ups through the redesigned onboarding' }
-                  ]}
-                />
-              }
-              sectionCTA={{
-                label: 'Case Study',
-                href: 'https://www.figma.com/deck/aimHvh0b9PwMqSX9rhJ02U/Hotjar---onboarding-case-study?node-id=1-6122&viewport=-131%2C-117%2C0.61&t=kBoKTW2atWn6vELS-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
                 show: true,
                 disabled: false
               }}
