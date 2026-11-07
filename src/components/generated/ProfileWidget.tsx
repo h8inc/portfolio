@@ -35,7 +35,7 @@ export default function ProfileWidget({
           <div className="relative px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-6 sm:pb-8">
             {/* Title Text */}
             <h1 className={`${typography.h1.className} text-center mb-6 sm:mb-8 lg:mb-10 leading-tight px-2 sm:px-4`} style={typography.h1.style}>
-            Designing fiat and bitcoin utility in one app
+            Building fiat and bitcoin utility in one app
             </h1>
 
             {/* CTA Buttons */}
