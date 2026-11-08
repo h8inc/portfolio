@@ -8,7 +8,21 @@ import { Check, ChevronDown, ChevronRight, CircleHelp, Download, FileText, Landm
 import { Illo, type IlloName } from './illustrations';
 import { NavBar, StatusBar, Tap, type Nav, type StageProto } from './proto';
 import { BIZ, BK_TASKS, INSIGHTS_2023, KEY_DATES, PNL_PREVIEW, REPORTS, SELF_ASSESSMENT_2023, SETTINGS_2023, TAXES_2023, VAT_PERIODS } from './data';
-import { AccountingHeader, CategoryScreen, ExpensesBreakdownScreen, ScoreCard, TransactionsScreen, TxActionsSheet, VatRateScreen, categoryDone, vatDone } from './screens-shared';
+import {
+  AccountingHeader,
+  AdminPlansScreen,
+  CategoryScreen,
+  ExpensesBreakdownScreen,
+  InsufficientFundsScreen,
+  PaywallScreen,
+  ProcessingScreen,
+  ScoreCard,
+  TransactionsScreen,
+  TxActionsSheet,
+  VatRateScreen,
+  categoryDone,
+  vatDone,
+} from './screens-shared';
 import { AreaPair, Card, CardTitle, GroupedBars, HEAD, KeyValue, Legend, ListRow, OutlineButton, Pill, PrimaryButton, SectionTitle, SegmentTabs, T } from './ui';
 
 /* ------------------------------------------------------------------ */
@@ -328,16 +342,18 @@ function TrialWall(nav: Nav) {
 /* ------------------------------------------------------------------ */
 
 const TABS = ['Overview', 'Insights', 'Bookkeeping', 'Taxes', 'Settings'];
-const ROUTES = { Overview: 'overview', Insights: 'insights', Bookkeeping: 'bookkeeping', Taxes: 'taxes', Settings: 'settings' };
+/** Insights was its own paid add-on in the old IA: locked until Admin Extra is bought,
+ *  independent of the base "Explore Accounting" trial that unlocks the rest of the tabs. */
+const routesFor = (nav: Nav) => ({ Overview: 'overview', Insights: nav.flags.adminExtra ? 'insights' : 'paywall', Bookkeeping: 'bookkeeping', Taxes: 'taxes', Settings: 'settings' });
 
 function Overview(nav: Nav) {
   return (
     <>
-      <AccountingHeader nav={nav} active="Overview" routes={ROUTES} tabs={TABS} />
+      <AccountingHeader nav={nav} active="Overview" routes={routesFor(nav)} tabs={TABS} />
       <div className="mt-4 space-y-3">
         <ScoreCard nav={nav} extra onTransactions={() => nav.go('transactions')} />
         <Card>
-          <CardTitle action="Explore" onAction={() => nav.replace('insights')}>
+          <CardTitle action="Explore" onAction={() => (nav.flags.adminExtra ? nav.replace('insights') : nav.go('paywall'))}>
             Profitability Insights
           </CardTitle>
           <GroupedBars />
@@ -387,7 +403,7 @@ function Overview(nav: Nav) {
 function Insights(nav: Nav) {
   return (
     <>
-      <AccountingHeader nav={nav} active="Insights" routes={ROUTES} tabs={TABS} />
+      <AccountingHeader nav={nav} active="Insights" routes={routesFor(nav)} tabs={TABS} />
       <div className="mt-4 space-y-3">
         {INSIGHTS_2023.map((m) => (
           <Card key={m.key}>
@@ -459,7 +475,7 @@ function TaskGroup({ nav, title, count, items, cta, onCta }: { nav: Nav; title: 
 function Bookkeeping(nav: Nav) {
   return (
     <>
-      <AccountingHeader nav={nav} active="Bookkeeping" routes={ROUTES} tabs={TABS} />
+      <AccountingHeader nav={nav} active="Bookkeeping" routes={routesFor(nav)} tabs={TABS} />
       <FySelector
         right={
           <Tap onTap={() => nav.toast('Manual transactions are not in this prototype')} className="gap-1 text-[13px] font-medium" style={{ color: T.primary }}>
@@ -511,7 +527,7 @@ function TaxCard({ nav, title, est, due, period, cta, onCta, onAll }: { nav: Nav
 function Taxes(nav: Nav) {
   return (
     <>
-      <AccountingHeader nav={nav} active="Taxes" routes={ROUTES} tabs={TABS} />
+      <AccountingHeader nav={nav} active="Taxes" routes={routesFor(nav)} tabs={TABS} />
       <div className="mt-4 space-y-3">
         <TaxCard nav={nav} title="Corporation tax" {...TAXES_2023.corporation} est={TAXES_2023.corporation.estimate} cta="View breakdown" onCta={() => nav.go('selfAssessment')} onAll={() => nav.go('selfAssessment')} />
         <TaxCard nav={nav} title="VAT returns" {...TAXES_2023.vat} est={TAXES_2023.vat.estimate} cta="Submit on desktop" onCta={() => nav.toast('Submission runs on desktop in this version')} onAll={() => nav.go('vat')} />
@@ -686,7 +702,7 @@ function Settings(nav: Nav) {
   const icons = [<UserRound size={18} key="u" />, <Landmark size={18} key="l" />, <FileText size={18} key="f" />, <Landmark size={18} key="h" />, <Share2 size={18} key="s" />, <Download size={18} key="d" />];
   return (
     <>
-      <AccountingHeader nav={nav} active="Settings" routes={ROUTES} tabs={TABS} />
+      <AccountingHeader nav={nav} active="Settings" routes={routesFor(nav)} tabs={TABS} />
       <Card className="mt-4" pad={false}>
         {SETTINGS_2023.map((s, i) => (
           <ListRow key={s} first={i === 0} icon={icons[i]} title={s} onTap={() => nav.toast(`${s} is not in this prototype`)} />
@@ -835,6 +851,10 @@ export const PROTO_2023: StageProto = {
     expenses: (nav) => <ExpensesBreakdownScreen nav={nav} />,
     reportDates: ReportDates,
     reportPdf: ReportPdf,
+    paywall: (nav) => <PaywallScreen nav={nav} flag="adminExtra" />,
+    adminPlans: (nav) => <AdminPlansScreen nav={nav} flag="adminExtra" />,
+    insufficientFunds: (nav) => <InsufficientFundsScreen nav={nav} />,
+    processing: (nav) => <ProcessingScreen nav={nav} backTo="insights" />,
   },
   sheets: {
     txActions: (nav) => <TxActionsSheet nav={nav} />,
