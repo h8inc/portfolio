@@ -446,7 +446,16 @@ export function OverviewFreeScreen({ nav, routes, tabs }: { nav: Nav; routes: Ta
         <ScoreCard nav={nav} onTransactions={() => nav.go('transactions')} />
         {unlocked ? (
           <Card>
-            <CardTitle action="View" onAction={() => (routes.Insights ? nav.replace(routes.Insights) : nav.toast('Insights tab arrives in the next release'))}>
+            <CardTitle
+              action="View"
+              onAction={() => {
+                // routes.Insights can point at the hard paywall in releases (Q2 2024) that
+                // don't have a dedicated unlocked screen yet; don't send an already-paying
+                // user back into it.
+                if (routes.Insights && routes.Insights !== 'paywall') nav.replace(routes.Insights);
+                else nav.toast('The full Insights page arrives in the next release');
+              }}
+            >
               Profitability insights
             </CardTitle>
             <GroupedBars />

@@ -29,7 +29,10 @@ import { Card, CardTitle, HEAD, ListRow, OutlineButton, Pill, ScoreDial, Section
 /* ---------- Q2 2024: first freemium release ---------- */
 
 const TABS_Q2 = ['Overview', 'Insights', 'Bookkeeping tasks', 'Self Assessment'];
-const ROUTES_Q2 = { Overview: 'overview', 'Bookkeeping tasks': 'transactions' };
+/** Q2 sells insights and the tax estimate behind Admin Extra outright: no dedicated
+ *  screens exist for them yet (that softer, blurred-preview treatment is Q3's), so
+ *  both tabs open the paywall directly rather than a locked placeholder page. */
+const ROUTES_Q2 = { Overview: 'overview', 'Bookkeeping tasks': 'transactions', Insights: 'paywall', 'Self Assessment': 'paywall' };
 
 function HomeQ2(nav: Nav) {
   const done = nav.flags.categorised && nav.flags.vatDone;
