@@ -80,7 +80,7 @@ export function TabBar({ tabs }: { tabs: TabName[] }) {
         {tabs.map((t) => (
           <li key={t}>
             <Tap
-              onTap={t === 'Admin' ? nav.home : () => nav.toast(`${t} tab is outside this prototype`)}
+              onTap={t === 'Admin' ? nav.home : () => nav.go(t.toLowerCase())}
               className="flex w-16 flex-col items-center gap-1 text-[11px]"
               style={{ color: t === 'Admin' ? PRIMARY : MUTED, fontWeight: t === 'Admin' ? 600 : 400 }}
             >

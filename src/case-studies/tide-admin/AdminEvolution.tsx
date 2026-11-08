@@ -47,6 +47,8 @@ export type Stage = {
   signUp?: string;
   arr: string;
   proto: StageProto;
+  /** Optional personas; each starts the prototype with its own flags. */
+  personas?: { label: string; flags: Record<string, boolean> }[];
 };
 
 export const STAGES: Stage[] = [
@@ -95,9 +97,13 @@ export const STAGES: Stage[] = [
     title: 'One admin hub',
     summary:
       'Every product sits in one row, tasks guide setup, and connections live in one list. Admin becomes the place to run the back office.',
-    tryIt: 'Tap Taxes, then Start free trial. Or tap Invoices & Bills and upgrade.',
+    tryIt: 'As a new member, tap Taxes and start the trial, or answer the accounting question and watch the home change. Switch to the established user to see tax saving, cash flow and a real task list.',
     arr: '£12M',
     proto: PROTO_2026,
+    personas: [
+      { label: 'New member', flags: {} },
+      { label: 'Established user', flags: { established: true, trial: true } },
+    ],
   },
 ];
 
@@ -122,6 +128,7 @@ export function AdminEvolution({ initialStage = 0 }: { initialStage?: number }) 
   const [stage, setStage] = useState(initialStage);
   const [inside, setInside] = useState({ depth: 1, sheet: false, current: 'home' });
   const [resetKey, setResetKey] = useState(0);
+  const [persona, setPersona] = useState(0);
   const scale = useFitScale();
   const go = useCallback((n: number) => setStage(Math.max(0, Math.min(STAGES.length - 1, n))), []);
   const step = useCallback((d: number) => setStage((s) => Math.max(0, Math.min(STAGES.length - 1, s + d))), []);
@@ -138,6 +145,7 @@ export function AdminEvolution({ initialStage = 0 }: { initialStage?: number }) 
   const onState = useCallback((s: { depth: number; sheet: boolean; current: string }) => setInside(s), []);
 
   const S = STAGES[stage];
+  const P = S.personas?.[Math.min(persona, (S.personas?.length ?? 1) - 1)];
   const last = stage === STAGES.length - 1;
   const pct = (stage / (STAGES.length - 1)) * 100;
   const away = inside.depth > 1 || inside.sheet;
@@ -146,7 +154,7 @@ export function AdminEvolution({ initialStage = 0 }: { initialStage?: number }) 
     <div className="flex flex-col items-center gap-10 md:flex-row md:items-center md:justify-center md:gap-20" style={{ fontFamily: SITE.body }}>
       <div style={{ width: 375 * scale, height: 812 * scale }}>
         <div style={{ transform: `scale(${scale})`, transformOrigin: 'top left' }}>
-          <TidePhone stageKey={`${stage}-${resetKey}`} proto={S.proto} onState={onState} />
+          <TidePhone stageKey={`${stage}-${persona}-${resetKey}`} proto={S.proto} onState={onState} initialFlags={P?.flags} />
         </div>
       </div>
 
@@ -195,6 +203,24 @@ export function AdminEvolution({ initialStage = 0 }: { initialStage?: number }) 
             })}
           </ol>
         </div>
+
+        {/* Persona toggle, only for stages that define personas */}
+        {S.personas && (
+          <div className="mt-6 inline-flex rounded-full border-[2px] border-black bg-white p-1 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]" role="tablist" aria-label="Persona">
+            {S.personas.map((p, i) => (
+              <button
+                key={p.label}
+                role="tab"
+                aria-selected={i === persona}
+                onClick={() => setPersona(i)}
+                className="rounded-full px-4 py-1.5 text-xs font-bold transition-colors sm:text-sm"
+                style={{ background: i === persona ? SITE.orange : 'transparent', color: i === persona ? '#fff' : SITE.ink }}
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Caption: open text with the real figures for that step */}
         <div className="mt-8 min-h-[260px]" aria-live="polite">

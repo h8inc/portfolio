@@ -253,3 +253,102 @@ export const HOME_2025_SUBSCRIBED = {
   ],
   overdue: { customer: 'Bob Baxter', ref: 'Inv. 1123', status: 'Overdue by 3 days', amount: '+£500.00' },
 };
+
+/* ---------- 2026: one Admin hub ---------- */
+
+export const SOFTWARE_OPTIONS = ['I’m not using anything', 'Xero', 'FreeAgent', 'Sage', 'Other'];
+
+export const TAXES_PAYING = [
+  { title: 'Self assessments', due: '-£1,200', when: 'Due in 8 weeks', account: 'Tax saving account', rules: '1 automation rule', saved: '£1,000', left: '£200 left', pct: 83, tone: '#1E9E6A' },
+  { title: 'VAT returns', due: '-£1,200', when: 'Due in 8 weeks', account: 'VAT saving account', rules: '3 automation rules', saved: '£1,000', left: '£200 left', pct: 83, tone: '#6A2FE0' },
+];
+
+export const TASKS_2026 = {
+  fresh: {
+    Urgent: [
+      ['Send an invoice', 'Create, chase and get paid', 'invoices'],
+      ['Tell us how you do accounting', 'So we know how to help best', 'accountingSoftware'],
+      ['Track your upcoming taxes', 'Estimate, save and submit on time', 'taxes'],
+    ],
+    Upcoming: [
+      ['Submit VAT return', 'Due 7 Aug', 'taxes'],
+      ['Review payroll', 'Runs on the 25th', 'payroll'],
+    ],
+    Completed: [] as string[][],
+  },
+  established: {
+    Urgent: [
+      ['12 invoices worth £8,355 are overdue and need chasing', 'Collect payments you’re due to meet', 'invoices'],
+      ['Understand your financials', 'Make better business decisions', 'insights'],
+      ['£3,150 due for Self Assessment', 'Due in 6 weeks time', 'taxes'],
+      ['Recurring tax saving of £150', 'Review your tax situation', 'taxes'],
+      ['Credit payment worth £325', 'Due in 1 day', ''],
+      ['Payroll payment', 'Due in 3 days', 'payroll'],
+    ],
+    Upcoming: [
+      ['Corporation tax return', 'Due 31 Dec', 'taxes'],
+      ['Renew insurance', 'Due 14 Jan', ''],
+    ],
+    Completed: [
+      ['Tell us how you do accounting', 'Answered: Xero', 'accountingSoftware'],
+      ['Connect to HMRC', 'Connected 3 months ago', ''],
+    ],
+  },
+};
+
+export const PAYROLL = {
+  price: '£12/month',
+  blurb: 'Everything you need to run your own payroll. No accountant or extra software needed.',
+  groups: [
+    { title: 'Get started with HMRC', steps: [['Connect your account', 'Add or create your HMRC login'], ['Sync your references', 'Add or register as an employer']] },
+    { title: 'Prepare your first payroll', steps: [['Add yourself to payroll', 'Calculate a tax efficient salary'], ['Set your first payday', 'Define when you run payroll']] },
+  ],
+};
+
+export const CARDS = [
+  { name: 'Tide card', number: '•••• 4567', status: 'ACTIVE' },
+  { name: 'Primary account', number: '•••• 8712', status: 'ACTIVE' },
+];
+
+export const CUSTOMERS = [
+  ['Joe Bloggs', 'annsmith@email.co'],
+  ['Sam Atlantic', 'samatlantic@email.co'],
+  ['Tim', 'timairlines@email.co'],
+  ['John Neww', 'johnneww@email.co'],
+];
+
+export const INSIGHTS_2026 = {
+  cash: { title: 'Cash balance today', value: '£4,000', go: 'cashFlow' },
+  rows: [
+    { title: 'Profit this month', value: '£4,000', delta: '↓4% vs last month', go: 'netProfit6m', tone: '#B18CFF' },
+    { title: 'Revenue this month', value: '£4,000', delta: '↓4% vs last month', go: 'cashFlow', tone: '#2BB5A0' },
+    { title: 'Expenses this month', value: '£4,000', delta: '↓4% vs last month', go: 'cashFlow', tone: '#D7385E' },
+  ],
+  empty: ['Cash flow', 'Net profit', 'Revenue', 'Expenses'],
+};
+
+export const CASHFLOW_2026 = {
+  balance: '£4,400',
+  label: 'Available Balance in November',
+  incomings: '£6000 incomings',
+  outgoings: '£4000 outgoings',
+  months: ['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV'],
+  series: [
+    [60, 40],
+    [52, 44],
+    [66, 38],
+    [40, 48],
+    [58, 36],
+    [62, 42],
+  ],
+  tasks: '0/6 tasks completed',
+};
+
+export const NET_PROFIT_6M = { headline: 'Net Profit for the last 6 months is £36,400', sub: '22% profit margin and 24% up from last period' };
+
+export const PAYMENTS_RECS = [
+  { title: 'Switch your bank account to Tide', sub: 'Move direct debits and salary in one go', illo: 'accounting', go: '' },
+  { title: 'Start growing your savings', sub: '4.33% AER (variable)', illo: 'growth', go: '' },
+  { title: 'Send your first invoice', sub: 'Get paid faster', illo: 'invoices', go: 'invoices' },
+  { title: 'Explore Tide Accounting', sub: 'Free trial available', illo: 'bookkeeping', go: 'toolkit' },
+];
