@@ -312,6 +312,34 @@ export function LineChart({ tone = T.primary, height = 64, blur = false, trend =
   );
 }
 
+/** Donut with centre label, slices as [percent, colour]. */
+export function Donut({ slices, label, sub, size = 132 }: { slices: [number, string][]; label: string; sub?: string; size?: number }) {
+  const r = 42;
+  const c = 2 * Math.PI * r;
+  let acc = 0;
+  return (
+    <svg viewBox="0 0 120 120" style={{ width: size, height: size }} className="shrink-0" aria-hidden="true">
+      <circle cx="60" cy="60" r={r} fill="none" stroke={T.tint} strokeWidth="14" />
+      {slices.map(([pct, color], i) => {
+        const len = (pct / 100) * c;
+        const el = (
+          <circle key={i} cx="60" cy="60" r={r} fill="none" stroke={color} strokeWidth="14" strokeDasharray={`${len} ${c - len}`} strokeDashoffset={-acc} transform="rotate(-90 60 60)" />
+        );
+        acc += len;
+        return el;
+      })}
+      <text x="60" y="58" textAnchor="middle" fontSize="12" fontWeight="700" fill={T.ink} fontFamily={HEAD}>
+        {label}
+      </text>
+      {sub && (
+        <text x="60" y="72" textAnchor="middle" fontSize="8" fill={T.muted} fontFamily={BODY}>
+          {sub}
+        </text>
+      )}
+    </svg>
+  );
+}
+
 /** Two smooth areas, current period solid and previous dashed, as in the 2023 Insights tab. */
 export function AreaPair({ tone = 'teal', months = ['Apr', 'Jun', 'Aug', 'Oct', 'Dec', 'Feb', 'Mar'] }: { tone?: 'teal' | 'indigo' | 'gold'; months?: string[] }) {
   const color = { teal: '#2BB5A0', indigo: T.primary, gold: T.gold }[tone];

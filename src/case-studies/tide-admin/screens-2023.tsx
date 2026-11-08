@@ -8,7 +8,7 @@ import { Check, ChevronDown, ChevronRight, CircleHelp, Download, FileText, Landm
 import { Illo, type IlloName } from './illustrations';
 import { NavBar, StatusBar, Tap, type Nav, type StageProto } from './proto';
 import { BIZ, BK_TASKS, INSIGHTS_2023, KEY_DATES, PNL_PREVIEW, REPORTS, SELF_ASSESSMENT_2023, SETTINGS_2023, TAXES_2023, VAT_PERIODS } from './data';
-import { AccountingHeader, CategoryScreen, ScoreCard, TransactionsScreen, TxActionsSheet } from './screens-shared';
+import { AccountingHeader, CategoryScreen, ExpensesBreakdownScreen, ScoreCard, TransactionsScreen, TxActionsSheet, VatRateScreen, categoryDone, vatDone } from './screens-shared';
 import { AreaPair, Card, CardTitle, GroupedBars, HEAD, KeyValue, Legend, ListRow, OutlineButton, Pill, PrimaryButton, SectionTitle, SegmentTabs, T } from './ui';
 
 /* ------------------------------------------------------------------ */
@@ -583,15 +583,15 @@ function VatManager(nav: Nav) {
   );
 }
 
-function SelfAssessment(nav: Nav) {
+export function SelfAssessmentDetail({ nav, due, period, paid, title = 'Self Assessment' }: { nav: Nav; due: string; period: string; paid?: { title: string; sub: string; month: string; day: string }; title?: string }) {
   const [tab, setTab] = useState<'Income' | 'Expenses'>('Income');
   const sa = SELF_ASSESSMENT_2023;
   return (
     <>
       <StatusBar />
-      <NavBar title="Self Assessment" />
+      <NavBar title={title} />
       <div className="space-y-3">
-        <Card onTap={() => nav.go('bookkeeping')} className="flex items-center gap-3">
+        <Card onTap={() => nav.go(nav.flags.trial ? 'transactions' : 'bookkeeping')} className="flex items-center gap-3">
           <span className="flex-1">
             <span className="block text-[14px] font-medium" style={{ color: T.ink }}>
               You have bookkeeping tasks to complete
@@ -605,17 +605,35 @@ function SelfAssessment(nav: Nav) {
         <div className="flex items-end justify-between px-4">
           <div>
             <p className="text-[14px]" style={{ color: T.muted }}>
-              Next Self Assessment due
+              {paid ? 'Payment due date for selected year' : 'Next Self Assessment due'}
             </p>
             <p className="text-[26px] font-bold tracking-[-0.03em]" style={{ fontFamily: HEAD, color: T.ink }}>
-              {sa.due}
+              {due}
             </p>
             <span className="mt-1 inline-flex items-center gap-1 rounded-lg border bg-white px-2.5 py-1 text-[13px] font-medium" style={{ borderColor: T.border2, color: T.ink }}>
-              {sa.period} <ChevronDown size={14} />
+              {period} <ChevronDown size={14} />
             </span>
           </div>
           <CircleHelp size={18} style={{ color: T.muted }} />
         </div>
+        {paid && (
+          <Card pad={false}>
+            <ListRow
+              first
+              icon={
+                <span className="text-center text-[10px] font-semibold leading-tight">
+                  {paid.month}
+                  <br />
+                  {paid.day}
+                </span>
+              }
+              title={paid.title}
+              sub={paid.sub}
+              right={<ChevronDown size={18} style={{ color: T.icon }} />}
+              onTap={() => nav.toast('Payment history is not in this prototype')}
+            />
+          </Card>
+        )}
         <SegmentTabs items={['Income', 'Expenses']} active={tab} onChange={(v) => setTab(v as 'Income' | 'Expenses')} />
         <h3 className="px-4 pt-2 text-[20px] font-bold tracking-[-0.02em]" style={{ fontFamily: HEAD, color: T.ink }}>
           Your {tab.toLowerCase()}
@@ -797,17 +815,7 @@ function ShareSheet(nav: Nav) {
 
 /* ------------------------------------------------------------------ */
 
-const category = (nav: Nav) => (
-  <CategoryScreen
-    nav={nav}
-    onSaved={() => {
-      nav.setFlag('categorised', true);
-      nav.back();
-      nav.back();
-      nav.toast('Category updated for 4 transactions');
-    }}
-  />
-);
+const category = (nav: Nav) => <CategoryScreen nav={nav} onSaved={() => categoryDone(nav)} />;
 
 export const PROTO_2023: StageProto = {
   tabs: ['Payments', 'Admin', 'Support', 'More'],
@@ -819,11 +827,14 @@ export const PROTO_2023: StageProto = {
     bookkeeping: Bookkeeping,
     taxes: Taxes,
     vat: VatManager,
-    selfAssessment: SelfAssessment,
+    selfAssessment: (nav) => <SelfAssessmentDetail nav={nav} due={SELF_ASSESSMENT_2023.due} period={SELF_ASSESSMENT_2023.period} />,
     settings: Settings,
     transactions: (nav) => <TransactionsScreen nav={nav} />,
-    txSelect: (nav) => <TransactionsScreen nav={nav} select />,
+    txSelect: (nav) => <TransactionsScreen nav={nav} mode="category" />,
+    txVatSelect: (nav) => <TransactionsScreen nav={nav} mode="vat" />,
     category,
+    vatRate: (nav) => <VatRateScreen nav={nav} onSaved={() => vatDone(nav)} />,
+    expenses: (nav) => <ExpensesBreakdownScreen nav={nav} />,
     reportDates: ReportDates,
     reportPdf: ReportPdf,
   },

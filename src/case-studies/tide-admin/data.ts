@@ -131,3 +131,44 @@ export const PNL_PREVIEW = {
     ['Net profit', '£72,320.00'],
   ] as [string, string][],
 };
+
+/** Expenses donut (2024 overview and breakdown). */
+export const EXPENSES_BREAKDOWN = {
+  total: '£50,320.00',
+  month: 'June 2024',
+  cats: [
+    { name: 'Uncategorised', pct: 34, amount: '£17,108.80', color: '#CDD1EC' },
+    { name: 'Insurance', pct: 22, amount: '£11,070.40', color: '#D7385E' },
+    { name: 'Meals', pct: 18, amount: '£9,057.60', color: '#3B4BD8' },
+    { name: 'Travel', pct: 14, amount: '£7,044.80', color: '#F2B84B' },
+    { name: 'More +15', pct: 12, amount: '£6,038.40', color: '#1C1F3A' },
+  ],
+};
+
+export const VAT_RATES = [
+  { rate: '20%', note: 'Standard rate' },
+  { rate: '5%', note: 'Reduced rate' },
+  { rate: '0%', note: 'Zero rate' },
+  { rate: 'VAT exempt', note: 'No VAT applies' },
+  { rate: 'Custom amount…', note: 'Enter a specific VAT amount' },
+];
+
+export const PLANS = [
+  { name: 'Admin Extra', price: '£22.99/mo', desc: 'Accounting Extra and Invoice Assistant' },
+  { name: 'Accounting Extra', price: '£14.99/mo', desc: 'Reports, insights, tax tools' },
+  { name: 'Invoice Assistant', price: '£10.00/mo', desc: 'Automatic chasing and matching' },
+];
+
+export const CONFIRM_FIELDS: [string, string][] = [
+  ['Business name', 'Feel Good Inc.'],
+  ['Business type', 'Sole trader'],
+  ['Accounting year', 'Starts 28 August'],
+  ['HMRC UTR', '•••• •• 4471'],
+];
+
+/** Self Assessment detail as shown after the Q3 2024 trial unlock. */
+export const SELF_ASSESSMENT_2024 = {
+  due: '31 Jan 2024',
+  period: '28 Aug 22 – 27 Aug 23',
+  paid: { title: '£1,000.00 in taxes for 22/23', sub: 'Completed 5 months ago', month: 'JAN', day: '31' },
+};

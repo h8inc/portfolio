@@ -65,7 +65,7 @@ export const STAGES: Stage[] = [
     title: 'First freemium release',
     summary:
       'A free bookkeeping score replaced the locked carousel. It shows owners what is missing and turns accounting into a short task list.',
-    tryIt: 'Tap the 19 missing transactions and fix them, or Open Accounting and try to start a trial.',
+    tryIt: 'Fix the 19 transactions with bulk category and VAT actions until the score moves. Then Open Accounting, start a trial and confirm your details.',
     signUp: '1.6%',
     arr: '£900K',
     proto: PROTO_Q2_2024,
@@ -75,7 +75,7 @@ export const STAGES: Stage[] = [
     title: 'Insights and tax for everyone',
     summary:
       'Insights and tax estimates were decoupled and opened to all 1.5M users. Revenue and net profit moved to the top of Admin.',
-    tryIt: 'Tap View all on Insights, then switch to the Self Assessment tab to see the tax estimate.',
+    tryIt: 'Tap View all on Insights, then the Self Assessment tab. Start the trial to unlock the breakdown and the full detail.',
     signUp: '3.8%',
     arr: '£2M',
     proto: PROTO_Q3_2024,

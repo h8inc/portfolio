@@ -1,20 +1,30 @@
-/** 2024: freemium. Q2 gives the score away and sells insights; Q3 gives insights and the tax estimate away too. */
-import { ChevronRight, CircleHelp, FileText } from 'lucide-react';
+/**
+ * 2024: freemium.
+ * Q2 gives the bookkeeping score away and sells insights behind Admin Extra.
+ * Q3 gives insights and the tax estimate away too, with detail behind the trial.
+ */
+import { CircleHelp, FileText } from 'lucide-react';
+import { SELF_ASSESSMENT_2024 } from './data';
 import { StatusBar, type Nav, type StageProto } from './proto';
-import { AdminHeader, ExploreMore, InvoicesBillsEmpty, TeamExpenses } from './screens-2023';
+import { AdminHeader, ExploreMore, InvoicesBillsEmpty, SelfAssessmentDetail, TeamExpenses } from './screens-2023';
 import {
+  AdminPlansScreen,
   CategoryScreen,
+  ConfirmDetailsScreen,
+  ExpensesBreakdownScreen,
   InsightsFreeScreen,
+  InsufficientFundsScreen,
   OverviewFreeScreen,
   PaywallScreen,
   ProcessingScreen,
   SelfAssessmentScreen,
   TransactionsScreen,
   TxActionsSheet,
+  VatRateScreen,
+  categoryDone,
+  vatDone,
 } from './screens-shared';
-import { Card, CardTitle, HEAD, ListRow, OutlineButton, Pill, ScoreDial, SectionTitle, T, Tap as _Tap } from './ui-tap';
-
-void _Tap;
+import { Card, CardTitle, HEAD, ListRow, OutlineButton, Pill, ScoreDial, SectionTitle, T } from './ui';
 
 /* ---------- Q2 2024: first freemium release ---------- */
 
@@ -22,6 +32,7 @@ const TABS_Q2 = ['Overview', 'Insights', 'Bookkeeping tasks', 'Self Assessment']
 const ROUTES_Q2 = { Overview: 'overview', 'Bookkeeping tasks': 'transactions' };
 
 function HomeQ2(nav: Nav) {
+  const done = nav.flags.categorised && nav.flags.vatDone;
   return (
     <>
       <StatusBar />
@@ -30,15 +41,15 @@ function HomeQ2(nav: Nav) {
         <SectionTitle more>Accounting</SectionTitle>
         <Card>
           <CardTitle right={<CircleHelp size={18} style={{ color: T.muted }} />}>Bookkeeping score</CardTitle>
-          <ScoreDial value={40} />
+          <ScoreDial value={done ? 80 : nav.flags.categorised ? 55 : 40} />
           <div className="mt-1 text-center">
-            <Pill tone="danger">NEEDS WORK</Pill>
+            <Pill tone={done ? 'green' : 'danger'}>{done ? 'ALMOST THERE' : 'NEEDS WORK'}</Pill>
             <p className="mt-1.5 text-[11px]" style={{ color: T.muted }}>
-              Complete tasks to increase your score
+              {done ? 'Complete your remaining tasks to reach 100%' : 'Complete tasks to increase your score'}
             </p>
           </div>
           <div className="-mx-4 mt-4 border-t" style={{ borderColor: T.border }}>
-            <ListRow first title="19 transactions are missing details" sub="Add details to ensure your reports are accurate" onTap={() => nav.go('transactions')} />
+            <ListRow first title={done ? '14 items require your attention' : `${nav.flags.categorised ? 15 : 19} transactions are missing details`} sub="Add details to ensure your reports are accurate" onTap={() => nav.go('transactions')} />
           </div>
           <div className="mt-3">
             <OutlineButton onTap={() => nav.go('overview')}>Open Accounting</OutlineButton>
@@ -52,29 +63,25 @@ function HomeQ2(nav: Nav) {
   );
 }
 
-const category = (nav: Nav) => (
-  <CategoryScreen
-    nav={nav}
-    onSaved={() => {
-      nav.setFlag('categorised', true);
-      nav.back();
-      nav.back();
-      nav.toast('Category updated for 4 transactions');
-    }}
-  />
-);
+/** Screens every freemium release shares. */
+const freemiumScreens = (routes: Record<string, string>, tabs: string[], afterProcessing: string) => ({
+  overview: (nav: Nav) => <OverviewFreeScreen nav={nav} routes={routes} tabs={tabs} />,
+  transactions: (nav: Nav) => <TransactionsScreen nav={nav} />,
+  txSelect: (nav: Nav) => <TransactionsScreen nav={nav} mode="category" />,
+  txVatSelect: (nav: Nav) => <TransactionsScreen nav={nav} mode="vat" />,
+  category: (nav: Nav) => <CategoryScreen nav={nav} onSaved={() => categoryDone(nav)} />,
+  vatRate: (nav: Nav) => <VatRateScreen nav={nav} onSaved={() => vatDone(nav)} />,
+  expenses: (nav: Nav) => <ExpensesBreakdownScreen nav={nav} />,
+  paywall: (nav: Nav) => <PaywallScreen nav={nav} />,
+  adminPlans: (nav: Nav) => <AdminPlansScreen nav={nav} />,
+  insufficientFunds: (nav: Nav) => <InsufficientFundsScreen nav={nav} />,
+  processing: (nav: Nav) => <ProcessingScreen nav={nav} backTo={afterProcessing} />,
+  confirmDetails: (nav: Nav) => <ConfirmDetailsScreen nav={nav} />,
+});
 
 export const PROTO_Q2_2024: StageProto = {
   tabs: ['Payments', 'Admin', 'Finance', 'Support'],
-  screens: {
-    home: HomeQ2,
-    overview: (nav) => <OverviewFreeScreen nav={nav} routes={ROUTES_Q2} tabs={TABS_Q2} />,
-    transactions: (nav) => <TransactionsScreen nav={nav} />,
-    txSelect: (nav) => <TransactionsScreen nav={nav} select />,
-    category,
-    paywall: (nav) => <PaywallScreen nav={nav} />,
-    processing: (nav) => <ProcessingScreen nav={nav} backTo="overview" />,
-  },
+  screens: { home: HomeQ2, ...freemiumScreens(ROUTES_Q2, TABS_Q2, 'overview') },
   sheets: { txActions: (nav) => <TxActionsSheet nav={nav} /> },
 };
 
@@ -83,7 +90,7 @@ export const PROTO_Q2_2024: StageProto = {
 const TABS_Q3 = ['Overview', 'Insights', 'Bookkeeping', 'Self Assessment'];
 const ROUTES_Q3 = { Overview: 'overview', Insights: 'insights', Bookkeeping: 'transactions', 'Self Assessment': 'selfAssessment' };
 
-function InsightsCardHome({ nav }: { nav: Nav }) {
+export function InsightsCardHome({ nav }: { nav: Nav }) {
   const Stat = ({ label, tone }: { label: string; tone: string }) => (
     <div className="flex items-end justify-between rounded-2xl border p-3" style={{ borderColor: T.border }}>
       <div>
@@ -122,8 +129,6 @@ function InsightsCardHome({ nav }: { nav: Nav }) {
   );
 }
 
-export { InsightsCardHome };
-
 function HomeQ3(nav: Nav) {
   return (
     <>
@@ -145,14 +150,8 @@ export const PROTO_Q3_2024: StageProto = {
     home: HomeQ3,
     insights: (nav) => <InsightsFreeScreen nav={nav} routes={ROUTES_Q3} tabs={TABS_Q3} />,
     selfAssessment: (nav) => <SelfAssessmentScreen nav={nav} routes={ROUTES_Q3} tabs={TABS_Q3} />,
-    overview: (nav) => <OverviewFreeScreen nav={nav} routes={ROUTES_Q3} tabs={TABS_Q3} />,
-    transactions: (nav) => <TransactionsScreen nav={nav} />,
-    txSelect: (nav) => <TransactionsScreen nav={nav} select />,
-    category,
-    paywall: (nav) => <PaywallScreen nav={nav} />,
-    processing: (nav) => <ProcessingScreen nav={nav} backTo="selfAssessment" />,
+    saDetails: (nav) => <SelfAssessmentDetail nav={nav} title="Self Assessment" due={SELF_ASSESSMENT_2024.due} period={SELF_ASSESSMENT_2024.period} paid={SELF_ASSESSMENT_2024.paid} />,
+    ...freemiumScreens(ROUTES_Q3, TABS_Q3, 'selfAssessment'),
   },
   sheets: { txActions: (nav) => <TxActionsSheet nav={nav} /> },
 };
-
-export { ChevronRight };
