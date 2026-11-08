@@ -670,7 +670,7 @@ export function PaywallScreen({ nav }: { nav: Nav }) {
       <div className="mt-6 px-4">
         <div className="flex rounded-full border p-0.5" style={{ borderColor: T.border2, background: '#fff' }}>
           {(['Monthly', 'Annual'] as const).map((p) => (
-            <Tap key={p} onTap={() => setPeriod(p)} className="flex-1 rounded-full py-1.5 text-center text-[13px] font-medium" style={{ background: period === p ? T.tint : 'transparent', color: period === p ? T.deep : T.muted }}>
+            <Tap key={p} onTap={() => setPeriod(p)} block className="flex-1 rounded-full py-1.5 text-center text-[13px] font-medium" style={{ background: period === p ? T.tint : 'transparent', color: period === p ? T.deep : T.muted }}>
               {p}
             </Tap>
           ))}

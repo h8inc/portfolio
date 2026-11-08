@@ -83,7 +83,7 @@ export function OutlineButton({ children, icon, onTap }: { children: ReactNode; 
     <Tap
       onTap={onTap}
       block
-      className="flex h-10 w-full items-center justify-center gap-1.5 rounded-full border text-[13px] font-medium"
+      className="flex h-9 w-full items-center justify-center gap-1.5 rounded-full border text-[13px] font-medium"
       style={{ borderColor: T.border2, color: T.primary }}
     >
       {icon}
@@ -97,7 +97,7 @@ export function PrimaryButton({ children, icon, onTap, className = '' }: { child
     <Tap
       onTap={onTap}
       block
-      className={`flex h-12 w-full items-center justify-center gap-2 rounded-full text-[15px] font-semibold text-white ${className}`}
+      className={`flex h-10 w-full items-center justify-center gap-2 rounded-full text-[14px] font-semibold text-white ${className}`}
       style={{ background: T.primary }}
     >
       {icon}
@@ -152,6 +152,7 @@ export function SegmentTabs({ items, active, onChange }: { items: string[]; acti
           <Tap
             key={it}
             onTap={() => onChange?.(it)}
+            block
             className="flex-1 rounded-full py-1.5 text-center text-[13px] font-medium"
             style={{ background: on ? T.tint : 'transparent', color: on ? T.deep : T.muted }}
           >

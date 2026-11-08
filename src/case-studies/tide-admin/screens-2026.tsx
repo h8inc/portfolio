@@ -220,6 +220,7 @@ function Taxes(nav: Nav) {
       <StatusBar ios />
       <NavBar title="Taxes" big />
       <div className="space-y-3">
+        <TaxAccountPromo nav={nav} />
         <LockBanner title="Tax calculations and breakdowns" sub="Start free trial to unlock" onTap={() => nav.go('toolkit')} />
         <Card>
           <CardTitle action="View all" onAction={() => nav.toast('Corporation tax history is not in this prototype')}>
@@ -262,28 +263,37 @@ function Taxes(nav: Nav) {
             <OutlineButton onTap={() => nav.toast('HMRC connection is not in this prototype')}>Connect to HMRC</OutlineButton>
           </div>
         </Card>
-        <TaxAccountPromo nav={nav} />
       </div>
     </>
   );
 }
 
+/** Warm gold treatment: distinct from the periwinkle cards around it, and keeps the
+ *  growth illustration's dark ink marks legible (a dark card would swallow them). */
 function TaxAccountPromo({ nav }: { nav: Nav }) {
   return (
-    <Card className="flex items-center gap-3">
-      <span className="flex-1">
-        <span className="block text-[15px] font-semibold leading-snug tracking-[-0.02em]" style={{ fontFamily: HEAD, color: T.ink }}>
+    <div
+      className="mx-4 flex items-center gap-3 rounded-[20px] border p-4"
+      style={{ background: 'linear-gradient(135deg, #FDF1D6 0%, #FBE3B4 100%)', borderColor: '#F2DBA2' }}
+    >
+      <div className="flex-1">
+        <p className="text-[15px] font-semibold leading-snug tracking-[-0.02em]" style={{ fontFamily: HEAD, color: T.ink }}>
           Save for tax season with your dedicated tax account
-        </span>
-        <span className="mt-1 block text-[12px]" style={{ color: T.muted }}>
+        </p>
+        <p className="mt-1 text-[12px]" style={{ color: '#8A6B2E' }}>
           Set money aside, track goals, and pay HMRC directly.
-        </span>
-        <span className="mt-3 block">
-          <OutlineButton onTap={() => nav.toast('Tax account is not in this prototype')}>Open tax account</OutlineButton>
-        </span>
-      </span>
-      <Illo name="growth" size={72} />
-    </Card>
+        </p>
+        <Tap
+          onTap={() => nav.toast('Tax account is not in this prototype')}
+          block
+          className="mt-3 flex h-9 items-center justify-center rounded-full bg-white px-4 text-[13px] font-semibold"
+          style={{ color: T.ink, width: 'fit-content' }}
+        >
+          Open tax account
+        </Tap>
+      </div>
+      <Illo name="growth" size={76} />
+    </div>
   );
 }
 
@@ -293,6 +303,7 @@ function TaxesTrial({ nav }: { nav: Nav }) {
       <StatusBar ios />
       <NavBar title="Taxes" big />
       <div className="space-y-3">
+        <TaxAccountPromo nav={nav} />
         <div className="mx-4 overflow-hidden rounded-[20px] border bg-white" style={{ borderColor: T.border }}>
           <ListRow first icon={<span className="text-center text-[10px] font-semibold leading-tight">JAN<br />09</span>} title="Corporate tax £9,500 for 24/25" sub="Due in 5 months" onTap={() => nav.toast('Payment plan is not in this prototype')} />
         </div>
@@ -361,7 +372,6 @@ function TaxesTrial({ nav }: { nav: Nav }) {
             </p>
           </div>
         </Card>
-        <TaxAccountPromo nav={nav} />
       </div>
     </>
   );

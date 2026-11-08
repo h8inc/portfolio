@@ -207,7 +207,7 @@ function BasisToggle({ basis, vat, onBasis, onVat }: { basis: Basis; vat: boolea
     <div className="flex items-center justify-between gap-3 px-4">
       <div className="flex flex-1 rounded-full border p-0.5" style={{ borderColor: T.border2, background: '#fff' }}>
         {(['Cash', 'Accrual'] as Basis[]).map((b) => (
-          <Tap key={b} onTap={() => onBasis(b)} className="flex-1 rounded-full py-1 text-center text-[12px] font-medium" style={{ background: basis === b ? T.tint : 'transparent', color: basis === b ? T.deep : T.muted }}>
+          <Tap key={b} onTap={() => onBasis(b)} block className="flex-1 rounded-full py-1 text-center text-[12px] font-medium" style={{ background: basis === b ? T.tint : 'transparent', color: basis === b ? T.deep : T.muted }}>
             {b}
           </Tap>
         ))}

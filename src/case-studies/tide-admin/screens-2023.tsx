@@ -392,20 +392,18 @@ function Insights(nav: Nav) {
         {INSIGHTS_2023.map((m) => (
           <Card key={m.key}>
             <div className="flex items-start justify-between">
-              <div>
-                <p className="text-[14px] font-medium" style={{ color: T.ink }}>
-                  {m.title}
-                </p>
-                <p className="text-[20px] font-bold tracking-[-0.02em]" style={{ fontFamily: HEAD, color: T.ink }}>
-                  {m.value}
-                </p>
-              </div>
-              <div className="text-right">
-                <CircleHelp size={16} style={{ color: T.muted }} />
-                <p className="mt-1 text-[11px]" style={{ color: m.delta.startsWith('-') ? T.danger : T.green }}>
-                  {m.delta}
-                </p>
-              </div>
+              <p className="text-[14px] font-medium" style={{ color: T.ink }}>
+                {m.title}
+              </p>
+              <CircleHelp size={16} style={{ color: T.muted }} />
+            </div>
+            <div className="mt-0.5 flex items-baseline justify-between">
+              <p className="text-[20px] font-bold tracking-[-0.02em]" style={{ fontFamily: HEAD, color: T.ink }}>
+                {m.value}
+              </p>
+              <p className="text-[11px]" style={{ color: m.delta.startsWith('-') ? T.danger : T.green }}>
+                {m.delta}
+              </p>
             </div>
             <div className="mt-2">
               <AreaPair tone={m.tone} />
@@ -602,7 +600,7 @@ export function SelfAssessmentDetail({ nav, due, period, paid, title = 'Self Ass
           </span>
           <ChevronRight size={18} style={{ color: T.primary }} />
         </Card>
-        <div className="flex items-end justify-between px-4">
+        <div className="flex items-start justify-between px-4">
           <div>
             <p className="text-[14px]" style={{ color: T.muted }}>
               {paid ? 'Payment due date for selected year' : 'Next Self Assessment due'}
