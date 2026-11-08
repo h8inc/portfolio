@@ -580,7 +580,7 @@ export function ConfirmDetailsScreen({ nav }: { nav: Nav }) {
 /* Admin Extra paywall, plans, errors, processing                      */
 /* ------------------------------------------------------------------ */
 
-export function PaywallScreen({ nav, flag = 'trial' }: { nav: Nav; flag?: string }) {
+export function PaywallScreen({ nav }: { nav: Nav }) {
   const [agree, setAgree] = useState(true);
   const [period, setPeriod] = useState<'Monthly' | 'Annual'>('Monthly');
   const features = [
@@ -699,7 +699,7 @@ export function PaywallScreen({ nav, flag = 'trial' }: { nav: Nav; flag?: string
           <PrimaryButton
             onTap={() => {
               if (!agree) return nav.toast('Accept the terms to continue');
-              nav.setFlag(flag, true);
+              nav.setFlag('trial', true);
               nav.go('processing');
             }}
           >
@@ -715,7 +715,7 @@ export function PaywallScreen({ nav, flag = 'trial' }: { nav: Nav; flag?: string
 }
 
 /** Plan picker. Paying from the Tide balance fails on purpose, to show the error state. */
-export function AdminPlansScreen({ nav, flag = 'trial' }: { nav: Nav; flag?: string }) {
+export function AdminPlansScreen({ nav }: { nav: Nav }) {
   const [plan, setPlan] = useState(PLANS[0].name);
   const [pay, setPay] = useState<'card' | 'balance'>('balance');
   return (
@@ -752,7 +752,7 @@ export function AdminPlansScreen({ nav, flag = 'trial' }: { nav: Nav; flag?: str
         <PrimaryButton
           onTap={() => {
             if (pay === 'balance') return nav.go('insufficientFunds');
-            nav.setFlag(flag, true);
+            nav.setFlag('trial', true);
             nav.go('processing');
           }}
         >
