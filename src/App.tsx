@@ -12,8 +12,9 @@ const DemoUpsell = lazy(() => import('./case-studies/blockstream/demos/DemoUpsel
 const DemoSecurity = lazy(() => import('./case-studies/blockstream/demos/DemoSecurity'));
 const DemoSell = lazy(() => import('./case-studies/blockstream/demos/DemoSell'));
 const DemoReceive = lazy(() => import('./case-studies/blockstream/demos/DemoReceive'));
+const DemoAdminEvolution = lazy(() => import('./case-studies/tide-admin/DemoAdminEvolution'));
 
-const DEMO_PATHS = ['/demo/upsell', '/demo/security', '/demo/sell', '/demo/receive'];
+const DEMO_PATHS = ['/demo/upsell', '/demo/security', '/demo/sell', '/demo/receive', '/demo/admin-evolution'];
 const OVERLAY_PATHS = ['/tide', '/about', '/extended', '/blockstream', '/growth'];
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
           <Route path="/demo/security" element={<DemoSecurity />} />
           <Route path="/demo/sell" element={<DemoSell />} />
           <Route path="/demo/receive" element={<DemoReceive />} />
+          <Route path="/demo/admin-evolution" element={<DemoAdminEvolution />} />
         </Routes>
       </Suspense>
     );
