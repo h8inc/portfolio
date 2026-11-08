@@ -172,3 +172,84 @@ export const SELF_ASSESSMENT_2024 = {
   period: '28 Aug 22 – 27 Aug 23',
   paid: { title: '£1,000.00 in taxes for 22/23', sub: 'Completed 5 months ago', month: 'JAN', day: '31' },
 };
+
+/* ---------- Q2 2025: Admin IA redesign ---------- */
+
+export type Basis = 'Cash' | 'Accrual';
+export type MetricKey = 'netProfit' | 'revenue' | 'expenses';
+
+/** Insight values by basis and VAT treatment. Keys: `${basis}-${vat ? 'vat' : 'net'}`. */
+export const INSIGHTS_2025: Record<MetricKey, { title: string; period: string; values: Record<string, string>; delta: string }> = {
+  netProfit: { title: 'Net Profit', period: 'November 2024', delta: '-12% vs October', values: { 'Cash-net': '-£4,400', 'Cash-vat': '-£5,280', 'Accrual-net': '-£3,150', 'Accrual-vat': '-£3,780' } },
+  revenue: { title: 'Revenue', period: 'October 2024', delta: '+8% vs September', values: { 'Cash-net': '£9,400', 'Cash-vat': '£11,280', 'Accrual-net': '£10,650', 'Accrual-vat': '£12,780' } },
+  expenses: { title: 'Expenses', period: 'November 2024', delta: '+4% vs October', values: { 'Cash-net': '£9,400', 'Cash-vat': '£11,280', 'Accrual-net': '£8,242', 'Accrual-vat': '£9,890' } },
+};
+
+export const DRILL_ROWS: Record<MetricKey, { name: string; cat: string; amount: string }[]> = {
+  netProfit: [
+    { name: 'Facebook for Business', cat: 'Marketing', amount: '£50.00' },
+    { name: 'AMZ LTD', cat: 'Stock', amount: '£1,000.40' },
+    { name: 'Amazon', cat: 'Office supplies', amount: '£124.40' },
+  ],
+  revenue: [
+    { name: 'Influitive', cat: 'Sales · Inv. 1123', amount: '+£2,400.00' },
+    { name: 'Mori', cat: 'Sales · Inv. 1120', amount: '+£500.00' },
+    { name: 'Groupon', cat: 'Sales · Inv. 1119', amount: '+£500.00' },
+  ],
+  expenses: [
+    { name: 'Facebook for Business', cat: 'Marketing', amount: '£50.00' },
+    { name: 'AMZ LTD', cat: 'Stock', amount: '£1,000.40' },
+    { name: 'Amazon', cat: 'Office supplies', amount: '£124.40' },
+  ],
+};
+
+export const DRILL_BREAKDOWN: Record<MetricKey, [string, string][]> = {
+  netProfit: [
+    ['Revenue', '£3,842.00'],
+    ['Expenses', '£8,242.00'],
+  ],
+  revenue: [
+    ['Invoices paid', '£7,900.00'],
+    ['Other income', '£1,500.00'],
+  ],
+  expenses: [
+    ['Stock', '£5,120.00'],
+    ['Marketing', '£2,240.00'],
+    ['Office & software', '£2,040.00'],
+  ],
+};
+
+export const WHAT_IS: Record<MetricKey, { title: string; body: string[] }> = {
+  netProfit: {
+    title: 'What is net profit?',
+    body: [
+      'Net profit measures how much money your business earns. It’s calculated by subtracting all expenses from your total revenue.',
+      'In accrual basis accounting, your expenses and revenue include all transactions, even if they haven’t been paid for yet.',
+      'In contrast, gross profit measures how much money your business earns minus the cost of goods sold.',
+    ],
+  },
+  revenue: {
+    title: 'What is revenue?',
+    body: ['Revenue is the amount of money that your business earns over a period, before any costs are taken off.', 'On a cash basis it counts money received. On an accrual basis it counts what you have invoiced.'],
+  },
+  expenses: {
+    title: 'What are expenses?',
+    body: ['Expenses are costs incurred to run your business. Some examples are stock, marketing, software and office supplies.', 'Categorising transactions keeps this number, and your tax estimate, accurate.'],
+  },
+};
+
+/** Admin home after subscribing in 2025. */
+export const HOME_2025_SUBSCRIBED = {
+  metrics: [
+    ['Cash Flow', '£9,400.00', 'teal'],
+    ['Revenue', '£7,100', 'indigo'],
+    ['Net Profit', '£7,100', 'lilac'],
+    ['Expenses', '£7,100', 'gold'],
+  ] as [string, string, 'teal' | 'indigo' | 'lilac' | 'gold'][],
+  tasks: [
+    { title: 'Enrich 16 transactions', sub: 'Add categories and VAT to improve the accuracy of your insights', go: 'transactions' },
+    { title: 'Chase 5 late invoices', sub: 'Send reminders to customers and collect money you’re owed', go: 'invoices' },
+    { title: 'Get £1,532.32 instantly!', sub: 'Split your payment to His Gracen… and repay in 4 instalments', go: null },
+  ],
+  overdue: { customer: 'Bob Baxter', ref: 'Inv. 1123', status: 'Overdue by 3 days', amount: '+£500.00' },
+};

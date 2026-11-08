@@ -85,7 +85,7 @@ export const STAGES: Stage[] = [
     title: 'Admin IA redesign',
     summary:
       'Quick actions and live invoice and bill totals replaced the empty states. Overdue, due and paid sit side by side.',
-    tryIt: 'Tap View all on Insights and drill into Net Profit. Try All actions too.',
+    tryIt: 'Tap View all on Insights, switch Cash to Accrual, then drill into Net Profit. Subscribe from Overview and watch Admin change.',
     signUp: '22.2%',
     arr: '£8M',
     proto: PROTO_2025,
